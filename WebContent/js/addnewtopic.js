@@ -38,21 +38,24 @@ $(document).ready(function(){
 		return data;
 	}
 	
-    $("#uploadify").uploadify({
-    	'swf'      : 'uploadify.swf?ver='+(new Date()).getTime(),
-		'uploader' : 'imageUpload?topicId=' + topicId,
-		'fileDesc' : 'Image Files',
-		'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
-        'multi' : false,
-        'sizeLimit' : 10485760,
-        onUploadError : function(event, queueID, fileObj, errorObj) {
-			return false;
-		},
-		onUploadSuccess : function(file, data, response) {
-			picFlag = true;
-			setTimeout(function(){
-				$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
-			},300);
-		}
-    });
+    setTimeout(function(){
+		$("#uploadify").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + topicId,
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'sizeLimit' : 10485760,
+			
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				picFlag = true;
+				setTimeout(function(){
+					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+				},300);
+			}
+		});
+	},10);
 });
