@@ -41,6 +41,7 @@
 				<value>com.novahome.data.pojo.Account</value>
 				<value>com.novahome.data.pojo.Text</value>
 				<value>com.novahome.data.pojo.PictureTopic</value>
+				<value>com.novahome.data.pojo.TestClob</value>
 			</list>
 		</property>		
 		

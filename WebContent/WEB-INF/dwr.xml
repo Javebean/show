@@ -9,6 +9,9 @@
 		<create javascript="PTopic" creator="spring">
 			<param name="beanName" value="pt_dwr"></param>
 		</create>
+		<create javascript="TestClob" creator="spring">
+			<param name="beanName" value="testclob_dwr"></param>
+		</create>
 		<convert converter="bean" match="com.novahome.data.pojo.*"/>
 	</allow>
 </dwr>
