@@ -5,6 +5,10 @@ $(document).ready(function(){
 	//init page
 	initTopic();
 	
+	CKEDITOR.replace( 'content',{
+		//allowedContent: true
+	});
+	
 	function initTopic(){
 		var func = function(data){
 			data = JSON.parse(data);
@@ -30,6 +34,11 @@ $(document).ready(function(){
 		topicdata.picPath=topicId+'.jpg';
 		topicdata.id = topicId;
 		topicdata.status = 1;
+		
+		//save ckEditor data
+		var ckedata = CKEDITOR.instances.content.getData();
+		topicdata.content = ckedata;
+		
 		var func = function(data){
 			data = JSON.parse(data);
 			location.href="manager.jsp?menu=0";

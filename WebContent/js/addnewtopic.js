@@ -3,7 +3,10 @@ var topicdata = {};
 var PIC_BASE = 'resources/topicimages/';
 var picFlag = false;
 $(document).ready(function(){
-	
+	CKEDITOR.replace( 'content',{
+		//allowedContent: true
+	});
+	 
 	//event binder
 	$("#add_topic").click(saveTopic);
 	
@@ -14,6 +17,11 @@ $(document).ready(function(){
 		topicdata.type="homec";
 		if(picFlag) topicdata.picPath=topicId+'.jpg';
 		topicdata.id = topicId;
+		
+		//save ckEditor data
+		var ckedata = CKEDITOR.instances.content.getData();
+		topicdata.content = ckedata;
+		
 		var func = function(data){
 			data = JSON.parse(data);
 			location.href="manager.jsp?menu=0";
@@ -31,7 +39,7 @@ $(document).ready(function(){
 	}
 	
     $("#uploadify").uploadify({
-    	'swf'      : 'uploadify.swf',
+    	'swf'      : 'uploadify.swf?ver='+(new Date()).getTime(),
 		'uploader' : 'imageUpload?topicId=' + topicId,
 		'fileDesc' : 'Image Files',
 		'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',

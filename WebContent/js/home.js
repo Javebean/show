@@ -20,7 +20,7 @@ $(document).ready(function(){
 				var subh = (i+1)%4==0?'id="last"':'';
 				var content = topic.content;
 				if(content.length>80){
-					content = content.substring(0,80)+'...';
+					//content = content.substring(0,80)+'...';
 				}
 				
 				var picPath = topic.picPath;

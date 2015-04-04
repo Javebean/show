@@ -42,6 +42,7 @@ String topicId = UUID.randomUUID().toString();
     <script src="plugins/uploadify/jquery.uploadify.js"></script>
 	<script src='dwr/interface/PTopic.js'></script>
     <script src="js/addnewtopic.js"></script>
+    <script src="plugins/ckEditor/ckeditor.js"></script>
     
     <script>
     	var topicId = '<%=topicId%>';

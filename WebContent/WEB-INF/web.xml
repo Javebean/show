@@ -46,6 +46,15 @@
 	  <servlet-name>imageUpload</servlet-name>
 	  <url-pattern>/imageUpload</url-pattern>
 	</servlet-mapping> 
+	
+	<servlet>
+	  <servlet-name>ckeImageUpload</servlet-name>
+	  <servlet-class>com.novahome.servlet.ckeImageUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>ckeImageUpload</servlet-name>
+	  <url-pattern>/ckeImageUpload</url-pattern>
+	</servlet-mapping> 
      
  
  
