@@ -56,7 +56,14 @@
 	  <url-pattern>/ckeImageUpload</url-pattern>
 	</servlet-mapping> 
      
- 
+ <servlet>
+	  <servlet-name>testVolley</servlet-name>
+	  <servlet-class>com.novahome.servlet.phone.TestVolleyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>testVolley</servlet-name>
+	  <url-pattern>/phone/testVolley</url-pattern>
+	</servlet-mapping> 
  
 	<listener> 
 		<listener-class> org.springframework.web.context.ContextLoaderListener </listener-class> 
