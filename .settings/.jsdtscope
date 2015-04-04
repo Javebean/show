@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	<classpathentry excluding="plugins/*|plugins/*/|plugins/*/*/" kind="src" path="WebContent"/>
+=======
+	<classpathentry excluding="jslib/*|plugins/*" kind="src" path="WebContent"/>
+>>>>>>> Stashed changes
 =======
 	<classpathentry excluding="jslib/*|plugins/*" kind="src" path="WebContent"/>
 >>>>>>> Stashed changes
