@@ -130,3 +130,6 @@ table.t_value td{
 .topicForm{
 	width:900px;
 }
+.paging{
+	text-align: right;
+}

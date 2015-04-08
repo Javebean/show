@@ -1,9 +1,12 @@
 $(document).ready(function(){
 	var PT_TYPE_HOMEC = "homec";
+	var ROWS_PER_PAGE = 10;
 	
 	//init page
 	showTopicList();
 	$("#add_topic").click("ma_addnewtopic.jsp",jumpto);
+	
+	initPaging(1,51);
 	
 	function jumpto(e){
 		location.href=e.data;
@@ -59,5 +62,36 @@ $(document).ready(function(){
 			if(data==true) location.reload();
 		}
 		PTopic.deletePTById(eid,func);
+	}
+	
+	function initPaging(pageActive, rowCount){
+		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
+		if(pageCount>1){
+			var html = '<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';
+			for(var i=1;i<=pageCount;i++){
+				if(pageActive!=i){
+					html += '<li><a page="'+i+'">'+i+'</a></li>';
+				}else{
+					html += '<li class="active"><a page="'+i+'">'+i+'</a></li>';
+				}
+			}
+			html+='<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>';
+			$(".pagination").html(html);
+			$(".paging").removeClass("hide");
+		}
+		
+		//bind events
+		$(".paging li").click(function(){
+			var pageTo = $(this).children().attr("page");
+			if(pageTo == "P"){
+				pageTo = 1;
+			}else if(pageTo == "N"){
+				pageTo = pageCount;
+			}else{
+				pageTo = parseInt(pageTo);
+			}
+			initPaging(pageTo, rowCount);
+		});
+		
 	}
 });
