@@ -31,7 +31,7 @@ public class TestClobDao {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 		"delete from Text where name = :name");
 		query.setParameter("name", name);
-		
+		//select * from testclob order by publish asc
 		return query.executeUpdate();
 	}
 }

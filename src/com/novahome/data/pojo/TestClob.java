@@ -1,5 +1,7 @@
 package com.novahome.data.pojo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +20,22 @@ public class TestClob {
 	private String name;
 	
 	private String content;
+	
+	private Date publish;
+	
+
+	public Date getPublish() {
+		return publish;
+	}
+
+	public void setPublish(Date publish) {
+		this.publish = publish;
+	}
 
 	@Id
 	@Column(length = 32)
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
+	/*@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")*/
 	public String getId() {
 		return id;
 	}

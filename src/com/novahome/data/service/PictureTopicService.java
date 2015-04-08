@@ -43,6 +43,7 @@ public class PictureTopicService {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");//设置日期格式
 		pt.setUpdatetime(df.format(new Date()));
 		ptDao.updatePT(pt);
+		 System.out.println("***********************************************************************"+ pt.getContent());
 		return true;
 	}
 	
