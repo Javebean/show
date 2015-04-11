@@ -34,8 +34,6 @@ if(accountid==null){
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/docs.min.js"></script>
     
     <script type='text/javascript' src='dwr/interface/PTopic.js'></script>
     <script type="text/javascript" src="js/manager.js"></script>

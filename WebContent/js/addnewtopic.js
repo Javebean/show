@@ -54,8 +54,22 @@ $(document).ready(function(){
 				picFlag = true;
 				setTimeout(function(){
 					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+					$("#img_preview").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+					$('#topic_image').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
 				},300);
 			}
 		});
 	},10);
+	
+	function preview(img, selection) {
+	    var scaleX = 200 / (selection.width || 1);
+	    var scaleY = 150 / (selection.height || 1);
+	  
+	    $('#img_preview').css({
+	        width: Math.round(scaleX * 400) + 'px',
+	        height: Math.round(scaleY * 300) + 'px',
+	        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+	        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+	    });
+	}
 });
