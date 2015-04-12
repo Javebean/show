@@ -4417,6 +4417,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .pagination > li {
   display: inline;
+  cursor: pointer;
 }
 .pagination > li > a,
 .pagination > li > span {

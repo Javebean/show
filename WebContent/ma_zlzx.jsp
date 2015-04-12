@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+	<%@ page contentType="text/html;charset=UTF-8"%>
 	<jsp:include page="ma_header.jsp" />
-	<script type='text/javascript' src='dwr/interface/PTopic.js'></script>
-    <script type="text/javascript" src="js/manager.js"></script>
+	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
+    <script type="text/javascript" src="js/ma_zlzx.js"></script>
     <script>
-    	var menu = 0;
+    	var menu = 1;
     </script>
 
 	  
@@ -13,15 +13,14 @@
 		<jsp:include page="ma_menu.jsp" />   
 		    
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="sub-header">图片新闻 <button type="button" id="add_topic" class="btn btn-sm btn-primary">添加</button></h2>
+          <h2 class="sub-header">展览资讯<button type="button" id="add_topic" class="btn btn-sm btn-primary">添加</button></h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>编号</th>
                   <th>标题</th>
-                  <th>图片链接</th>
-                  <th>内容简介</th>
+                  <th>发布人</th>
                   <th>更新时间</th>
                   <th>状态</th>
                   <th>操作</th>

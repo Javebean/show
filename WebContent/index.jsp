@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="./css/style.css" rel="stylesheet" type="text/css"  media="all" />
 	<link href="./css/slider.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 	
 	<script src="./jslib/jquery.min.js"></script>
 	<script type="text/javascript" src="./jslib/jquery.easing.1.3.js"></script>
@@ -13,6 +14,7 @@
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
 	<script type='text/javascript' src='dwr/interface/PTopic.js'></script>
+	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
 	
 	<script type="text/javascript" src="./js/home.js"></script>
 	
@@ -32,6 +34,18 @@ jQuery(function(){
 	});
 });
 </script>
+
+<style>
+.pad_L_20{
+	padding-left:20px;
+}
+.pad_L_100{
+	padding-left:100px;
+}
+a{
+	cursor:pointer;
+}
+</style>
 
 <body>
 <!----start-wrap---->
@@ -103,7 +117,24 @@ jQuery(function(){
 		 		<div class="clear"> </div>
 	 		</div>
 	 	</div>
-	 	<!---start-mid-grids---->
+	 	
+	 	<div class="pad_L_100">
+		 	<div>展览资讯：</div>
+		 	<div class = "zlzx_box">
+		 		
+		 	</div>
+			<div class="paging hide">
+				<nav>
+				<ul class="pagination pagination-lg">
+					<li><a page="P" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span></a></li>
+					<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+				</ul>
+				</nav>
+			</div>
+		</div>
+
+		<!---start-mid-grids---->
 	 	<div class="mid-grids">
 	 		<div class="wrap pt_cen_box">
 		 		<div class="mid-grid">

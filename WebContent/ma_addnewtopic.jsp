@@ -25,7 +25,7 @@ String topicId = UUID.randomUUID().toString();
     <meta name="author" content="">
 
 	<!-- Bootstrap core CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -46,6 +46,7 @@ String topicId = UUID.randomUUID().toString();
     
     <script>
     	var topicId = '<%=topicId%>';
+    	var menu = 0;
     </script>
   </head>
   <body>

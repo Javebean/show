@@ -25,7 +25,7 @@ String topicId = (String)request.getParameter("topicId");
     <meta name="author" content="">
 
 	<!-- Bootstrap core CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -36,8 +36,6 @@ String topicId = (String)request.getParameter("topicId");
 	<script src='dwr/engine.js'></script>
 	<script src='dwr/util.js'></script>
     <script src="jslib/json2.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/docs.min.js"></script>
     
     <script src="plugins/uploadify/jquery.uploadify.js"></script>
 	<script src='dwr/interface/PTopic.js'></script>
@@ -46,6 +44,7 @@ String topicId = (String)request.getParameter("topicId");
     
     <script>
     	var topicId = '<%=topicId%>';
+    	var menu = 0;
     </script>
   </head>
   <body>
