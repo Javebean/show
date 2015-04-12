@@ -36,8 +36,8 @@ String topicId = UUID.randomUUID().toString();
 	<script src='dwr/engine.js'></script>
 	<script src='dwr/util.js'></script>
     <script src="jslib/json2.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/docs.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
+	<script type="text/javascript" src="plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
     
     <script src="plugins/uploadify/jquery.uploadify.js"></script>
 	<script src='dwr/interface/PTopic.js'></script>
@@ -98,11 +98,11 @@ String topicId = UUID.randomUUID().toString();
 							<div style="margin-bottom:10px;"><img id="topic_image" width="400" height="300 src=""/></div>
 							<div id="queue"></div>
 						    <input type="file" name="uploadify" id="uploadify" />
-						    <!-- <p>
-						      <a href="javascript:$('#uploadify').uploadifyUpload()">上传</a>| 
-						    </p> -->
+						    <h4>预览：</h4>
+						 	<div style="width:200px;height:150px;overflow: hidden;">
+						 		<img id="img_preview" src="" style="position: relative;" />
+						 	</div>
 						</div>
-	                 <!--  <input id="picPath" type="text" maxlength="60" size="40" class="required inp" value=""> -->
 	            </tr>
 	            <tr>
 	                <th scope="row">内容</th>

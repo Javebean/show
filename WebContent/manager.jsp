@@ -34,8 +34,6 @@ if(accountid==null){
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/docs.min.js"></script>
     
     <script type='text/javascript' src='dwr/interface/PTopic.js'></script>
     <script type="text/javascript" src="js/manager.js"></script>
@@ -108,7 +106,21 @@ if(accountid==null){
               </tbody>
             </table>
           </div>
-        </div>
+          
+			<div class="paging hide">
+				<nav>
+				<ul class="pagination pagination-lg">
+					<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+					<!-- <li class="active"><a page="1">1</a></li>
+					<li><a page="2">2</a></li>
+					<li><a page="3">3</a></li>
+					<li><a page="4">4</a></li>
+					<li><a page="5">5</a></li> -->
+					<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+				</ul>
+				</nav>
+			</div>
+		</div>
       </div>
     </div>
   </body>
