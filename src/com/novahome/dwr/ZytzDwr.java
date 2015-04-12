@@ -19,49 +19,89 @@ public class ZytzDwr {
 	@Resource
 	private ZytzService zytzService;
 	
+	/**
+	 * 获取重要通知数量
+	 * @return
+	 */
 	@RemoteMethod
 	public String getZytzTotalCount() 
 	{
 		return zytzService.getZytzTotalCount();
 	}
 	
+	/**
+	 * 存储重要通知
+	 * @param zytz
+	 * @return
+	 */
 	@RemoteMethod
 	public String saveZytz(Zytz zytz)
 	{
 		return zytzService.saveZytz(zytz);
 	}
 	
+	/**
+	 * 通过重要通知标题查找
+	 * @param title
+	 * @return
+	 */
 	@RemoteMethod
 	public String getZytzByTitle(String title)
 	{
 		return zytzService.getZytzByTitle(title);
 	}
 	
+	/**
+	 * 通过id获取重要通知
+	 * @param id
+	 * @return
+	 */
 	@RemoteMethod
 	public String getZytzById(String id)
 	{
 		return zytzService.getZytzById(id);
 	}
 	
-	
+	/**
+	 * 分页查询重要通知（包含所有信息，content在内）（不推荐）
+	 * @param start
+	 * @param number
+	 * @return
+	 */
 	@RemoteMethod
 	public String getZytzForPage(int start, int number)
 	{
 		return zytzService.getZytzForPage(start, number);
 	}
 	
+	/**
+	 * 分页查询重要通知（精简版，不包含content）
+	 * @param start
+	 * @param number
+	 * @return
+	 */
 	@RemoteMethod
 	public String getShortZytzForPage(int start, int number)
 	{
 		return zytzService.getShortZytzForPage(start, number);
 	}
 	
+	/**
+	 * 删除重要通知
+	 * @param id
+	 * @return
+	 */
 	@RemoteMethod
 	public long deleteZytzById(String id)
 	{
 		return zytzService.deleteZytzById(id);
 	}
 	
+	/**
+	 * 更新重要通知
+	 * @param zytz
+	 * @return
+	 */
 	@RemoteMethod
 	public boolean updateZytz(Zytz zytz)
 	{

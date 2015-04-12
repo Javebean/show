@@ -22,46 +22,87 @@ public class AudienceDwr {
 	@Resource
 	private AudienceService audienceService;
 	
+	/**
+	 * 获取注册观众数量
+	 * @return json count
+	 */
 	@RemoteMethod
 	public String getAudienceTotalCount() 
 	{
 		return audienceService.getAudienceTotalCount();
 	}
 	
+	/**
+	 * 存储注册观众
+	 * @param audience
+	 * @return
+	 */
 	@RemoteMethod
 	public String saveAudience(Audience audience)
 	{
 		return audienceService.saveAudience(audience);
 	}
 	
+	/**
+	 * 通过用户名查找注册观众
+	 * @param userName
+	 * @return
+	 */
 	@RemoteMethod
 	public String getAudienceByUserName(String userName)
 	{
 		return audienceService.getAudienceByUserName(userName);
 	}
 	
+	/**
+	 * 通过观众的名字查找注册观众
+	 * @param name
+	 * @return
+	 */
 	@RemoteMethod
 	public String getAudienceByName(String name)
 	{
 		return audienceService.getAudienceByName(name);
 	}
 	
+	/**
+	 * 通过id查找注册观众
+	 * @param id
+	 * @return
+	 */
 	public String getAudienceById(String id)
 	{
 		return audienceService.getAudienceById(id);
 	}
 	
+	/**
+	 * 注册观众注册
+	 * @param username
+	 * @param password
+	 * @return 返回成功json信息
+	 */
 	@RemoteMethod
 	public String login(String username,String password) {
 		return audienceService.login(username, password);
 	}
 	
+	/**
+	 * 分业查询注册观众
+	 * @param start 起始
+	 * @param number
+	 * @return
+	 */
 	@RemoteMethod
 	public String getAudienceForPage(int start, int number)
 	{
 		return audienceService.getAudienceForPage(start, number);
 	}
 	
+	/**
+	 * 删除注册观众
+	 * @param id
+	 * @return
+	 */
 	@RemoteMethod
 	public long deleteAudienceById(String id)
 	{
