@@ -42,6 +42,18 @@
 				<value>com.novahome.data.pojo.Text</value>
 				<value>com.novahome.data.pojo.PictureTopic</value>
 				<value>com.novahome.data.pojo.TestClob</value>
+				<value>com.novahome.data.pojo.Audience</value>
+				<value>com.novahome.data.pojo.Construction</value>
+				<value>com.novahome.data.pojo.DisplayItem</value>
+				<value>com.novahome.data.pojo.Event</value>
+				<value>com.novahome.data.pojo.Exhibitors</value>
+				<value>com.novahome.data.pojo.SceneServ</value>
+				<value>com.novahome.data.pojo.Staff</value>
+				<value>com.novahome.data.pojo.Transportation</value>
+				<value>com.novahome.data.pojo.Visitor</value>
+				<value>com.novahome.data.pojo.Zlzx</value>
+				<value>com.novahome.data.pojo.Zytz</value>
+				
 			</list>
 		</property>		
 		

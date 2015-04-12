@@ -21,6 +21,7 @@ public class MD5 {
 		return result;
 	}
 
+	
 	// 将传递进来的字节数组转换成十六进制的字符串形式并返回
 	private static String toHex(byte[] buffer) {
 		StringBuffer sb = new StringBuffer(buffer.length * 2);

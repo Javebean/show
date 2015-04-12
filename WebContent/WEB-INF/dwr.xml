@@ -12,6 +12,21 @@
 		<create javascript="TestClob" creator="spring">
 			<param name="beanName" value="testclob_dwr"></param>
 		</create>
+		<create javascript="Audience" creator="spring">
+			<param name="beanName" value="audience_dwr"></param>
+		</create>
+		<create javascript="Zytz" creator="spring">
+			<param name="beanName" value="zytz_dwr"></param>
+		</create>
+		<create javascript="Zlzx" creator="spring">
+			<param name="beanName" value="zlzx_dwr"></param>
+		</create>
+		<create javascript="Event" creator="spring">
+			<param name="beanName" value="event_dwr"></param>
+		</create>
+		<create javascript="Staff" creator="spring">
+			<param name="beanName" value="staff_dwr"></param>
+		</create>
 		<convert converter="bean" match="com.novahome.data.pojo.*"/>
 	</allow>
 </dwr>
