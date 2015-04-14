@@ -6,15 +6,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 现场施工服务申请实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Construction {
 
-	private String id;
-	private String eid;
-	private String type;
-	private String content;
-	private String picture;
+	private String id;	//id,系统生成
+	private String eid;	//申请展商的id
+	private String type;	//现场施工项目
+	private String content;	//现场施工具体内容
+	private String picture;	//现场施工报图
 	private int state = 0;  //默认为0，1审批
 	@Id
 	@Column(length = 32)

@@ -6,13 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
+/**
+ * 现场服务申请实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class SceneServ {
 
-	private String id;
-	private String eid;
-	private String type;
-	private String content;
+	private String id; //id，系统生成
+	private String eid; //申请展商的id
+	private String type;	//现场服务项目
+	private String content;	//现场服务申请具体内容
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

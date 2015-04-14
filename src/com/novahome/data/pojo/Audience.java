@@ -8,26 +8,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 观众实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Audience {
 
-	private String id;
-	private String name;
-	private String sex; //sex = 0 男；1女
-	private String position;
-	private String phone;
-	private String email;
+	private String id;	//id，系统生成id
+	private String name;	//名字
+	private String sex; //性别，sex = 0 男；1女
+	private String position; //职位
+	private String phone;	//电话号码
+	private String email;	//电子邮件
 	private int buyer = 0; //默认不是buyer
-	private String inviter;
-	private String infoSource;
-	private String org;
-	private String username;
-	private String password;
-	private String address;
-	private String target;
+	private String inviter;	//邀请人
+	private String infoSource;	//消息来源
+	private String org;		//公司名称
+	private String username;	//用户名（系统生成）
+	private String password;	//用户密码（系统生成）
+	private String address;		//地址
+	private String target;		//参会目的
 	private int state =0;		//默认正常状态，state=0 申请；1 驳回； 2批准
-	private Date applyTime;
+	private Date applyTime;		//申请时间（系统生成）
 	
 	@Id
 	@Column(length = 32)

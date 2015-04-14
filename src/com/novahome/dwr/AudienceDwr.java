@@ -87,7 +87,7 @@ public class AudienceDwr {
 	}
 	
 	/**
-	 * 分业查询注册观众
+	 * 分页查询注册观众
 	 * @param start 起始
 	 * @param number
 	 * @return

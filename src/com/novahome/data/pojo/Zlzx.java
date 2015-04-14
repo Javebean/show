@@ -8,15 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 展览资讯实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Zlzx {
 
-	private String id;
-	private String soruce;
-	private Date publishTime;
-	private String title;
-	private String content;
+	private String id; //id,系统生成
+	private String soruce;	//新闻来源
+	private Date publishTime;	//发布时间
+	private String title;	//新闻标题
+	private String content;	//新闻内容
 	private int state = 0; //默认正常状态，state=0 ；1 驳回；
 	@Id
 	@Column(length = 32)

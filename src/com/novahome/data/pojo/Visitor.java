@@ -8,23 +8,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 现场证件申请实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Visitor {
 
-	private String id;
-	private String eid;
-	private String name;
-	private String sex;
-	private String position;
-	private String phone;
-	private String email;
-	private String photo;
-	private int type = 2;
-	private int buyer = 0;
-	private String org;
-	private int state = 0;
-	private Date applyTime;
+	private String id;	//id,系统生成
+	private String eid;	//对应展商id
+	private String name;	//姓名
+	private String sex;		//性别
+	private String position;	//职务
+	private String phone;	//号码
+	private String email;	//电子邮箱
+	private String photo;	//上传照片地址
+	private int type = 2;	//证件类型，1 = 展商，2=观众， 3= 媒体，缺省为观众
+	private int buyer = 0;	//是否为采购商， 1=是采购商，0= 不是采购商，缺省为非采购商
+	private String org;	//所属公司名称
+	private int state = 0;	//申请状态
+	private Date applyTime;	//申请时间，系统生成
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

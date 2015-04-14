@@ -6,19 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 展品实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class DisplayItem {
 
-	private String id;
-	private String eid;
-	private String name;
-	private double length;
-	private double width;
-	private double height;
-	private double weight;
-	private int number;
-	private String version;
+	private String id;	//id,系统生成
+	private String eid;	//申请展商的id
+	private String name;	//展品名称
+	private double length;	//展品长度
+	private double width;	//展品宽度
+	private double height;	//展品高度
+	private double weight;	 //展品重量
+	private int number;	//展品数量
+	private String version;	//展品型号
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

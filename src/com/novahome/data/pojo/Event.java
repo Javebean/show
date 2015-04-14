@@ -8,20 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 观众专题活动申请实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Event {
 
-	private String id;
-	private String aid;
-	private String eventName;
-	private Date startTime;
-	private Date endTime;
-	private String place;
-	private String type;
-	private String note;
-	private String invitee;
-	private Date applyTime;
+	private String id;	//id,系统生成
+	private String aid;	//申请观众的id
+	private String eventName;	//专题活动名称
+	private Date startTime;	//活动开始时间，第一版本可以忽略此字段
+	private Date endTime;	//活动结束时间，第一版本可以忽略此字段
+	private String place;	//活动地点
+	private String type;	//活动类型
+	private String note;	//活动备注说明
+	private String invitee;	//活动邀请对象
+	private Date applyTime;	//活动申请时间，系统生成
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

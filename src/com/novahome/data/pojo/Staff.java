@@ -7,17 +7,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-@Entity
+/**
+ * 后台管理人员实体类
+ * @author xiaohaizhe
+ *
+ */
+ @Entity
 public class Staff {
 
-	private String id;
-	private String name;
-	private String sex;
-	private String position;
-	private String phone;
-	private String email;
-	private String userName;
-	private String password;
+	private String id; //id,系统生成
+	private String name; //管理人员名称
+	private String sex;	//性别
+	private String position;	//职务
+	private String phone;	//号码
+	private String email;	//电子邮箱
+	private String userName;	//管理员用户名
+	private String password;	//管理员密码
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

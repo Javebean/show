@@ -9,40 +9,45 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * 展商实体类
+ * @author xiaohaizhe
+ *
+ */
 @Entity
 public class Exhibitors {
 
-	private String id;
-	private String orgName;
-	private String orgEng;
-	private String president;
-	private String address;
-	private String site;
-	private String zipcode;
-	private String region;
-	private String orgType;
-	private String industryType;
-	private String scale;
-	private String contact;
-	private String contactPosition;
-	private String phone;
-	private String email;
-	private String telephone;
-	private String fax;
-	private String username;
-	private String password;
-	private int btsl;
-	private int tytzzs;
-	private int swzs;
-	private String jgzxsb;
-	private String tzfw;
-	private String tssm;
-	private String orgIntro;
-	private String inviter;
-	private String booth;
-	private int state;
-	private String logo;
-	private Date applyTime;
+	private String id;	//id,系统生成
+	private String orgName;	//公司名称
+	private String orgEng;	//公司英文名称
+	private String president;	//公司法人
+	private String address;	//公司地址
+	private String site;	//公司网址
+	private String zipcode;	//邮政编码
+	private String region;	//国家、地区
+	private String orgType;	//企业性质
+	private String industryType;	//行业类别
+	private String scale;	//行业规模
+	private String contact;	//联系人
+	private String contactPosition;	//联系人职务
+	private String phone;	//手机号码
+	private String email;	//电子邮箱
+	private String telephone;	//固定电话
+	private String fax;	//传真
+	private String username;	//展商登陆名（系统生成）
+	private String password;	//展商登陆密码（系统生成）
+	private int btsl;	//申请标摊数量
+	private int tytzzs;	//是否申请统一特装展示  是=1， 否=0
+	private int swzs;	//是否室外展示， 是 =1， 否=0
+	private String jgzxsb;	//进馆所需装卸设备
+	private String tzfw;	//是否需要特装服务，如果需要，填写内容
+	private String tssm;	//其他要求说明
+	private String orgIntro;	//单位及产品简介（限定500字以内，超过不准写）
+	private String inviter;	//邀请人
+	private String booth;	//展位号
+	private int state;		//状态
+	private String logo;	//企业logo
+	private Date applyTime;	//申请时间（系统生成）
 	@Id
 	@Column(length = 64)
 	@GeneratedValue(generator = "system-uuid")
