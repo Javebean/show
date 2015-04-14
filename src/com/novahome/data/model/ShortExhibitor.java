@@ -15,6 +15,8 @@ public class ShortExhibitor {
 	private String username;
 	
 	private Date applyTime;
+	
+	private String logo;
 
 	public String getId() {
 		return id;
@@ -63,8 +65,14 @@ public class ShortExhibitor {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
-	
-	
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 	
 	
 }

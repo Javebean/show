@@ -24,11 +24,12 @@ public class ZlzxService {
 	private static final Logger logger = Logger.getLogger(ZlzxService.class);
 	@Resource(name = "zlzxDao")
 	private ZlzxDao zlzxDao;
-	
+	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的展览咨询新闻'}";
+
 	public String getZlzxTotalCount() 
 	{
 		long count = zlzxDao.getZlzxTotalCount();
-		logger.info("count:" + count);
+		logger.debug("count:" + count);
 		return "{'count':" + count +"}";
 	}
 	
@@ -36,7 +37,7 @@ public class ZlzxService {
 	{
 		zlzx.setPublishTime(new Date());
 		String id = zlzxDao.saveZlzx(zlzx);
-		logger.info("save zlzx");
+		logger.debug("save zlzx");
 
 		JSONObject obj = new JSONObject();
 		//return obj.toString();
@@ -54,6 +55,11 @@ public class ZlzxService {
 	public String getZlzxByTitle(String title)
 	{
 		List<Zlzx> ls = zlzxDao.getZlzxByTitle(title);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Zlzx zlzx : ls )
@@ -62,16 +68,21 @@ public class ZlzxService {
 		}
 		obj.put("data", array);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getZlzxById(String id)
 	{
 		Zlzx zlzx = zlzxDao.getZlzxById(id);
+		if(zlzx == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject(zlzx);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
@@ -84,6 +95,11 @@ public class ZlzxService {
 	
 	private String procssListRet(List ls)
 	{
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		long size = zlzxDao.getZlzxTotalCount();
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -94,7 +110,7 @@ public class ZlzxService {
 		obj.put("data", array);
 		obj.put("size", size);
 		String ret = obj.toString();
-		logger.info("zlzx:" + ret);
+		logger.debug("zlzx:" + ret);
 		return ret;
 	}
 	

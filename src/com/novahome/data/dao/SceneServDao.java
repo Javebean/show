@@ -29,6 +29,14 @@ public class SceneServDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getSceneServCountByEid(String eid)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(*) from SceneServ a where a.eid = :eid");
+		query.setString("eid", eid);
+		return (Long) query.uniqueResult();
+	}
+	
 	public String saveSceneServ(SceneServ sceneServ)
 	{
 		return sessionFactory.getCurrentSession().save(sceneServ).toString();
@@ -46,7 +54,7 @@ public class SceneServDao {
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from SceneServ a where a.eid=:eid");
-				query.setString("id", eid);
+				query.setString("eid", eid);
 				return query.list();
 	}
 	

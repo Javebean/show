@@ -25,11 +25,13 @@ public class StaffService {
 	private static final Logger logger = Logger.getLogger(ZytzService.class);
 	@Resource(name = "staffDao")
 	private StaffDao staffDao;
+	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的现场服务申请'}";
+
 	
 	public String getStaffTotalCount() 
 	{
 		long count = staffDao.getStaffTotalCount();
-		logger.info("count:" + count);
+		logger.debug("count:" + count);
 		return "{'count':" + count +"}";
 	}
 	
@@ -91,18 +93,28 @@ public class StaffService {
 	public String getStaffById(String id)
 	{
 		Staff staff = staffDao.getStaffById(id);
+		if(staff == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject(staff);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getStaffByUserName(String userName)
 	{
 		Staff staff = staffDao.getStaffByUserName(userName);
+		if(staff == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject(staff);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	

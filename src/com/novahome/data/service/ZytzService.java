@@ -25,11 +25,13 @@ public class ZytzService {
 	private static final Logger logger = Logger.getLogger(ZytzService.class);
 	@Resource(name = "zytzDao")
 	private ZytzDao zytzDao;
+	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的重要通知新闻'}";
+
 	
 	public String getZytzTotalCount() 
 	{
 		long count = zytzDao.getZytzTotalCount();
-		logger.info("count:" + count);
+		logger.debug("count:" + count);
 		return "{'count':" + count +"}";
 	}
 	
@@ -37,7 +39,7 @@ public class ZytzService {
 	{
 		zy.setPublishTime(new Date());
 		String id = zytzDao.saveZytz(zy);
-		logger.info("save zytz");
+		logger.debug("save zytz");
 		//zy.setId(id);
 		
 		JSONObject obj = new JSONObject();
@@ -56,6 +58,11 @@ public class ZytzService {
 	public String getZytzByTitle(String title)
 	{
 		List<Zytz> ls = zytzDao.getZytzByTitle(title);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Zytz zytz : ls )
@@ -64,16 +71,21 @@ public class ZytzService {
 		}
 		obj.put("data", array);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getZytzById(String id)
 	{
 		Zytz zytz = zytzDao.getZytzById(id);
+		if(zytz == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject(zytz);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
@@ -86,6 +98,11 @@ public class ZytzService {
 	
 	private String procssListRet(List ls)
 	{
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		long size = zytzDao.getZytzTotalCount();
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -96,7 +113,7 @@ public class ZytzService {
 		obj.put("data", array);
 		obj.put("size", size);
 		String ret = obj.toString();
-		logger.info("Zytz:" + ret);
+		logger.debug("Zytz:" + ret);
 		return ret;
 	}
 	

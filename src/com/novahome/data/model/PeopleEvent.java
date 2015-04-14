@@ -1,7 +1,5 @@
 package com.novahome.data.model;
 
-import org.json.JSONObject;
-
 import com.novahome.data.pojo.Audience;
 import com.novahome.data.pojo.Event;
 

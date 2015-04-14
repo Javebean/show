@@ -27,6 +27,25 @@
 		<create javascript="Staff" creator="spring">
 			<param name="beanName" value="staff_dwr"></param>
 		</create>
+		<create javascript="Exhibitor" creator="spring">
+			<param name="beanName" value="exhibitor_dwr"></param>
+		</create>
+		<create javascript="Construction" creator="spring">
+			<param name="beanName" value="construction_dwr"></param>
+		</create>
+		<create javascript="Transportation" creator="spring">
+			<param name="beanName" value="transportation_dwr"></param>
+		</create>
+		<create javascript="SceneServ" creator="spring">
+			<param name="beanName" value="sceneServ_dwr"></param>
+		</create>
+		<create javascript="DisplayItem" creator="spring">
+			<param name="beanName" value="displayItem_dwr"></param>
+		</create>
+		<create javascript="Visitor" creator="spring">
+			<param name="beanName" value="visitor_dwr"></param>
+		</create>
+		
 		<convert converter="bean" match="com.novahome.data.pojo.*"/>
 	</allow>
 </dwr>

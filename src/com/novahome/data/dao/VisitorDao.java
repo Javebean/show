@@ -11,6 +11,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.novahome.data.pojo.Transportation;
 import com.novahome.data.pojo.Visitor;
 
 
@@ -49,6 +50,21 @@ public class VisitorDao {
 				return (Visitor) query.uniqueResult();
 	}
 	
+	public List<Visitor> getVisitorByEid(String eid)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Visitor a where a.eid=:eid");
+				query.setString("eid", eid);
+				return query.list();
+	}
+	
+	public List<Visitor> getVisitorByOrg(String org)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Visitor a where a.org=:org");
+				query.setString("org", org);
+				return query.list();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Visitor>getVisitorForPage(int start, int number)

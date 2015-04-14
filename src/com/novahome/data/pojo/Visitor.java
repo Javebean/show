@@ -20,10 +20,10 @@ public class Visitor {
 	private String phone;
 	private String email;
 	private String photo;
-	private int type;
-	private int buyer;
+	private int type = 2;
+	private int buyer = 0;
 	private String org;
-	private int state;
+	private int state = 0;
 	private Date applyTime;
 	@Id
 	@Column(length = 32)

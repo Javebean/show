@@ -55,7 +55,7 @@ audiencedata.password =  "test";
 	<input type="button" value="存储audience" onclick="javascript:save_onclick();" />
 	<input type="button" value="获取count数量"  onclick="javascript:count_onclick();" />
 	<input type="button" value="获取用户"  onclick="javascript:getUser_onclick();" />
-	<input type="button" value="注册"  onclick="javascript:login_onclick();" />
+	<input type="button" value="登陆"  onclick="javascript:login_onclick();" />
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	

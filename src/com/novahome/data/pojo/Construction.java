@@ -14,6 +14,8 @@ public class Construction {
 	private String eid;
 	private String type;
 	private String content;
+	private String picture;
+	private int state = 0;  //默认为0，1审批
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -42,6 +44,19 @@ public class Construction {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 
 
+	
 }

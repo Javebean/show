@@ -14,7 +14,7 @@ public class Audience {
 
 	private String id;
 	private String name;
-	private String sex;
+	private String sex; //sex = 0 男；1女
 	private String position;
 	private String phone;
 	private String email;

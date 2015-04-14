@@ -56,7 +56,7 @@ public class ZytzDao {
 	public List<Zytz>getZytzForPage(int start, int number)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Zytz order by id desc");
+				"from Zytz order by publishTime desc");
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		
 		return query.list();

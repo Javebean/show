@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Exhibitors {
@@ -42,6 +45,8 @@ public class Exhibitors {
 	private Date applyTime;
 	@Id
 	@Column(length = 64)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	public String getId() {
 		return id;
 	}

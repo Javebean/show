@@ -56,7 +56,7 @@ public class ZlzxDao {
 	public List<Zlzx>getZlzxForPage(int start, int number)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Zlzx order by id desc");
+				"from Zlzx order by publishTime desc");
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		
 		return query.list();

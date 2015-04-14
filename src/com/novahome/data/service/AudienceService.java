@@ -29,11 +29,12 @@ public class AudienceService {
 	private static final Logger logger = Logger.getLogger(AudienceService.class);
 	@Resource(name = "audienceDao")
 	private AudienceDao audienceDao;
+	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的观众'}";
 	
 	public String getAudienceTotalCount() 
 	{
 		long count = audienceDao.getAudienceTotalCount();
-		logger.info("count:" + count);
+		logger.debug("count:" + count);
 		return "{'count':" + count +"}";
 	}
 	
@@ -61,22 +62,32 @@ public class AudienceService {
 		obj.put("password", pwd);
 		obj.put("id", id);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getAudienceByUserName(String userName)
 	{
 		Audience audience = audienceDao.getAudienceByUserName(userName);
+		if(audience == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}	
 		JSONObject obj = new JSONObject(audience);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getAudienceByName(String name)
 	{
 		List<Audience> ls = audienceDao.getAudienceByName(name);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Audience audience : ls )
@@ -85,16 +96,21 @@ public class AudienceService {
 		}
 		obj.put("data", array);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
 	public String getAudienceById(String id)
 	{
 		Audience audience = audienceDao.getAudienceById(id);
+		if(audience == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		JSONObject obj = new JSONObject(audience);
 		String ret = obj.toString();
-		logger.info(ret);
+		logger.debug(ret);
 		return ret;
 	}
 	
@@ -131,6 +147,11 @@ public class AudienceService {
 	public String getAudienceForPage(int start, int number)
 	{
 		List<Audience>ls = audienceDao.getAudienceForPage(start, number);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
 		long size = audienceDao.getAudienceTotalCount();
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -141,7 +162,7 @@ public class AudienceService {
 		obj.put("data", array);
 		obj.put("size", size);
 		String ret = obj.toString();
-		logger.info("audience:" + ret);
+		logger.debug("audience:" + ret);
 		return ret;
 		
 	}
