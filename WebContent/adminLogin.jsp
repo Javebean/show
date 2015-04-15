@@ -33,19 +33,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script type="text/javascript" src="js/adminsignin.js"></script>
   </head>
-
+<style>
+#login{
+	margin-top:20px;
+}
+</style>
   <body>
    <div class="container">
       <div class="form-signin">
 		<div id="message" style="color:red;"></div>
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">管理员登入</h2>
         <input id="name" type="" class="form-control" placeholder="用户名" required autofocus>
         <input id="password" type="password" class="form-control" placeholder="密码" required>
-        <div class="checkbox">
+        <!-- <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
-        </div>
+        </div> -->
         <button id="login" class="btn btn-lg btn-primary btn-block">登录</button>
       </div>
 

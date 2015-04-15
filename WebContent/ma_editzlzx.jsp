@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<jsp:include page="ma_header.jsp" />
+<%@ include file="ma_header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
 	<script type="text/javascript" src="plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
     <script src="plugins/ckEditor/ckeditor.js"></script>
     
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
-    <script type="text/javascript" src="js/ma_editzlzx.js"></script>
+    <script type="text/javascript" src="js/manager/ma_editzlzx.js"></script>
     <script>
     	var menu = 1;
     </script>

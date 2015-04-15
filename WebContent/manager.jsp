@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-	<jsp:include page="ma_header.jsp" />
+	<%@ include file="ma_header.jsp" %>
 	<script type='text/javascript' src='dwr/interface/PTopic.js'></script>
-    <script type="text/javascript" src="js/manager.js"></script>
+    <script type="text/javascript" src="js/manager/manager.js"></script>
     <script>
     	var menu = 0;
     </script>

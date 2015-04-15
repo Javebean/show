@@ -1,7 +1,7 @@
 	<%@ page contentType="text/html;charset=UTF-8"%>
-	<jsp:include page="ma_header.jsp" />
+	<%@ include file="ma_header.jsp" %>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
-    <script type="text/javascript" src="js/ma_zlzx.js"></script>
+    <script type="text/javascript" src="js/manager/ma_zlzx.js"></script>
     <script>
     	var menu = 1;
     </script>
