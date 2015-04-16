@@ -1,0 +1,142 @@
+//global data
+var formData = {};
+var picFlag = false;
+var PIC_BASE = 'resources/topicimages/';
+$(document).ready(function(){
+	var itemParams = ["name","version","number","length","width"];
+	var visitorParams = ["name","sex","position","phone"];
+	 
+	//event binder
+	$("#submitForm").click(saveForm);
+	$(".delete_item").click(deleteItem);
+	$(".showitems .add_item").click(function(){
+		addItem(this,5);
+	});
+	$(".visitors .add_item").click(function(){
+		addItem(this,4);
+	});
+	
+	//test
+	$(".test_btn").click(function(){
+		var visitor = getDymiTableData(".visitors", visitorParams);
+		var displayItem = getDymiTableData(".showitems", itemParams);
+		getFormdata("regForm");
+	});
+	
+	function deleteItem(){
+		$(this).parent().parent().remove();
+	}
+	
+	function addItem(obj, count){
+		var html = '<tr class="item_row">';
+		var cell = '<td><input/></td>';
+		for(var i=0;i<count;i++){
+			html += cell;
+		}
+		html += '<td><button type="button" class="btn btn-sm btn-danger delete_item">删除</button></td></tr>';
+		
+		$(obj).parent().parent().before(html);
+		$(".delete_item").click(deleteItem);
+	}
+	
+	function getDymiTableData(tableID, params){
+		var itemList = [];
+		$(tableID+" .item_row").each(function(){
+			var item = {};
+			var row = $(this);
+			
+			if(row.find("input").eq(0).val()!=""){
+				for(var i=0;i<itemParams.length;i++){
+					item[itemParams[i]] = row.find("input").eq(i).val();
+				}
+				itemList.push(item);
+			}
+		});
+		console.log(itemList);
+		return itemList;
+	}
+	
+	function saveForm(){
+		if(!$("#form").valid()){
+			return;
+		}
+		var formData = getFormdata("regForm");
+		var construction = [];
+		if(picFlag){
+			var cdata = {};
+			cdata.picture = topicId + ".jpg";
+			construction.push(cdata);
+		}
+		
+		var transportation = [];
+		var tdata = {};
+		tdata.type = $("#trans_type").val();
+		tdata.content = $("#trans_content").val();
+		transportation.push(tdata);
+		
+		var sceneServ = [];
+		var sdata = {};
+		sdata.type = $("#scene_type").val();
+		sdata.content = $("#scene_content").val();
+		sceneServ.push(sdata);
+		
+		var visitor = getDymiTableData(".visitors", visitorParams);
+		var displayItem = getDymiTableData(".showitems", itemParams);
+		
+		var func = function(data){
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.result == true){
+				//location.href="ma_zlzx.jsp?menu=1";
+				$(".userForm").hide();
+				$("#login_id").text(data.username);
+				$("#login_pass").text(data.password);
+				$(".resultMsg").show();
+			}else{
+				alert(result.message);
+			}
+		};
+		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
+	}
+	
+	function getFormdata(formName){
+		var form = document.forms[formName];
+		var entryNames = [];
+		for(var i=0;i<form.length;i++){
+			if(form[i].name != ""){
+				if(i==0 || (i>0 && form[i].name!=form[i-1].name)){
+					entryNames.push(form[i].name);
+				}
+			}
+		}
+		
+		var data = {};
+		for(var i=0;i<entryNames.length;i++){
+			var key = entryNames[i];
+			data[key] = form[key].value;
+		}
+		console.log(data);
+		return data;
+	}
+	
+	setTimeout(function(){
+		$("#uploadify").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + topicId,
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'sizeLimit' : 10485760,
+			
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				picFlag = true;
+				setTimeout(function(){
+					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+				},300);
+			}
+		});
+	},10);
+});
