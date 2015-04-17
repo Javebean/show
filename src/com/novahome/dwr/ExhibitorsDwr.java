@@ -2,6 +2,7 @@ package com.novahome.dwr;
 
 import java.util.List;
 import javax.annotation.Resource;
+
 import org.directwebremoting.annotations.Param;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
@@ -43,6 +44,7 @@ public class ExhibitorsDwr {
 	@RemoteMethod
 	public String getExhibitorById(String id)
 	{
+		
 		return exhibitorsService.getExhibitorById(id);
 	}
 	
@@ -141,5 +143,16 @@ public class ExhibitorsDwr {
 	public String login(String userName, String password)
 	{
 		return exhibitorsService.login(userName, password);
+	}
+	
+	/**
+	 * 展商登出
+	 * 
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean logout()
+	{
+		return exhibitorsService.logout();
 	}
 }

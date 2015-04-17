@@ -18,6 +18,9 @@ public class TestVolleyServlet extends HttpServlet{
 		/*String user = request.getParameter("j");
 	    String name = request.getParameter("name");
 	    String password = request.getParameter("password");*/
+		String uri = request.getRequestURI();
+		String path = uri.substring(uri.lastIndexOf("/")+1,uri.lastIndexOf("."));
+		System.out.println("path:" + path);
 		String str = request.getParameter("test");
 		System.out.println("test:" + str);
 	    //JSON对象

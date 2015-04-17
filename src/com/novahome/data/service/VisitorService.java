@@ -22,13 +22,13 @@ public class VisitorService {
 	private static final Logger logger = Logger.getLogger(VisitorService.class);
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的现场证件申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场证件申请\"}";
 
 	public String getVisitorTotalCount() 
 	{
 		long count = visitorDao.getVisitorTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String getVisitorCountByType(int type) 

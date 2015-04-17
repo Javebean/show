@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.novahome.data.dao.ZlzxDao;
 import com.novahome.data.model.ShortZlzx;
 import com.novahome.data.pojo.Zlzx;
+import com.novahome.utils.HtmlParser;
 import com.novahome.utils.Ut;
 
 @Service("zlzxService")
@@ -24,13 +25,13 @@ public class ZlzxService {
 	private static final Logger logger = Logger.getLogger(ZlzxService.class);
 	@Resource(name = "zlzxDao")
 	private ZlzxDao zlzxDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的展览咨询新闻'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展览咨询新闻\"}";
 
 	public String getZlzxTotalCount() 
 	{
 		long count = zlzxDao.getZlzxTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveZlzx(Zlzx zlzx)
@@ -118,6 +119,33 @@ public class ZlzxService {
 	{
 		List<ShortZlzx>ls = zlzxDao.getShortZlzxForPage(start, number);
 		return procssListRet(ls);
+	}
+	
+	public String getShortZlzxForPhonePage(int start, int number)
+	{
+		List<Zlzx>ls = zlzxDao.getZlzxForPage(start, number);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		long size = zlzxDao.getZlzxTotalCount();
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(Zlzx zlzx : ls)
+		{
+			String content = zlzx.getContent();
+			String pictureUrl = HtmlParser.extractPicFromHtml(content);
+			JSONObject j = new JSONObject(zlzx);
+			j.put("content", pictureUrl);
+			array.put(j);
+		}
+			
+		obj.put("data", array);
+		obj.put("size", size);
+		String ret = obj.toString();
+		logger.debug("zlzx:" + ret);
+		return ret;
 	}
 	
 	public long deleteZlzxById(String id)

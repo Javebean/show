@@ -25,7 +25,7 @@ public class Exhibitors {
 	private String site;	//公司网址
 	private String zipcode;	//邮政编码
 	private String region;	//国家、地区
-	private String orgType;	//企业性质
+	private String orgType;	//企业性质， 下拉框
 	private String industryType;	//行业类别
 	private String scale;	//行业规模
 	private String contact;	//联系人

@@ -109,4 +109,15 @@ public class AudienceDwr {
 		return audienceService.deleteAudienceById(id);
 	}
 	
+	/**
+	 * 观众登出
+	 * 
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean logout()
+	{
+		return audienceService.logout();
+	}
+	
 }

@@ -29,13 +29,13 @@ public class AudienceService {
 	private static final Logger logger = Logger.getLogger(AudienceService.class);
 	@Resource(name = "audienceDao")
 	private AudienceDao audienceDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的观众'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的观众\"}";
 	
 	public String getAudienceTotalCount() 
 	{
 		long count = audienceDao.getAudienceTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveAudience(Audience audience)
@@ -144,6 +144,31 @@ public class AudienceService {
 		}
 	}
 	
+	public String loginByServlet(String username,String password) {	
+		JSONObject obj = new JSONObject();
+		Audience audience = audienceDao.getAudienceByUserName(username);
+		if (audience == null) {
+			obj.put("result", false);
+			obj.put("message", "该用户不存在！");
+			return obj.toString();
+		}
+		if (MD5.compute(password).equals(audience.getPassword())) {
+			obj.put("result", true);
+			obj.put("message", "成功登录");
+			obj.put("username", audience.getUsername());
+			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		} else {
+			obj.put("result", false);
+			obj.put("message", "密码错误！");
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
+	}
+	
 	public String getAudienceForPage(int start, int number)
 	{
 		List<Audience>ls = audienceDao.getAudienceForPage(start, number);
@@ -170,6 +195,14 @@ public class AudienceService {
 	public long deleteAudienceById(String id)
 	{
 		return audienceDao.deleteAudienceById(id);
+	}
+	
+	public boolean logout() {
+		HttpSession session = WebContextFactory.get().getSession();
+		session.removeAttribute(Constants.SESSION_SHOW_ID);
+		session.removeAttribute(Constants.SESSION_SHOW_NAME);
+		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
+		return true;
 	}
 	
 }

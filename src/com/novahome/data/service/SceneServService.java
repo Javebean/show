@@ -22,13 +22,13 @@ public class SceneServService {
 	private static final Logger logger = Logger.getLogger(SceneServService.class);
 	@Resource(name = "sceneServDao")
 	private SceneServDao sceneServDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的现场服务申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场服务申请\"}";
 
 	public String getSceneServTotalCount() 
 	{
 		long count = sceneServDao.getSceneServTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String getSceneServCountByEid(String eid) 

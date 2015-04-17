@@ -25,14 +25,14 @@ public class StaffService {
 	private static final Logger logger = Logger.getLogger(ZytzService.class);
 	@Resource(name = "staffDao")
 	private StaffDao staffDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的现场服务申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场服务申请\"}";
 
 	
 	public String getStaffTotalCount() 
 	{
 		long count = staffDao.getStaffTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveStaff(Staff staff)

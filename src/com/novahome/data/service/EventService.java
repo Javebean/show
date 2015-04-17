@@ -27,14 +27,14 @@ public class EventService {
 	private static final Logger logger = Logger.getLogger(EventService.class);
 	@Resource(name = "eventDao")
 	private EventDao eventDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的活动申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的活动申请\"}";
 
 	
 	public String getEventTotalCount() 
 	{
 		long count = eventDao.getEventTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveEvent(Event event)
@@ -92,13 +92,19 @@ public class EventService {
 	
 	public String getEventByPeople(String aid)
 	{
-		PeopleEvent event = eventDao.getPeopleEventById(aid);
-		if(event  == null)
+		List<Event>ls = eventDao.getEventByPeople(aid);
+		if(ls == null || ls.isEmpty())
 		{
 			logger.warn(ERROR_STR);
 			return ERROR_STR;
 		}
-		JSONObject obj = new JSONObject(event);
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(Event event : ls )
+		{
+			array.put(new JSONObject(event));
+		}
+		obj.put("data", array);
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;

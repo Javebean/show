@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,14 @@ public class ConstructionService {
 	private static final Logger logger = Logger.getLogger(ConstructionService.class);
 	@Resource(name = "constructionDao")
 	private ConstructionDao constructionDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的现场施工服务申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场施工服务申请\"}";
+	
 	
 	public String getConstructionTotalCount() 
 	{
 		long count = constructionDao.getConstructionTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String getConstructionCountByEid(String eid) 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.directwebremoting.WebContextFactory;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -56,17 +57,43 @@ public class ExhibitorsService {
 	private TransportationDao transportationDao;
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的展商'}";
-
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
+	private static final String NOTIFY_LOGIN_STR = "unauthorized";
 	
 	public String getExhibitorsTotalCount()
 	{
 		long count = exhibitorsDao.getExhibitorsTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String getTotalExhibitInfoById(String id)
+	{
+		JSONObject obj = processTotalExhibitInfoById(id);
+		String error = (String) obj.get("error");
+		if(error != null && !error.isEmpty())
+			return obj.toString();
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
+		if(userName == null || userName.isEmpty())
+			((JSONObject) obj.get("exhibitors")).put("phone", NOTIFY_LOGIN_STR);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
+	public String getTotalExhibitInfoByIdWithServlet(String id)
+	{
+		JSONObject obj = processTotalExhibitInfoById(id);
+		String error = (String) obj.get("error");
+		if(error != null && !error.isEmpty())
+			return obj.toString();
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
+	private JSONObject processTotalExhibitInfoById(String id)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorById(id);
 		List<Construction>construction = constructionDao.getConstructionByEid(id);
@@ -78,7 +105,12 @@ public class ExhibitorsService {
 		if(exhibitor == null)
 		{
 			logger.warn(ERROR_STR);
-			return ERROR_STR;
+			try {
+				return new JSONObject(ERROR_STR);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		info.setConstruction(construction);
 		info.setDisplayItem(displayItem);
@@ -87,23 +119,51 @@ public class ExhibitorsService {
 		info.setTransportation(transportation);
 		info.setVisitor(visitor);
 		JSONObject obj = new JSONObject(info);
+		return obj;
+	}
+	
+	public String getExhibitorById(String id)
+	{
+		JSONObject obj = processExhibitorById(id);
+		String error = (String) obj.get("error");
+		if(error != null && !error.isEmpty())
+			return obj.toString();
+		System.out.println("obj:"+ obj.toString());
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);		
+		if(userName == null || userName.isEmpty())
+			obj.put("phone", NOTIFY_LOGIN_STR);
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
 	}
 	
-	public String getExhibitorById(String id)
+	public String getExhibitorByIdWithServlet(String id)
+	{
+		JSONObject obj = processExhibitorById(id);
+		String error = (String) obj.get("error");
+		if(error != null && !error.isEmpty())
+			return obj.toString();
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
+	private JSONObject processExhibitorById(String id)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorById(id);
 		if(exhibitor == null)
 		{
 			logger.warn(ERROR_STR);
-			return ERROR_STR;
+			try {
+				return new JSONObject(ERROR_STR);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		JSONObject obj = new JSONObject(exhibitor);
-		String ret = obj.toString();
-		logger.debug(ret);
-		return ret;
+		return obj;
 	}
 	
 	public String getExhibitorForPage(int start, int number)
@@ -253,6 +313,31 @@ public class ExhibitorsService {
 		}
 	}
 	
+	public String loginByServlet(String username,String password) {	
+		JSONObject obj = new JSONObject();
+		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
+		if (exhibitor == null) {
+			obj.put("result", false);
+			obj.put("message", "该用户不存在！");
+			return obj.toString();
+		}
+		if (MD5.compute(password).equals(exhibitor.getPassword())) {
+			obj.put("result", true);
+			obj.put("message", "成功登录");
+			obj.put("username", exhibitor.getUsername());
+			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		} else {
+			obj.put("result", false);
+			obj.put("message", "密码错误！");
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
+	}
+	
 	public boolean updateExhibitor(Exhibitors exhibitor)
 	{
 		exhibitor.setApplyTime(new Date());
@@ -262,5 +347,13 @@ public class ExhibitorsService {
 	public long deleteExhibitorById(String id)
 	{
 		return exhibitorsDao.deleteExhibitorById(id);
+	}
+	
+	public boolean logout() {
+		HttpSession session = WebContextFactory.get().getSession();
+		session.removeAttribute(Constants.SESSION_SHOW_ID);
+		session.removeAttribute(Constants.SESSION_SHOW_NAME);
+		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
+		return true;
 	}
 }

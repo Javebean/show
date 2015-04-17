@@ -52,8 +52,70 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>testVolley</servlet-name>
-    <url-pattern>/phone/testVolley</url-pattern>
+    <url-pattern>/phone/testVolley/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>zlzy</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.ZlzyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>zlzy</servlet-name>
+    <url-pattern>/phone/zlzy/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>zytz</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.ZytzServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>zytz</servlet-name>
+    <url-pattern>/phone/zytz/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>audience</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.AudienceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audience</servlet-name>
+    <url-pattern>/phone/audience/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>exhibitor</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.ExhibitorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>exhibitor</servlet-name>
+    <url-pattern>/phone/exhibitor/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>displayitem</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.DisplayItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>displayitem</servlet-name>
+    <url-pattern>/phone/displayitem/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>visitor</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.VisitorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>visitor</servlet-name>
+    <url-pattern>/phone/visitor/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>event</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.EventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>event</servlet-name>
+    <url-pattern>/phone/event/*</url-pattern>
+  </servlet-mapping>
+  
   <listener>
     <listener-class> org.springframework.web.context.ContextLoaderListener </listener-class>
   </listener>

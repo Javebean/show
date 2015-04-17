@@ -15,6 +15,7 @@ import com.novahome.data.dao.ZytzDao;
 import com.novahome.data.model.ShortZytz;
 import com.novahome.data.pojo.Zlzx;
 import com.novahome.data.pojo.Zytz;
+import com.novahome.utils.HtmlParser;
 import com.novahome.utils.Ut;
 
 @Service("zytzService")
@@ -25,14 +26,14 @@ public class ZytzService {
 	private static final Logger logger = Logger.getLogger(ZytzService.class);
 	@Resource(name = "zytzDao")
 	private ZytzDao zytzDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的重要通知新闻'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的重要通知新闻\"}";
 
 	
 	public String getZytzTotalCount() 
 	{
 		long count = zytzDao.getZytzTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveZytz(Zytz zy)
@@ -123,6 +124,32 @@ public class ZytzService {
 		return procssListRet(ls);
 	}
 	
+	public String getShortZytzForPhonePage(int start, int number)
+	{
+		List<Zytz>ls = zytzDao.getZytzForPage(start, number);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		long size = zytzDao.getZytzTotalCount();
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(Zytz zytz : ls)
+		{
+			String content = zytz.getContent();
+			String pictureUrl = HtmlParser.extractPicFromHtml(content);
+			JSONObject j = new JSONObject(zytz);
+			j.put("content", pictureUrl);
+			array.put(j);
+		}
+			
+		obj.put("data", array);
+		obj.put("size", size);
+		String ret = obj.toString();
+		logger.debug("Zytz:" + ret);
+		return ret;
+	}
 	
 	public long deleteZytzById(String id)
 	{

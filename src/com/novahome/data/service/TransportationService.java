@@ -21,13 +21,13 @@ public class TransportationService {
 	private static final Logger logger = Logger.getLogger(TransportationService.class);
 	@Resource(name = "transportationDao")
 	private TransportationDao transportationDao;
-	private static final String ERROR_STR= "{'error':'抱歉，没有找到指定的运输服务申请'}";
+	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的运输服务申请\"}";
 
 	public String getTransportationTotalCount() 
 	{
 		long count = transportationDao.getTransportationTotalCount();
 		logger.debug("count:" + count);
-		return "{'count':" + count +"}";
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String getTransportationCountByEid(String eid) 
