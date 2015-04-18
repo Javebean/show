@@ -27,7 +27,7 @@ public class Visitor {
 	private int type = 2;	//证件类型，1 = 展商，2=观众， 3= 媒体，缺省为观众
 	private int buyer = 0;	//是否为采购商， 1=是采购商，0= 不是采购商，缺省为非采购商
 	private String org;	//所属公司名称
-	private int state = 0;	//申请状态
+	private int state = 0;	//申请状态  state=0 申请；1 =批准； 2=驳回
 	private Date applyTime;	//申请时间，系统生成
 	@Id
 	@Column(length = 32)

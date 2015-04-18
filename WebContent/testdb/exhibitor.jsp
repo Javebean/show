@@ -107,6 +107,10 @@ vList = [visitor01, visitor02];
     	Exhibitor.getShortExhibitorsForPage(0,3);
     }
     
+    function queryApprovedShortPage_onclick(){
+    	Exhibitor.getApprovedExhibitorsForPage(0,2);
+    }
+    
      function login_onclick(){
     	Exhibitor.login("b26962216","049494");
     }
@@ -138,6 +142,7 @@ vList = [visitor01, visitor02];
 	<input type="button" value="获取exhibitor"  onclick="javascript:get_onclick();" />
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="page查询缩略"  onclick="javascript:queryShortPage_onclick();" />
+	<input type="button" value="page查询已通过审核缩略"  onclick="javascript:queryApprovedShortPage_onclick();" />
 	<input type="button" value="登陆"  onclick="javascript:login_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />

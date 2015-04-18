@@ -27,16 +27,13 @@ import com.novahome.data.dao.TransportationDao;
 import com.novahome.data.dao.VisitorDao;
 import com.novahome.data.model.ShortExhibitor;
 import com.novahome.data.model.TotalExhibitInfo;
-import com.novahome.data.pojo.Audience;
 import com.novahome.data.pojo.Construction;
 import com.novahome.data.pojo.DisplayItem;
-import com.novahome.data.pojo.Event;
 import com.novahome.data.pojo.Exhibitors;
 import com.novahome.data.pojo.SceneServ;
-import com.novahome.data.pojo.Staff;
 import com.novahome.data.pojo.Transportation;
 import com.novahome.data.pojo.Visitor;
-import com.novahome.data.pojo.Zytz;
+
 
 @Service("exhibitorsService")
 @Transactional(readOnly = false)
@@ -63,6 +60,13 @@ public class ExhibitorsService {
 	public String getExhibitorsTotalCount()
 	{
 		long count = exhibitorsDao.getExhibitorsTotalCount();
+		logger.debug("count:" + count);
+		return "{\"count\":" + count +"}";
+	}
+	
+	public String getExhibitorsApprovedCount()
+	{
+		long count = exhibitorsDao.getExhibitorsApprovedCount();
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -169,17 +173,18 @@ public class ExhibitorsService {
 	public String getExhibitorForPage(int start, int number)
 	{
 		List<Exhibitors>ls = exhibitorsDao.getExhibitorForPage(start, number);
-		return procssListRet(ls);
+		long size = exhibitorsDao.getExhibitorsTotalCount();
+		return procssListRet(ls,size);
 	}
 	
-	private String procssListRet(List ls)
+	private String procssListRet(List ls, long size)
 	{
 		if(ls == null || ls.isEmpty())
 		{
 			logger.warn(ERROR_STR);
 			return ERROR_STR;
 		}
-		long size = exhibitorsDao.getExhibitorsTotalCount();
+		
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Object exhibitor : ls )
@@ -195,12 +200,33 @@ public class ExhibitorsService {
 	
 	public String getShortExhibitorsForPage(int start, int number)
 	{
+		long size = exhibitorsDao.getExhibitorsTotalCount();
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPage(start, number);
-		return procssListRet(ls);
+		return procssListRet(ls,size);
+	}
+	
+	public String getApprovedShortExhibitorForPage(int start, int number)
+	{
+		long size = exhibitorsDao.getExhibitorsApprovedCount();
+		List<ShortExhibitor>ls = exhibitorsDao.getApprovedShortExhibitorForPage(start, number);
+		return procssListRet(ls,size);
 	}
 	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
+		JSONObject obj = new JSONObject();
+		String orgName = exhibitor.getOrgName();
+		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
+		if(ex != null)
+		{
+			obj.put("result", false);
+			obj.put("message", "该公司已注册过，如有疑问请致电！");
+			obj.put("username", ex.getUsername());	
+			obj.put("id", ex.getId());
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
 		exhibitor.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateExhibitUser();
 		String pwd = RandCodeGenerator.generatePwd();
@@ -214,7 +240,7 @@ public class ExhibitorsService {
 		logger.info("save exhibitor");
 		exhibitor.setId(id);
 		
-		JSONObject obj = new JSONObject();
+		
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功注册,即将跳转！");
@@ -230,6 +256,19 @@ public class ExhibitorsService {
 	public String saveTotalExhibitInfo(Exhibitors exhibitor, List<Construction>construction,List<Transportation>transportation,
 			List<SceneServ>sceneServ, List<Visitor>visitor,List<DisplayItem>displayItem)
 	{
+		JSONObject obj = new JSONObject();
+		String orgName = exhibitor.getOrgName();
+		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
+		if(ex != null)
+		{
+			obj.put("result", false);
+			obj.put("message", "该公司已注册过，如有疑问请致电！");
+			obj.put("username", ex.getUsername());	
+			obj.put("id", ex.getId());
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
 		exhibitor.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateExhibitUser();
 		String pwd = RandCodeGenerator.generatePwd();
@@ -243,7 +282,6 @@ public class ExhibitorsService {
 		logger.info("save exhibitor");
 		exhibitor.setId(id);
 		
-		JSONObject obj = new JSONObject();
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功注册,即将跳转！");
@@ -356,4 +394,6 @@ public class ExhibitorsService {
 		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
 		return true;
 	}
+	
+	
 }

@@ -37,6 +37,16 @@ public class ExhibitorsDwr {
 	}
 	
 	/**
+	 * 获取审批过的展商数目 2015.4.17新增
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorsApprovedCount()
+	{
+		return exhibitorsService.getExhibitorsApprovedCount();
+	}
+	
+	/**
 	 * 通过展商id获取展商
 	 * @param id
 	 * @return
@@ -60,7 +70,7 @@ public class ExhibitorsDwr {
 	}
 	
 	/**
-	 * 分页查询展商简略信息id, orgName, region, phone, username, applyTime;
+	 * 分页查询展商简略信息id, orgName,industryType, region, phone, username, applyTime;
 	 * @param start
 	 * @param number
 	 * @return
@@ -69,6 +79,19 @@ public class ExhibitorsDwr {
 	public String getShortExhibitorsForPage(int start, int number)
 	{
 		return exhibitorsService.getShortExhibitorsForPage(start, number);
+	}
+	
+	/**
+	 * 分页查询已通过审核的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
+	 * 2015.4.17新增
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getApprovedExhibitorsForPage(int start, int number)
+	{
+		return exhibitorsService.getApprovedShortExhibitorForPage(start, number);
 	}
 	
 	/**
@@ -155,4 +178,6 @@ public class ExhibitorsDwr {
 	{
 		return exhibitorsService.logout();
 	}
+	
+	
 }

@@ -30,7 +30,7 @@ public class Audience {
 	private String password;	//用户密码（系统生成）
 	private String address;		//地址
 	private String target;		//参会目的
-	private int state =0;		//默认正常状态，state=0 申请；1 驳回； 2批准
+	private int state =0;		//默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private Date applyTime;		//申请时间（系统生成）
 	
 	@Id

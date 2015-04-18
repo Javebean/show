@@ -21,6 +21,7 @@ import com.novahome.commonservice.RandCodeGenerator;
 import com.novahome.data.dao.AudienceDao;
 import com.novahome.data.pojo.Audience;
 
+
 @Service("audienceService")
 @Transactional(readOnly = false)
 @Repository
@@ -203,6 +204,11 @@ public class AudienceService {
 		session.removeAttribute(Constants.SESSION_SHOW_NAME);
 		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
 		return true;
+	}
+	
+	public boolean updateAudience(Audience audience)
+	{
+		return audienceDao.updateAudience(audience);
 	}
 	
 }

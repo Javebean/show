@@ -14,6 +14,8 @@ public class ShortExhibitor {
 	
 	private String username;
 	
+	private String industryType;
+	
 	private Date applyTime;
 	
 	private String logo;
@@ -72,6 +74,14 @@ public class ShortExhibitor {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public String getIndustryType() {
+		return industryType;
+	}
+
+	public void setIndustryType(String industryType) {
+		this.industryType = industryType;
 	}
 	
 	

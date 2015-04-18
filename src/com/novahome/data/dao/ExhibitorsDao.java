@@ -30,9 +30,25 @@ public class ExhibitorsDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getExhibitorsApprovedCount()
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(*) from Exhibitors a where a.state = :state");
+		query.setParameter("state", 1);
+		return (Long) query.uniqueResult();
+	}
+	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
 		return sessionFactory.getCurrentSession().save(exhibitor).toString();
+	}
+	
+	public Exhibitors getExhibitorByOrgName(String orgName)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Exhibitors a where a.orgName=:orgName");
+				query.setString("orgName", orgName);
+		return (Exhibitors) query.uniqueResult();
 	}
 	
 	public Exhibitors getExhibitorById(String id)
@@ -121,9 +137,30 @@ public class ExhibitorsDao {
 	public List<ShortExhibitor>getShortExhibitorForPage(int start, int number)
 	{
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime from Exhibitors a order by id desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime from Exhibitors a order by logo desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
 				  .addScalar("username").addScalar("applyTime") ;
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		Class cls = null;
+		try {
+			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ShortExhibitor>getApprovedShortExhibitorForPage(int start, int number)
+	{
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime from Exhibitors a where a.state = :state order by logo desc")
+				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+				  .addScalar("username").addScalar("industryType").addScalar("applyTime") ;
+		query.setParameter("state", 1);
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
 		Class cls = null;

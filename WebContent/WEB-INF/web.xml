@@ -116,6 +116,15 @@
     <url-pattern>/phone/event/*</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>phoneimage</servlet-name>
+    <servlet-class>com.novahome.servlet.phone.PhoneImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>phoneimage</servlet-name>
+    <url-pattern>/phone/phoneimage</url-pattern>
+  </servlet-mapping>
+  
   <listener>
     <listener-class> org.springframework.web.context.ContextLoaderListener </listener-class>
   </listener>

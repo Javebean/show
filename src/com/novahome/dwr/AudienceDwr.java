@@ -7,10 +7,8 @@ import org.directwebremoting.annotations.Param;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.directwebremoting.spring.SpringCreator;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.novahome.data.pojo.Audience;
 import com.novahome.data.service.AudienceService;;
 
@@ -118,6 +116,17 @@ public class AudienceDwr {
 	public boolean logout()
 	{
 		return audienceService.logout();
+	}
+	
+	/**
+	 * 更新观众信息
+	 * @param audience
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateAudience(Audience audience)
+	{
+		return audienceService.updateAudience(audience);
 	}
 	
 }

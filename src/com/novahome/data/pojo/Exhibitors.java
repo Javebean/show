@@ -45,7 +45,7 @@ public class Exhibitors {
 	private String orgIntro;	//单位及产品简介（限定500字以内，超过不准写）
 	private String inviter;	//邀请人
 	private String booth;	//展位号
-	private int state;		//状态
+	private int state;		 //默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private String logo;	//企业logo
 	private Date applyTime;	//申请时间（系统生成）
 	@Id

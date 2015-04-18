@@ -145,7 +145,7 @@ public class VisitorService {
 	
 	public boolean updateVisitor(Visitor visitor)
 	{
-		visitor.setApplyTime(new Date());
+		//visitor.setApplyTime(new Date());
 		return visitorDao.updateVisitor(visitor);
 	}
 }
