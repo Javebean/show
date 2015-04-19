@@ -14,6 +14,8 @@ public class ShortExhibitor {
 	
 	private String username;
 	
+	private int state;
+	
 	private String industryType;
 	
 	private Date applyTime;
@@ -82,6 +84,14 @@ public class ShortExhibitor {
 
 	public void setIndustryType(String industryType) {
 		this.industryType = industryType;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 	

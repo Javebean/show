@@ -137,9 +137,9 @@ public class ExhibitorsDao {
 	public List<ShortExhibitor>getShortExhibitorForPage(int start, int number)
 	{
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime from Exhibitors a order by logo desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state from Exhibitors a order by logo desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("applyTime") ;
+				  .addScalar("username").addScalar("applyTime").addScalar("state") ;
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
 		Class cls = null;
@@ -157,9 +157,9 @@ public class ExhibitorsDao {
 	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state)
 	{
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime from Exhibitors a where a.state = :state order by logo desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state from Exhibitors a where a.state = :state order by logo desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("industryType").addScalar("applyTime") ;
+				  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state") ;
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
