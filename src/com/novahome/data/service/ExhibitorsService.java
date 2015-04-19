@@ -207,6 +207,10 @@ public class ExhibitorsService {
 	
 	public String getShortExhibitorForPageByState(int start, int number, int state)
 	{
+		if(state == -1)
+		{
+			return this.getShortExhibitorsForPage(start, number);
+		}
 		long size = exhibitorsDao.getExhibitorsCountByState(state);
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByState(start, number, state);
 		return procssListRet(ls,size);
