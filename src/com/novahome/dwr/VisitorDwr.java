@@ -117,4 +117,15 @@ public class VisitorDwr {
 	{
 		return visitorService.updateVisitor(visitor);
 	}
+	
+	/**
+	 * 更新现场证件申请信息
+	 * @param transportation
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateVisitorState(String id, int state)
+	{
+		return visitorService.updateVisitorState(id, state);
+	}
 }

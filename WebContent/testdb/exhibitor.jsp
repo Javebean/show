@@ -107,8 +107,8 @@ vList = [visitor01, visitor02];
     	Exhibitor.getShortExhibitorsForPage(0,3);
     }
     
-    function queryApprovedShortPage_onclick(){
-    	Exhibitor.getApprovedExhibitorsForPage(0,2);
+    function queryShortPageByState_onclick(){
+    	Exhibitor.getExhibitorsForPageByState(0,2,0);
     }
     
      function login_onclick(){
@@ -129,6 +129,13 @@ vList = [visitor01, visitor02];
     	Exhibitor.updateExhibitor(exhibitordata);
     }
     
+    function updateState_onclick(){
+	   
+		var id ="4028b8814cb188b7014cb18aa0c8000b";
+		var state =2;
+    	Exhibitor.updateExhibitorState(id,state);
+    }
+    
     function delete_onclick(){
     	Exhibitor.deleteExhibitorById("4028b8814cb188b7014cb189c9880002");
     }
@@ -142,10 +149,11 @@ vList = [visitor01, visitor02];
 	<input type="button" value="获取exhibitor"  onclick="javascript:get_onclick();" />
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="page查询缩略"  onclick="javascript:queryShortPage_onclick();" />
-	<input type="button" value="page查询已通过审核缩略"  onclick="javascript:queryApprovedShortPage_onclick();" />
+	<input type="button" value="page查询通过state"  onclick="javascript:queryShortPageByState_onclick();" />
 	<input type="button" value="登陆"  onclick="javascript:login_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
+	<input type="button" value="更新状态"  onclick="javascript:updateState_onclick();" />
 	
 </body>
 </html>

@@ -38,11 +38,13 @@ $(document).ready(function(){
 	                '<td>' + topic.applyTime + '</td>' +
 	              //  '<td>' + status[topic.state] + '</td>' +
 	                '<td><button type="button" class="btn btn-sm btn-success view_tp" eid="'+topic.id+'">查看</button>'+
+	                '<td><button type="button" class="btn btn-sm btn-success update_tp" eid="'+topic.id+'">批准</button>'+
 	                '<button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
 	                '</tr>';
 			}
 			$('.pt_cen_box').append(html);
 			$('.delete_tp').click(deleteTP);
+			$('.update_tp').click(updateTP);
 			$('.view_tp').click(viewTP);
 		}
 		Exhibitor.getShortExhibitorsForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
@@ -121,6 +123,14 @@ $(document).ready(function(){
 			if(data==true) location.reload();
 		}
 		Exhibitor.deleteExhibitorById(eid,func);
+	}
+	
+	function updateTP(){
+		var eid = $(this).attr("eid");
+		var func = function(data){
+			if(data==true) location.reload();
+		}
+		Exhibitor.updateExhibitorState(eid,1,func);
 	}
 	
 	function initPaging(pageActive, rowCount){

@@ -30,11 +30,11 @@ public class ExhibitorsDao {
 		return (Long) query.uniqueResult();
 	}
 	
-	public long getExhibitorsApprovedCount()
+	public long getExhibitorsCountByState(int state)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"select count(*) from Exhibitors a where a.state = :state");
-		query.setParameter("state", 1);
+		query.setParameter("state", state);
 		return (Long) query.uniqueResult();
 	}
 	
@@ -154,13 +154,13 @@ public class ExhibitorsDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ShortExhibitor>getApprovedShortExhibitorForPage(int start, int number)
+	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state)
 	{
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
 				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime from Exhibitors a where a.state = :state order by logo desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
 				  .addScalar("username").addScalar("industryType").addScalar("applyTime") ;
-		query.setParameter("state", 1);
+		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
 		Class cls = null;

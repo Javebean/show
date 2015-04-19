@@ -145,7 +145,14 @@ public class VisitorService {
 	
 	public boolean updateVisitor(Visitor visitor)
 	{
-		//visitor.setApplyTime(new Date());
+		visitor.setApplyTime(new Date());
 		return visitorDao.updateVisitor(visitor);
+	}
+	
+	public boolean updateVisitorState(String id, int state)
+	{
+		Visitor visitor = visitorDao.getVisitorById(id);
+		visitor.setState(state);
+		return true;
 	}
 }

@@ -41,9 +41,9 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getExhibitorsApprovedCount()
+	public String getExhibitorsCountByState(int state)
 	{
-		return exhibitorsService.getExhibitorsApprovedCount();
+		return exhibitorsService.getExhibitorsCountByState(state);
 	}
 	
 	/**
@@ -89,9 +89,9 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getApprovedExhibitorsForPage(int start, int number)
+	public String getExhibitorsForPageByState(int start, int number, int state)
 	{
-		return exhibitorsService.getApprovedShortExhibitorForPage(start, number);
+		return exhibitorsService.getShortExhibitorForPageByState(start, number,state);
 	}
 	
 	/**
@@ -154,6 +154,17 @@ public class ExhibitorsDwr {
 	public boolean updateExhibitor(Exhibitors exhibitor)
 	{
 		return exhibitorsService.updateExhibitor(exhibitor);
+	}
+	
+	/**
+	 * 更新展商状态信息
+	 * @param exhibitor
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateExhibitorState(String id, int state)
+	{
+		return exhibitorsService.updateExhibitorState(id, state);
 	}
 
 	/**

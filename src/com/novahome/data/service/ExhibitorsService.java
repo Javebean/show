@@ -64,9 +64,9 @@ public class ExhibitorsService {
 		return "{\"count\":" + count +"}";
 	}
 	
-	public String getExhibitorsApprovedCount()
+	public String getExhibitorsCountByState(int state)
 	{
-		long count = exhibitorsDao.getExhibitorsApprovedCount();
+		long count = exhibitorsDao.getExhibitorsCountByState(state);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -205,10 +205,10 @@ public class ExhibitorsService {
 		return procssListRet(ls,size);
 	}
 	
-	public String getApprovedShortExhibitorForPage(int start, int number)
+	public String getShortExhibitorForPageByState(int start, int number, int state)
 	{
-		long size = exhibitorsDao.getExhibitorsApprovedCount();
-		List<ShortExhibitor>ls = exhibitorsDao.getApprovedShortExhibitorForPage(start, number);
+		long size = exhibitorsDao.getExhibitorsCountByState(state);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByState(start, number, state);
 		return procssListRet(ls,size);
 	}
 	
@@ -380,6 +380,13 @@ public class ExhibitorsService {
 	{
 		exhibitor.setApplyTime(new Date());
 		return exhibitorsDao.updateExhibitor(exhibitor);
+	}
+	
+	public boolean updateExhibitorState(String id, int state)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		ex.setState(state);
+		return true;
 	}
 	
 	public long deleteExhibitorById(String id)
