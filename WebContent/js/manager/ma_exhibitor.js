@@ -142,7 +142,7 @@ $(document).ready(function(){
 	function deleteTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
-			if(data==true) location.reload();
+			if(data==true) showTopicList(1);
 		}
 		Exhibitor.deleteExhibitorById(eid,func);
 	}
@@ -150,7 +150,10 @@ $(document).ready(function(){
 	function updateTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
-			if(data==true) location.reload();
+			if(data==true) {
+				$.colorbox.close()
+				showTopicList(1);
+			}
 		}
 		Exhibitor.updateExhibitorState(eid,1,func);
 	}
@@ -158,7 +161,10 @@ $(document).ready(function(){
 	function rejectTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
-			if(data==true) location.reload();
+			if(data==true) {
+				$.colorbox.close()
+				showTopicList(1);
+			}
 		}
 		Exhibitor.updateExhibitorState(eid,2,func);
 	}
