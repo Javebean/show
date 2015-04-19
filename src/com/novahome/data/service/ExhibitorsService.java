@@ -79,6 +79,9 @@ public class ExhibitorsService {
 			return obj.toString();
 		HttpSession session=  WebContextFactory.get().getSession();
 		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
+		
+		if(userName == null || userName.isEmpty())
+			userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
 			((JSONObject) obj.get("exhibitors")).put("phone", NOTIFY_LOGIN_STR);
 		String ret = obj.toString();
@@ -134,7 +137,9 @@ public class ExhibitorsService {
 			return obj.toString();
 		System.out.println("obj:"+ obj.toString());
 		HttpSession session=  WebContextFactory.get().getSession();
-		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);		
+		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);	
+		if(userName == null || userName.isEmpty())
+			userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
 			obj.put("phone", NOTIFY_LOGIN_STR);
 		String ret = obj.toString();
