@@ -1,11 +1,18 @@
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
+var search_state = -1;
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
 	
 	//init page
 	showTopicList(1);
+	
+	//event binder
+	$(".state_search").change(function(){
+		search_state = $(this).val();
+		showTopicList(1);
+	});
 	
 	function jumpto(e){
 		location.href=e.data;
@@ -16,19 +23,25 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 			console.log(data);
 			rowCount = data.size;
-			if(!rowCount || rowCount==0) return;
+			if(!rowCount || rowCount==0) {
+				$('.pt_cen_box').empty();
+				$('.pt_cen_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
 				
 			initPaging(page,rowCount);
 			data = data.data;
 
 			$('.pt_cen_box').empty();
 			var html = "";
-			var status = ["申请","批准","驳回"];
+			var status = ["申请","已批准","已驳回"];
 			for(var i=0;i<data.length;i++){
 				var topic = data[i];
 				
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+				
+				var statestr = status[topic.state];
 				
 				html += 
 					'<tr>' +
@@ -36,18 +49,19 @@ $(document).ready(function(){
 	                '<td>' + topic.orgName + '</td>' +
 	                '<td>' + topic.region + '</td>' +
 	                '<td>' + topic.applyTime + '</td>' +
+	                '<td>' + statestr + '</td>' +
 	              //  '<td>' + status[topic.state] + '</td>' +
-	                '<td><button type="button" class="btn btn-sm btn-success view_tp" eid="'+topic.id+'">查看</button>'+
-	                '<td><button type="button" class="btn btn-sm btn-success update_tp" eid="'+topic.id+'">批准</button>'+
+	                '<td><button type="button" class="btn btn-sm btn-primary view_tp" eid="'+topic.id+'">查看</button>'+
 	                '<button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
 	                '</tr>';
 			}
 			$('.pt_cen_box').append(html);
 			$('.delete_tp').click(deleteTP);
 			$('.update_tp').click(updateTP);
+			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		}
-		Exhibitor.getShortExhibitorsForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state,func);
 	}
 	
 	var itemParams = ["name","version","number","length","width"];
@@ -76,6 +90,14 @@ $(document).ready(function(){
 				$("#cons_image").attr("src",PIC_BASE+sdata.picture+"?"+Math.random());
 			} else {
 				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
+			}
+			
+			if(data.exhibitors.state == 0){
+				$(".audit_box").removeClass("hide");
+				$(".update_tp").attr("eid",data.exhibitors.id);
+				$(".reject_tp").attr("eid",data.exhibitors.id);
+			} else {
+				$(".audit_box").addClass("hide");
 			}
 			
 			$.colorbox({
@@ -131,6 +153,14 @@ $(document).ready(function(){
 			if(data==true) location.reload();
 		}
 		Exhibitor.updateExhibitorState(eid,1,func);
+	}
+	
+	function rejectTP(){
+		var eid = $(this).attr("eid");
+		var func = function(data){
+			if(data==true) location.reload();
+		}
+		Exhibitor.updateExhibitorState(eid,2,func);
 	}
 	
 	function initPaging(pageActive, rowCount){
