@@ -26,11 +26,11 @@ visitordata.org = "测试公司";
 visitordata.phone = "123456";
 visitordata.position = "职员";
 visitordata.type = 1;
-visitordata.photo = "ceshihttp://www.baidu.com/fdfdff.png";
+visitordata.photo = "s_29f63ee6-6bb1-4427-a2f5-e11a7144401e.jpg";
 visitordata.eid = "4028b8814cb190bb014cb196cd350003";
 
 	function save_onclick(){
-    	 Visitor.saveVisitor(visitordata);
+    	 Visitor.saveVisitor(visitordata,"10,10,200,200");
     }
     
     function count_onclick(){

@@ -57,7 +57,7 @@ private static final long serialVersionUID = 1L;
 		if(path.equals(METHOD_NAMES[0]))
 		{
 			Visitor visitor = processVisitorParams(request);
-			response.getWriter().write(visitorService.saveVisitor(visitor));
+			response.getWriter().write(visitorService.saveVisitor(visitor,null));
 		}
 		else if(path.equals(METHOD_NAMES[1]))
 		{

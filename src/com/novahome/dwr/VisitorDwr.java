@@ -46,9 +46,9 @@ public class VisitorDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String saveVisitor(Visitor Visitor)
+	public String saveVisitor(Visitor Visitor, String cutIndex)
 	{
-		return visitorService.saveVisitor(Visitor);
+		return visitorService.saveVisitor(Visitor, cutIndex);
 	}
 	
 	/**

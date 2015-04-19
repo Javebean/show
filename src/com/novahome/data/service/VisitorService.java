@@ -1,7 +1,9 @@
 package com.novahome.data.service;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -11,8 +13,11 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.VisitorDao;
 import com.novahome.data.pojo.Visitor;
+import com.novahome.utils.CutImageUtils;
 
 @Service("visitorService")
 @Transactional(readOnly = false)
@@ -38,8 +43,45 @@ public class VisitorService {
 		return "{'count':" + count +"}";
 	}
 	
-	public String saveVisitor(Visitor visitor)
+	public String saveVisitor(Visitor visitor, String cutIndex)
 	{
+		String[]array;
+		String nowpath = System.getProperty("user.dir");            
+		String tempdir = nowpath.replace("bin", "webapps");
+		tempdir+="\\"+Constants.PRJ_NAME; 
+		String basePath = tempdir + "\\resources\\topicimages\\";
+		System.out.println("*******" + basePath);
+		if(cutIndex != null && !cutIndex.isEmpty())
+		{
+			array = cutIndex.split(",");
+			if(array.length == 4)
+			{
+				int originX = Integer.parseInt(array[0]);
+				int originY = Integer.parseInt(array[1]);
+				int width = Integer.parseInt(array[2]);
+				int height = Integer.parseInt(array[3]);
+				String srcName = visitor.getPhoto();
+				String srcPath = "";
+				if(srcName != null && !srcName.isEmpty())
+				{
+					srcPath += basePath + srcName;
+					File srcFile = new File(srcPath);
+					if(srcFile.exists())
+					{
+						String picName = null;
+						try {
+							picName = CutImageUtils.cut(srcFile, basePath,originX,originY,width,height);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						if(picName != null && !picName.isEmpty())
+							visitor.setPhoto(picName);
+					}
+				}
+			}	
+		}
+			
 		visitor.setApplyTime(new Date());
 		String id = visitorDao.saveVisitor(visitor);
 		logger.info("save Visitor");
