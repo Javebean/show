@@ -14,6 +14,15 @@
     	.fview_table th{
     		text-align:center;
     	}
+    	.btn{
+    		margin-right:10px;
+    	}
+    	.search_box .search_ele{
+    		width: 150px;
+    	}
+    	.glyphicon-search{
+    		font-size:20px;
+    	}
     </style>
 
     <div class="container-fluid">
@@ -23,7 +32,31 @@
 		    
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">展商管理</h2>
-          <div class="table-responsive">
+          <!-- search area -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<span class="glyphicon glyphicon-search navbar-brand" aria-hidden="true"></span>
+					</div>
+					<div class="navbar-header">
+						<span class="navbar-brand" href="#">审核状态</span>
+					</div>
+					<div class="collapse navbar-collapse">
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<select class="form-control search_ele state_search">
+									<option value="-1">全部</option>
+									<option value="0">待审核</option>
+									<option value="1">已批准</option>
+									<option value="2">已驳回</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				</div>
+			</nav>
+
+			<div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -31,6 +64,7 @@
                   <th>公司名称</th>
                   <th>所属地区</th>
                   <th>申请时间</th>
+                  <th>状态</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -138,7 +172,12 @@
 				        </tr>
 				    </table>
 					
-					
+					<div class="form-group audit_box hide">
+						<div class="col-sm-offset-5 col-sm-5">
+							<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
+							<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+						</div>
+					</div>
 				</div>
 			</div>
 
