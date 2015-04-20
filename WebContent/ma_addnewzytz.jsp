@@ -7,7 +7,7 @@
 	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
     <script type="text/javascript" src="js/manager/ma_addzytz.js"></script>
     <script>
-    	var menu = 1;
+    	var menu = 2;
     </script>
 
     <div class="container-fluid">

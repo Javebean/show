@@ -7,7 +7,7 @@
 	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
     <script type="text/javascript" src="js/manager/ma_editzytz.js"></script>
     <script>
-    	var menu = 1;
+    	var menu = 2;
     </script>
     
     <%String topicId = (String)request.getParameter("topicId"); %>
