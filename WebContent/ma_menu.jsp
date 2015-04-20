@@ -15,7 +15,7 @@ $(document).ready(function(){
     <ul class="nav nav-sidebar">
       <li><a href="ma_audience.jsp">观众管理</a></li>
       <li><a href="ma_exhibitor.jsp">展商管理</a></li>
-      <li><a href="">One more nav</a></li>
+      <li><a href="ma_visitor.jsp">证件管理</a></li>
       <li><a href="">Another nav item</a></li>
       <li><a href="">More navigation</a></li>
     </ul>

@@ -66,6 +66,7 @@ a{
 		<a href="manager.jsp">管理后台</a>
 		<a style="padding-left: 50px;" href="addnewAud.jsp">观众注册</a> 
 		<a style="padding-left: 50px;" href="addnewExhibitor.jsp">展商注册</a>
+		<a style="padding-left: 50px;" href="addnewVisitor.jsp">证件申办</a>
 	</div>
 
 	<!--start-image-slider---->

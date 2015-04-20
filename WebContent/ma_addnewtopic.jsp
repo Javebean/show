@@ -101,7 +101,7 @@ String topicId = UUID.randomUUID().toString();
 						    <input type="file" name="uploadify" id="uploadify" />
 						    <h4>预览：</h4>
 						 	<div style="width:200px;height:150px;overflow: hidden;">
-						 		<img id="img_preview" src="" style="position: relative;" />
+						 		<img id="img_preview" style="width:200px;height:150px;" src="" style="position: relative;" />
 						 	</div>
 						</div>
 	            </tr>

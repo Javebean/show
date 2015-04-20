@@ -55,13 +55,14 @@ $(document).ready(function(){
 				setTimeout(function(){
 					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
 					$("#img_preview").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
-					$('#topic_image').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
+					$('#topic_image').imgAreaSelect({ aspectRatio: '4:3', onSelectChange: preview });
 				},300);
 			}
 		});
 	},10);
 	
 	function preview(img, selection) {
+		console.log(selection);
 	    var scaleX = 200 / (selection.width || 1);
 	    var scaleY = 150 / (selection.height || 1);
 	  
