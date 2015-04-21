@@ -7,6 +7,7 @@ public class ShortZlzx {
 	private String id;
 	private String title;
 	private Date publishTime;
+	private String abs;
 	public String getId() {
 		return id;
 	}
@@ -25,4 +26,12 @@ public class ShortZlzx {
 	public void setPublishTime(Date publishTime) {
 		this.publishTime = publishTime;
 	}
+	public String getAbs() {
+		return abs;
+	}
+	public void setAbs(String abs) {
+		this.abs = abs;
+	}
+	
+	
 }
