@@ -324,6 +324,9 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 .hide{
 	display:none;
 }
+.newsnr{
+	cursor:pointer;
+}
 
 .pagination {
   display: inline-block;

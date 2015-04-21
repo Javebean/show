@@ -27,14 +27,26 @@ $(document).ready(function(){
 				topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
 				
 				html += 
-					'<a class="newsnr" href="#"><div class="news_wz2"><div class="news_wzbt2"><span class="news_wzbt_nr left">'+
+					'<a class="newsnr" eurl="zlzxDetail.jsp?topicId='+topic.id+'"><div class="news_wz2"><div class="news_wzbt2"><span class="news_wzbt_nr left">'+
 					topic.title+
 					'</span><span class="new_wzbt_day right">'+topic.publishTime+'</span></div>'+
       				'<div class="new_wznr2">'+topic.abs+'</div><span class="readmore">READ MORE+</span></div></a>';
 			}
 			$('.zlzx_box').append(html);
+			$('.newsnr').click(loadDetail);
+			$('.return_btn').click(function(){
+				$(".tz_detail").addClass("hide");
+				$(".tz_list").removeClass("hide");
+			});
 		}
 		Zytz.getShortZytzForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
+	}
+	
+	function loadDetail(){
+		$(".tz_list").addClass("hide");
+		$(".tz_detail").removeClass("hide");
+		var url = $(this).attr("eurl");
+		$(".detail_html").load(url);
 	}
 	
 	function initPaging(pageActive, rowCount){
@@ -72,7 +84,7 @@ $(document).ready(function(){
 
    <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">新闻中心</a> > <font style=" font-weight:bold; color:#1F9AD6">重要通知</font></div>
    <div class="nymainnr">
-   
+   <div class="tz_list">
    	<div class="zlzx_box">
    		
  	</div>
@@ -85,7 +97,12 @@ $(document).ready(function(){
 		</ul>
 		</nav>
 	</div>
-
+	</div>
+	
+	<div class="tz_detail hide">
+		<div class="detail_html"></div>
+		<div><button class="return_btn">返回</button></div>
+	</div>
 	
 	</div>
   
