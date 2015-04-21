@@ -1,168 +1,220 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
-<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="jslib/jquery.hoverIntent.minified.js"></script>
-<script src="jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
-<script type='text/javascript' src='dwr/engine.js'></script>
-<script type='text/javascript' src='dwr/util.js'></script>
-<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
-<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.hoverIntent.minified.js"></script>
+	<script src="jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
+	<script type='text/javascript' src='dwr/engine.js'></script>
+	<script type='text/javascript' src='dwr/util.js'></script>
+	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
+	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+	<script type="text/javascript">
+	$(function(){
 
-<script type="text/javascript">
-$(function(){
-	
-	$("#kinMaxShow").kinMaxShow({
-		height:320,
-		button:{
-					showIndex:false,
-					normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
-					focus:{background:'url(images/dian1.png)',border:'0'}
-			}			
-	});
-
-	showZlzxList();
-	
-	function showZlzxList(){
-		var func = function(data){
-			data = JSON.parse(data);
-			rowCount = data.size;
-			data = data.data;
-	
-			var html = "";
-			for(var i=0;i<data.length;i++){
-				var topic = data[i];
-				console.log(topic);
-				
-				var timeStr = topic.publishTime;
-				topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
-				
-				html += 
-					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="#">'+topic.title+'</a></li>';
+		$("#kinMaxShow").kinMaxShow({
+			height:320,
+			button:{
+				showIndex:false,
+				normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
+				focus:{background:'url(images/dian1.png)',border:'0'}
 			}
-			$('.tzggnb ul').html(html);
+		});
+
+		showZlzxList();
+		showZytzList();
+		function showZytzList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				rowCount = data.size;
+				data = data.data;
+
+				var html = "";
+				for(var i=0;i<data.length;i++){
+					var topic = data[i];
+					console.log(topic);
+
+					var timeStr = topic.publishTime;
+					topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+
+					html +=
+					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="#">'+topic.title+'</a></li>';
+				}
+				$('.tzggnb ul').html(html);
+			}
+			Zytz.getShortZytzForPage(0,3,func);
 		}
-		Zytz.getShortZytzForPage(0,3,func);
-	}
-});
 
-</script>
+		function showZlzxList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				rowCount = data.size;
+				data = data.data;
 
-<title>中国交通汽车展会</title>
+				var html = "";
+				var topic = data[0];
+				html += '<a class="wzbt" href="#">' + topic.title + '</a>';
+				html += 	'<a class="wznr" href="#">' + topic.abs + '</a>';
+				if(data.length > 1)
+				{
+					html += '<ul>';
+						for(var i=1;i<data.length;i++){
+							var topic = data[i];
+							console.log(topic);
+
+							var timeStr = topic.publishTime;
+							topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+
+							html +=
+							'<li><a class="left" href="#">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
+
+						}
+						html += '</ul>';
+					}
+					$('.dtwz').html(html);
+				}
+				Zlzx.getShortZlzxForPage(0,3,func);
+			}
+		});
+
+
+	</script>
+
+	<script type="text/javascript">
+		function checklogin()
+		{
+			var func = function(data){
+				data = JSON.parse(data);
+				var result = data.result;
+				if(result)
+				{
+					var usrname = data.username;
+					alert(usrname);
+					location.reload();
+				}
+
+			}
+			var usrnameValue = document.getElementById('login001').value;
+			var paswordValue = document.getElementById('login002').value;
+			Exhibitor.login(usrnameValue,paswordValue,func);
+			return true;
+		}
+	</script>
+	<title>中国交通汽车展会</title>
 
 </head>
 
 <body>
- <div class="header">
-  <div class="top">
-   <a class="logo left" href="#"><img src="images/logo.jpg" /></a>
-   <div class="tel_ban right">
-    <div class="ban"><a class="ch" href="#"><img src="images/ch.jpg" /></a><a class="en" href="#"><img src="images/en.jpg" /></a></div>
-    <div class="tel"><img src="images/tel.jpg" /></div>
-   </div>
-  </div>
-  <div class="navbar">
-   <ul>
-    <li><a href="index.html">首&nbsp;&nbsp;页</a></li>
-    <li><a href="in_newscenter.html">新闻中心</a></li>
-    <li><a href="展馆情况.html">参展商</a></li>
-    <li><a href="邀请函.html">观众中心</a></li>
-    <li><a href="合作媒体.html">媒体中心</a></li>
-    <li><a href="城市介绍.html">商旅服务</a></li>
-    <li><a href="展馆概况.html">关于展会</a></li>
-   </ul>
-  </div>
- </div>
- <div class="banner">
-     <div id="show">
-      <div id="kinMaxShow">
-            <div>
-                <a href="#" target="_blank"><img src="images/banner1.jpg"   /></a>
-            </div>
-            
-            <div>
-                <a href="#" target="_blank"><img src="images/banner2.jpg"  /></a>
-            </div>
-            
-            <div>
-                <a href="#" target="_blank"><img src="images/banner1.jpg"   /></a>
-            </div>
-            
-            <div>
-                <a href="#" target="_blank"><img src="images/banner2.jpg"   /></a>
-            </div>	    
-      </div>
-     </div>
- </div>
- 
- <div class="djs">
-  <span class="date">2015年04月10日</span>
-  <span class="zhm">距离第 <font color="#E00000">十一</font> 届 <font color="#E00000">国际流交通运输</font> 展会开幕</span>
-  <span class="time">还有 <font color="#FE7300" style=" font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif">43</font> 天</span>
-  <div class="zhxq">
-   <span class="zhsj left">展会时间：2015年4月22日-4月29日</span>
-   <span class="zhdd right">展会地点: 国家会展中心（上海）（上海崧泽大道333号）</span>
-  </div>
- </div>
- <div class="news">
-  <div class="zhdt left">
-   <div class="zhdtbt">展会动态</div>
-   <div class="zhdtnb">
-    <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a>
-    <div class="dtwz left">
-     <a class="wzbt" href="#">国际物流与交通运输博览会今日开幕</a>
-     <a class="wznr" href="#">部市共建国家会展项目第十四次领导小组会议在国家会展中心召开3月20日，国家会展项目领导小组第十四次工作会议在国家会展中心召开。商务部国际贸易谈判代表...[详细]</a>
-     <ul>
-      <li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
-      <li><a class="left" href="#">官方移动平台即日起向各大展商开放</a><span class="right">03/15</span></li>
-      <li><a class="left" href="#">友情提示(二)便利展商开通机场至展馆免费班车</a><span class="right">03/15</span></li>
-      <li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
-     </ul>
-    </div>
-   </div>
-  </div>
-  <div class="tzgg right">
-   <div class="tzggbt">通知公告</div>
-   <div class="tzggnb">
-    <ul>
-     <li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
-     <li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
-     <li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
-     <li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
-    </ul>
-   </div>
-  </div>
- </div>
- <div class="app_login">
-  <div class="app left">
-   <a class="chakan" href="#">查看详情 ></a>
-  </div>
-  <div class="login right">
-   <input style=" display:block; width:261px; height:28px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" type="text" />
-   <input style=" display:block; width:261px; height:28px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='密码'}" onClick="if(this.value=='密码')this.value='';" value="密码"  name="" type="text" />
-   <div class="button">
-    <input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" />
-    <input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button" />
-   </div>
-  </div>
- </div>
- <div class="dw">
-  <div class="zbdw"><strong>主办单位</strong>:<a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a></div>
-  <div class="cbdw"><strong>承办单位</strong>:<a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国汽车工程学会</a> | <a href="#">德国慕尼黑国际博览集团</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">中国汽车工业协会</a> </div>
-  <div class="xbdw"><strong>协办单位</strong>:<a href="#">中国商品网</a> |  <a href="#">世界买家网</a> |  <a href="#">中国省市商务概览</a> | <a href="#">中国服务</a>  | <a href="#">国别数据库网</a>  | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a></div>
-  <a class="more" href="#">查看更多 ></a>
- </div>
- <div class="footer">
-  <div class="footer1">
-   <div class="footer1_left left"><a href="index.html">首页</a> | <a href="重要通知.html">新闻中心</a> | <a href="展馆情况.html">参展商</a> | <a href="邀请函.html">观众中心</a> | <a href="合作媒体.html">媒体中心</a> | <a href="城市介绍.html">商旅服务</a> | <a href="展馆概况.html">关于展会</a></div>
-   <div class="footer1_right right">2013 Copyright 第十六届上海国际汽车工业展览会</div>
-  </div>
-  <div class="footer2">
-   <div class="footer2_left left">国际物流交通运输博览会联络中心 境内:4000-888-999    境外:(8620)28-888-999   Email info@cantonfair.org.cn</div>
-   <div class="footer2_right right">All rights reserved 苏ICP备05026181号-2</div>
-  </div>
- </div>
+	<div class="header">
+		<div class="top">
+			<a class="logo left" href="#"><img src="images/logo.jpg" /></a>
+			<div class="tel_ban right">
+				<div class="ban"><a class="ch" href="#"><img src="images/ch.jpg" /></a><a class="en" href="#"><img src="images/en.jpg" /></a></div>
+				<div class="tel"><img src="images/tel.jpg" /></div>
+			</div>
+		</div>
+		<div class="navbar">
+			<ul>
+				<li><a href="index.html">首&nbsp;&nbsp;页</a></li>
+				<li><a href="in_newscenter.html">新闻中心</a></li>
+				<li><a href="展馆情况.html">参展商</a></li>
+				<li><a href="邀请函.html">观众中心</a></li>
+				<li><a href="合作媒体.html">媒体中心</a></li>
+				<li><a href="城市介绍.html">商旅服务</a></li>
+				<li><a href="展馆概况.html">关于展会</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="banner">
+		<div id="show">
+			<div id="kinMaxShow">
+				<div>
+					<a href="#" target="_blank"><img src="images/banner1.jpg"   /></a>
+				</div>
+
+				<div>
+					<a href="#" target="_blank"><img src="images/banner2.jpg"  /></a>
+				</div>
+
+				<div>
+					<a href="#" target="_blank"><img src="images/banner1.jpg"   /></a>
+				</div>
+
+				<div>
+					<a href="#" target="_blank"><img src="images/banner2.jpg"   /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="djs">
+		<span class="date">2015年04月10日</span>
+		<span class="zhm">距离第 <font color="#E00000">十一</font> 届 <font color="#E00000">国际流交通运输</font> 展会开幕</span>
+		<span class="time">还有 <font color="#FE7300" style=" font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif">43</font> 天</span>
+		<div class="zhxq">
+			<span class="zhsj left">展会时间：2015年4月22日-4月29日</span>
+			<span class="zhdd right">展会地点: 国家会展中心（上海）（上海崧泽大道333号）</span>
+		</div>
+	</div>
+	<div class="news">
+		<div class="zhdt left">
+			<div class="zhdtbt">展会动态</div>
+			<div class="zhdtnb">
+				<a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a>
+				<div class="dtwz left">
+					<a class="wzbt" href="#">国际物流与交通运输博览会今日开幕</a>
+					<a class="wznr" href="#">部市共建国家会展项目第十四次领导小组会议在国家会展中心召开3月20日，国家会展项目领导小组第十四次工作会议在国家会展中心召开。商务部国际贸易谈判代表...[详细]</a>
+					<ul>
+						<li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">官方移动平台即日起向各大展商开放</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">友情提示(二)便利展商开通机场至展馆免费班车</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="tzgg right">
+			<div class="tzggbt">通知公告</div>
+			<div class="tzggnb">
+				<ul>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="app_login">
+		<div class="app left">
+			<a class="chakan" href="#">查看详情 ></a>
+		</div>
+		<div class="login right">
+			<input style=" display:block; width:261px; height:28px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:261px; height:28px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='密码'}" onClick="if(this.value=='密码')this.value='';" value="密码"  name="" id= "login002" type="text" />
+			<div class="button">
+				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button"  onclick="return checklogin();" />
+				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick=location.assign("in_newscenter.html") />
+			</div>
+		</div>
+	</div>
+	<div class="dw">
+		<div class="zbdw"><strong>主办单位</strong>:<a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a></div>
+		<div class="cbdw"><strong>承办单位</strong>:<a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国汽车工程学会</a> | <a href="#">德国慕尼黑国际博览集团</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">中国汽车工业协会</a> </div>
+		<div class="xbdw"><strong>协办单位</strong>:<a href="#">中国商品网</a> |  <a href="#">世界买家网</a> |  <a href="#">中国省市商务概览</a> | <a href="#">中国服务</a>  | <a href="#">国别数据库网</a>  | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a></div>
+		<a class="more" href="#">查看更多 ></a>
+	</div>
+	<div class="footer">
+		<div class="footer1">
+			<div class="footer1_left left"><a href="index.html">首页</a> | <a href="重要通知.html">新闻中心</a> | <a href="展馆情况.html">参展商</a> | <a href="邀请函.html">观众中心</a> | <a href="合作媒体.html">媒体中心</a> | <a href="城市介绍.html">商旅服务</a> | <a href="展馆概况.html">关于展会</a></div>
+			<div class="footer1_right right">2013 Copyright 第十六届上海国际汽车工业展览会</div>
+		</div>
+		<div class="footer2">
+			<div class="footer2_left left">国际物流交通运输博览会联络中心 境内:4000-888-999    境外:(8620)28-888-999   Email info@cantonfair.org.cn</div>
+			<div class="footer2_right right">All rights reserved 苏ICP备05026181号-2</div>
+		</div>
+	</div>
 </body>
 </html>
