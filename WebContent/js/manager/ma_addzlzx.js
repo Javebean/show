@@ -20,7 +20,8 @@ $(document).ready(function(){
 		var ckedata = CKEDITOR.instances.content.getData();
 		topicdata.content = ckedata;
 		var cketext = CKEDITOR.instances.content.document.getBody().getText();
-		topicdata.abs = cketext;
+		topicdata.abs = cketext.substring(0,100);
+		
 		
 		var func = function(data){
 			data = JSON.parse(data);
