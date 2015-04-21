@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,12 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
 import com.novahome.data.pojo.Event;
-import com.novahome.data.pojo.Visitor;
-import com.novahome.data.service.AudienceService;
 import com.novahome.data.service.EventService;
-import com.novahome.data.service.ZlzxService;
 import com.novahome.utils.HtmlParser;
 
 public class EventServlet extends HttpServlet{

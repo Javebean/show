@@ -68,7 +68,7 @@ public class ExhibitorServlet extends HttpServlet{
 				response.getWriter().write("{\"error\":\"number参数缺失\"}");
 				return;
 			}
-			response.getWriter().write(exhibitorsService.getShortExhibitorsForPage(start, number));
+			response.getWriter().write(exhibitorsService.getShortExhibitorForPageByState(start, number,1));
 		}
 		else if(path.equals(METHOD_NAMES[1]))
 		{

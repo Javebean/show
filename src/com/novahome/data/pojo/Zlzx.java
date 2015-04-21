@@ -21,6 +21,7 @@ public class Zlzx {
 	private Date publishTime;	//发布时间
 	private String title;	//新闻标题
 	private String content;	//新闻内容
+	private String abs;		//摘要
 	private int state = 0; //默认正常状态，state=0 ；1 驳回；
 	@Id
 	@Column(length = 32)
@@ -61,6 +62,12 @@ public class Zlzx {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	public String getAbs() {
+		return abs;
+	}
+	public void setAbs(String abs) {
+		this.abs = abs;
 	}
 	
 	

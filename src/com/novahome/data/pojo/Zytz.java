@@ -22,6 +22,7 @@ public class Zytz {
 	private String title;	//新闻 标题
 	private String content;	//新闻内容
 	private int state = 0; //默认正常状态，state=0 ；1 驳回；
+	private String abs;	//摘要
 
 	@Id
 	@Column(length = 32)
@@ -62,6 +63,12 @@ public class Zytz {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	public String getAbs() {
+		return abs;
+	}
+	public void setAbs(String abs) {
+		this.abs = abs;
 	}
 	
 	
