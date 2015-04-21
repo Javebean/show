@@ -94,6 +94,7 @@
 					<div class="form-group audit_box">
 						<div class="col-sm-offset-1 col-sm-4" style="height:300px;border:1px solid #000;">
 							此处为证件样本
+							<img id="visitor_image" class="thumbnail" width="200" height="200" src=""/>
 						</div>
 					</div>
 					<div class="form-group audit_box">
