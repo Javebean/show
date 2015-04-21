@@ -19,6 +19,8 @@ $(document).ready(function(){
 		//save ckEditor data
 		var ckedata = CKEDITOR.instances.content.getData();
 		topicdata.content = ckedata;
+		var cketext = CKEDITOR.instances.content.document.getBody().getText();
+		topicdata.abs = cketext;
 		
 		var func = function(data){
 			data = JSON.parse(data);

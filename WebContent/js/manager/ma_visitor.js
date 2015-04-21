@@ -66,7 +66,7 @@ $(document).ready(function(){
                 	'<button type="button" class="btn btn-sm btn-danger reject_tp" eid="'+topic.id+'">驳回</button>';
                 }
                 html += 
-                	'<button type="button" class="btn btn-sm btn-primary view_tp" eid="'+topic.id+'">查看</button>'+
+                	'<button type="button" class="btn btn-sm btn-primary view_tp" eid="'+topic.id+'" imagesrc="'+topic.photo+'">查看</button>'+
                 	'<button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
                 '</tr>';
 			}
@@ -76,10 +76,17 @@ $(document).ready(function(){
 			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		}
-		Visitor.getVisitorForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, func);
+		Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state, func);
 	}
 	
 	function viewTP(){
+		var imagesrc = $(this).attr("imagesrc");
+		if(imagesrc != "undefined"){
+			$("#visitor_image").attr("src",PIC_BASE + imagesrc);
+		} else {
+			$("#visitor_image").attr("src","");
+		}
+		
 		$.colorbox({
 			inline : true,
 			innerWidth:800,
