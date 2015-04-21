@@ -267,7 +267,7 @@ public class ExhibitorsService {
 	{
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
-		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
+		Exhibitors ex = exhibitorsDao.getExhibitorByOrgNameWithState(orgName, 1);
 		if(ex != null)
 		{
 			obj.put("result", false);

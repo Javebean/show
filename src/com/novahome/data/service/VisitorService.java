@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.VisitorDao;
+import com.novahome.data.model.ShortExhibitor;
 import com.novahome.data.pojo.Visitor;
 import com.novahome.utils.CutImageUtils;
 
@@ -41,6 +42,13 @@ public class VisitorService {
 		long count = visitorDao.getVisitorCountByType(type);
 		logger.debug("count:" + count);
 		return "{'count':" + count +"}";
+	}
+	
+	public String getVisitorCountByState(int state)
+	{
+		long count = visitorDao.getVisitorCountByState(state);
+		logger.debug("count:" + count);
+		return "{\"count\":" + count +"}";
 	}
 	
 	public String saveVisitor(Visitor visitor, String cutIndex)
@@ -154,18 +162,30 @@ public class VisitorService {
 	
 	public String getVisitorForPage(int start, int number)
 	{
+		long size = visitorDao.getVisitorTotalCount();
 		List<Visitor>ls = visitorDao.getVisitorForPage(start, number);
-		return procssListRet(ls);
+		return procssListRet(ls,size);
 	}
 	
-	private String procssListRet(List ls)
+	public String getVisitorForPageByState(int start, int number,int state)
+	{
+		if(state == -1)
+		{
+			return this.getVisitorForPage(start, number);
+		}
+		long size = visitorDao.getVisitorCountByState(state);
+		List<Visitor>ls = visitorDao.getVisitorForPageByState(start, number, state);
+		return procssListRet(ls,size);
+	}
+	
+	private String procssListRet(List ls, long size)
 	{
 		if(ls == null || ls.isEmpty())
 		{
 			logger.warn(ERROR_STR);
 			return ERROR_STR;
 		}
-		long size = visitorDao.getVisitorTotalCount();
+		
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Object visitor : ls )

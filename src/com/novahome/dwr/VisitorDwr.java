@@ -41,6 +41,16 @@ public class VisitorDwr {
 	}
 	
 	/**
+	 * 获取不同申请状态的现场证件申请数量 
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorCountByState(int state) 
+	{
+		return visitorService.getVisitorCountByState(state);
+	}
+	
+	/**
 	 * 存储现场证件申请信息，包括证件图片地址
 	 * @param sceneServ
 	 * @return
@@ -94,6 +104,18 @@ public class VisitorDwr {
 	public String getVisitorForPage(int start, int number)
 	{
 		return visitorService.getVisitorForPage(start, number);
+	}
+	
+	/**
+	 * 根据证件状态分页查询现场证件申请信息
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorForPageByState(int start, int number, int state)
+	{
+		return visitorService.getVisitorForPageByState(start, number, state);
 	}
 	
 	/**

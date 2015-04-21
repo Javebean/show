@@ -69,6 +69,10 @@ visitordata.eid = "4028b8814cb190bb014cb196cd350003";
     	Visitor.getVisitorForPage(0,4);
     }
     
+    function queryPageByState_onclick(){
+    	Visitor.getVisitorForPageByState(0,4,1);
+    }
+    
     
     function delete_onclick(){
     	Visitor.deleteVisitorById("4028b8814cb59d81014cb5a733620003");
@@ -83,6 +87,7 @@ visitordata.eid = "4028b8814cb190bb014cb196cd350003";
 	<input type="button" value="获取Visitor通过eid"  onclick="javascript:getByEid_onclick();" />
 	<input type="button" value="获取Visitor通过org名字"  onclick="javascript:getByOrg_onclick();" />
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
+	<input type="button" value="page查询ByState"  onclick="javascript:queryPageByState_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
 	

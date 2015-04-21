@@ -51,6 +51,15 @@ public class ExhibitorsDao {
 		return (Exhibitors) query.uniqueResult();
 	}
 	
+	public Exhibitors getExhibitorByOrgNameWithState(String orgName, int state)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Exhibitors a where a.orgName=:orgName and a.state = :state");
+				query.setParameter("orgName", orgName);
+				query.setParameter("state", state);
+		return (Exhibitors) query.uniqueResult();
+	}
+	
 	public Exhibitors getExhibitorById(String id)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(

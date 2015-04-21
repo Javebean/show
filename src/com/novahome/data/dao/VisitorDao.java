@@ -29,6 +29,14 @@ public class VisitorDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getVisitorCountByState(int state)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(*) from Visitor a where a.state = :state");
+		query.setParameter("state", state);
+		return (Long) query.uniqueResult();
+	}
+	
 	public long getVisitorCountByType(int type)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
@@ -71,6 +79,17 @@ public class VisitorDao {
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Visitor order by id desc");
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数		
+		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Visitor>getVisitorForPageByState(int start, int number,int state)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Visitor a where a.state = :state order by a.id desc");
+		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		
 		return query.list();
