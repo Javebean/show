@@ -43,7 +43,7 @@
 					console.log(topic);
 
 					var timeStr = topic.publishTime;
-					topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+					topic.publishTime = timeStr.substring(0,timeStr.indexOf(" "));
 
 					html +=
 					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="#">'+topic.title+'</a></li>';
@@ -62,7 +62,7 @@
 				var html = "";
 				var topic = data[0];
 				html += '<a class="wzbt" href="#">' + topic.title + '</a>';
-				html += 	'<a class="wznr" href="#">' + topic.abs + '</a>';
+				html += 	'<a class="wznr" href="#">' + topic.abs + '[ÏêÏ¸]</a>';
 				if(data.length > 1)
 				{
 					html += '<ul>';
@@ -71,7 +71,8 @@
 							console.log(topic);
 
 							var timeStr = topic.publishTime;
-							topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+							var date = new Date(timeStr);
+							topic.publishTime = (date.getMonth()+1) + '/' + date.getDate();
 
 							html +=
 							'<li><a class="left" href="#">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
@@ -81,7 +82,7 @@
 					}
 					$('.dtwz').html(html);
 				}
-				Zlzx.getShortZlzxForPage(0,3,func);
+				Zlzx.getShortZlzxForPage(0,5,func);
 			}
 		});
 

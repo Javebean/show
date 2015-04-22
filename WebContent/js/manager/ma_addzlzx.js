@@ -4,7 +4,8 @@ var PIC_BASE = 'resources/topicimages/';
 var picFlag = false;
 $(document).ready(function(){
 	CKEDITOR.replace( 'content',{
-		height: '700px'
+		height: '700px',
+		width: '753px'
 		//allowedContent: true
 	});
 	 
@@ -20,7 +21,8 @@ $(document).ready(function(){
 		var ckedata = CKEDITOR.instances.content.getData();
 		topicdata.content = ckedata;
 		var cketext = CKEDITOR.instances.content.document.getBody().getText();
-		topicdata.abs = cketext.substring(0,100);
+		topicdata.abs = cketext.trim().substring(0,100);
+		if(cketext.length>100) topicdata.abs += '...';
 		
 		
 		var func = function(data){
