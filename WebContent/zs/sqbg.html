@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link href="plugins/uploadify/uploadify.css" rel="stylesheet"/>
+	
+	<script type='text/javascript' src='dwr/engine.js'></script>
+	<script type='text/javascript' src='dwr/util.js'></script>
+    <script type="text/javascript" src="jslib/json2.js"></script>
+    <script type="text/javascript" src="jslib/uuid.js"></script>
+    <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+	<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
+	
+	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+    <script type="text/javascript" src="js/addExhibitor.js"></script>
+<style>
+.exib_input{
+	display:block; float:left; width:566px; height:38px; padding:0 0 0 8px; border:0;color:#aba8a8;font-size:12px;
+}
+.exib_input2{
+	display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;
+}
+.showitems .item_row .cell{
+	display:block; width:65px; height:22px; padding:0 0 0 4px; border:0;
+}
+.visitors .item_row .cell{
+	display:block; width:120px; height:22px; padding:0 0 0 4px; border:0;
+}
+.btn_delrow{
+	display:block; width:87px; height:27px; background:url(images/shanchu.jpg); border:0; float:left; margin-left:7px;cursor:pointer;
+}
+</style>
+
+   <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <a href="参展申报.html">参展申报</a> > <font style=" font-weight:bold; color:#1F9AD6">申请表格</font></div>
+   <div class="nymainnr">
+   
+	<form class="form-horizontal" name="regForm" id="form">
+	
+     <div class="wssbbt">1.参展单位基本信息</div>
+     <div class="table3"><span class="table3_left left required_label">单位名称</span>
+     	<input class="exib_input required" name="name" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left required_label">英文名称</span>
+     	<input class="exib_input required" name="name" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left">法定代表人</span>
+     	<input class="exib_input" name="name" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left required_label">地&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+     	<input class="exib_input required" name="name" type="text" />
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">网&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">邮&nbsp;&nbsp;&nbsp;&nbsp;编</span>
+      <input class="exib_input2" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">国家地区</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">企业性质</span>
+	      <div class="sel_wrap right" style=" width:241px">
+	        <label></label>
+	        <select class="select" name="" id="">
+	        <option value="0">国有企业</option>
+	        <option value="1">私有企业</option>
+	        <option value="2">民营企业</option>
+	        </select>
+	     </div>
+	</div>
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">行业类别</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">行业规模</span>
+      <input class="exib_input2" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">联系人</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
+      <input class="exib_input2" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">手机号码</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">电子邮箱</span>
+      <input class="exib_input2" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">固定电话</span>
+      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">传&nbsp;&nbsp;&nbsp;&nbsp;真</span>
+      <input class="exib_input2" name="" type="text" /></div>
+     </div>
+	
+  
+     <div class="wssbbt" style=" margin-top:60px">2.参展单位简介</div>
+     <textarea style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="" cols="" rows=""></textarea>
+     
+     <div class="wssbbt" style=" margin-top:60px">3.摊位申请</div>
+     <div class="table5"><span class="table5_left left">申请标摊数量</span><input style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " onBlur="if (value ==''){value='标摊每个3m X 3m'}" onClick="if(this.value=='标摊每个3m X 3m')this.value='';" value="标摊每个3m X 3m"  name="" type="text" /></div>
+     <div class="table2" style="padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否申请统一特展</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="tytzzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="tytzzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+     <div class="table2" style="margin-top:0; padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否室外展示</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="swzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="swzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+     
+     </form>
+     
+     <div class="wssbbt" style=" margin-top:60px">4.展品情况</div>
+		<table class="gridtable showitems" width="662">
+		<tr>
+		  <td><div align="center">展品名称</div></td>
+		  <td><div align="center">展品型号</div></td>
+		  <td><div align="center">展品数量</div></td>
+		  <td><div align="center">长度（米）</div></td>
+		  <td><div align="center">宽度（米）</div></td>
+		  <td><div align="center">高度（米）</div></td>
+		  <td><div align="center">重量（吨）</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_item" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+     
+     
+     <div class="wssbbt" style=" margin-top:60px">5.参展人员名单</div>
+		<table class="gridtable visitors" width="662">
+		<tr>
+		  <td><div align="center">姓名</div></td>
+		  <td><div align="center">性别</div></td>
+		  <td><div align="center">职务</div></td>
+		  <td><div align="center">联系电话（手机）</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_visitor" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+     
+     <div class="wssbbt" style=" margin-top:60px">6.参展服务</div>
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">现场服务</div>
+     <div class="table3"><span class="table3_left left">服务类别</span>
+     	<div class="sel_wrap right" style=" width:574px">
+	        <label></label>
+	        <select class="select" name="" id="">
+	        <option value="安装">安装</option>
+	        <option value="饮食">饮食</option>
+	        </select>
+	     </div>
+	</div>
+	<div class="table3"><span class="table3_left left">具体内容</span>
+     	<input class="exib_input" name="" type="text" />
+	</div>
+     
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">货运物流</div>
+     <div class="table3"><span class="table3_left left">服务类别</span>
+     	<div class="sel_wrap right" style=" width:574px">
+	        <label></label>
+	        <select class="select" name="" id="">
+	        <option value="送货">送货</option>
+	        <option value="接人">接人</option>
+	        </select>
+	     </div>
+	</div>
+	<div class="table3"><span class="table3_left left">具体内容</span>
+     	<input class="exib_input" name="" type="text" />
+	</div>
+	
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">施工管理</div>
+     <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
+	     <div class="picUpload">
+			<div style="margin-bottom:10px;"><img id="topic_image" class="thumbnail" width="300" height="200" src=""/>施工图片效果</div>
+			<div id="queue"></div>
+		</div>
+		<div>上传施工图片<input type="file" name="uploadify" id="uploadify" /></div>
+     </div>
+     
+     <div class="tjxx_button">
+      <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+     </div>
+     
+
+<script type="text/javascript">
+$(".sel_wrap").on("change", function() {
+var o;
+var opt = $(this).find('option');
+opt.each(function(i) {
+if (opt[i].selected == true) {
+o = opt[i].innerHTML;
+}
+})
+$(this).find('label').html(o);
+}).trigger('change');
+</script>
+
+</html>

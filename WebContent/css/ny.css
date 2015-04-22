@@ -192,7 +192,7 @@ input,textarea,select,button {outline:none;}
 .login_nr{ width:708px; height:33px; line-height:33px;color:#7c7c7c;font-size:16px; font-family:Microsoft YaHei;margin-top:14px}
 .yhm{ text-align:right; width:68px; }
 .login_button{ margin:12px 0 0 68px}
-.forget{ color:#1f9bd5; font-size:12px; display:block; width:60px; height:29px; line-height:29px; float:left; margin-left:10px}
+.forget{ color:#1f9bd5; font-size:12px; display:block; width:100px; height:29px; line-height:29px; float:left; margin-left:10px}
 
 
 
@@ -224,7 +224,7 @@ input,textarea,select,button {outline:none;}
 
 /*������*/
 .table3{width:660px; height:38px; border:1px solid #CCCCCC; margin:18px 0 0 20px}
-.table3_left{width:85px; height:38px; display:block; border-right:1px solid #ccc; line-height:38px; text-align:center;color:#545454;font-size:14px; font-family:Microsoft YaHei; background:url(../images/xing.jpg)}
+.table3_left{width:85px; height:38px; display:block; border-right:1px solid #ccc; line-height:38px; text-align:center;color:#545454;font-size:14px; font-family:Microsoft YaHei;}
 .table3_right{ display:block; width:574px; height:38px;}
 
 
@@ -434,7 +434,19 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 #content p{
 	font-size:14px;
 }
+.required_label{
+	  background: url(../images/xing.jpg);
+}
 
+
+.thumbnail {
+  display: block;
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 .pagination {
   display: inline-block;
   padding-left: 0;

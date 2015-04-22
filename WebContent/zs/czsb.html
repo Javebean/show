@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script>
+$(".a_subcnt").click(function(){
+	var url = $(this).attr("eurl");
+	$(".nymain_right").load(url);
+});
+</script>
+
+   <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展申报</font></div>
+   <div class="nymainnr">
+    <div class="zwsq">
+     <div class="zwsqbt">展位申请</div>
+     <span class="zwsqnr">如果您的公司还未xx申请参展，请先  <a eurl="zs/sqbg.html" class="a_subcnt" style="color:#F00;cursor:pointer;">注册</a>，注册成功后系统会自动生成“xx会”的用户名和密码</span>
+    </div>
+    <div class="zs_login">
+     <div class="zwsqbt">展商登录</div>
+     <span class="zwsqnr">如果您的公司从已申请参展，使用自动生成的“xx会”用户名和密码进行登录</span>
+    </div>
+    <div class="login">
+     <div class="login_nr"><span class="yhm left">用户名：</span><input style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">密&nbsp;&nbsp;码：</span><input style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_button">
+      <input style=" display:block; width:74px; height:29px; background:url(images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" />
+      <a class="forget" href="#">忘记密码？</a>
+     </div>
+    </div>
+
+    
+   
+</html>

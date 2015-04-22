@@ -2,18 +2,17 @@
 var formData = {};
 var picFlag = false;
 var PIC_BASE = 'resources/topicimages/';
-var topicId = Math.uuid();
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","version","number","length","width"];
 	var visitorParams = ["name","sex","position","phone"];
 	 
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
-	$(".add_item").click(function(){
-		addItem(this,7);
+	$(".showitems .add_item").click(function(){
+		addItem(this,5);
 	});
-	$(".add_visitor").click(function(){
+	$(".visitors .add_item").click(function(){
 		addItem(this,4);
 	});
 	
@@ -25,18 +24,18 @@ $(document).ready(function(){
 	});
 	
 	function deleteItem(){
-		$(this).parent().parent().parent().remove();
+		$(this).parent().parent().remove();
 	}
 	
 	function addItem(obj, count){
 		var html = '<tr class="item_row">';
-		var cell = '<td><div align="center"><input class="cell"/></div></td>';
+		var cell = '<td><input/></td>';
 		for(var i=0;i<count;i++){
 			html += cell;
 		}
-		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
+		html += '<td><button type="button" class="btn btn-sm btn-danger delete_item">删除</button></td></tr>';
 		
-		$(obj).parent().prev().append(html);
+		$(obj).parent().parent().before(html);
 		$(".delete_item").click(deleteItem);
 	}
 	
@@ -47,8 +46,8 @@ $(document).ready(function(){
 			var row = $(this);
 			
 			if(row.find("input").eq(0).val()!=""){
-				for(var i=0;i<params.length;i++){
-					item[params[i]] = row.find("input").eq(i).val();
+				for(var i=0;i<itemParams.length;i++){
+					item[itemParams[i]] = row.find("input").eq(i).val();
 				}
 				itemList.push(item);
 			}
