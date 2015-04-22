@@ -21,11 +21,14 @@ $(document).ready(function(){
 			$('.pt_cen_box').empty();
 			var html = "";
 			var status = ["申请","批准","驳回"];
+			var buyer = ["观众","采购商"];
 			for(var i=0;i<data.length;i++){
 				var topic = data[i];
 				
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+				
+				var buyerstr = buyer[topic.buyer];
 				
 				html += 
 					'<tr>' +
@@ -37,6 +40,7 @@ $(document).ready(function(){
 	                '<td>' + topic.email + '</td>' +
 	                '<td>' + topic.inviter + '</td>' +
 	                '<td>' + topic.org + '</td>' +
+	                '<td>' + buyerstr + '</td>' +
 	                '<td>' + topic.address + '</td>' +
 	                '<td>' + topic.infoSource + '</td>' +
 	                '<td>' + topic.target + '</td>' +
