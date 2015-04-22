@@ -58,7 +58,21 @@ $(document).ready(function(){
 	}
 	
 	function saveForm(){
-		if(!$("#form").valid()){
+		if(!$("#form").valid({
+			/* rules: { 
+				sex: "required" 
+			}, */
+				
+			errorPlacement: function(error, element) { //指定错误信息位置 
+				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox 
+					var eid = element.attr('name'); //获取元素的name属性 
+					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面 
+				} else { 
+					error.insertAfter(element.parent()); 
+				}
+			}, 		
+		})){
+			jAlert("请检查输入内容", "信息");
 			return;
 		}
 		var formData = getFormdata("regForm");
