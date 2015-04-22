@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+  <title>连博会</title>
+
+</head>
+<script>
+$(document).ready(function(){
+  $(".nymain_right").load("mt/hzmt.html");
+  $(".header").load("pub_header.html");
+  $(".footer").load("pub_footer.html");
+  $(".menu_Left").click(loadContent);
+
+  function loadContent(){
+    $(".menu_Left").removeClass("menu_active");
+    $(this).addClass("menu_active");
+    var url = $(this).attr("eurl");
+    $(".nymain_right").load(url);
+  }
+});
+</script>
+<body>
+
+  <div class="header">
+
+  </div>
+  <div class="banner"><img src="images/nybanner.jpg" /></div>
+  <div class="nymain">
+    <div class="nymian_left left">
+      <div class="cdhbt">
+        <span class="cdhbtch">媒体中心</span>
+        <span class="cdhbten">MEDIA</span>
+      </div>
+      <div id="firstpane" class="menu_list">
+
+        <a eurl="mt/hzmt.html" class="menu_head menu_Left menu_active">合作媒体</a>
+
+        <a eurl="mt/jzyqh.html" class="menu_head menu_Left">记者邀请函</a>
+
+        <a class="menu_head">证件办理</a>
+        <div class="menu_body">
+          <ul>
+            <li><a eurl="mt/zjfw.html" class="menu_Left">证件服务</a></li>
+            <li><a eurl="mt/wssb.html" class="menu_Left">网上申报</a></li>
+          </ul>
+        </div>
+
+        <a eurl="mt/zgzqfb.html" class="menu_head menu_Left">展馆展区分布</a>
+
+
+      </div>
+
+      <div class="nyewm">
+        <img src="images/nyewm.jpg" />
+        <span class="ewmwz">连博会会官方微信</span>
+      </div>
+      <a class="app" href="#">
+        <img src="images/app.jpg" />
+        <span class="appwz">连博会<br />手机客户端下载?</span>
+      </a>
+    </div>
+    <div class="nymain_right left">
+    </div>
+  </div>
+
+
+  <div class="footer">
+  </div>
+</body>
+</html>

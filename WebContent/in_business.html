@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+  <title>连博会</title>
+
+</head>
+<script>
+$(document).ready(function(){
+  $(".nymain_right").load("sl/csjs.html");
+  $(".header").load("pub_header.html");
+  $(".footer").load("pub_footer.html");
+  $(".menu_Left").click(loadContent);
+
+  function loadContent(){
+    $(".menu_Left").removeClass("menu_active");
+    $(this).addClass("menu_active");
+    var url = $(this).attr("eurl");
+    $(".nymain_right").load(url);
+  }
+});
+</script>
+<body>
+
+  <div class="header">
+
+  </div>
+  <div class="banner"><img src="images/nybanner.jpg" /></div>
+  <div class="nymain">
+    <div class="nymian_left left">
+      <div class="cdhbt">
+        <span class="cdhbtch">商旅服务</span>
+        <span class="cdhbten">TRAVEL</span>
+      </div>
+      <div id="firstpane" class="menu_list">
+
+        <a eurl="sl/csjs.html" class="menu_head menu_Left menu_active">城市介绍</a>
+
+        <a eurl="sl/tjjd.html" class="menu_head menu_Left">推荐酒店</a>
+
+        <a eurl="sl/hcp.html" class="menu_head menu_Left">火车票查询及预订</a>
+
+        <a eurl="sl/fjp.html" class="menu_head menu_Left">飞机票查询及预订</a>
+
+        <a eurl="sl/tjcy.html" class="menu_head menu_Left">推荐餐饮</a>
+
+        <a eurl="sl/lyjd.html" class="menu_head menu_Left">旅游景点</a>
+
+        <a eurl="sl/lyfwjg.html" class="menu_head menu_Left">旅游服务机构</a>
+
+        <a eurl="sl/jtxlt.html" class="menu_head menu_Left">交通线路图</a>
+
+
+      </div>
+
+      <div class="nyewm">
+        <img src="images/nyewm.jpg" />
+        <span class="ewmwz">连博会会官方微信</span>
+      </div>
+      <a class="app" href="#">
+        <img src="images/app.jpg" />
+        <span class="appwz">连博会<br />手机客户端下载?</span>
+      </a>
+    </div>
+    <div class="nymain_right left">
+    </div>
+  </div>
+
+
+  <div class="footer">
+  </div>
+</body>
+</html>
