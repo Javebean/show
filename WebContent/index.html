@@ -6,6 +6,8 @@
 	<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="jslib/jquery.hoverIntent.minified.js"></script>
 	<script src="jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
+	<script type="text/javascript" src="jslib/animateBackground-plugin.js"></script> 
+	
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
@@ -40,7 +42,6 @@
 				var html = "";
 				for(var i=0;i<data.length;i++){
 					var topic = data[i];
-					console.log(topic);
 
 					var timeStr = topic.publishTime;
 					topic.publishTime = timeStr.substring(0,timeStr.indexOf(" "));
@@ -68,7 +69,6 @@
 					html += '<ul>';
 						for(var i=1;i<data.length;i++){
 							var topic = data[i];
-							console.log(topic);
 
 							var timeStr = topic.publishTime;
 							var date = new Date(timeStr);
@@ -84,7 +84,27 @@
 				}
 				Zlzx.getShortZlzxForPage(0,5,func);
 			}
+		
+			show_num(43);
 		});
+	
+	
+	function show_num(n){ 
+	    var it = $(".t_num i"); 
+	    var len = String(n).length; 
+	    for(var i=0;i<len;i++){ 
+	        if(it.length<=i){ 
+	            $(".t_num").append("<i></i>"); 
+	        } 
+	        var num=String(n).charAt(i); 
+	        var y = -parseInt(num)*30; //y轴位置 
+	        var obj = $(".t_num i").eq(i); 
+	        obj.animate({ //滚动动画 
+	            backgroundPosition :'0px '+String(y)+'px'  
+	            }, 'slow','swing',function(){} 
+	        ); 
+	    } 
+	} 
 
 
 	</script>
@@ -110,7 +130,16 @@
 		}
 	</script>
 	<title>中国交通汽车展会</title>
-
+	<style type="">
+	.t_num i {
+		width: 15px;
+		height: 23px;
+		display: inline-block;
+		background: url(images/number.png) no-repeat;
+		background-position: 0 0;
+		text-indent: -999em;
+	}
+	</style>
 </head>
 
 <body>
@@ -141,7 +170,7 @@
 	<div class="djs">
 		<span class="date">2015年04月10日</span>
 		<span class="zhm">距离第 <font color="#E00000">十一</font> 届 <font color="#E00000">国际流交通运输</font> 展会开幕</span>
-		<span class="time">还有 <font color="#FE7300" style=" font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif">43</font> 天</span>
+		<span class="time">还有 <font color="#FE7300" style=" font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif"><span class="t_num"></span></font> 天</span>
 		<div class="zhxq">
 			<span class="zhsj left">展会时间：2015年4月22日-4月29日</span>
 			<span class="zhdd right">展会地点: 国家会展中心（上海）（上海崧泽大道333号）</span>
