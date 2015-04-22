@@ -1,11 +1,10 @@
 package com.novahome.servlet;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
@@ -13,17 +12,21 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
 public class ckeImageUploadServlet extends HttpServlet {
+	
+	  int bg_width = 600; int bg_height = 600; int set_width = 600;//处理压缩成该宽度
+	  
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -65,7 +68,37 @@ public class ckeImageUploadServlet extends HttpServlet {
 		    String uploadFileName = item.getName();
 	        String fileName = UUID.randomUUID().toString() + uploadFileName.substring(uploadFileName.length() - 4);;  //采用UUID的方式随机命名  
 	        File toFile = new File(uploadPath, fileName);  
-		    item.write(toFile);
+			BufferedImage bg_src = null;
+			try {
+				bg_src = javax.imageio.ImageIO.read(item.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			BufferedImage tag = null;
+			
+			if(bg_src != null){//上传的文件是图片的时候
+				int real_width = bg_src.getWidth();//图片的真实宽度
+				int real_height = bg_src.getHeight();//图片的真实高度
+				if(real_width > set_width){//当图片高度超过该限制后才压缩图片
+					System.out.println("图片像素过大，进行压缩...");
+					double compute_height = (double)set_width/real_width*real_height;//等比例计算出来的图片高度
+					bg_width = set_width;
+					bg_height = (int)compute_height; 
+					tag = new BufferedImage(bg_width, bg_height, BufferedImage.TYPE_INT_RGB);
+					Graphics2D g2d = tag.createGraphics();
+					g2d.drawImage(bg_src, 0, 0, bg_width, bg_height, null);
+					g2d.dispose(); 
+					FileOutputStream output = new FileOutputStream(toFile); 
+					JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(output); 
+					encoder.encode(tag); 
+					output.close(); 
+				}
+				else{ 
+		   
+					item.write(toFile);
+				}
+			}
 		    
 		    //设置返回“图像”选项卡  
 	        String callback = request.getParameter("CKEditorFuncNum");    
@@ -78,6 +111,8 @@ public class ckeImageUploadServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		//处理压缩图片
+				
         //对文件进行校验  
         /*if(upload==null || uploadContentType==null || uploadFileName==null){  
             out.print("<font color=\"red\" size=\"2\">*请选择上传文件</font>");  
