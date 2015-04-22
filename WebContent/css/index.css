@@ -28,21 +28,35 @@ input,textarea,select,button {outline:none;}
 
 
 
-.navbar{ width:1060px; height:48px; background:url(../images/navbar_bg2.jpg) repeat-x}
+.navbar{ width:1060px; height:44px; background:url(../images/navbar_bg.png)}
 .navbar ul{}
-.navbar ul li{ float:left; width:150px; background:url(../images/navx.jpg) left center no-repeat; text-align:center;  height:40px; line-height:40px}
-.navbar ul li a{ display:block; width:150px;height:48px; font-size:15px; font-family:Microsoft YaHei; color:#FFF}
+.navbar ul li{ float:left; width:151px; background:url(../images/navx.jpg) left center no-repeat; text-align:center;  height:40px; line-height:40px}
+.navbar ul li a{ display:block; width:151px;height:40px; background:url(../images/navli1.jpg); font-size:15px; font-family:Microsoft YaHei; color:#FFF}
 .navbar ul li a:hover{ background:url(../images/navli2.jpg)}
-.banner{ width:1060px; height:320px; position:relative;  margin:0 auto 0 auto; border-bottom:5px solid #007FCA}
+.navsy{ width:153px!important;}
+.navsy a{ width:153px!important; background:url(../images/navli1_1.jpg)!important;}
+.navsy a:hover{background:url(../images/navli2.jpg)!important;}
+.navmy{ width:152px!important;}
+.navmy a{ width:152px!important; background:url(../images/navli1_2.jpg)!important;}
+.navmy a:hover{background:url(../images/navli2.jpg)!important;}
+
+
+
+.banner{ width:1060px; height:320px; position:relative;  margin:-4px auto 0 auto; border-bottom:5px solid #007FCA}
 
 
 .djs{ width:1060px; height:209px; margin:0 auto; padding-top:1px}
-.date{font-size:18px; font-family:Microsoft YaHei; color:#6c6c6c; display:block; margin:26px auto 0 auto; text-align:center}
+.date{font-size:14px; font-weight:bold; font-family:Microsoft YaHei; color:#6c6c6c; display:block; margin:26px auto 0 auto; text-align:center}
 .zhm{font-size:16px; font-family:Microsoft YaHei; color:#6c6c6c; display:block; margin:0 auto; text-align:center; margin-top:5px}
-.time{font-size:14px; font-family:Microsoft YaHei; color:#6c6c6c; display:block; margin:0 auto; text-align:center; margin-top:15px}
+.time{font-size:14px; font-family:Microsoft YaHei; color:#6c6c6c; margin:0 auto; text-align:center; margin-top:15px; height:53px; background:url(../images/time_bg.jpg)}
 .zhxq{ width:710px; height:20px; margin:18px auto 0 auto}
-.zhsj{font-size:15px; font-family:Microsoft YaHei; color:#222; display:block; margin:0 auto; text-align:center; background:url(../images/zhjs.jpg) left no-repeat; padding-left:25px}
-.zhdd{font-size:15px; font-family:Microsoft YaHei; color:#222; display:block; margin:0 auto; text-align:center; background:url(../images/zhdd.jpg) left no-repeat;padding-left:25px}
+.zhsj{font-size:14px; font-family:Microsoft YaHei; color:#5E5E5E; display:block; margin:0 auto; text-align:center; background:url(../images/zhjs.jpg) left no-repeat; padding-left:25px}
+.zhdd{font-size:14px; font-family:Microsoft YaHei; color:#5E5E5E; display:block; margin:0 auto; text-align:center; background:url(../images/zhdd.jpg) left no-repeat;padding-left:25px}
+
+.djsnb{ font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; color:#ffa800; float:left; position:relative}
+.djsnb_fb{ position:absolute; top:-2px; left:-2px; color:#ff7200; font-weight:bold}
+
+.time_left{ margin:25px 5px 0 5px}
 
 
 .news{ width:1060px; height:347px; margin:0 auto}
@@ -72,7 +86,19 @@ input,textarea,select,button {outline:none;}
 
 .app_login{ width:1060px; height:169px; margin:0 auto}
 .app{ width:708px; height:169px; background:url(../images/app_bg.jpg)}
-.chakan{ display:block; margin:92px 0 0 146px; width:64px; height:12px; font-size:12px; color:#2897cb}
+
+.app_left{ width:340px; height:147px; margin:13px 0 0 31px;}
+.appimg{ width:111px; height:147px;}
+.appwz{ width:212px; height:53px; margin:52px 0 0 0}
+
+
+.appwz1{ display:block; color:#4d4d4d;font-size:14px; font-family:Microsoft YaHei;}
+.chakan{ display:block; width:64px; height:12px; font-size:12px; color:#2897cb; margin-top:10px}
+
+.app_right{width:300px; height:107px; margin:33px 0 0 26px;}
+.appimg2{ width:109px; height:107px}
+.appwz_2{width:188px; height:53px; margin:30px 0 0 0}
+
 
 .login{ width:309px; height:169px; background:url(../images/login_bg.jpg)}
 .button{ width:268px; height:25px; margin:13px auto 0 auto}
