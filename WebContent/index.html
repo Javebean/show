@@ -46,7 +46,7 @@
 					topic.publishTime = timeStr.substring(0,timeStr.indexOf(" "));
 
 					html +=
-					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="#">'+topic.title+'</a></li>';
+					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>';
 				}
 				$('.tzggnb ul').html(html);
 			}
@@ -61,8 +61,8 @@
 
 				var html = "";
 				var topic = data[0];
-				html += '<a class="wzbt" href="#">' + topic.title + '</a>';
-				html += 	'<a class="wznr" href="#">' + topic.abs + '[ÏêÏ¸]</a>';
+				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
+				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[ÏêÏ¸]</a>';
 				if(data.length > 1)
 				{
 					html += '<ul>';
@@ -75,7 +75,7 @@
 							topic.publishTime = (date.getMonth()+1) + '/' + date.getDate();
 
 							html +=
-							'<li><a class="left" href="#">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
+							'<li><a class="left" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
 
 						}
 						html += '</ul>';
