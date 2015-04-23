@@ -1,41 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
 	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
 	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
-    
+
 	<script type='text/javascript' src='dwr/interface/Audience.js'></script>
-    
+
 <script>
 var formData = {};
 $(document).ready(function(){
-	 
+
 	//event binder
 	$("#submitForm").click(saveForm);
-	
+
 	function saveForm(){
 		if(!$("#form").valid({
-			/* rules: { 
-				sex: "required" 
+			/* rules: {
+				sex: "required"
 			}, */
-				
-			errorPlacement: function(error, element) { //Ö¸¶¨´íÎóĞÅÏ¢Î»ÖÃ 
-				if (element.is(':radio') || element.is(':checkbox')) { //Èç¹ûÊÇradio»òcheckbox 
-					var eid = element.attr('name'); //»ñÈ¡ÔªËØµÄnameÊôĞÔ 
-					error.insertAfter(element.parent().parent().parent()); //½«´íÎóĞÅÏ¢Ìí¼Óµ±Ç°ÔªËØµÄ¸¸½áµãºóÃæ 
-				} else { 
-					error.insertAfter(element.parent()); 
+
+			errorPlacement: function(error, element) { //æŒ‡å®šé”™è¯¯ä¿¡æ¯ä½ç½®
+				if (element.is(':radio') || element.is(':checkbox')) { //å¦‚æœæ˜¯radioæˆ–checkbox
+					var eid = element.attr('name'); //è·å–å…ƒç´ çš„nameå±æ€§
+					error.insertAfter(element.parent().parent().parent()); //å°†é”™è¯¯ä¿¡æ¯æ·»åŠ å½“å‰å…ƒç´ çš„çˆ¶ç»“ç‚¹åé¢
+				} else {
+					error.insertAfter(element.parent());
 				}
-			}, 		
+			},
 		})){
 			return;
 		}
 		formData = getFormdata("regForm");
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
 			console.log(data);
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		};
 		Audience.saveAudience(formData,func);
 	}
-	
+
 	function getFormdata(formName){
 		var form = document.forms[formName];
 		var entryNames = [];
@@ -62,7 +62,7 @@ $(document).ready(function(){
 				}
 			}
 		}
-		
+
 		var data = {};
 		for(var i=0;i<entryNames.length;i++){
 			var key = entryNames[i];
@@ -78,7 +78,7 @@ label.error {
 	margin-left: 28px;
 	width: auto;
 	color: red;
-	font-family:"Î¢ÈíÑÅºÚ", "ËÎÌå"; font-size:12px;
+	font-family:"å¾®è½¯é›…é»‘", "å®‹ä½“"; font-size:12px;
 	display: block;
 }
 .user_input{
@@ -91,64 +91,64 @@ label.error {
 	display:block; float:left; margin:0 0 0 4px;
 }
 </style>
-   <div class="nyweizhi">µ±Ç°Î»ÖÃ£º <a href="index.html">Ê×Ò³</a> > <a href="#">¹ÛÖÚÖĞĞÄ</a> > <a href="#">¹ÛÖÚµÇ¼Ç</a> > <font style=" font-weight:bold; color:#1F9AD6">¹ÛÖÚÉêÇë±í¸ñ</font></div>
+   <div class="nyweizhi">å½“å‰ä½ç½®ï¼š <a href="index.html">é¦–é¡µ</a> > <a href="#">è§‚ä¼—ä¸­å¿ƒ</a> > <a href="#">è§‚ä¼—ç™»è®°</a> > <font style=" font-weight:bold; color:#1F9AD6">è§‚ä¼—ç”³è¯·è¡¨æ ¼</font></div>
    <div class="nymainnr">
 
 	<div class="userForm">
 		<form class="form-horizontal" name="regForm" id="form">
-     
-	     <div class="wssbbt">¹ÛÖÚÉêÇë±í</div>
-	     <div class="gzsq_tj">ÄúÒ²¿ÉÒÔ <a style=" color:#F00" href="#">ÏÂÔØ</a> ¸Ã±í¸ñÌîĞ´£¬ÌîĞ´ºó¿É·¢ËÍÓÊ¼şÖÁ£ºxxxx@xxx.comÌá½»¸Ã±í¸ñ</div>
-	     <div class="table"><span class="table_left left required_label">ĞÕ&nbsp;&nbsp;Ãû</span>
+
+	     <div class="wssbbt">è§‚ä¼—ç”³è¯·è¡¨</div>
+	     <div class="gzsq_tj">æ‚¨ä¹Ÿå¯ä»¥ <a style=" color:#F00" href="#">ä¸‹è½½</a> è¯¥è¡¨æ ¼å¡«å†™ï¼Œå¡«å†™åå¯å‘é€é‚®ä»¶è‡³ï¼šxxxx@xxx.comæäº¤è¯¥è¡¨æ ¼</div>
+	     <div class="table"><span class="table_left left required_label">å§“&nbsp;&nbsp;å</span>
 	     	<input class="user_input required" name="name" type="text" />
 	     </div>
-	     <div class="table2"><span class="table2_left left">ĞÔ&nbsp;&nbsp;±ğ</span><span class="table2_right left">
-		     <label><input style="margin:12px 0 0 0;" class="user_radio" type="radio" name="sex" value="ÄĞ" /><span class="user_space">ÄĞ</span></label>
-		     <label><input style="margin:12px 0 0 20px;" class="user_radio" type="radio" name="sex" value="Å®" /><span class="user_space">Å®</span></label></span>
+	     <div class="table2"><span class="table2_left left">æ€§&nbsp;&nbsp;åˆ«</span><span class="table2_right left">
+		     <label><input style="margin:12px 0 0 0;" class="user_radio" type="radio" name="sex" value="ç”·" /><span class="user_space">ç”·</span></label>
+		     <label><input style="margin:12px 0 0 20px;" class="user_radio" type="radio" name="sex" value="å¥³" /><span class="user_space">å¥³</span></label></span>
 	     </div>
-	     <div class="table"><span class="table_left left">Ö°&nbsp;&nbsp;Î»</span>
+	     <div class="table"><span class="table_left left">èŒ&nbsp;&nbsp;ä½</span>
 	     	<input class="user_input" name="position" type="text" />
 	     </div>
-	     <div class="table required_label"><span class="table_left left">ÁªÏµ·½Ê½</span>
+	     <div class="table required_label"><span class="table_left left">è”ç³»æ–¹å¼</span>
 	     	<input class="user_input required" name="phone" type="text" />
 	     </div>
-	     <div class="table required_label"><span class="table_left left">µç×ÓÓÊÏä</span>
+	     <div class="table required_label"><span class="table_left left">ç”µå­é‚®ç®±</span>
 	     	<input class="user_input required" name="email" type="text" />
 	     </div>
-	     <div class="table"><span class="table_left left">ÑûÇëÕß</span>
+	     <div class="table"><span class="table_left left">é‚€è¯·è€…</span>
 	     	<input class="user_input" name="inviter" type="text" />
 	     </div>
-	     <div class="table required_label"><span class="table_left left">¹«Ë¾Ãû³Æ</span>
+	     <div class="table required_label"><span class="table_left left">å…¬å¸åç§°</span>
 	     	<input class="user_input required" name="org" type="text" />
 	     </div>
-	     <div class="table2"><span class="table2_left left required_label">¹ÛÕ¹Éí·İ</span><span class="table2_right left">
-		     <label><input style="margin:12px 0 0 0;" class="user_radio required" type="radio" name="buyer" value="1" /><span class="user_space">²É¹ºÉÌ</span></label>
-		     <label><input style="margin:12px 0 0 20px;" class="user_radio required" type="radio" name="buyer" value="0" /><span class="user_space">¹ÛÖÚ</span></label></span>
+	     <div class="table2"><span class="table2_left left required_label">è§‚å±•èº«ä»½</span><span class="table2_right left">
+		     <label><input style="margin:12px 0 0 0;" class="user_radio required" type="radio" name="buyer" value="1" /><span class="user_space">é‡‡è´­å•†</span></label>
+		     <label><input style="margin:12px 0 0 20px;" class="user_radio required" type="radio" name="buyer" value="0" /><span class="user_space">è§‚ä¼—</span></label></span>
 	     </div>
-	     <div class="table"><span class="table_left left">µØ&nbsp;&nbsp;Ö·</span>
+	     <div class="table"><span class="table_left left">åœ°&nbsp;&nbsp;å€</span>
 	     	<input class="user_input" name="address" type="text" />
 	     </div>
-	     <div class="table"><span class="table_left left">ĞÅÏ¢À´Ô´</span>
+	     <div class="table"><span class="table_left left">ä¿¡æ¯æ¥æº</span>
 	     	<input class="user_input" name="infoSource" type="text" />
 	     </div>
-	     <div class="table"><span class="table_left left">²Î»áÄ¿µÄ</span>
+	     <div class="table"><span class="table_left left">å‚ä¼šç›®çš„</span>
 	     	<input class="user_input" name="target" type="text" />
 	     </div>
-	     
+
 	     <div class="tjxx_button">
 	      <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
 	     </div>
-	     
+
 		</form>
 	</div>
 
 	<!-- message box -->
 	<div class="resultMsg" style="display:none;">
-		<h3>Çë¼Ç×¡ÓÃ»§ÃûºÍÃÜÂëÓÃÓÚµÇÂ¼£¡</h3>
-		<h3>ÓÃ»§Ãû£º<span id="login_id"></span></h3>
-		<h3>ÃÜ     Âë£º<span id="login_pass"></span></h3>
+		<h3>è¯·è®°ä½ç”¨æˆ·åå’Œå¯†ç ç”¨äºç™»å½•ï¼</h3>
+		<h3>ç”¨æˆ·åï¼š<span id="login_id"></span></h3>
+		<h3>å¯†     ç ï¼š<span id="login_pass"></span></h3>
 	</div>
 
-    
-  
+
+
 </html>

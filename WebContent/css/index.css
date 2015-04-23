@@ -24,6 +24,8 @@ input,textarea,select,button {outline:none;}
 .ch{ display:block; width:44px; height:23px; float:left}
 
 .en{ display:block; width:60px; height:23px; float:left}
+.yonghu{ font-size:14px; color:#007DC9;margin:0 0 0 0;background:url(../images/yonghu.jpg) left no-repeat; padding-left:20px}
+
 .tel{ width:286px; height:23px; margin-top:4px; float:left}
 
 

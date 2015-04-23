@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="jslib/jquery.hoverIntent.minified.js"></script>
 	<script src="jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
-	<script type="text/javascript" src="jslib/animateBackground-plugin.js"></script> 
-	
+	<script type="text/javascript" src="jslib/animateBackground-plugin.js"></script>
+
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/util.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
@@ -63,7 +63,7 @@
 				var html = "";
 				var topic = data[0];
 				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
-				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[��ϸ]</a>';
+				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[详细]</a>';
 				if(data.length > 1)
 				{
 					html += '<ul>';
@@ -84,27 +84,27 @@
 				}
 				Zlzx.getShortZlzxForPage(0,5,func);
 			}
-		
+
 			show_num(43);
 		});
-	
-	
-	function show_num(n){ 
-	    var it = $(".t_num i"); 
-	    var len = String(n).length; 
-	    for(var i=0;i<len;i++){ 
-	        if(it.length<=i){ 
-	            $(".t_num").append("<i></i>"); 
-	        } 
-	        var num=String(n).charAt(i); 
-	        var y = -parseInt(num)*52.8; //y��λ�� 
-	        var obj = $(".t_num i").eq(i); 
-	        obj.animate({ //�������� 
-	            backgroundPosition :'-10px '+String(y)+'px'  
-	            }, 800,'swing',function(){} 
-	        ); 
-	    } 
-	} 
+
+
+		function show_num(n){
+			var it = $(".t_num i");
+			var len = String(n).length;
+			for(var i=0;i<len;i++){
+				if(it.length<=i){
+					$(".t_num").append("<i></i>");
+				}
+				var num=String(n).charAt(i);
+				var y = -parseInt(num)*52.8; //y轴位置
+				var obj = $(".t_num i").eq(i);
+				obj.animate({ //滚动动画
+					backgroundPosition :'-10px '+String(y)+'px'
+				}, 800,'swing',function(){}
+				);
+			}
+		}
 
 
 	</script>
@@ -112,6 +112,7 @@
 	<script type="text/javascript">
 		function checklogin()
 		{
+			
 			var func = function(data){
 				data = JSON.parse(data);
 				var result = data.result;
@@ -119,27 +120,28 @@
 				{
 					var usrname = data.username;
 					alert(usrname);
-					location.reload();
+					$(".yonghu").text("欢迎您，" + usrname);
 				}
 
 			}
 			var usrnameValue = document.getElementById('login001').value;
+			alert(usrnameValue);
 			var paswordValue = document.getElementById('login002').value;
 			Exhibitor.login(usrnameValue,paswordValue,func);
 			return true;
 		}
 	</script>
-	<title>������</title>
+	<title>连博会</title>
 	<style type="">
-	.t_num i {
-		width: 26px;
-  		height: 50px;
-		display: inline-block;
-		background: url(images/number.png) no-repeat;
-		background-position: -10px -480px;
-		text-indent: -999em;
-		margin-bottom: -6px;
-	}
+		.t_num i {
+			width: 26px;
+			height: 50px;
+			display: inline-block;
+			background: url(images/number.png) no-repeat;
+			background-position: -10px -480px;
+			text-indent: -999em;
+			margin-bottom: -6px;
+		}
 	</style>
 </head>
 
@@ -169,76 +171,76 @@
 	</div>
 
 	<div class="djs">
-		<span class="date">2015��04��10��</span>
-		<span class="zhm">����� <font color="#E00000">ʮһ</font> �� <font color="#E00000">��������ͨ����</font> չ�ῪĻ</span>
-		<div class="time">���� <span class="t_num"></span> ��</div>
+		<span class="date">2015年04月10日</span>
+		<span class="zhm">距离第 <font color="#E00000">十一</font> 届 <font color="#E00000">国际流交通运输</font> 展会开幕</span>
+		<div class="time">还有 <span class="t_num"></span> 天</div>
 		<div class="zhxq">
-			<span class="zhsj left">չ��ʱ�䣺2015��4��22��-4��29��</span>
-			<span class="zhdd right">չ��ص�: ���һ�չ���ģ��Ϻ������Ϻ�������333�ţ�</span>
+			<span class="zhsj left">展会时间：2015年4月22日-4月29日</span>
+			<span class="zhdd right">展会地点: 国家会展中心（上海）（上海崧泽大道333号）</span>
 		</div>
 	</div>
 	<div class="news">
 		<div class="zhdt left">
-			<div class="zhdtbt">չ�ᶯ̬</div>
+			<div class="zhdtbt">展会动态</div>
 			<div class="zhdtnb">
 				<a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a>
 				<div class="dtwz left">
-					<a class="wzbt" href="#">���������뽻ͨ���䲩������տ�Ļ</a>
-					<a class="wznr" href="#">���й������һ�չ��Ŀ��ʮ�Ĵ��쵼С������ڹ��һ�չ�����ٿ�3��20�գ����һ�չ��Ŀ�쵼С���ʮ�Ĵι��������ڹ��һ�չ�����ٿ������񲿹���ó��̸�д���...[��ϸ]</a>
+					<a class="wzbt" href="#">国际物流与交通运输博览会今日开幕</a>
+					<a class="wznr" href="#">部市共建国家会展项目第十四次领导小组会议在国家会展中心召开3月20日，国家会展项目领导小组第十四次工作会议在国家会展中心召开。商务部国际贸易谈判代表...[详细]</a>
 					<ul>
-						<li><a class="left" href="#">�����¡������� 2015�Ϻ����ʳ�չ4�¾�������</a><span class="right">03/15</span></li>
-						<li><a class="left" href="#">�ٷ��ƶ�ƽ̨�����������չ�̿���</a><span class="right">03/15</span></li>
-						<li><a class="left" href="#">������ʾ(��)����չ�̿�ͨ������չ����Ѱ೵</a><span class="right">03/15</span></li>
-						<li><a class="left" href="#">�����¡������� 2015�Ϻ����ʳ�չ4�¾�������</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">官方移动平台即日起向各大展商开放</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">友情提示(二)便利展商开通机场至展馆免费班车</a><span class="right">03/15</span></li>
+						<li><a class="left" href="#">“创新·升级” 2015上海国际车展4月精彩上演</a><span class="right">03/15</span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="tzgg right">
-			<div class="tzggbt">֪ͨ����</div>
+			<div class="tzggbt">通知公告</div>
 			<div class="tzggnb">
 				<ul>
-					<li><span class="gg_date">2015-04-15</span><a href="#">2015�Ϻ����ʳ�չ4�¾������ݡ����¡������� </a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="#">2015�Ϻ����ʳ�չ4�¾������ݡ����¡������� </a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="#">2015�Ϻ����ʳ�չ4�¾������ݡ����¡������� </a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="#">2015�Ϻ����ʳ�չ4�¾������ݡ����¡������� </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="#">2015上海国际车展4月精彩上演“创新·升级” </a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="app_login">
-  <div class="app left">
-   <div class="app_left left">
-    <div class="appimg left"><img src="images/appimg1.jpg" /></div>
-    <div class="appwz right">
-     <span class="appwz1">�й���ͨ���䲩�����ֻ��ͻ���</span>
-     <a class="chakan" href="�ֻ��ͻ���.html">�鿴���� ></a>
-    </div>
-   </div>
-   <div class="app_right left">
-    <div class="appimg2 left"><img src="images/appewm.jpg" /></div>
-    <div class="appwz_2 right">
-     <span class="appwz1">�й���ͨ���䲩����ٷ�΢��</span>
-     <p class="chakan" href="#">ɨһɨ��ע</p>
-    </div>
-   </div>
-  </div>
-  <div class="login right">
-   <input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='�û���'}" onClick="if(this.value=='�û���')this.value='';" value="�û���"  name="" type="text" />
-   <input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='����'}" onClick="if(this.value=='����')this.value='';" value="����"  name="" type="text" />
-   <div class="button">
-    <input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" />
-    <input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button" />
-   </div>
-  </div>
- </div>
- 
+		<div class="app left">
+			<div class="app_left left">
+				<div class="appimg left"><img src="images/appimg1.jpg" /></div>
+				<div class="appwz right">
+					<span class="appwz1">中国交通运输博览会手机客户端</span>
+					<a class="chakan" href="手机客户端.html">查看详情 ></a>
+				</div>
+			</div>
+			<div class="app_right left">
+				<div class="appimg2 left"><img src="images/appewm.jpg" /></div>
+				<div class="appwz_2 right">
+					<span class="appwz1">中国交通运输博览会官方微信</span>
+					<p class="chakan" href="#">扫一扫关注</p>
+				</div>
+			</div>
+		</div>
+		<div class="login right">
+			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='密码'}" onClick="if(this.value=='密码')this.value='';" value="密码"  name=""  id= "login002" type="text" />
+			<div class="button">
+				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
+				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button" />
+			</div>
+		</div>
+	</div>
+
 	<div class="dw">
-		<div class="zbdw"><strong>���쵥λ</strong>:<a href="#">�й���ͨ���䲩����</a> | <a href="#">�й�������ҵЭ��</a> | <a href="#">�й�����ó�״ٽ�ίԱ���Ϻ��зֻ�</a></div>
-		<div class="cbdw"><strong>�а쵥λ</strong>:<a href="#">�й�����ó�״ٽ�ίԱ���Ϻ��зֻ�</a> | <a href="#">�й���������ѧ��</a> | <a href="#">�¹�Ľ��ڹ��ʲ�������</a> | <a href="#">IMAG���ʽ��׻�չ�������޹�˾</a> | <a href="#">IMAG���ʽ��׻�չ�������޹�˾</a> | <a href="#">�й�������ҵЭ��</a> </div>
-		<div class="xbdw"><strong>Э�쵥λ</strong>:<a href="#">�й���Ʒ��</a> |  <a href="#">���������</a> |  <a href="#">�й�ʡ���������</a> | <a href="#">�й�����</a>  | <a href="#">�������ݿ���</a>  | <a href="#">�й�������ҵЭ��</a> | <a href="#">�й�����ó�״ٽ�ίԱ���Ϻ��зֻ�</a> | <a href="#">�й���ͨ���䲩����</a> | <a href="#">�й�������ҵЭ��</a></div>
-		<a class="more" href="#">�鿴���� ></a>
+		<div class="zbdw"><strong>主办单位</strong>:<a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a></div>
+		<div class="cbdw"><strong>承办单位</strong>:<a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国汽车工程学会</a> | <a href="#">德国慕尼黑国际博览集团</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">中国汽车工业协会</a> </div>
+		<div class="xbdw"><strong>协办单位</strong>:<a href="#">中国商品网</a> |  <a href="#">世界买家网</a> |  <a href="#">中国省市商务概览</a> | <a href="#">中国服务</a>  | <a href="#">国别数据库网</a>  | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a></div>
+		<a class="more" href="#">查看更多 ></a>
 	</div>
 	<div class="footer">
 	</div>

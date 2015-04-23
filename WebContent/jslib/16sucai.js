@@ -1,7 +1,7 @@
 // JavaScript Document
 $(document).ready(function()
 {
-	//slides the element with class "menu_body" when paragraph with class "menu_head" is clicked 
+	//slides the element with class "menu_body" when paragraph with class "menu_head" is clicked
 	$("#firstpane a.menu_head").click(function()
     {
 		 $(".menu_Left").removeClass("menu_active");
@@ -14,4 +14,6 @@ $(document).ready(function()
 	     $(this).css({backgroundImage:"url(images/down.png)"}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
          $(this).siblings().css({backgroundImage:"url(images/left.png)"});
 	});
+
+
 });

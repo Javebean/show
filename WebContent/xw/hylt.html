@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script>
+  $(document).ready(function(){
+    $(".newsnr").click(loadDetail);
+    $('.return_btn').click(function(){
+      $(".tz_detail").addClass("hide");
+      $(".tz_list").removeClass("hide");
+    });
+
+    function loadDetail(){
+      $(".tz_list").addClass("hide");
+      $(".tz_detail").removeClass("hide");
+      var url = $(this).attr("eurl");
+      $(".detail_html").load(url);
+    }
+  });
+  </script>
+
+  <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">新闻中心</a> > <font style=" font-weight:bold; color:#1F9AD6">会议论坛</font></div>
+  <div class="nymainnr">
+    <div class="tz_list">
+
+      <a class="newsnr" eurl="xw/hylt_new01.html">
+        <div class="news_wz2">
+          <div class="news_wzbt2">
+            <span class="news_wzbt_nr left">第二届中国（连云港）丝绸之路国际物流博览会开幕式暨现代物流园区国际化发展主题论坛</span>
+            <span class="new_wzbt_day right">2015-05-03</span>
+          </div>
+          <div class="new_wznr2">"一带一路"交汇点、物流发展新机遇</div>
+
+        </div>
+      </a>
+      <a class="newsnr" eurl="xw/hylt_new02.html">
+        <div class="news_wz2">
+          <div class="news_wzbt2">
+            <span class="news_wzbt_nr left">2015国际港航合作发展论坛</span>
+            <span class="new_wzbt_day right">2015-05-03</span>
+          </div>
+          <div class="new_wznr2">强化国际港航合作发展</div>
+
+        </div>
+      </a>
+      <a class="newsnr" eurl="xw/hylt_new03.html">
+        <div class="news_wz2">
+          <div class="news_wzbt2">
+            <span class="news_wzbt_nr left">“一带一路”高层次智库论坛</span>
+            <span class="new_wzbt_day right">2015-05-03</span>
+          </div>
+          <div class="new_wznr2">农产品贸易或交通运输便利化</div>
+
+        </div>
+      </a>
+
+
+    </div>
+    <div class="tz_detail hide">
+      <div class="detail_html"></div>
+      <div><button class="return_btn" style ="margin-top:18px">返回</button></div>
+    </div>
+  </div>
+
+
+  </html>
