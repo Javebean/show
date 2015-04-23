@@ -13,7 +13,6 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			var pt = data.data;
-			console.log(pt);
 			if(pt.picPath){
 				$("#topic_image").attr("src",PIC_BASE+pt.picPath+"?"+Math.random());
 			}

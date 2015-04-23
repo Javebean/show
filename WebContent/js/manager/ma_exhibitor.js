@@ -21,7 +21,7 @@ $(document).ready(function(){
 	function showTopicList(page){
 		var func = function(data){
 			data = JSON.parse(data);
-			console.log(data);
+			
 			rowCount = data.size;
 			if(!rowCount || rowCount==0) {
 				$('.pt_cen_box').empty();
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
-			console.log(data);
+			
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			setDymTable(".visitors", visitorParams, data.visitor);

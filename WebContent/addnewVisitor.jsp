@@ -15,7 +15,6 @@
 	
     <script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
     <script type='text/javascript' src='dwr/engine.js'></script>
-	<script type='text/javascript' src='dwr/util.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
     <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>

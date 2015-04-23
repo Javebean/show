@@ -56,7 +56,7 @@ $(document).ready(function(){
 			var key = entryNames[i];
 			data[key] = form[key].value;
 		}
-		console.log(data);
+		
 		return data;
 	}
 	

@@ -59,7 +59,7 @@ $(document).ready(function(){
 	function deleteTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
-			console.log(data);
+			
 			if(data==true) location.reload();
 		}
 		Audience.deleteAudienceById(eid,func);

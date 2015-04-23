@@ -26,7 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="css/signin.css" rel="stylesheet">
 	
 	<script type='text/javascript' src='dwr/engine.js'></script>
-	<script type='text/javascript' src='dwr/util.js'></script>
 	<script type='text/javascript' src='dwr/interface/Account.js'></script>
 	<script type="text/javascript" src="jslib/jquery.min.js"></script>
     <script type="text/javascript" src="jslib/json2.js"></script>

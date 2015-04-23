@@ -62,7 +62,6 @@ $(document).ready(function(){
 	},10);
 	
 	function preview(img, selection) {
-		console.log(selection);
 	    var scaleX = 200 / (selection.width || 1);
 	    var scaleY = 150 / (selection.height || 1);
 	  

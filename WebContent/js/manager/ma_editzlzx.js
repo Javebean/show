@@ -14,7 +14,6 @@ $(document).ready(function(){
 	function initTopic(){
 		var func = function(data){
 			var pt = JSON.parse(data);
-			console.log(pt);
 			$("#title").val(pt.title);
 			$("#content").val(pt.content);
 		};

@@ -13,7 +13,7 @@ $(document).ready(function(){
 		
 		var func = function(data){
 			data = JSON.parse(data);
-			console.log(data);
+			
 			if(data.result == true){
 				//location.href="ma_zlzx.jsp?menu=1";
 				$(".userForm").hide();
@@ -43,7 +43,7 @@ $(document).ready(function(){
 			var key = entryNames[i];
 			data[key] = form[key].value;
 		}
-		console.log(data);
+		
 		return data;
 	}
 });

@@ -21,7 +21,7 @@ $(document).ready(function(){
 	function showTopicList(page){
 		var func = function(data){
 			data = JSON.parse(data);
-			console.log(data);
+			
 			rowCount = data.size;
 			if(!rowCount || rowCount==0) {
 				$('.pt_cen_box').empty();

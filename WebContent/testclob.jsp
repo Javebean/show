@@ -11,7 +11,6 @@
 	<script type="text/javascript" src="./jslib/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="./jslib/camera.min.js"></script>
 	<script type='text/javascript' src='dwr/engine.js'></script>
-	<script type='text/javascript' src='dwr/util.js'></script>
 	<script type='text/javascript' src='dwr/interface/TestClob.js'></script>
 	
 	<script type="text/javascript" src="./js/home.js"></script>
