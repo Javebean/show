@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script>
+  $(document).ready(function(){
+    $(".jdimg").click(loadDetail);
+    $('.return_btn').click(function(){
+      $(".tz_detail").addClass("hide");
+      $(".tz_list").removeClass("hide");
+    });
+
+    function loadDetail(){
+      $(".tz_list").addClass("hide");
+      $(".tz_detail").removeClass("hide");
+      var url = $(this).attr("eurl");
+      $(".detail_html").load(url);
+    }
+  });
+  </script>
+
+  <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">商旅服务</a> > <font style=" font-weight:bold; color:#1F9AD6">旅游景点</font></div>
+  <div class="nymainnr">
+    <div class="tz_list">
+    <a class="jdimg" eurl="sl/lyjd_hgs.html" style="margin-left:0">
+      <img class="jd_img" src="downloadfile/sl/huaguoshan.jpg" />
+      <span class="jd_bt">花果山</span>
+      <span class="jd_bt2">郁林路5号</span>
+    </a>
+    <a class="jdimg" eurl="sl/lyjd_smw.html">
+      <img class="jd_img" src="downloadfile/sl/sumawan.jpg" />
+      <span class="jd_bt">苏马湾</span>
+      <span class="jd_bt2">连云区海岛东路</span>
+    </a>
+    <a class="jdimg" eurl="sl/lyjd_yts.html">
+      <img class="jd_img" src="downloadfile/sl/yuntaishan.jpg" />
+      <span class="jd_bt">云台山</span>
+      <span class="jd_bt2">中山中路</span>
+    </a>
+    <a class="jdimg" eurl="sl/lyjd_yw.html" style="margin-left:0">
+      <img class="jd_img" src="downloadfile/sl/yuwan.jpg" />
+      <span class="jd_bt">渔湾</span>
+      <span class="jd_bt2">连云区云台乡渔湾村</span>
+    </a>
+    <a class="jdimg" eurl="sl/lyjd_thj.html">
+      <img class="jd_img" src="downloadfile/sl/taohuajian.jpg" />
+      <span class="jd_bt">桃花涧</span>
+      <span class="jd_bt2">海州区锦屏山</span>
+    </a>
+    <a class="jdimg" eurl="sl/lyjd_kws.html">
+      <img class="jd_img" src="downloadfile/sl/kongwangshan.jpg" />
+      <span class="jd_bt">孔望山</span>
+      <span class="jd_bt2">海州古城城东</span>
+    </a>
+  </div>
+  <div class="tz_detail hide">
+    <div class="detail_html"></div>
+    <div><button class="return_btn" style ="margin-top:18px">返回</button></div>
+  </div>
+  </div>
+
+  </html>

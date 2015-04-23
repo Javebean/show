@@ -91,7 +91,7 @@ input,textarea,select,button {outline:none;}
 .nymainnr{ width:753px; height:auto; overflow:hidden; margin-top:29px}
 
 
-/*�ֻ�ͻ���*/
+/*�ֻ�ͻ���?*/
 .nyweizhi2{ width:1060px; height:41px; border-bottom:1px solid #E5E5E5; line-height:41px; font-size:12px; color:#8c8c8c; background:url(../images/weizhi_bg.jpg) left no-repeat; padding-left:21px}
 .nyweizhi2 a{font-size:12px; color:#8c8c8c}
 .nyweizhi2 a:hover{ color:#09C}
@@ -143,6 +143,8 @@ input,textarea,select,button {outline:none;}
 
 .about2{ width:753px; height:auto; overflow:hidden; margin-top:41px;color:#4b4b4b;font-size:13px; font-family:Microsoft YaHei;line-height:26px;}
 
+.aboutmod{ width:753px; height:auto; overflow:hidden; margin-top:11px;color:#4b4b4b;font-size:13px; font-family:Microsoft YaHei;line-height:26px;}
+
 
 /*��֯��*/
 .zuzhi1{ width:753px; height:auto; overflow:hidden;font-family:Microsoft YaHei; font-size:14px; color:#444242; line-height:24px; border-bottom:1px dotted #D2D2D2; padding-bottom:40px; margin-bottom:40px;}
@@ -153,6 +155,8 @@ input,textarea,select,button {outline:none;}
 
 /*ְ�ܻ�*/
 .zhineng1{width:753px; height:auto; overflow:hidden;font-family:Microsoft YaHei;font-size:14px; color:#444242; line-height:24px; border-bottom:1px dotted #D2D2D2; padding-bottom:40px; margin-bottom:40px;}
+
+.zhinengmod{width:753px; height:auto; overflow:hidden;font-family:Microsoft YaHei;font-size:14px; color:#444242; line-height:24px; border-bottom:1px dotted #D2D2D2; padding-bottom:8px; margin-bottom:8px;}
 
 /*porducts*/
 .product{ width:753px; height:155px;  border-bottom:1px dotted #C0C0C0; margin-bottom:35px}
@@ -209,7 +213,7 @@ input,textarea,select,button {outline:none;}
 
 
 
-/*���������*/
+/*���������?*/
 .gzsq_tj{color:#575757;font-size:14px; font-family:Microsoft YaHei; margin:16px 0 0 24px}
 .gzsq_tj a{font-size:14px;}
 
@@ -251,7 +255,7 @@ table.gridtable {
 table.gridtable th {
 	 color:#333;
     padding: 8px;
-	
+
     border-width: 1px;
     border-style: solid;
     border-color:#ccc;
@@ -286,7 +290,7 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 
 
 
-/*�������*/
+/*�������?*/
 .productnrlh{ width:733px; height:610px; border:1px solid #DFDFDF}
 
 
@@ -422,7 +426,7 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
 
 .menu_active{
-	background:url(../images/cdhli2.jpg); 
+	background:url(../images/cdhli2.jpg);
 	color:#FFF;
 }
 .hide{
@@ -541,4 +545,3 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-

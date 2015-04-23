@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/ny.css"/>
 <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
 
-<title>ÖĞ¹ú½»Í¨Æû³µÕ¹»á</title>
+<title>ä¸­å›½äº¤é€šæ±½è½¦å±•ä¼š</title>
 
 </head>
 <script>
@@ -19,7 +19,7 @@ $(document).ready(function(){
 		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
 		$(".detail_html").load(url);
 	}else{
-		$(".sub_index").text("ÖØÒªÍ¨Öª");
+		$(".sub_index").text("é‡è¦é€šçŸ¥");
 		$(".a_zytz").addClass("menu_active");
 		var url = 'zytzDetail.jsp?topicId='+topicId+'';
 		$(".detail_html").load(url);
@@ -37,9 +37,9 @@ $(document).ready(function(){
 	}
 	
 	function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //¹¹ÔìÒ»¸öº¬ÓĞÄ¿±ê²ÎÊıµÄÕıÔò±í´ïÊ½¶ÔÏó
-        var r = window.location.search.substr(1).match(reg);  //Æ¥ÅäÄ¿±ê²ÎÊı
-        if (r != null) return unescape(r[2]); return null; //·µ»Ø²ÎÊıÖµ
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //æ„é€ ä¸€ä¸ªå«æœ‰ç›®æ ‡å‚æ•°çš„æ­£åˆ™è¡¨è¾¾å¼å¯¹è±¡
+        var r = window.location.search.substr(1).match(reg);  //åŒ¹é…ç›®æ ‡å‚æ•°
+        if (r != null) return unescape(r[2]); return null; //è¿”å›å‚æ•°å€¼
     }
 });
 </script>
@@ -53,33 +53,33 @@ $(document).ready(function(){
  <div class="nymain">
   <div class="nymian_left left">
    <div class="cdhbt">
-    <span class="cdhbtch">ĞÂÎÅÖĞĞÄ</span>
+    <span class="cdhbtch">æ–°é—»ä¸­å¿ƒ</span>
     <span class="cdhbten">NEWS</span>
    </div>
     <div id="firstpane" class="menu_list">
     
-    <a eurl="zytz.html" class="menu_head menu_Left a_zytz">ÖØÒªÍ¨Öª</a>
+    <a eurl="zytz.html" class="menu_head menu_Left a_zytz">é‡è¦é€šçŸ¥</a>
 
-	<a eurl="zlzx.html" class="menu_head menu_Left a_zlzx">Õ¹ÀÀ×ÊÑ¶</a>
+	<a eurl="zlzx.html" class="menu_head menu_Left a_zlzx">å±•è§ˆèµ„è®¯</a>
 
-	<a eurl="lcap.html" class="menu_head menu_Left">Á÷³Ì°²ÅÅ</a>
+	<a eurl="lcap.html" class="menu_head menu_Left">æµç¨‹å®‰æ’</a>
 
-	<a eurl="zdhd.html" class="menu_head menu_Left">ÖØ´ó»î¶¯</a>
+	<a eurl="zdhd.html" class="menu_head menu_Left">é‡å¤§æ´»åŠ¨</a>
     
-	<a eurl="hylt.html" class="menu_head menu_Left">»áÒéÂÛÌ³</a>
+	<a eurl="hylt.html" class="menu_head menu_Left">ä¼šè®®è®ºå›</a>
     
     </div>
    <div class="nyewm">
     <img src="images/nyewm.jpg" />
-    <span class="ewmwz">ÖĞ¹ú½»Í¨ÔËÊä²©ÀÀ»á¹Ù·½Î¢ĞÅ</span>
+    <span class="ewmwz">ä¸­å›½äº¤é€šè¿è¾“åšè§ˆä¼šå®˜æ–¹å¾®ä¿¡</span>
    </div>
    <a class="app" href="#">
     <img src="images/app.jpg" />
-    <span class="appwz">ÖĞ¹ú½»Í¨ÔËÊä²©ÀÀ»á<br />ÊÖ»ú¿Í»§¶ËÏÂÔØ</span>
+    <span class="appwz">ä¸­å›½äº¤é€šè¿è¾“åšè§ˆä¼š<br />æ‰‹æœºå®¢æˆ·ç«¯ä¸‹è½½</span>
    </a>
   </div>
   <div class="nymain_right left">
-   <div class="nyweizhi">µ±Ç°Î»ÖÃ£º <a href="#">Ê×Ò³</a> > <a href="#">ĞÂÎÅÖĞĞÄ</a> > <font class="sub_index" style=" font-weight:bold; color:#1F9AD6">Õ¹ÀÀ×ÊÑ¶</font></div>
+   <div class="nyweizhi">å½“å‰ä½ç½®ï¼š <a href="#">é¦–é¡µ</a> > <a href="#">æ–°é—»ä¸­å¿ƒ</a> > <font class="sub_index" style=" font-weight:bold; color:#1F9AD6">å±•è§ˆèµ„è®¯</font></div>
    <div class="nymainnr">
 		<div class="detail_html"></div>
 	</div>

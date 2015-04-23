@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+
+  <div class="productnrlh">
+    <div class="mod18">
+      <span id="prev" class="btn prev"></span>
+      <span id="next" class="btn next"></span>
+      <span id="prevTop" class="btn prev"></span>
+      <span id="nextTop" class="btn next"></span>
+      <div id="picBox" class="picBox">
+        <ul class="cf">
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="downloadfile/sl/yuwan1.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank" ><img width="668" height="438" src="downloadfile/sl/yuwan2.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="downloadfile/sl/yuwan3.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="downloadfile/sl/yuwan4.jpg" alt="" /></a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div id="listBox" class="listBox">
+        <ul class="cf">
+          <li class="on"><i class="arr2"></i><img width="147" height="95" src="downloadfile/sl/yuwan1.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="downloadfile/sl/yuwan2.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="downloadfile/sl/yuwan3.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="downloadfile/sl/yuwan4.jpg" /></li>
+
+
+        </ul>
+      </div>
+
+    </div>
+    <script type="text/javascript">
+    (function(){
+
+      function G(s){
+        return document.getElementById(s);
+      }
+
+      function getStyle(obj, attr){
+        if(obj.currentStyle){
+          return obj.currentStyle[attr];
+        }else{
+          return getComputedStyle(obj, false)[attr];
+        }
+      }
+
+      function Animate(obj, json){
+        if(obj.timer){
+          clearInterval(obj.timer);
+        }
+        obj.timer = setInterval(function(){
+          for(var attr in json){
+            var iCur = parseInt(getStyle(obj, attr));
+            iCur = iCur ? iCur : 0;
+            var iSpeed = (json[attr] - iCur) / 5;
+            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+            obj.style[attr] = iCur + iSpeed + 'px';
+            if(iCur == json[attr]){
+              clearInterval(obj.timer);
+            }
+          }
+        }, 30);
+      }
+
+      var oPic = G("picBox");
+      var oList = G("listBox");
+
+      var oPrev = G("prev");
+      var oNext = G("next");
+      var oPrevTop = G("prevTop");
+      var oNextTop = G("nextTop");
+
+      var oPicLi = oPic.getElementsByTagName("li");
+      var oListLi = oList.getElementsByTagName("li");
+      var len1 = oPicLi.length;
+      var len2 = oListLi.length;
+
+      var oPicUl = oPic.getElementsByTagName("ul")[0];
+      var oListUl = oList.getElementsByTagName("ul")[0];
+      var w1 = oPicLi[0].offsetWidth;
+      var w2 = oListLi[0].offsetWidth;
+
+      oPicUl.style.width = w1 * len1 + "px";
+      oListUl.style.width = w2 * len2 + "px";
+
+      var index = 0;
+
+      var num =4;
+      var num2 = Math.ceil(num / 1);
+
+      function Change(){
+
+        Animate(oPicUl, {left: - index * w1});
+
+        if(index < num2){
+          Animate(oListUl, {left: 0});
+        }else if(index + num2 <= len2){
+          Animate(oListUl, {left: - (index - num2 + 1) * w2});
+        }else{
+          Animate(oListUl, {left: - (len2 - num) * w2});
+        }
+
+        for (var i = 0; i < len2; i++) {
+          oListLi[i].className = "";
+          if(i == index){
+            oListLi[i].className = "on";
+          }
+        }
+      }
+
+      oNextTop.onclick = oNext.onclick = function(){
+        index ++;
+        index = index == len2 ? 0 : index;
+        Change();
+      }
+
+      oPrevTop.onclick = oPrev.onclick = function(){
+        index --;
+        index = index == -1 ? len2 -1 : index;
+        Change();
+      }
+
+      for (var i = 0; i < len2; i++) {
+        oListLi[i].index = i;
+        oListLi[i].onclick = function(){
+          index = this.index;
+          Change();
+        }
+      }
+
+    })()
+  </script>
+</div>
+
+<div class="jdwz">
+  <div class="jdbt">景点简介</div>
+  <div class="jdnr1">
+    <p>连云港渔湾风景区是连云港旅游景点中"水景"的代表，连云港渔湾风景区位于云台山南麓，是全国著名的连云港旅游景点--花果山名胜区的重点组成部分。连云港渔湾风景区西连东磊石海风景区，东邻经济技术开发区、港口、连岛、海滨浴场，连云港渔湾风景区是开发的以自然风光为主的风景区，连云港渔湾，清初在海中，为渔人揽舟避风之处。连云港旅游景区--渔湾风景区内自然风光优美，山涧景观独特，涧中流泉飞瀑，怪石兀立，峡谷幽深，云雾缭绕。自然风景区内胜景颇多，有明朝顾乾描写的云台三十六景中的"三潭汲浪"，有传说中三龙戏水的老龙潭、二龙潭、三龙潭、龙王三太子睡觉的上下龙床，藏身的水帘洞，绝壁相映的神仙崖，还有灵气十足的小瀛州等景点。诗人徐书信《渔湾观瀑》赞曰：涓涓细水出云台，滴翠渔湾聚俊才。汇集山中化成瀑，如链如幔过桥来。</p>
+  </div>
+  <div class="jdnr2">
+    <P>地&nbsp;&nbsp;&nbsp;&nbsp;址：连云区云台乡渔湾村</P>
+
+  </div>
+  <div class="jdnr3">
+    <img src="downloadfile/sl/yuwan_map.jpg" />
+  </div>
+</div>
+
+
+
+</html>
