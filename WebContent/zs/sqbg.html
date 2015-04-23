@@ -43,78 +43,79 @@ label.error {
    <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <a href="参展申报.html">参展申报</a> > <font style=" font-weight:bold; color:#1F9AD6">申请表格</font></div>
    <div class="nymainnr">
    
+   <div class="userForm">
 	<form class="form-horizontal" name="regForm" id="form">
 	
      <div class="wssbbt">1.参展单位基本信息</div>
      <div class="table3"><span class="table3_left left required_label">单位名称</span>
-     	<input class="exib_input required" name="name" type="text" />
+     	<input class="exib_input required" name="orgName" type="text" />
 	</div>
-	<div class="table3"><span class="table3_left left required_label">英文名称</span>
-     	<input class="exib_input required" name="name" type="text" />
+	<div class="table3"><span class="table3_left left">英文名称</span>
+     	<input class="exib_input" name="orgEng" type="text" />
 	</div>
 	<div class="table3"><span class="table3_left left">法定代表人</span>
-     	<input class="exib_input" name="name" type="text" />
+     	<input class="exib_input" name="president" type="text" />
 	</div>
 	<div class="table3"><span class="table3_left left required_label">地&nbsp;&nbsp;&nbsp;&nbsp;址</span>
-     	<input class="exib_input required" name="name" type="text" />
+     	<input class="exib_input required" name="address" type="text" />
 	</div>
 	<div class="tablezh">
       <div class="table4 left"><span class="table3_left left">网&nbsp;&nbsp;&nbsp;&nbsp;址</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="site" type="text" /></div>
       <div class="table4 right"><span class="table3_left left">邮&nbsp;&nbsp;&nbsp;&nbsp;编</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="zipcode" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left">国家地区</span>
-      <input class="exib_input2" name="" type="text" /></div>
-      <div class="table4 right"><span class="table3_left left">企业性质</span>
+      <div class="table4 left"><span class="table3_left left required_label">国家地区</span>
+      <input class="exib_input2 required" name="region" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">企业性质</span>
 	      <div class="sel_wrap right" style=" width:241px">
 	        <label></label>
-	        <select class="select" name="" id="">
-	        <option value="0">国有企业</option>
-	        <option value="1">私有企业</option>
-	        <option value="2">民营企业</option>
+	        <select class="select required" name="orgType" id="">
+	        <option value="国有企业">国有企业</option>
+	        <option value="私有企业">私有企业</option>
+	        <option value="民营企业">民营企业</option>
 	        </select>
 	     </div>
 	</div>
 	</div>
 	<div class="tablezh">
-      <div class="table4 left"><span class="table3_left left">行业类别</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 left"><span class="table3_left left required_label">行业类别</span>
+      <input class="exib_input2 required" name="industryType" type="text" /></div>
       <div class="table4 right"><span class="table3_left left">行业规模</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="scale" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left">联系人</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 left"><span class="table3_left left required_label">联系人</span>
+      <input class="exib_input2 required" name="contact" type="text" /></div>
       <div class="table4 right"><span class="table3_left left">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="contactPosition" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left">手机号码</span>
-      <input class="exib_input2" name="" type="text" /></div>
-      <div class="table4 right"><span class="table3_left left">电子邮箱</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <div class="table4 left"><span class="table3_left left required_label">手机号码</span>
+      <input class="exib_input2 required" name="phone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">电子邮箱</span>
+      <input class="exib_input2 required" name="email" type="text" /></div>
      </div>
      <div class="tablezh">
       <div class="table4 left"><span class="table3_left left">固定电话</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="telephone" type="text" /></div>
       <div class="table4 right"><span class="table3_left left">传&nbsp;&nbsp;&nbsp;&nbsp;真</span>
-      <input class="exib_input2" name="" type="text" /></div>
+      <input class="exib_input2" name="fax" type="text" /></div>
      </div>
 	
   
-     <div class="wssbbt" style=" margin-top:60px">2.参展单位简介</div>
-     <textarea style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="" cols="" rows=""></textarea>
+     <div class="wssbbt required_label" style=" margin-top:60px;background-position: 60px 0px;  background-repeat: no-repeat;">2.参展单位简介</div>
+     <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="orgIntro" cols="" rows=""></textarea>
      
      <div class="wssbbt" style=" margin-top:60px">3.摊位申请</div>
-     <div class="table5"><span class="table5_left left">申请标摊数量</span><input style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " onBlur="if (value ==''){value='标摊每个3m X 3m'}" onClick="if(this.value=='标摊每个3m X 3m')this.value='';" value="标摊每个3m X 3m"  name="" type="text" /></div>
+     <div class="table5"><span class="table5_left left required_label" style="background-position:70px 0px;background-repeat: no-repeat;">申请标摊数量</span><input style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " onBlur="if (value ==''){value='标摊每个3m X 3m'}" onClick="if(this.value=='标摊每个3m X 3m')this.value='';" value="标摊每个3m X 3m"  name="btsl" type="text" /></div>
      <div class="table2" style="padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否申请统一特展</span><span class="table2_right left">
-     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="tytzzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
-     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="tytzzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="tytzzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="tytzzs" type="radio" value="0" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
      <div class="table2" style="margin-top:0; padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否室外展示</span><span class="table2_right left">
-     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="swzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
-     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="swzs" type="radio" value="" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="swzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="swzs" type="radio" value="0" /><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
      
      </form>
      
@@ -172,28 +173,28 @@ label.error {
      <div class="table3"><span class="table3_left left">服务类别</span>
      	<div class="sel_wrap right" style=" width:574px">
 	        <label></label>
-	        <select class="select" name="" id="">
+	        <select class="select" name="" id="scene_type">
 	        <option value="安装">安装</option>
 	        <option value="饮食">饮食</option>
 	        </select>
 	     </div>
 	</div>
 	<div class="table3"><span class="table3_left left">具体内容</span>
-     	<input class="exib_input" name="" type="text" />
+     	<input class="exib_input" name="" type="text" id="scene_content"/>
 	</div>
      
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">货运物流</div>
      <div class="table3"><span class="table3_left left">服务类别</span>
      	<div class="sel_wrap right" style=" width:574px">
 	        <label></label>
-	        <select class="select" name="" id="">
+	        <select class="select" name="" id="trans_type">
 	        <option value="送货">送货</option>
 	        <option value="接人">接人</option>
 	        </select>
 	     </div>
 	</div>
 	<div class="table3"><span class="table3_left left">具体内容</span>
-     	<input class="exib_input" name="" type="text" />
+     	<input class="exib_input" name="" type="text" id="trans_content"/>
 	</div>
 	
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">施工管理</div>
@@ -208,7 +209,12 @@ label.error {
      <div class="tjxx_button">
       <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
      </div>
-     
+    </div>
+     <div class="resultMsg" style="display:none;">
+	   			<h3>请记住用户名和密码用于登录！</h3>
+	   			<h3>用户名：<span id="login_id"></span></h3>
+	   			<h3>密     码：<span id="login_pass"></span></h3>
+	   </div>
 
 <script type="text/javascript">
 $(".sel_wrap").on("change", function() {

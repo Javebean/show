@@ -66,11 +66,22 @@ $(document).ready(function(){
 				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox 
 					var eid = element.attr('name'); //获取元素的name属性 
 					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面 
+				} else if(element.is('textarea')){
+					error.insertAfter(element);
 				} else { 
-					error.insertAfter(element.parent()); 
+					if(element.parent().hasClass("right")){
+						error.css("margin-bottom","-20px");
+						error.css("margin-left","360px");
+					}
+					if(element.parent().parent().hasClass("tablezh")){
+						error.insertAfter(element.parent().parent()); 
+					} else {
+						error.insertAfter(element.parent()); 
+					}
 				}
 			}, 		
 		})){
+			$(window).scrollTop(400);
 			jAlert("请检查输入内容", "信息");
 			return;
 		}
