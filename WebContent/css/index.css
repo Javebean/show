@@ -30,7 +30,7 @@ input,textarea,select,button {outline:none;}
 
 
 
-.navbar{ width:1060px; height:44px; background:url(../images/navbar_bg.png)}
+.navbar{ width:1060px; background:url(../images/navbar_bg.png)}
 .navbar ul{}
 .navbar ul li{ float:left; width:151px; background:url(../images/navx.jpg) left center no-repeat; text-align:center;  height:40px; line-height:40px}
 .navbar ul li a{ display:block; width:151px;height:40px; background:url(../images/navli1.jpg); font-size:15px; font-family:Microsoft YaHei; color:#FFF}

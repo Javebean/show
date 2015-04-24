@@ -75,6 +75,14 @@ $(document).ready(function(){
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			setDymTable(".visitors", visitorParams, data.visitor);
+			
+			if(data.exhibitors.logo!=""){
+				var sdata = data.construction[0];
+				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
+			} else {
+				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
+			}
+			
 			if(data.sceneServ.length>0){
 				var sdata = data.sceneServ[0];
 				$(".scene_type").text(sdata.type);

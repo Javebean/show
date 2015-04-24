@@ -1,8 +1,10 @@
 //global data
 var formData = {};
 var picFlag = false;
+var picFlag_logo = false;
 var PIC_BASE = 'resources/topicimages/';
 var topicId = Math.uuid();
+var topicId_logo = Math.uuid();
 $(document).ready(function(){
 	var itemParams = ["name","version","number","length","width","height","weight"];
 	var visitorParams = ["name","sex","position","phone"];
@@ -58,9 +60,9 @@ $(document).ready(function(){
 	
 	function saveForm(){
 		if(!$("#form").valid({
-			/* rules: { 
+			 rules: { 
 				sex: "required" 
-			}, */
+			}, 
 				
 			errorPlacement: function(error, element) { //指定错误信息位置 
 				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox 
@@ -86,6 +88,25 @@ $(document).ready(function(){
 			return;
 		}
 		var formData = getFormdata("regForm");
+		var btsl = formData.btsl;
+		if(btsl == "标摊每个3m X 3m"){
+			$(window).scrollTop(1300);
+			jAlert("请输入标摊数量", "信息");
+			return;
+		}
+		
+		if(isNaN(parseInt(btsl))){
+			$(window).scrollTop(1300);
+			jAlert("标摊数量请输入整数", "信息");
+			return;
+		} else {
+			formData.btsl = parseInt(btsl);
+		}
+		
+		if(picFlag_logo){
+			formData.logo = topicId_logo + ".jpg";
+		}
+		
 		var construction = [];
 		if(picFlag){
 			var cdata = {};
@@ -107,6 +128,22 @@ $(document).ready(function(){
 		
 		var visitor = getDymiTableData(".visitors", visitorParams);
 		var displayItem = getDymiTableData(".showitems", itemParams);
+		//var itemParams = ["name","version","number","length","width","height","weight"];
+		for(var i=0;i<displayItem.length;i++){
+			var item = displayItem[i];
+			if(isNaN(parseInt(item.number)) && item.number!=""){
+				$(window).scrollTop(1500);
+				jAlert("展品数量请输入整数", "信息");
+				return;
+			} else if((isNaN(parseFloat(item.length)) && item.length!="")
+					||(isNaN(parseFloat(item.width)) && item.width!="")
+					||(isNaN(parseFloat(item.height)) && item.height!="")
+					||(isNaN(parseFloat(item.weight)) && item.weight!="")){
+				$(window).scrollTop(1500);
+				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
+				return;
+			}
+		}
 		
 		var func = function(data){
 			data = JSON.parse(data);
@@ -118,7 +155,7 @@ $(document).ready(function(){
 				$("#login_pass").text(data.password);
 				$(".resultMsg").show();
 			}else{
-				alert(result.message);
+				jAlert(result.message, "信息");
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
@@ -160,6 +197,27 @@ $(document).ready(function(){
 				picFlag = true;
 				setTimeout(function(){
 					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+				},300);
+			}
+		});
+	},10);
+	
+	setTimeout(function(){
+		$("#uploadify_logo").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + topicId_logo,
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'sizeLimit' : 3000000,
+			
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				picFlag_logo = true;
+				setTimeout(function(){
+					$("#topic_image_logo").attr("src",PIC_BASE+topicId_logo+".jpg?"+Math.random());
 				},300);
 			}
 		});

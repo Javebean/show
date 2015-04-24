@@ -91,20 +91,57 @@
 				          <td colspan="3"><span ename="orgName" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">所属地区</th>
-				          <td colspan="3"><span ename="region" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">英文名称</th>
+				          <td colspan="3"><span ename="orgEng" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
+				          <th class="text-nowrap" width="14%">法定代表人</th>
+				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">地址</th>
+				          <td colspan="3"><span ename="address" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">网址</th>
+				          <td width="36%"><span ename="site" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">邮编</th>
+				          <td width="36%"><span ename="zipcode" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">国家地区</th>
+				          <td><span ename="region" class="fview_value"></span></td>
 				          <th class="text-nowrap" width="14%">企业性质</th>
-				          <td colspan="3"><span ename="orgType" class="fview_value"></span></td>
+				          <td><span ename="orgType" class="fview_value"></span></td>
 				        </tr>
-				        <tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">行业类别</th>
+				          <td><span ename="industryType" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">行业规模</th>
+				          <td><span ename="scale" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">联系人</th>
+				          <td><span ename="contact" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">职务</th>
+				          <td><span ename="contactPosition" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
 				          <th class="text-nowrap" width="14%">手机号码</th>
 				          <td><span ename="phone" class="fview_value"></span></td>
 				          <th class="text-nowrap" width="14%">电子邮箱</th>
 				          <td><span ename="email" class="fview_value"></span></td>
 				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">固定电话</th>
+				          <td><span ename="telephone" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">传真</th>
+				          <td><span ename="fax" class="fview_value"></span></td>
+				        </tr>
 				    </table>
+				    
+				    <strong>企业logo</strong>
+				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div>
 				    
 				    <strong>展品情况</strong>
 					<table class="table table-bordered fview_table showitems">
