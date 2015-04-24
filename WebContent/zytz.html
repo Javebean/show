@@ -9,23 +9,23 @@
 var ROWS_PER_PAGE = 10;
 $(document).ready(function(){
 	showZlzxList(1);
-	
+
 	function showZlzxList(page){
 		var func = function(data){
 			data = JSON.parse(data);
 			rowCount = data.size;
 			initPaging(page,rowCount);
 			data = data.data;
-	
+
 			$('.zlzx_box').empty();
 			var html = "";
 			for(var i=0;i<data.length;i++){
 				var topic = data[i];
-				
+
 				var timeStr = topic.publishTime;
 				topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
-				
-				html += 
+
+				html +=
 					'<a class="newsnr" eurl="zytzDetail.jsp?topicId='+topic.id+'"><div class="news_wz2"><div class="news_wzbt2"><span class="news_wzbt_nr left">'+
 					topic.title+
 					'</span><span class="new_wzbt_day right">'+topic.publishTime+'</span></div>'+
@@ -40,14 +40,14 @@ $(document).ready(function(){
 		}
 		Zytz.getShortZytzForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
 	}
-	
+
 	function loadDetail(){
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
 		var url = $(this).attr("eurl");
 		$(".detail_html").load(url);
 	}
-	
+
 	function initPaging(pageActive, rowCount){
 		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 		if(pageCount>1){
@@ -63,7 +63,7 @@ $(document).ready(function(){
 			$(".pagination").html(html);
 			$(".paging").removeClass("hide");
 		}
-		
+
 		//bind events
 		$(".paging li").click(function(){
 			var pageTo = $(this).children().attr("page");
@@ -76,7 +76,7 @@ $(document).ready(function(){
 			}
 			showZlzxList(pageTo);
 		});
-		
+
 	}
 });
 </script>
@@ -85,7 +85,7 @@ $(document).ready(function(){
    <div class="nymainnr">
    <div class="tz_list">
    	<div class="zlzx_box">
-   		
+
  	</div>
 	<div class="paging hide">
 		<nav>
@@ -97,12 +97,12 @@ $(document).ready(function(){
 		</nav>
 	</div>
 	</div>
-	
+
 	<div class="tz_detail hide">
 		<div class="detail_html"></div>
-		<div><button class="return_btn">返回</button></div>
+		<div class="return_btn" style ="margin-top:18px"></div>
 	</div>
-	
+
 	</div>
-  
+
 </html>

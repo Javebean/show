@@ -42,7 +42,12 @@
 					var topic = data[i];
 
 					var timeStr = topic.publishTime;
-					topic.publishTime = timeStr.substring(0,timeStr.indexOf(" "));
+
+					var timePar = timeStr.split(' ');
+					var timeDate = timePar[0].split('-');
+					var mTime = parseInt(timeDate[1])+ 1;
+
+					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
 					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>';
@@ -69,8 +74,12 @@
 							var topic = data[i];
 
 							var timeStr = topic.publishTime;
-							var date = new Date(timeStr);
-							topic.publishTime = (date.getMonth()+1) + '/' + date.getDate();
+
+							 var timePar = timeStr.split(' ');
+							 var timeDate = timePar[0].split('-');
+							 var mTime = parseInt(timeDate[1])+ 1;
+
+							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 							html +=
 							'<li><a class="left" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
@@ -82,8 +91,21 @@
 				}
 				Zlzx.getShortZlzxForPage(0,5,func);
 			}
+			Date.prototype.diff = function(date){
 
-			show_num(43);
+				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
+			}
+			// 构造两个日期
+			var now = new Date();
+			var date = new Date('2015/09/23 00:00:01');
+			var todaystr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' +  now.getDate() + '日'  ;
+
+			var diff = now.diff(date);
+			var daynum =0;
+			if (diff >0)
+				daynum = diff;
+			show_today(todaystr);
+			show_num(daynum);
 		});
 
 
@@ -104,26 +126,33 @@
 			}
 		}
 
+		function show_today(n){
+			$(".date").text(n);
+	}
+
 
 	</script>
 
 	<script type="text/javascript">
 		function checklogin()
 		{
-			
+
 			var func = function(data){
 				data = JSON.parse(data);
 				var result = data.result;
 				if(result)
 				{
 					var usrname = data.username;
-					alert(usrname);
+					//location.reload();
+					location.href ="#toptag";
+				//	alert(usrname+"登陆成功");
+				//	$(".yonghu").removeClass("hide");
 					$(".yonghu").text("欢迎您，" + usrname);
 				}
 
 			}
 			var usrnameValue = document.getElementById('login001').value;
-			alert(usrnameValue);
+		//	alert(usrnameValue);
 			var paswordValue = document.getElementById('login002').value;
 			Exhibitor.login(usrnameValue,paswordValue,func);
 			return true;
@@ -144,8 +173,10 @@
 </head>
 
 <body>
+	<a name="toptag"></a>
 	<div class="header">
 	</div>
+
 	<div class="banner">
 		<div id="show">
 			<div id="kinMaxShow">
@@ -158,11 +189,11 @@
 				</div>
 
 				<div>
-					<a href="#"><img src="images/banner1.jpg"   /></a>
+					<a href="#"><img src="images/banner3.jpg"   /></a>
 				</div>
 
 				<div>
-					<a href="#"><img src="images/banner2.jpg"   /></a>
+					<a href="#"><img src="images/banner1.jpg"   /></a>
 				</div>
 			</div>
 		</div>
@@ -170,11 +201,11 @@
 
 	<div class="djs">
 		<span class="date">2015年04月10日</span>
-		<span class="zhm">距离第 <font color="#E00000">十一</font> 届 <font color="#E00000">国际流交通运输</font> 展会开幕</span>
+		<span class="zhm">距离第 <font color="#E00000">二</font> 届 <font color="#E00000">中国(连云港)丝绸之路国际物流博览会</font> 开幕</span>
 		<div class="time">还有 <span class="t_num"></span> 天</div>
 		<div class="zhxq">
-			<span class="zhsj left">展会时间：2015年4月22日-4月29日</span>
-			<span class="zhdd right">展会地点: 国家会展中心（上海）（上海崧泽大道333号）</span>
+			<span class="zhsj left">展会时间：2015年9月22日-9月24日</span>
+			<span class="zhdd right">展会地点: 江苏省连云港市工业展览中心</span>
 		</div>
 	</div>
 	<div class="news">
@@ -212,14 +243,14 @@
 			<div class="app_left left">
 				<div class="appimg left"><img src="images/appimg1.jpg" /></div>
 				<div class="appwz right">
-					<span class="appwz1">中国交通运输博览会手机客户端</span>
-					<a class="chakan" href="手机客户端.html">查看详情 ></a>
+					<span class="appwz1">连博会手机客户端</span>
+					<a class="chakan" href="phonedownload.html">查看详情 ></a>
 				</div>
 			</div>
 			<div class="app_right left">
 				<div class="appimg2 left"><img src="images/appewm.jpg" /></div>
 				<div class="appwz_2 right">
-					<span class="appwz1">中国交通运输博览会官方微信</span>
+					<span class="appwz1">连博会官方微信</span>
 					<p class="chakan" href="#">扫一扫关注</p>
 				</div>
 			</div>
@@ -229,16 +260,15 @@
 			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='密码'}" onClick="if(this.value=='密码')this.value='';" value="密码"  name=""  id= "login002" type="text" />
 			<div class="button">
 				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
-				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button" />
+				<input  style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
 			</div>
 		</div>
 	</div>
 
 	<div class="dw">
-		<div class="zbdw"><strong>主办单位</strong>:<a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a></div>
-		<div class="cbdw"><strong>承办单位</strong>:<a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国汽车工程学会</a> | <a href="#">德国慕尼黑国际博览集团</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">IMAG国际交易会展览会有限公司</a> | <a href="#">中国汽车工业协会</a> </div>
-		<div class="xbdw"><strong>协办单位</strong>:<a href="#">中国商品网</a> |  <a href="#">世界买家网</a> |  <a href="#">中国省市商务概览</a> | <a href="#">中国服务</a>  | <a href="#">国别数据库网</a>  | <a href="#">中国汽车工业协会</a> | <a href="#">中国国际贸易促进委员会上海市分会</a> | <a href="#">中国交通运输博览会</a> | <a href="#">中国汽车工业协会</a></div>
-		<a class="more" href="#">查看更多 ></a>
+		<div class="zbdw"><strong>主办单位</strong>:<a href="#">江苏省人民政府</a> | <a href="#">中国贸促会</a> | <a href="#">哈萨克斯坦国有铁路总公司</a></div>
+		<div class="cbdw"><strong>承办单位</strong>:<a href="#">中国贸促会贸易推广交流中心</a> | <a href="#">中国外运长航集团</a> | <a href="#">中国物流学会</a> | <a href="#">江苏省商务厅</a> | <a href="#">江苏省外事办公室</a> | <a href="#">江苏省经信委</a> | <a href="#">江苏省贸促会</a> | <a href="#">连云港市人民政府</a> </div>
+
 	</div>
 	<div class="footer">
 	</div>

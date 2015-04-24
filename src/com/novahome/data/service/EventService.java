@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ import com.novahome.utils.Ut;
 @Transactional(readOnly = false)
 @Repository
 public class EventService {
+
 
 	private static final Logger logger = Logger.getLogger(EventService.class);
 	@Resource(name = "eventDao")

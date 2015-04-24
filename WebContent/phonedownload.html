@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="jslib/json2.js"></script>
+  <script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+  <title>连博会</title>
+
+</head>
+<script>
+$(document).ready(function(){
+
+  $(".header").load("pub_header.html");
+  $(".footer").load("pub_footer.html");
+
+});
+</script>
+
+<script>
+function dj(i)
+{
+
+  for(j=1;j<3;j++)
+  {
+    if(i==j){
+      document.getElementById("a"+j).className="libg";
+      document.getElementById("b"+j).style.display="";
+    }
+    else
+    {
+      document.getElementById("a"+j).className="li1";
+      document.getElementById("b"+j).style.display="none";
+    }
+  }
+}
+</script>
+
+<body>
+
+  <div class="header">
+
+  </div>
+  <div class="banner"><img src="images/nybanner.jpg" /></div>
+  <div class="nymain">
+
+    <div class="nyweizhi2">当前位置： <a href="index.html">首页</a> > <font style=" font-weight:bold; color:#1F9AD6">手机客户端</font></div>
+    <div class="nymainnr2">
+      <div class="apps_top">连博会官方网站客户端</div>
+      <div class="apps_main">
+        <div class="apps_main_left left"><img src="images/appsimg.jpg" /></div>
+        <div class="apps_main_right left">
+          <div id="c">
+            <ul>
+              <li id=a1 class="libg" style="margin:0"><a class="bg1" onclick="dj(1)"></a></li>
+              <li id=a2 class="li1"><a class="bg2" onclick="dj(2)"></a></li>
+            </ul>
+          </div>
+          <div id=b1 class="con2nb1" >
+            <div class="con2_left left">
+              <p style=" font-size:16px; color:#1f9bd5; font-weight:bold">功能</p>
+              <p>【展品上传】 高效快捷发布展品；</p>
+              <p>【参展指南】 展览前后相关的实用信息，轻松参展；</p>
+              <p>【现场服务】 查看展览及现场配套服务，与会无忧；</p>
+              <p>【路线指引】 行走路线一目了然；</p>
+              <p>【会议论坛】 会议论坛活动安排；</p>
+              <p>【交通指引】 地铁、馆内外交通信息；</p>
+              <p>【展商展品】 查询参展商、展品信息；</p>
+              <p>【资&nbsp;&nbsp;&nbsp;&nbsp;讯】 随时获取最新通知、权威资讯；</p>
+              <p>【洽谈助手】 洽谈内容快速记录。</p><br />
+              <p style=" font-size:16px; color:#1f9bd5;">&nbsp;更多功能等您来发现...</p>
+            </div>
+
+            <div class="con2_right right">
+              <span class="sx">&nbsp;扫描二维码</span>
+              <div class="aner"><img src="images/an.jpg" /></div>
+              <span class="sx">下载apk安装文件<br />到 电脑 进行安装。</span>
+              <a class="anx" href="#"><img src="images/anx.jpg" /></a>
+            </div>
+          </div>
+          <div id=b2 class="con2nb1" style="display:none">
+            <div class="con2_left left">
+              <p style=" font-size:16px; color:#1f9bd5; font-weight:bold">功能</p>
+              <p>【展品上传】 高效快捷发布展品；</p>
+              <p>【参展指南】 展览前后相关的实用信息，轻松参展；</p>
+              <p>【现场服务】 查看展览及现场配套服务，与会无忧；</p>
+              <p>【路线指引】 行走路线一目了然；</p>
+              <p>【会议论坛】 会议论坛活动安排；</p>
+              <p>【交通指引】 地铁、馆内外交通信息；</p>
+              <p>【展商展品】 查询参展商、展品信息；</p>
+              <p>【资&nbsp;&nbsp;&nbsp;&nbsp;讯】 随时获取最新通知、权威资讯；</p>
+              <p>【洽谈助手】 洽谈内容快速记录。</p><br />
+              <p style=" font-size:16px; color:#1f9bd5;">&nbsp;更多功能等您来发现...</p>
+            </div>
+
+            <div class="con2_right right">
+              <span class="sx">登陆App Store下载</span>
+              <a class="anx" href="#"><img src="images/iosx.jpg" /></a>
+              <span class="sx" style=" margin-top:38px">&nbsp;扫描二维码</span>
+              <div class="aner"><img src="images/ios.jpg" /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">
+  </div>
+</body>
+</html>
