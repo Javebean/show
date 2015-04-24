@@ -51,16 +51,16 @@ $(document).ready(function(){
 	function initPaging(pageActive, rowCount){
 		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 		if(pageCount>1){
-			var html = '<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';
+			var html='';
 			for(var i=1;i<=pageCount;i++){
 				if(pageActive!=i){
-					html += '<li><a page="'+i+'">'+i+'</a></li>';
+					html += '<a class="fy_a" page="'+i+'">'+i+'</a>';
 				}else{
-					html += '<li class="active"><a page="'+i+'">'+i+'</a></li>';
+					html += '<a class="fy_a dq" page="'+i+'">'+i+'</a>';
 				}
 			}
-			html+='<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>';
-			$(".pagination").html(html);
+			html+='<a class="fy_a" page="N">&gt;</a>';
+			$(".fy").html(html);
 			$(".paging").removeClass("hide");
 		}
 
@@ -88,13 +88,8 @@ $(document).ready(function(){
 
  	</div>
 	<div class="paging hide">
-		<nav>
-		<ul class="pagination pagination-lg">
-			<li><a page="P" aria-label="Previous"> <span
-					aria-hidden="true">&laquo;</span></a></li>
-			<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-		</ul>
-		</nav>
+		<div class="fy">
+	    </div>
 	</div>
 	</div>
 

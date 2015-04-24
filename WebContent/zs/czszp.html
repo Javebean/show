@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Bootstrap core CSS -->
+<link href="plugins/bootstrap/css/bootstrap-part.css" rel="stylesheet">
+
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+
+<style>
+.exb_logo{
+	float:left;
+	height: 50px;
+	width: 50px;
+}
+.exb_info{
+	width:600px;
+	float:left;
+	margin-left:10px;
+	cursor:pointer;
+}
+.fview_table th{
+ 	text-align:center;
+}
+.btn{
+	margin-right:10px;
+}
+.search_box .search_ele{
+	width: 150px;
+}
+.glyphicon-search{
+	font-size:20px;
+}
+</style>
+
+<script>
+var ROWS_PER_PAGE = 10;
+var PIC_BASE = 'resources/topicimages/';
+var IMAGE_NOT_FOUND = "";
+var itemParams = ["name","version","number","length","width"];
+var visitorParams = ["name","sex","position","phone"];
+$(document).ready(function(){
+	showZlzxList(1);
+
+	function showZlzxList(page){
+		var func = function(data){
+			data = JSON.parse(data);
+			rowCount = data.size;
+			initPaging(page,rowCount);
+			data = data.data;
+
+			$('.zlzx_box').empty();
+			var html = "";
+			for(var i=0;i<data.length;i++){
+				var topic = data[i];
+				var logohtml="";
+				if(topic.logo){
+					logohtml = '<img height="50px" width="50px" src="'+PIC_BASE + topic.logo+'"/>';
+				}
+				
+      			html +=
+      				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
+    				'<div class="exb_info" eid="'+topic.id+'">'+
+    				'<a class="productbt">'+topic.orgName+'</a>'+
+    				'<div class="zycp"><span class="left">【行业类别】</span><span class="left">'+topic.scale+'</span></div><a class="more">查看详情 >></a></div></div>';
+			}
+			$('.zlzx_box').append(html);
+			$('.exb_info').click(loadDetail);
+			$('.return_btn').click(function(){
+				$(".tz_detail").addClass("hide");
+				$(".tz_list").removeClass("hide");
+			});
+		}
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,func);
+	}
+
+	function loadDetail(){
+		$(".tz_list").addClass("hide");
+		$(".tz_detail").removeClass("hide");
+		var eid = $(this).attr("eid");
+		viewTP(eid);
+	}
+	
+	function viewTP(eid){
+		$("#popup_box span").empty();
+		var func = function(data){
+			data = JSON.parse(data);
+			
+			setViewTable(".exb_detail",data.exhibitors);
+			setDymTable(".showitems", itemParams, data.displayItem);
+			setDymTable(".visitors", visitorParams, data.visitor);
+			
+			if(data.exhibitors.logo){
+				var sdata = data.construction[0];
+				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
+			} else {
+				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
+			}
+			
+			if(data.sceneServ.length>0){
+				var sdata = data.sceneServ[0];
+				$(".scene_type").text(sdata.type);
+				$(".scene_content").text(sdata.content);
+			}
+			if(data.transportation.length>0){
+				var sdata = data.transportation[0];
+				$(".trans_type").text(sdata.type);
+				$(".trans_content").text(sdata.content);
+			}
+			if(data.construction.length>0){
+				var sdata = data.construction[0];
+				$("#cons_image").attr("src",PIC_BASE+sdata.picture+"?"+Math.random());
+			} else {
+				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
+			}
+			
+			if(data.exhibitors.state == 0){
+				$(".audit_box").removeClass("hide");
+				$(".update_tp").attr("eid",data.exhibitors.id);
+				$(".reject_tp").attr("eid",data.exhibitors.id);
+			} else {
+				$(".audit_box").addClass("hide");
+			}
+			
+		}
+		Exhibitor.getTotalExhibitInfoById(eid,func);
+	}
+	
+	function setViewTable(tableID,data){
+		$(tableID+" .fview_value").each(function(){
+			var key = $(this).attr("ename");
+			if(data[key]){
+				$(this).text(data[key]);
+			}
+		});
+	}
+	
+	function setDymTable(tableID, params, data){
+		var html = '';
+		for(var i=0;i<data.length;i++){
+			html += '<tr class="item_row">';
+			var row = data[i];
+			for(var j=0;j<params.length;j++){
+				if(row[params[j]]){
+					html += '<td>'+ row[params[j]] +'</td>';
+				} else {
+					html += '<td></td>';
+				}
+			}
+			html += '</tr>';
+		}
+		
+		$(tableID+" .item_row").remove();
+		$(tableID).append(html);
+	}
+
+	function initPaging(pageActive, rowCount){
+		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
+		if(pageCount>1){
+			var html='';
+			for(var i=1;i<=pageCount;i++){
+				if(pageActive!=i){
+					html += '<a class="fy_a" page="'+i+'">'+i+'</a>';
+				}else{
+					html += '<a class="fy_a dq" page="'+i+'">'+i+'</a>';
+				}
+			}
+			html+='<a class="fy_a" page="N">&gt;</a>';
+			$(".fy").html(html);
+			$(".paging").removeClass("hide");
+		}
+
+		//bind events
+		$(".paging li").click(function(){
+			var pageTo = $(this).children().attr("page");
+			if(pageTo == "P"){
+				pageTo = 1;
+			}else if(pageTo == "N"){
+				pageTo = pageCount;
+			}else{
+				pageTo = parseInt(pageTo);
+			}
+			showZlzxList(pageTo);
+		});
+
+	}
+});
+</script>
+
+   <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
+   <div class="nymainnr">
+   
+   <div class="tz_list">
+   	<div class="zlzx_box">
+
+ 	</div>
+	<div class="paging hide">
+		<div class="fy">
+	    </div>
+	</div>
+	</div>
+
+	<div class="tz_detail hide">
+			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px;'>
+					<h2 class="sub-header">参展企业信息</h2>
+					<table class="table table-bordered table-striped fview_table exb_detail">
+				        <tr>
+				          <th class="text-nowrap" width="14%">单位名称</th>
+				          <td colspan="3"><span ename="orgName" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">英文名称</th>
+				          <td colspan="3"><span ename="orgEng" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">法定代表人</th>
+				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">地址</th>
+				          <td colspan="3"><span ename="address" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">网址</th>
+				          <td width="36%"><span ename="site" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">邮编</th>
+				          <td width="36%"><span ename="zipcode" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">国家地区</th>
+				          <td><span ename="region" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">企业性质</th>
+				          <td><span ename="orgType" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">行业类别</th>
+				          <td><span ename="industryType" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">行业规模</th>
+				          <td><span ename="scale" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">联系人</th>
+				          <td><span ename="contact" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">职务</th>
+				          <td><span ename="contactPosition" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">手机号码</th>
+				          <td><span ename="phone" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">电子邮箱</th>
+				          <td><span ename="email" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">固定电话</th>
+				          <td><span ename="telephone" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">传真</th>
+				          <td><span ename="fax" class="fview_value"></span></td>
+				        </tr>
+				    </table>
+				    
+				    <strong>企业logo</strong>
+				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div>
+				    
+				    <strong>展品情况</strong>
+					<table class="table table-bordered fview_table showitems">
+						<tr>
+							<th>展品名称</th>
+							<th>展品型号</th>
+							<th>展品数量</th>
+							<th>长度（米）</th>
+							<th>宽度（米）</th>
+						</tr>
+					</table>
+					
+					<strong>参展人员名单</strong>
+					<table class="table table-bordered fview_table visitors">
+						<tr>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>职务</th>
+							<th>联系电话（手机）</th>
+						</tr>
+					</table>
+					
+					<table class="table table-bordered exb_service">
+						<tr>
+				          <th colspan="2">参展服务</th>
+				        </tr>
+				         <!----------- 现场服务 ----------------->
+				        <tr>
+							<td colspan="2" class="t_sub_header">现场服务</td>
+				        </tr>
+				        <tr>
+				          <td class="text-nowrap" width="14%">服务类别</td>
+				          	<td>
+					          <span ename="phone" class="scene_type"></span>
+					        </td>
+				        </tr>
+				        <tr>
+				          <td class="text-nowrap">具体内容</td>
+				          <td><span ename="phone" class="scene_content"></span></td>
+				        </tr>
+				        <!----------- 货运物流 ----------------->
+				         <tr>
+							<td colspan="2" class="t_sub_header">货运物流</td>
+				        </tr>
+				        <tr>
+				          <td class="text-nowrap" width="14%">服务类别</td>
+				          	<td>
+					          <span ename="phone" class="trans_type"></span>
+					        </td>
+				        </tr>
+				        <tr>
+				          <td class="text-nowrap">具体内容</td>
+				          <td><span ename="phone" class="trans_content"></span></td>
+				        </tr>
+				        
+				         <!----------- 施工管理 ----------------->
+				         <tr>
+							<td colspan="2" class="t_sub_header">施工管理</td>
+				        </tr>
+				        <tr>
+				          <td colspan="2" class="">
+				          	<img id="cons_image" class="thumbnail" width="400" height="300" src=""/>
+				          	<div>施工图片效果</div>
+				          </td>
+				        </tr>
+				    </table>
+		</div>
+		<div class="return_btn" style ="margin-top:18px"></div>
+	</div>
+    
+</html>
