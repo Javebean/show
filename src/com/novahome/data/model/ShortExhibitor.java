@@ -21,6 +21,8 @@ public class ShortExhibitor {
 	private Date applyTime;
 	
 	private String logo;
+	
+	private String booth;
 
 	public String getId() {
 		return id;
@@ -92,6 +94,14 @@ public class ShortExhibitor {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	public String getBooth() {
+		return booth;
+	}
+
+	public void setBooth(String booth) {
+		this.booth = booth;
 	}
 	
 	

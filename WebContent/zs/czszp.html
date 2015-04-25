@@ -57,12 +57,19 @@ $(document).ready(function(){
 				if(topic.logo){
 					logohtml = '<img height="50px" width="50px" src="'+PIC_BASE + topic.logo+'"/>';
 				}
-				
+				var regiontext = "";
+				if(topic.region)
+				{
+					regiontext = topic.region;
+				}
+
       			html +=
       				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
     				'<div class="exb_info" eid="'+topic.id+'">'+
     				'<a class="productbt">'+topic.orgName+'</a>'+
-    				'<div class="zycp"><span class="left">【行业类别】</span><span class="left">'+topic.scale+'</span></div><a class="more">查看详情 >></a></div></div>';
+    				'<div class="zycp"><span class="left">【行业类别】</span><span class="left">'+topic.industryType+'</span></div>' +
+						'<div class="zycp"><span class="left">【国家、地区】</span><span class="left">'+regiontext+'</span></div>' +
+						'<a class="more">查看详情 >></a></div></div>';
 			}
 			$('.zlzx_box').append(html);
 			$('.exb_info').click(loadDetail);
@@ -78,42 +85,51 @@ $(document).ready(function(){
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
 		var eid = $(this).attr("eid");
-		viewTP(eid);
+	//	viewTP(eid);
+
+		viewSpan(eid);
 	}
-	
+
+	function viewSpan(eid){
+		$("#popup_box span").empty();
+		var func = function(data){
+			data = JSON.parse(data);
+			setViewTable(".exb_detail",data.exhibitors);
+			setDymTable(".showitems", itemParams, data.displayItem);
+			$("#name_text").text(data.exhibitors.name);
+			$("#region_text").text(data.exhibitors.region);
+			$("#orgType_text").text(data.exhibitors.orgType);
+			$("#scale_text").text(data.exhibitors.scale);
+			$("#industryType_text").text(data.exhibitors.industryType);
+			$("#orgIntro_text").text(data.exhibitors.orgIntro);
+			if(data.exhibitors.phone != 'unauthorized')
+			{
+				$("#phone_text").text(data.exhibitors.phone);
+				$("#telephone_text").text(data.exhibitors.telephone);
+				$("#address_text").text(data.exhibitors.address);
+			}
+		}
+		Exhibitor.getTotalExhibitInfoById(eid,func);
+
+	}
+
 	function viewTP(eid){
 		$("#popup_box span").empty();
 		var func = function(data){
 			data = JSON.parse(data);
-			
+
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
-			setDymTable(".visitors", visitorParams, data.visitor);
-			
+
+
 			if(data.exhibitors.logo){
 				var sdata = data.construction[0];
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
-			
-			if(data.sceneServ.length>0){
-				var sdata = data.sceneServ[0];
-				$(".scene_type").text(sdata.type);
-				$(".scene_content").text(sdata.content);
-			}
-			if(data.transportation.length>0){
-				var sdata = data.transportation[0];
-				$(".trans_type").text(sdata.type);
-				$(".trans_content").text(sdata.content);
-			}
-			if(data.construction.length>0){
-				var sdata = data.construction[0];
-				$("#cons_image").attr("src",PIC_BASE+sdata.picture+"?"+Math.random());
-			} else {
-				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
-			}
-			
+
+
 			if(data.exhibitors.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.exhibitors.id);
@@ -121,11 +137,11 @@ $(document).ready(function(){
 			} else {
 				$(".audit_box").addClass("hide");
 			}
-			
+
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
 	}
-	
+
 	function setViewTable(tableID,data){
 		$(tableID+" .fview_value").each(function(){
 			var key = $(this).attr("ename");
@@ -134,7 +150,7 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
 	function setDymTable(tableID, params, data){
 		var html = '';
 		for(var i=0;i<data.length;i++){
@@ -149,7 +165,7 @@ $(document).ready(function(){
 			}
 			html += '</tr>';
 		}
-		
+
 		$(tableID+" .item_row").remove();
 		$(tableID).append(html);
 	}
@@ -189,7 +205,7 @@ $(document).ready(function(){
 
    <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
    <div class="nymainnr">
-   
+
    <div class="tz_list">
    	<div class="zlzx_box">
 
@@ -201,68 +217,47 @@ $(document).ready(function(){
 	</div>
 
 	<div class="tz_detail hide">
-			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px;'>
-					<h2 class="sub-header">参展企业信息</h2>
-					<table class="table table-bordered table-striped fview_table exb_detail">
-				        <tr>
-				          <th class="text-nowrap" width="14%">单位名称</th>
-				          <td colspan="3"><span ename="orgName" class="fview_value"></span></td>
-				        </tr>
-				        <tr>
-				          <th class="text-nowrap" width="14%">英文名称</th>
-				          <td colspan="3"><span ename="orgEng" class="fview_value"></span></td>
-				        </tr>
-				        <tr>
-				          <th class="text-nowrap" width="14%">法定代表人</th>
-				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
-				        </tr>
-				        <tr>
-				          <th class="text-nowrap" width="14%">地址</th>
-				          <td colspan="3"><span ename="address" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">网址</th>
-				          <td width="36%"><span ename="site" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">邮编</th>
-				          <td width="36%"><span ename="zipcode" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">国家地区</th>
-				          <td><span ename="region" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">企业性质</th>
-				          <td><span ename="orgType" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">行业类别</th>
-				          <td><span ename="industryType" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">行业规模</th>
-				          <td><span ename="scale" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">联系人</th>
-				          <td><span ename="contact" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">职务</th>
-				          <td><span ename="contactPosition" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">手机号码</th>
-				          <td><span ename="phone" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">电子邮箱</th>
-				          <td><span ename="email" class="fview_value"></span></td>
-				        </tr>
-				         <tr>
-				          <th class="text-nowrap" width="14%">固定电话</th>
-				          <td><span ename="telephone" class="fview_value"></span></td>
-				          <th class="text-nowrap" width="14%">传真</th>
-				          <td><span ename="fax" class="fview_value"></span></td>
-				        </tr>
-				    </table>
-				    
-				    <strong>企业logo</strong>
-				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div>
-				    
-				    <strong>展品情况</strong>
-					<table class="table table-bordered fview_table showitems">
+		<div id='exhibit_span' >
+		<div class="zhanshang_top">
+			<div class="gsqkbt">参展企业信息</div>
+			<div class="gsqknr">
+				<div class="gsqkwz">
+					<a class="gsqkwzbt" id='name_text' style="font-size:20px" href="#">慈溪市康洁净水设备有限公司</a>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【国家地区】</span><span  id='region_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业性质】</span><span id='orgType_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业规模】</span><span id='scale_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【行业类别】</span><span id='industryType_text' class="left"></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="zhanshang_ft">
+			<div class="gsqkbt">单位及产品简介</div>
+			<div class="ngs excontent" id='orgIntro_text'>
+				电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、 化工产品、五金及工具、机械、建材、能源
+			</div>
+		</div>
+		<div class="zhanshang_top" style="margin-top:25px">
+			<div class="gsqkbt">联系方式</div>
+			<div class="gsqknr">
+				<div class="gsqkwz">
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【邮编】</span><span  id='zipcode_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【网址】</span><span id='site_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【地址】</span><span id='address_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【固定电话】</span><span id='phone_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【手机电话】</span><span id='telephone_text' class="left">需登录后查看</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="参展申报.html">登录</a> 后查看企业联系方式</div>
+
+			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
+
+				    <!-- <strong>企业logo</strong>
+				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div> -->
+
+						<div class="gsqkbt">展品详细情况</div>
+					<table class="table table-bordered fview_table showitems"  style="margin-top:35px">
 						<tr>
 							<th>展品名称</th>
 							<th>展品型号</th>
@@ -271,63 +266,9 @@ $(document).ready(function(){
 							<th>宽度（米）</th>
 						</tr>
 					</table>
-					
-					<strong>参展人员名单</strong>
-					<table class="table table-bordered fview_table visitors">
-						<tr>
-							<th>姓名</th>
-							<th>性别</th>
-							<th>职务</th>
-							<th>联系电话（手机）</th>
-						</tr>
-					</table>
-					
-					<table class="table table-bordered exb_service">
-						<tr>
-				          <th colspan="2">参展服务</th>
-				        </tr>
-				         <!----------- 现场服务 ----------------->
-				        <tr>
-							<td colspan="2" class="t_sub_header">现场服务</td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap" width="14%">服务类别</td>
-				          	<td>
-					          <span ename="phone" class="scene_type"></span>
-					        </td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap">具体内容</td>
-				          <td><span ename="phone" class="scene_content"></span></td>
-				        </tr>
-				        <!----------- 货运物流 ----------------->
-				         <tr>
-							<td colspan="2" class="t_sub_header">货运物流</td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap" width="14%">服务类别</td>
-				          	<td>
-					          <span ename="phone" class="trans_type"></span>
-					        </td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap">具体内容</td>
-				          <td><span ename="phone" class="trans_content"></span></td>
-				        </tr>
-				        
-				         <!----------- 施工管理 ----------------->
-				         <tr>
-							<td colspan="2" class="t_sub_header">施工管理</td>
-				        </tr>
-				        <tr>
-				          <td colspan="2" class="">
-				          	<img id="cons_image" class="thumbnail" width="400" height="300" src=""/>
-				          	<div>施工图片效果</div>
-				          </td>
-				        </tr>
-				    </table>
+
 		</div>
 		<div class="return_btn" style ="margin-top:18px"></div>
 	</div>
-    
+
 </html>

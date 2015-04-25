@@ -226,7 +226,7 @@ public class ExhibitorsService {
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
 		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
-		if(ex != null)
+		if(ex != null && ex.getState()==1)
 		{
 			obj.put("result", false);
 			obj.put("message", "该公司已注册过，如有疑问请致电！");
