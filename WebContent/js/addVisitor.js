@@ -3,9 +3,12 @@ var formData = {};
 var picFlag = false;
 var PIC_BASE = 'resources/topicimages/';
 var pic_scare = "";
+var topicId = Math.uuid();
+var img_selection;
 $(document).ready(function(){
 	//event binder
 	$("#submitForm").click(saveForm);
+	$("#chuyang").click(chuyang);
 	
 	//test
 	$(".test_btn").click(function(){
@@ -14,8 +17,26 @@ $(document).ready(function(){
 		getFormdata("regForm");
 	});
 	
+	function chuyang(){
+		var formData = getFormdata("regForm");
+		$(".cp_name").text(formData.name);
+		if(picFlag){
+			$(".cp_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
+			 var scaleX = 134 / (img_selection.width || 1);
+			 var scaleY = 170 / (img_selection.height || 1);
+			$('.cp_image').css({
+		        width: Math.round(scaleX * 168) + 'px',
+		        height: Math.round(scaleY * 212) + 'px',
+		        marginLeft: '-' + Math.round(scaleX * img_selection.x1) + 'px',
+		        marginTop: '-' + Math.round(scaleY * img_selection.y1) + 'px'
+		    });
+		}
+	}
+	
 	function saveForm(){
 		if(!$("#form").valid()){
+			$(window).scrollTop(400);
+			jAlert("请检查输入内容", "信息");
 			return;
 		}
 		if(!picFlag){
@@ -31,7 +52,7 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 			if(data.result == true){
 				$(".userForm").hide();
-				$(".container-fluid").nextAll().hide();
+				$(".footer").nextAll().hide();
 				$(".resultMsg").show();
 			}else{
 				alert(result.message);
@@ -78,19 +99,19 @@ $(document).ready(function(){
 				setTimeout(function(){
 					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
 					$("#img_preview").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
-					$('#topic_image').imgAreaSelect({ aspectRatio: '4:3', onSelectChange: preview });
+					$('#topic_image').imgAreaSelect({ onSelectChange: preview });
 				},300);
 			}
 		});
 	},10);
 	
 	function preview(img, selection) {
-	    var scaleX = 200 / (selection.width || 1);
-	    var scaleY = 150 / (selection.height || 1);
+	    var scaleX = 134 / (selection.width || 1);
+	    var scaleY = 170 / (selection.height || 1);
 	  
 	    $('#img_preview').css({
-	        width: Math.round(scaleX * 400) + 'px',
-	        height: Math.round(scaleY * 300) + 'px',
+	        width: Math.round(scaleX * 168) + 'px',
+	        height: Math.round(scaleY * 212) + 'px',
 	        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
 	        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
 	    });
@@ -98,6 +119,7 @@ $(document).ready(function(){
 	    pic_scare = "";
 	    if(selection.width>10){
 	    	pic_scare += selection.x1+","+selection.y1+","+selection.width+","+selection.height;
+	    	img_selection = selection;
 	    }
 	}
 });

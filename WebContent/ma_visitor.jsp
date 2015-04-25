@@ -23,6 +23,9 @@
     	.glyphicon-search{
     		font-size:20px;
     	}
+    	.cp{ width:322px; height:391px; background:url(images/samplecard.png); margin-top:40px; padding-top:1px}
+		.cp_photo{ width:118px; height:149px; margin:146px 0 0 108px}
+		.cp_name{ color:#2c2c2c; font-size:12px; margin:12px 0 0 150px;font-weight:bold;}
     </style>
 
     <div class="container-fluid">
@@ -92,13 +95,13 @@
 				<div id='popup_box' style='padding: 10px; background: #fff;'>
 					<h2 class="sub-header">证件出样</h2>
 					<div class="form-group audit_box">
-						<div class="col-sm-offset-1 col-sm-4" style="height:300px;border:1px solid #000;">
-							此处为证件样本
-							<img id="visitor_image" class="thumbnail" width="200" height="200" src=""/>
-						</div>
+						<div class="cp">
+					       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
+					       <div class="cp_name"></div>
+					      </div>
 					</div>
 					<div class="form-group audit_box">
-						<div class="col-sm-offset-2 col-sm-8" style="margin-top:20px;">
+						<div class="col-sm-offset-2" style="margin-top:10px;">
 							<button type="button" class="btn btn-sm btn-success print_tp" eid="">打印</button>
 						</div>
 					</div>
