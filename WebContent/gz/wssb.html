@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+   <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="邀请函.html">参展商</a> > <a href="证件服务_2.html">证件办理</a> > <font style=" font-weight:bold; color:#1F9AD6">网上申报</font></div>
+   <div class="nymainnr">
+        <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">姓&nbsp;&nbsp;&nbsp;&nbsp;名</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">性&nbsp;&nbsp;&nbsp;&nbsp;别</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">公&nbsp;&nbsp;&nbsp;&nbsp;司</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">职&nbsp;&nbsp;&nbsp;&nbsp;务</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">电&nbsp;&nbsp;&nbsp;&nbsp;话</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">电子邮箱</span><input style=" display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;" name="" type="text" /></div>
+     </div>
+     
+     <div class="table3">
+      <span class="table3_left left" style=" background:none">证件类型</span>
+      <span class="table3_right left">
+        <div class="sel_wrap left" style=" width:574px">
+        <label></label>
+        <select class="select" name="" id="c_city">
+        <option value="0">选择证件类型</option>
+        <option value="1">身份证</option>
+        <option value="2">军官证</option>
+        <option value="3">其它证件</option>
+        </select>
+       </div>
+      </span>
+     </div>
+     
+     <div class="photo1">
+      <div class="photo1_left left">
+       <div class="photoimg"><img src="images/photo1.jpg" /></div>
+       <input style="display:block; width:169px; height:27px; background:url(images/photo_button.jpg); border:0; cursor:pointer; margin-top:13px" name="" type="button" />
+      </div>
+      <div class="photo1_right left">
+       <div class="photo1_yl left">照片预览</div>
+       <div class="photo1_img left"><img src="images/photo2.jpg" /></div>
+      </div>
+     </div>
+     
+     <div class="photo2">
+      <div class="p_buttons">
+       <input style="display:block; float:left; width:87px; height:27px; background:url(images/chu_button.jpg); border:0; cursor:pointer; " name="" type="button" />
+       <input style="display:block;float:right; width:64px; height:27px; background:url(images/q_button.jpg); border:0; cursor:pointer; " name="" type="button" />
+      </div>
+      
+      <div class="cp">
+       <div class="cp_photo"><img src="images/photo3.jpg" /></div>
+       <div class="cp_name">李荣浩</div>
+      </div>
+      
+      <div class="p_buttons2">
+       <input style="display:block; float:left; width:87px; height:27px; background:url(images/tz_button.jpg); border:0; cursor:pointer; " name="" type="button" />
+       <input style="display:block; float:left; width:64px; height:27px; background:url(images/o_button.jpg); border:0; cursor:pointer; margin-left:13px " name="" type="button" />
+       <input style="display:block;float:right; width:64px; height:27px; background:url(images/q_button.jpg); border:0; cursor:pointer; " name="" type="button" />
+      </div>
+     </div>
+     
+     
+    
+<script type="text/javascript">
+$(".sel_wrap").on("change", function() {
+var o;
+var opt = $(this).find('option');
+opt.each(function(i) {
+if (opt[i].selected == true) {
+o = opt[i].innerHTML;
+}
+})
+$(this).find('label').html(o);
+}).trigger('change');
+</script>
+ 
+</html>
