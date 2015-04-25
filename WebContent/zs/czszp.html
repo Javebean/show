@@ -96,7 +96,7 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
-			$("#name_text").text(data.exhibitors.name);
+			$("#orgName_text").text(data.exhibitors.orgName);
 			$("#region_text").text(data.exhibitors.region);
 			$("#orgType_text").text(data.exhibitors.orgType);
 			$("#scale_text").text(data.exhibitors.scale);
@@ -222,7 +222,7 @@ $(document).ready(function(){
 			<div class="gsqkbt">参展企业信息</div>
 			<div class="gsqknr">
 				<div class="gsqkwz">
-					<a class="gsqkwzbt" id='name_text' style="font-size:20px" href="#">慈溪市康洁净水设备有限公司</a>
+					<a class="gsqkwzbt" id='orgName_text' style="font-size:20px" href="#">慈溪市康洁净水设备有限公司</a>
 					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【国家地区】</span><span  id='region_text' class="left"></span></div>
 					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业性质】</span><span id='orgType_text' class="left"></span></div>
 					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业规模】</span><span id='scale_text' class="left"></span></div>
