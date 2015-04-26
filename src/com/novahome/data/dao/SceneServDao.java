@@ -86,7 +86,7 @@ public class SceneServDao {
 	public List<SceneServ>getAllSceneServ()
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select * from sceneserv");
+				"from SceneServ");
 		return query.list();
 	}
 }

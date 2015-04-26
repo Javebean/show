@@ -83,7 +83,7 @@ public class TransportationDao {
 	public List<Transportation>getAllTransportation()
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select * from transportation");
+				"from Transportation");
 		return query.list();
 	}
 	
