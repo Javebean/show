@@ -78,4 +78,11 @@ public class ConstructionDao {
 		s.update(construction);
 		return true;
 	}
+	
+	public List<Construction>getAllConstruction()
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Construction a");
+				return query.list();
+	}
 }

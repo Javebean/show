@@ -1,6 +1,9 @@
 package com.novahome.data.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.novahome.data.dao.TransportationDao;
+
 import com.novahome.data.pojo.Transportation;
 
 @Service("transportationService")
@@ -126,5 +130,47 @@ public class TransportationService {
 	{
 		return transportationDao.updateTransportation(transportation);
 	}
+	
+	public String getTransportationStat()
+	{
+		Map<String, Integer>map =  new ConcurrentHashMap<String, Integer>();
+		List<String>types = new ArrayList<String>();
+		List<Transportation>ls = transportationDao.getAllTransportation();
+		
+		boolean flag = true;
+		String typeValue = "";
+		for(Transportation serv : ls)
+		{
+			String type = serv.getType();
+			if(type!= null)
+			{
+				if(types.contains(type))
+				{
+					int num = map.get(type) + serv.getContent();
+					map.put(type, num);
+				}
+				else
+				{
+					if(flag)
+						flag = !flag;
+					else
+						typeValue += ",";
+					types.add(type);
+					int num = serv.getContent();
+					map.put(type, num);
+					typeValue += type;
+				}
+			}
+		}
+		String contentValue = "";
+		for(String type : types)
+			contentValue += map.get(type) + ",";
+		contentValue = contentValue.substring(0, contentValue.length()-1);
+		JSONObject obj = new JSONObject();
+		obj.put("type", typeValue);
+		obj.put("num", contentValue);
+		return obj.toString();
+	}
+	
 
 }

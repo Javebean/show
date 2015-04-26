@@ -1,6 +1,9 @@
 package com.novahome.data.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
@@ -126,5 +129,47 @@ public class SceneServService {
 	{
 		return sceneServDao.updateSceneServ(sceneServ);
 	}
+	
+	public String getSceneServStat()
+	{
+		Map<String, Integer>map =  new ConcurrentHashMap<String, Integer>();
+		List<String>types = new ArrayList<String>();
+		List<SceneServ>ls = sceneServDao.getAllSceneServ();
+		
+		boolean flag = true;
+		String typeValue = "";
+		for(SceneServ serv : ls)
+		{
+			String type = serv.getType();
+			if(type!= null)
+			{
+				if(types.contains(type))
+				{
+					int num = map.get(type) + serv.getContent();
+					map.put(type, num);
+				}
+				else
+				{
+					if(flag)
+						flag = !flag;
+					else
+						typeValue += ",";
+					types.add(type);
+					int num = serv.getContent();
+					map.put(type, num);
+					typeValue += type;
+				}
+			}
+		}
+		String contentValue = "";
+		for(String type : types)
+			contentValue += map.get(type) + ",";
+		contentValue = contentValue.substring(0, contentValue.length()-1);
+		JSONObject obj = new JSONObject();
+		obj.put("type", typeValue);
+		obj.put("num", contentValue);
+		return obj.toString();
+	}
+	
 	
 }

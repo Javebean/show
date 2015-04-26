@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.novahome.data.pojo.SceneServ;
 import com.novahome.data.pojo.Transportation;
 
 @Component("transportationDao")
@@ -78,4 +79,12 @@ public class TransportationDao {
 		s.update(transportation);
 		return true;
 	}
+	
+	public List<Transportation>getAllTransportation()
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select * from transportation");
+		return query.list();
+	}
+	
 }

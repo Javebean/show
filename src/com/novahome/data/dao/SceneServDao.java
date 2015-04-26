@@ -82,4 +82,11 @@ public class SceneServDao {
 		s.update(sceneServ);
 		return true;
 	}
+	
+	public List<SceneServ>getAllSceneServ()
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select * from sceneserv");
+		return query.list();
+	}
 }

@@ -107,4 +107,16 @@ public class SceneServDwr {
 		return sceneServService.updateSceneServ(sceneServ);
 	}
 
+	/**
+	 * 获取现场服务统计信息
+	 * @param sceneServ
+	 * @return
+	 */
+	@RemoteMethod
+	public String getSceneServStat()
+	{
+		return sceneServService.getSceneServStat();
+	}
+	
+	
 }

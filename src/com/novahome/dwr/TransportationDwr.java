@@ -107,4 +107,14 @@ public class TransportationDwr {
 		return transportationService.updateTransportation(transportation);
 	}
 
+	/**
+	 * 运输管理统计数据
+	 * @param transportation
+	 * @return
+	 */
+	@RemoteMethod
+	public String getTransportationStat()
+	{
+		return transportationService.getTransportationStat();
+	}
 }

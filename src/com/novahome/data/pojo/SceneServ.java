@@ -17,7 +17,7 @@ public class SceneServ {
 	private String id; //id，系统生成
 	private String eid; //申请展商的id
 	private String type;	//现场服务项目
-	private String content;	//现场服务申请具体内容
+	private int content=0;	//现场服务申请具体内容
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -40,10 +40,10 @@ public class SceneServ {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getContent() {
+	public int getContent() {
 		return content;
 	}
-	public void setContent(String content) {
+	public void setContent(int content) {
 		this.content = content;
 	}
 	
