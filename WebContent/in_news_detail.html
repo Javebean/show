@@ -18,11 +18,13 @@ $(document).ready(function(){
 	if(detail == "Zlzx"){
 		$(".a_zlzx").addClass("menu_active");
 		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").empty();
 		$(".detail_html").load(url);
 	}else{
 		$(".sub_index").text("重要通知");
 		$(".a_zytz").addClass("menu_active");
 		var url = 'zytzDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").empty();
 		$(".detail_html").load(url);
 	}
 

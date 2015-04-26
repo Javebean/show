@@ -55,7 +55,7 @@ $(document).ready(function(){
 				$(".footer").nextAll().hide();
 				$(".resultMsg").show();
 			}else{
-				alert(result.message);
+				alert(data.message);
 			}
 		};
 		Visitor.saveVisitor(formData,pic_scare,func);

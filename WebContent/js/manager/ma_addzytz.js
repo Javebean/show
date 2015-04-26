@@ -29,7 +29,7 @@ $(document).ready(function(){
 			if(data.result == true){
 				location.href="ma_zytz.jsp?menu=1";
 			}else{
-				alert(result.message);
+				alert(data.message);
 			}
 		};
 		Zytz.saveZytz(topicdata,func);

@@ -30,7 +30,7 @@ $(document).ready(function(){
 			if(data.result == true){
 				location.href="ma_zlzx.jsp?menu=1";
 			}else{
-				alert(result.message);
+				alert(data.message);
 			}
 		};
 		Zlzx.saveZlzx(topicdata,func);

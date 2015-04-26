@@ -170,36 +170,24 @@
 				        </tr>
 				         <!----------- 现场服务 ----------------->
 				        <tr>
-							<td colspan="2" class="t_sub_header">现场服务</td>
+							<th colspan="2" class="t_sub_header">现场服务</th>
 				        </tr>
-				        <tr>
-				          <td class="text-nowrap" width="14%">服务类别</td>
-				          	<td>
-					          <span ename="phone" class="scene_type"></span>
-					        </td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap">具体内容</td>
-				          <td><span ename="phone" class="scene_content"></span></td>
+				        <tr class="scene_header">
+				          <td class="text-nowrap" width="50%">服务类别</td>
+				          <td class="text-nowrap" width="50%">数量</td>
 				        </tr>
 				        <!----------- 货运物流 ----------------->
 				         <tr>
-							<td colspan="2" class="t_sub_header">货运物流</td>
+							<th colspan="2" class="t_sub_header">货运物流</th>
 				        </tr>
-				        <tr>
-				          <td class="text-nowrap" width="14%">服务类别</td>
-				          	<td>
-					          <span ename="phone" class="trans_type"></span>
-					        </td>
-				        </tr>
-				        <tr>
-				          <td class="text-nowrap">具体内容</td>
-				          <td><span ename="phone" class="trans_content"></span></td>
+				        <tr class="trans_header">
+				          <td class="text-nowrap" width="50%">服务类别</td>
+				          <td class="text-nowrap" width="50%">数量</td>
 				        </tr>
 				        
 				         <!----------- 施工管理 ----------------->
 				         <tr>
-							<td colspan="2" class="t_sub_header">施工管理</td>
+							<th colspan="2" class="t_sub_header">施工管理</th>
 				        </tr>
 				        <tr>
 				          <td colspan="2" class="">

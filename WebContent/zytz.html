@@ -42,10 +42,11 @@ $(document).ready(function(){
 	}
 
 	function loadDetail(){
+		var url = $(this).attr("eurl");
+		$(".detail_html").empty();
+		$(".detail_html").load(url);
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
-		var url = $(this).attr("eurl");
-		$(".detail_html").load(url);
 	}
 
 	function initPaging(pageActive, rowCount){

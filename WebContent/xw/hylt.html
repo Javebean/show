@@ -12,10 +12,12 @@
     });
 
     function loadDetail(){
-      $(".tz_list").addClass("hide");
-      $(".tz_detail").removeClass("hide");
       var url = $(this).attr("eurl");
-      $(".detail_html").load(url);
+      $(".detail_html").empty();
+      $(".detail_html").load(url,function() {
+			$(".tz_detail").removeClass("hide");
+		});
+      $(".tz_list").addClass("hide");
     }
   });
   </script>

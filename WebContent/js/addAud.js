@@ -21,7 +21,7 @@ $(document).ready(function(){
 				$("#login_pass").text(data.password);
 				$(".resultMsg").show();
 			}else{
-				alert(result.message);
+				alert(data.message);
 			}
 		};
 		Audience.saveAudience(formData,func);

@@ -5,9 +5,15 @@ var picFlag_logo = false;
 var PIC_BASE = 'resources/topicimages/';
 var topicId = Math.uuid();
 var topicId_logo = Math.uuid();
+var scene_type_html = "";
+var trans_type_html = "";
+var reg_num = /^[1-9]\d*$/;
+var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
 	var itemParams = ["name","version","number","length","width","height","weight"];
 	var visitorParams = ["name","sex","position","phone"];
+	var sceneParams = ["type","content"];
+	var transParams = ["type","content"];
 	 
 	//event binder
 	$("#submitForm").click(saveForm);
@@ -18,6 +24,24 @@ $(document).ready(function(){
 	$(".add_visitor").click(function(){
 		addItem(this,4);
 	});
+	$(".add_scene").click(function(){
+		addItemServ(this,scene_type_html);
+	});
+	$(".add_trans").click(function(){
+		addItemServ(this,trans_type_html);
+	});
+	
+	pageInit();
+	function pageInit(){
+		for(var i=0;i<CON_SCENE_TYPE.length;i++){
+			scene_type_html += '<option value="'+CON_SCENE_TYPE[i]+'">'+CON_SCENE_TYPE[i]+'</option>';
+		}
+		for(var i=0;i<CON_TRANS_TYPE.length;i++){
+			trans_type_html += '<option value="'+CON_TRANS_TYPE[i]+'">'+CON_TRANS_TYPE[i]+'</option>';
+		}
+		$(".sceneserv select").append(scene_type_html);
+		$(".transserv select").append(trans_type_html);
+	}
 	
 	//test
 	$(".test_btn").click(function(){
@@ -42,6 +66,16 @@ $(document).ready(function(){
 		$(".delete_item").click(deleteItem);
 	}
 	
+	function addItemServ(obj,selectHtml){
+		var html = '<tr class="item_row">';
+		html += '<td><div align="center"><select class="select">'+selectHtml+
+				'</select></div></td><td><div align="center"><input class="cell"/></div></td>';
+		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
+		
+		$(obj).parent().prev().append(html.replace(/undefined/g,""));
+		$(".delete_item").click(deleteItem);
+	}
+	
 	function getDymiTableData(tableID, params){
 		var itemList = [];
 		$(tableID+" .item_row").each(function(){
@@ -52,6 +86,21 @@ $(document).ready(function(){
 				for(var i=0;i<params.length;i++){
 					item[params[i]] = row.find("input").eq(i).val();
 				}
+				itemList.push(item);
+			}
+		});
+		return itemList;
+	}
+	
+	function getDymiTableDataServ(tableID, params){
+		var itemList = [];
+		$(tableID+" .item_row").each(function(){
+			var item = {};
+			var row = $(this);
+			
+			if(row.find("input").eq(0).val()!=""){
+				item[params[0]] = row.find("select").val();
+				item[params[1]] = row.find("input").eq(0).val();
 				itemList.push(item);
 			}
 		});
@@ -107,42 +156,51 @@ $(document).ready(function(){
 			formData.logo = topicId_logo + ".jpg";
 		}
 		
-		var construction = [];
-		if(picFlag){
-			var cdata = {};
-			cdata.picture = topicId + ".jpg";
-			construction.push(cdata);
-		}
-		
-		var transportation = [];
-		var tdata = {};
-		tdata.type = $("#trans_type").val();
-		tdata.content = $("#trans_content").val();
-		transportation.push(tdata);
-		
-		var sceneServ = [];
-		var sdata = {};
-		sdata.type = $("#scene_type").val();
-		sdata.content = $("#scene_content").val();
-		sceneServ.push(sdata);
-		
+		//获取展品和参展人员数据
 		var visitor = getDymiTableData(".visitors", visitorParams);
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight"];
 		for(var i=0;i<displayItem.length;i++){
 			var item = displayItem[i];
-			if(isNaN(parseInt(item.number)) && item.number!=""){
+			if(!reg_num.test(item.number) && item.number!=""){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");
 				return;
-			} else if((isNaN(parseFloat(item.length)) && item.length!="")
-					||(isNaN(parseFloat(item.width)) && item.width!="")
-					||(isNaN(parseFloat(item.height)) && item.height!="")
-					||(isNaN(parseFloat(item.weight)) && item.weight!="")){
+			} else if((!reg_float.test(item.length) && item.length!="")
+					||(!reg_float.test(item.width) && item.width!="")
+					||(!reg_float.test(item.height) && item.height!="")
+					||(!reg_float.test(item.weight) && item.weight!="")){
 				$(window).scrollTop(1500);
 				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
 				return;
 			}
+		}
+		
+		//获取参展服务数据
+		var transportation = getDymiTableDataServ(".transserv", transParams);
+		for(var i=0;i<transportation.length;i++){
+			var item = transportation[i];
+			if(!reg_num.test(item.content) && item.content!=""){
+				$(window).scrollTop(2400);
+				jAlert("货运物流数量请输入整数", "信息");
+				return;
+			}
+		}
+		var sceneServ = getDymiTableDataServ(".sceneserv", sceneParams);
+		for(var i=0;i<sceneServ.length;i++){
+			var item = sceneServ[i];
+			if(!reg_num.test(item.content) && item.content!=""){
+				$(window).scrollTop(2200);
+				jAlert("现场服务数量请输入整数", "信息");
+				return;
+			}
+		}
+		
+		var construction = [];
+		if(picFlag){
+			var cdata = {};
+			cdata.picture = topicId + ".jpg";
+			construction.push(cdata);
 		}
 		
 		var func = function(data){
@@ -155,7 +213,7 @@ $(document).ready(function(){
 				$("#login_pass").text(data.password);
 				$(".resultMsg").show();
 			}else{
-				jAlert(result.message, "信息");
+				jAlert(data.message, "信息");
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);

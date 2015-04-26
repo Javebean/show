@@ -83,15 +83,24 @@ $(document).ready(function(){
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
 			
+			$(".dym_row").remove();
 			if(data.sceneServ.length>0){
-				var sdata = data.sceneServ[0];
-				$(".scene_type").text(sdata.type);
-				$(".scene_content").text(sdata.content);
+				var html="";
+				for(var i=0;i<data.sceneServ.length;i++){
+					var sdata = data.sceneServ[i];
+					html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
+				          '<td><span>'+sdata.content+'</span></td></tr>';
+				}
+				$(".scene_header").after(html);
 			}
 			if(data.transportation.length>0){
-				var sdata = data.transportation[0];
-				$(".trans_type").text(sdata.type);
-				$(".trans_content").text(sdata.content);
+				var html="";
+				for(var i=0;i<data.transportation.length;i++){
+					var sdata = data.transportation[i];
+					html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
+				          '<td><span>'+sdata.content+'</span></td></tr>';
+				}
+				$(".trans_header").after(html);
 			}
 			if(data.construction.length>0){
 				var sdata = data.construction[0];

@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
 	<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
 	
+    <script type="text/javascript" src="js/constants.js"></script>
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
     <script type="text/javascript" src="js/addExhibitor.js"></script>
 <style>
@@ -27,6 +28,12 @@
 }
 .visitors .item_row .cell{
 	display:block; width:120px; height:22px; padding:0 0 0 4px; border:0;
+}
+.sceneserv .item_row .cell, .transserv .item_row .cell{
+	display:block; width:65px; height:22px; padding:0 0 0 4px; border:0;
+}
+.sceneserv .item_row select, .transserv .item_row select{
+	width:300px;
 }
 .btn_delrow{
 	display:block; width:87px; height:27px; background:url(images/shanchu.jpg); border:0; float:left; margin-left:7px;cursor:pointer;
@@ -179,32 +186,44 @@ label.error {
      
      <div class="wssbbt" style=" margin-top:60px">6.参展服务</div>
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">现场服务</div>
-     <div class="table3"><span class="table3_left left">服务类别</span>
-     	<div class="sel_wrap right" style=" width:574px">
-	        <label></label>
-	        <select class="select" name="" id="scene_type">
-	        <option value="安装">安装</option>
-	        <option value="饮食">饮食</option>
+	<table class="gridtable sceneserv" width="520">
+		<tr>
+		  <td><div align="center">服务类别</div></td>
+		  <td><div align="center">数量</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center">
+		  	<select class="select">
 	        </select>
-	     </div>
-	</div>
-	<div class="table3"><span class="table3_left left">具体内容</span>
-     	<input class="exib_input" name="" type="text" id="scene_content"/>
-	</div>
+		  </div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_scene" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
      
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">货运物流</div>
-     <div class="table3"><span class="table3_left left">服务类别</span>
-     	<div class="sel_wrap right" style=" width:574px">
-	        <label></label>
-	        <select class="select" name="" id="trans_type">
-	        <option value="送货">送货</option>
-	        <option value="接人">接人</option>
+     <table class="gridtable transserv" width="520">
+		<tr>
+		  <td><div align="center">服务类别</div></td>
+		  <td><div align="center">数量</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center">
+		  	<select class="select">
 	        </select>
-	     </div>
-	</div>
-	<div class="table3"><span class="table3_left left">具体内容</span>
-     	<input class="exib_input" name="" type="text" id="trans_content"/>
-	</div>
+		  </div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_trans" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
 	
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">施工管理</div>
      <div class="sggl_box" style="padding-left: 20px;font-size:14px;">

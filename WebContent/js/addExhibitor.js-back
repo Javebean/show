@@ -92,7 +92,7 @@ $(document).ready(function(){
 				$("#login_pass").text(data.password);
 				$(".resultMsg").show();
 			}else{
-				alert(result.message);
+				alert(data.message);
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
