@@ -30,7 +30,7 @@ $(document).ready(function(){
 	                '<span class="pad_L_20">' + topic.publishTime + '</span>' +
 	                '</div>';
 			}
-			$('.zlzx_box').append(html);
+			$('.zlzx_box').append(html.replace(/undefined/g,""));
 		}
 		Zlzx.getShortZlzxForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
 	}
@@ -99,7 +99,7 @@ $(document).ready(function(){
 			}
 			html+='<div class="clear"> </div>';
 			
-			$('.pt_cen_box').append(html);
+			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 		}
 		PTopic.getPTsByType(PT_TYPE_HOMEC,func);
 	}

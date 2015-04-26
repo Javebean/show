@@ -38,7 +38,7 @@ $(document).ready(function(){
 		}
 		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
 		
-		$(obj).parent().prev().append(html);
+		$(obj).parent().prev().append(html.replace(/undefined/g,""));
 		$(".delete_item").click(deleteItem);
 	}
 	

@@ -50,7 +50,7 @@ $(document).ready(function(){
 	                '<td><button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
 	                '</tr>';
 			}
-			$('.pt_cen_box').append(html);
+			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
 		}
 		Audience.getAudienceForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);

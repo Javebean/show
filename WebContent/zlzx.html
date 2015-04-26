@@ -31,7 +31,7 @@ $(document).ready(function(){
 					'</span><span class="new_wzbt_day right">'+topic.publishTime+'</span></div>'+
       				'<div class="new_wznr2">'+topic.abs+'</div><span class="readmore">READ MORE+</span></div></a>';
 			}
-			$('.zlzx_box').append(html);
+			$('.zlzx_box').append(html.replace(/undefined/g,""));
 			$('.newsnr').click(loadDetail);
 			$('.return_btn').click(function(){
 				$(".tz_detail").addClass("hide");

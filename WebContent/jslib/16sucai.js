@@ -17,3 +17,13 @@ $(document).ready(function()
 
 
 });
+
+function loadContent(){
+	if ($('#uploadify').length > 0) {
+		$('#uploadify').uploadify('destroy');
+	}
+    $(".menu_Left").removeClass("menu_active");
+    $(this).addClass("menu_active");
+    var url = $(this).attr("eurl");
+    $(".nymain_right").load(url);
+}

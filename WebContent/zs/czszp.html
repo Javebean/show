@@ -71,7 +71,7 @@ $(document).ready(function(){
 						'<div class="zycp"><span class="left">【国家、地区】</span><span class="left">'+regiontext+'</span></div>' +
 						'<a class="more">查看详情 >></a></div></div>';
 			}
-			$('.zlzx_box').append(html);
+			$('.zlzx_box').append(html.replace(/undefined/g,""));
 			$('.exb_info').click(loadDetail);
 			$('.return_btn').click(function(){
 				$(".tz_detail").addClass("hide");
@@ -167,7 +167,7 @@ $(document).ready(function(){
 		}
 
 		$(tableID+" .item_row").remove();
-		$(tableID).append(html);
+		$(tableID).append(html.replace(/undefined/g,""));
 	}
 
 	function initPaging(pageActive, rowCount){
