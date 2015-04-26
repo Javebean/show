@@ -10,7 +10,7 @@ $(document).ready(function(){
       <li class="active"><a href="manager.jsp">图片新闻（测试）</a></li>
       <li><a href="ma_zlzx.jsp">展览资讯</a></li>
       <li><a href="ma_zytz.jsp">重要通知</a></li>
-      <li><a href="manager.jsp">Analytics</a></li>
+      <li><a href="ma_tjbb.jsp">统计报表</a></li>
     </ul>
     <ul class="nav nav-sidebar">
       <li><a href="ma_audience.jsp">观众管理</a></li>
