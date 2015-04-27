@@ -137,6 +137,8 @@ $(document).ready(function(){
 			return;
 		}
 		var formData = getFormdata("regForm");
+		formData.tytzzs= $("input[name='tytzzs']:checked").val();
+		formData.swzs= $("input[name='swzs']:checked").val();
 		var btsl = formData.btsl;
 		if(btsl == "标摊每个3m X 3m"){
 			$(window).scrollTop(1300);

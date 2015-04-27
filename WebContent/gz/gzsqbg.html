@@ -34,7 +34,8 @@ $(document).ready(function(){
 			return;
 		}
 		formData = getFormdata("regForm");
-
+		formData.sex= $("input[name='sex']:checked").val();
+		formData.buyer= $("input[name='buyer']:checked").val();
 		var func = function(data){
 			data = JSON.parse(data);
 
@@ -66,6 +67,7 @@ $(document).ready(function(){
 		for(var i=0;i<entryNames.length;i++){
 			var key = entryNames[i];
 			data[key] = form[key].value;
+		
 		}
 
 		return data;
