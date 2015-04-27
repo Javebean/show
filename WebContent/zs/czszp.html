@@ -37,7 +37,7 @@
 var ROWS_PER_PAGE = 10;
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
-var itemParams = ["name","version","number","length","width"];
+var itemParams = ["name","version","number","length","width","height","weight"];
 var visitorParams = ["name","sex","position","phone"];
 $(document).ready(function(){
 	showZlzxList(1);
@@ -203,7 +203,7 @@ $(document).ready(function(){
 });
 </script>
 
-   <div class="nyweizhi">当前位置： <a href="index.html">首页</a> > <a href="展馆情况.html">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
    <div class="nymainnr">
 
    <div class="tz_list">
@@ -249,7 +249,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-		<div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="参展申报.html">登录</a> 后查看企业联系方式</div>
+		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href=#>登录</a> 后查看企业联系方式</div> -->
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 
@@ -262,8 +262,10 @@ $(document).ready(function(){
 							<th>展品名称</th>
 							<th>展品型号</th>
 							<th>展品数量</th>
-							<th>长度（米）</th>
-							<th>宽度（米）</th>
+							<th>长度（m）</th>
+							<th>宽度（m）</th>
+							<th>高度（m）</th>
+							<th>重量（kg）</th>
 						</tr>
 					</table>
 

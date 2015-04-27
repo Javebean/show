@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../plugins/uploadify/uploadify.css" rel="stylesheet"/>
+	<link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
+
+	<script type='text/javascript' src='../dwr/engine.js'></script>
+    <script type="text/javascript" src="../jslib/json2.js"></script>
+    <script type="text/javascript" src="../jslib/uuid.js"></script>
+    <script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.cn.js"></script>
+	<script type="text/javascript" src="../plugins/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.alert/jquery.alerts.js"></script>
+
+    <script type="text/javascript" src="../js/constants.js"></script>
+	<script type='text/javascript' src='../dwr/interface/Exhibitor.js'></script>
+    <script type="text/javascript" src="../js/addExhibitor.js"></script>
+<style>
+.exib_input{
+	display:block; float:left; width:566px; height:38px; padding:0 0 0 8px; border:0;color:#aba8a8;font-size:12px;
+}
+.exib_input2{
+	display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;
+}
+.showitems .item_row .cell{
+	display:block; width:65px; height:22px; padding:0 0 0 4px; border:0;
+}
+.visitors .item_row .cell{
+	display:block; width:120px; height:22px; padding:0 0 0 4px; border:0;
+}
+.sceneserv .item_row .cell, .transserv .item_row .cell{
+	display:block; width:65px; height:22px; padding:0 0 0 4px; border:0;
+}
+.sceneserv .item_row select, .transserv .item_row select{
+	width:300px;
+}
+.btn_delrow{
+	display:block; width:87px; height:27px; background:url(../images/shanchu.jpg); border:0; float:left; margin-left:7px;cursor:pointer;
+}
+label.error {
+	margin-left: 28px;
+	width: auto;
+	color: red;
+	font-family:"微软雅黑", "宋体"; font-size:12px;
+	display: block;
+}
+</style>
+
+   <div class="nyweizhi">Location: <a href=#>Home</a> > <a href="#">Exhbitor</a> > <a href="#">Exhibitor Registration</a> > <font style=" font-weight:bold; color:#1F9AD6">Application Form</font></div>
+   <div class="nymainnr">
+
+   <div class="userForm">
+	<form class="form-horizontal" name="regForm" id="form">
+
+     <div class="wssbbt">1. Exhibitor Information</div>
+     <div class="table3"><span class="table3_left left required_label">Company</span>
+     	<input class="exib_input required" name="orgName" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left">Name</span>
+     	<input class="exib_input" name="orgEng" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left">Owner</span>
+     	<input class="exib_input" name="president" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left required_label">Address</span>
+     	<input class="exib_input required" name="address" type="text" />
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">Website</span>
+      <input class="exib_input2" name="site" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">Zipcode</span>
+      <input class="exib_input2" name="zipcode" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">Nation</span>
+      <input class="exib_input2 required" name="region" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">Ownership</span>
+	      <div class="sel_wrap right" style=" width:241px">
+	        <label></label>
+	        <select class="select required" name="orgType" id="">
+	        <option value="国有企业">State-owned enterprises</option>
+	        <option value="私有企业">Private enterprise</option>
+	        <option value="外资企业">foreign capital enterprise</option>
+	        </select>
+	     </div>
+	</div>
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">Industry Type</span>
+      <input class="exib_input2 required" name="industryType" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">Scale</span>
+      <input class="exib_input2" name="scale" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">Contacts</span>
+      <input class="exib_input2 required" name="contact" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">Position</span>
+      <input class="exib_input2" name="contactPosition" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">Cellphone</span>
+      <input class="exib_input2 required" name="phone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">Email</span>
+      <input class="exib_input2 required" name="email" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">Tel</span>
+      <input class="exib_input2" name="telephone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">Fax</span>
+      <input class="exib_input2" name="fax" type="text" /></div>
+     </div>
+
+
+     <div class="wssbbt required_label" style=" margin-top:60px;background-position: 60px 0px;  background-repeat: no-repeat;">2. Exhibitor Profile</div>
+     <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="orgIntro" cols="" rows=""></textarea>
+
+     <div class="wssbbt" style=" margin-top:10px;font-size: 17px;">Upload your Logo</div>
+     <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
+	     <div class="picUpload">
+			<div style="margin-bottom:10px;"><img id="topic_image_logo" class="thumbnail" width="75" height="75" src=""/></div>
+			<div id="queue"></div>
+		</div>
+		<div><input type="file" name="uploadify_logo" id="uploadify_logo" /></div>
+     </div>
+
+     <div class="wssbbt" style=" margin-top:60px">3. Booth Application</div>
+     <div class="table5"><span class="table5_left left required_label" style="background-position:70px 0px;background-repeat: no-repeat;">Number of standard booth </span><input style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " onBlur="if (value ==''){value='标摊每个3m X 3m'}" onClick="if(this.value=='标摊每个3m X 3m')this.value='';" value="3m X 3m for each Standard Booth"  name="btsl" type="text" /></div>
+     <div class="table2" style="padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">Special Exhibition</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="tytzzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">Yes</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="tytzzs" type="radio" value="0" /><span style=" display:block; float:left; margin:0 0 0 4px">No</span></span></div>
+     <div class="table2" style="margin-top:0; padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">Outdoor show</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="swzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">Yes</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="swzs" type="radio" value="0" /><span style=" display:block; float:left; margin:0 0 0 4px">No</span></span></div>
+
+     </form>
+
+     <div class="wssbbt" style=" margin-top:60px">4. Exhibits</div>
+		<table class="gridtable showitems" width="662">
+		<tr>
+		  <td><div align="center">Name</div></td>
+		  <td><div align="center">Model</div></td>
+		  <td><div align="center">Quantity</div></td>
+		  <td><div align="center">Length(meter)</div></td>
+		  <td><div align="center">Width(meter)</div></td>
+		  <td><div align="center">Height(meter)</div></td>
+		  <td><div align="center">Weight(tons)</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_item" style=" display:block; width:87px; height:27px; background:url(../images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+
+
+     <div class="wssbbt" style=" margin-top:60px">5. List of participating</div>
+		<table class="gridtable visitors" width="662">
+		<tr>
+		  <td><div align="center">Name</div></td>
+		  <td><div align="center">Gender</div></td>
+		  <td><div align="center">Postion</div></td>
+		  <td><div align="center">Tel</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_visitor" style=" display:block; width:87px; height:27px; background:url(../images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+
+     <div class="wssbbt" style=" margin-top:60px">6. Exhibitors Service</div>
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">Field Services</div>
+	<table class="gridtable sceneserv" width="520">
+		<tr>
+		  <td><div align="center">Type</div></td>
+		  <td><div align="center">Quantity</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center">
+		  	<select class="select">
+	        </select>
+		  </div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_scene" style=" display:block; width:87px; height:27px; background:url(../images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">Logistics</div>
+     <table class="gridtable transserv" width="520">
+		<tr>
+		  <td><div align="center">Type</div></td>
+		  <td><div align="center">Quantity</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center">
+		  	<select class="select">
+	        </select>
+		  </div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+		</table>
+     <div class="button3">
+      <input class="add_trans" style=" display:block; width:87px; height:27px; background:url(../images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     </div>
+
+     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">Construction</div>
+     <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
+	     <div class="picUpload">
+			<div style="margin-bottom:10px;"><img id="topic_image" class="thumbnail" width="300" height="200" src=""/>Effects</div>
+			<div id="queue"></div>
+		</div>
+		<div>Upload your Construction Photos<input type="file" name="uploadify" id="uploadify" /></div>
+     </div>
+
+     <div class="tjxx_button">
+      <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(../images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+     </div>
+    </div>
+     <div class="resultMsg" style="display:none;">
+	   			<h3>Remember username and password to log in!</h3>
+	   			<h3>Username:<span id="login_id"></span></h3>
+	   			<h3>Password:<span id="login_pass"></span></h3>
+	   </div>
+
+<script type="text/javascript">
+$(".sel_wrap").on("change", function() {
+var o;
+var opt = $(this).find('option');
+opt.each(function(i) {
+if (opt[i].selected == true) {
+o = opt[i].innerHTML;
+}
+})
+$(this).find('label').html(o);
+}).trigger('change');
+</script>
+
+</html>

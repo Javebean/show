@@ -223,6 +223,8 @@ public class ExhibitorsService {
 	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
+		System.out.println("*******"+exhibitor);
+
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
 		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
@@ -411,5 +413,17 @@ public class ExhibitorsService {
 		return true;
 	}
 	
+	public String resetPsw(String id)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		String pwd = RandCodeGenerator.generatePwd();
+		String encodePwd = MD5.compute(pwd);
+		ex.setPassword(encodePwd);
+		JSONObject obj = new JSONObject();
+		obj.put("password", pwd);
+		String ret = obj.toString();
+		logger.info(ret);
+		return ret;
+	}
 	
 }

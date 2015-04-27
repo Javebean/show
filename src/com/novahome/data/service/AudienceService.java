@@ -22,6 +22,7 @@ import com.novahome.data.dao.AudienceDao;
 import com.novahome.data.pojo.Audience;
 
 
+
 @Service("audienceService")
 @Transactional(readOnly = false)
 @Repository
@@ -41,6 +42,7 @@ public class AudienceService {
 	
 	public String saveAudience(Audience audience)
 	{
+		System.out.println("*******"+audience);
 		audience.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateAudiUser();
 		String pwd = RandCodeGenerator.generatePwd();
@@ -209,6 +211,19 @@ public class AudienceService {
 	public boolean updateAudience(Audience audience)
 	{
 		return audienceDao.updateAudience(audience);
+	}
+	
+	public String resetPsw(String id)
+	{
+		Audience ex = audienceDao.getAudienceById(id);
+		String pwd = RandCodeGenerator.generatePwd();
+		String encodePwd = MD5.compute(pwd);
+		ex.setPassword(encodePwd);
+		JSONObject obj = new JSONObject();
+		obj.put("password", pwd);
+		String ret = obj.toString();
+		logger.info(ret);
+		return ret;
 	}
 	
 }

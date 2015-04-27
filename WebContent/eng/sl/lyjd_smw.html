@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="../css/ny.css"/>
+
+  <div class="productnrlh">
+    <div class="mod18">
+      <span id="prev" class="btn prev"></span>
+      <span id="next" class="btn next"></span>
+      <span id="prevTop" class="btn prev"></span>
+      <span id="nextTop" class="btn next"></span>
+      <div id="picBox" class="picBox">
+        <ul class="cf">
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="../downloadfile/sl/sumawan1.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank" ><img width="668" height="438" src="../downloadfile/sl/sumawan2.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="../downloadfile/sl/sumawan3.jpg" alt="" /></a>
+          </li>
+          <li>
+            <a href="#" target="_blank"><img width="668" height="438" src="../downloadfile/sl/sumawan4.jpg" alt="" /></a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div id="listBox" class="listBox">
+        <ul class="cf">
+          <li class="on"><i class="arr2"></i><img width="147" height="95" src="../downloadfile/sl/sumawan1.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="../downloadfile/sl/sumawan2.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="../downloadfile/sl/sumawan3.jpg" /></li>
+          <li><i class="arr2"></i><img width="147" height="95" src="../downloadfile/sl/sumawan4.jpg" /></li>
+
+
+        </ul>
+      </div>
+
+    </div>
+    <script type="text/javascript">
+    (function(){
+
+      function G(s){
+        return document.getElementById(s);
+      }
+
+      function getStyle(obj, attr){
+        if(obj.currentStyle){
+          return obj.currentStyle[attr];
+        }else{
+          return getComputedStyle(obj, false)[attr];
+        }
+      }
+
+      function Animate(obj, json){
+        if(obj.timer){
+          clearInterval(obj.timer);
+        }
+        obj.timer = setInterval(function(){
+          for(var attr in json){
+            var iCur = parseInt(getStyle(obj, attr));
+            iCur = iCur ? iCur : 0;
+            var iSpeed = (json[attr] - iCur) / 5;
+            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+            obj.style[attr] = iCur + iSpeed + 'px';
+            if(iCur == json[attr]){
+              clearInterval(obj.timer);
+            }
+          }
+        }, 30);
+      }
+
+      var oPic = G("picBox");
+      var oList = G("listBox");
+
+      var oPrev = G("prev");
+      var oNext = G("next");
+      var oPrevTop = G("prevTop");
+      var oNextTop = G("nextTop");
+
+      var oPicLi = oPic.getElementsByTagName("li");
+      var oListLi = oList.getElementsByTagName("li");
+      var len1 = oPicLi.length;
+      var len2 = oListLi.length;
+
+      var oPicUl = oPic.getElementsByTagName("ul")[0];
+      var oListUl = oList.getElementsByTagName("ul")[0];
+      var w1 = oPicLi[0].offsetWidth;
+      var w2 = oListLi[0].offsetWidth;
+
+      oPicUl.style.width = w1 * len1 + "px";
+      oListUl.style.width = w2 * len2 + "px";
+
+      var index = 0;
+
+      var num =4;
+      var num2 = Math.ceil(num / 1);
+
+      function Change(){
+
+        Animate(oPicUl, {left: - index * w1});
+
+        if(index < num2){
+          Animate(oListUl, {left: 0});
+        }else if(index + num2 <= len2){
+          Animate(oListUl, {left: - (index - num2 + 1) * w2});
+        }else{
+          Animate(oListUl, {left: - (len2 - num) * w2});
+        }
+
+        for (var i = 0; i < len2; i++) {
+          oListLi[i].className = "";
+          if(i == index){
+            oListLi[i].className = "on";
+          }
+        }
+      }
+
+      oNextTop.onclick = oNext.onclick = function(){
+        index ++;
+        index = index == len2 ? 0 : index;
+        Change();
+      }
+
+      oPrevTop.onclick = oPrev.onclick = function(){
+        index --;
+        index = index == -1 ? len2 -1 : index;
+        Change();
+      }
+
+      for (var i = 0; i < len2; i++) {
+        oListLi[i].index = i;
+        oListLi[i].onclick = function(){
+          index = this.index;
+          Change();
+        }
+      }
+
+    })()
+  </script>
+</div>
+
+<div class="jdwz">
+  <div class="jdbt">Introduction</div>
+  <div class="jdnr1">
+    <p>苏马湾景区于1999年7月正式对外开放。在此之前，由于地理位置的优越性，这里一直都是连云港地区的重要海防基地。这里环境幽雅、气候怡人，山上松柏滴翠，鸟语花香，而山下沙滩似金、海水如缎，她深藏在两座山峰的臂弯之中，海水高潮线与低潮线之间的最大宽度为260米，国际标准的海水游泳水温期为46天。</p>
+    <p>苏马湾的得名来自于明末的苏子恒大将军。苏将军生性耿直，德才兼备，因清兵入关，不愿卖主求荣，带着部属流离至此，在这里耕田牧马，劫富济贫，赢得了百姓的尊敬，后人为纪念他便把这里取名为苏马湾。</p>
+  </div>
+  <div class="jdnr2">
+    <P>地&nbsp;&nbsp;&nbsp;&nbsp;址：连岛镇</P>
+
+  </div>
+  <div class="jdnr3">
+    <img src="../downloadfile/sl/sumawan_map.jpg" />
+  </div>
+</div>
+
+
+
+</html>

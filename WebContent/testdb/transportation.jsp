@@ -61,6 +61,11 @@ transportationdata.eid = "4028b8814cb188b7014cb18aa0c8000b";
     function delete_onclick(){
     	Transportation.deleteTransportationById("4028b8814cb320a5014cb321cef20002");
     }
+    
+    function stat_onclick(){
+    	Transportation.getTransportationStat();
+    }
+    
 </script>
 
 <body>
@@ -72,6 +77,7 @@ transportationdata.eid = "4028b8814cb188b7014cb18aa0c8000b";
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
+	<input type="button" value="统计"  onclick="javascript:stat_onclick();" />
 	
 </body>
 </html>

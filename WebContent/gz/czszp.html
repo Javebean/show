@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Bootstrap core CSS -->
+<link href="plugins/bootstrap/css/bootstrap-part.css" rel="stylesheet">
+
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+
+<style>
+.exb_logo{
+	float:left;
+	height: 50px;
+	width: 50px;
+}
+.exb_info{
+	width:600px;
+	float:left;
+	margin-left:10px;
+	cursor:pointer;
+}
+.fview_table th{
+ 	text-align:center;
+}
+.btn{
+	margin-right:10px;
+}
+.search_box .search_ele{
+	width: 150px;
+}
+.glyphicon-search{
+	font-size:20px;
+}
+</style>
+
+<script>
+var ROWS_PER_PAGE = 10;
+var PIC_BASE = 'resources/topicimages/';
+var IMAGE_NOT_FOUND = "";
+var itemParams = ["name","version","number","length","width"];
+var visitorParams = ["name","sex","position","phone"];
+$(document).ready(function(){
+	showZlzxList(1);
+
+	function showZlzxList(page){
+		var func = function(data){
+			data = JSON.parse(data);
+			rowCount = data.size;
+			initPaging(page,rowCount);
+			data = data.data;
+
+			$('.zlzx_box').empty();
+			var html = "";
+			for(var i=0;i<data.length;i++){
+				var topic = data[i];
+				var logohtml="";
+				if(topic.logo){
+					logohtml = '<img height="50px" width="50px" src="'+PIC_BASE + topic.logo+'"/>';
+				}
+				var regiontext = "";
+				if(topic.region)
+				{
+					regiontext = topic.region;
+				}
+
+      			html +=
+      				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
+    				'<div class="exb_info" eid="'+topic.id+'">'+
+    				'<a class="productbt">'+topic.orgName+'</a>'+
+    				'<div class="zycp"><span class="left">【行业类别】</span><span class="left">'+topic.industryType+'</span></div>' +
+						'<div class="zycp"><span class="left">【国家、地区】</span><span class="left">'+regiontext+'</span></div>' +
+						'<a class="more">查看详情 >></a></div></div>';
+			}
+			$('.zlzx_box').append(html.replace(/undefined/g,""));
+			$('.exb_info').click(loadDetail);
+			$('.return_btn').click(function(){
+				$(".tz_detail").addClass("hide");
+				$(".tz_list").removeClass("hide");
+			});
+		}
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,func);
+	}
+
+	function loadDetail(){
+		$(".tz_list").addClass("hide");
+		$(".tz_detail").removeClass("hide");
+		var eid = $(this).attr("eid");
+	//	viewTP(eid);
+
+		viewSpan(eid);
+	}
+
+	function viewSpan(eid){
+		$("#popup_box span").empty();
+		var func = function(data){
+			data = JSON.parse(data);
+			setViewTable(".exb_detail",data.exhibitors);
+			setDymTable(".showitems", itemParams, data.displayItem);
+			$("#orgName_text").text(data.exhibitors.orgName);
+			$("#region_text").text(data.exhibitors.region);
+			$("#orgType_text").text(data.exhibitors.orgType);
+			$("#scale_text").text(data.exhibitors.scale);
+			$("#industryType_text").text(data.exhibitors.industryType);
+			$("#orgIntro_text").text(data.exhibitors.orgIntro);
+			if(data.exhibitors.phone != 'unauthorized')
+			{
+				$("#phone_text").text(data.exhibitors.phone);
+				$("#telephone_text").text(data.exhibitors.telephone);
+				$("#address_text").text(data.exhibitors.address);
+			}
+		}
+		Exhibitor.getTotalExhibitInfoById(eid,func);
+
+	}
+
+	function viewTP(eid){
+		$("#popup_box span").empty();
+		var func = function(data){
+			data = JSON.parse(data);
+
+			setViewTable(".exb_detail",data.exhibitors);
+			setDymTable(".showitems", itemParams, data.displayItem);
+
+
+			if(data.exhibitors.logo){
+				var sdata = data.construction[0];
+				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
+			} else {
+				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
+			}
+
+
+			if(data.exhibitors.state == 0){
+				$(".audit_box").removeClass("hide");
+				$(".update_tp").attr("eid",data.exhibitors.id);
+				$(".reject_tp").attr("eid",data.exhibitors.id);
+			} else {
+				$(".audit_box").addClass("hide");
+			}
+
+		}
+		Exhibitor.getTotalExhibitInfoById(eid,func);
+	}
+
+	function setViewTable(tableID,data){
+		$(tableID+" .fview_value").each(function(){
+			var key = $(this).attr("ename");
+			if(data[key]){
+				$(this).text(data[key]);
+			}
+		});
+	}
+
+	function setDymTable(tableID, params, data){
+		var html = '';
+		for(var i=0;i<data.length;i++){
+			html += '<tr class="item_row">';
+			var row = data[i];
+			for(var j=0;j<params.length;j++){
+				if(row[params[j]]){
+					html += '<td>'+ row[params[j]] +'</td>';
+				} else {
+					html += '<td></td>';
+				}
+			}
+			html += '</tr>';
+		}
+
+		$(tableID+" .item_row").remove();
+		$(tableID).append(html.replace(/undefined/g,""));
+	}
+
+	function initPaging(pageActive, rowCount){
+		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
+		if(pageCount>1){
+			var html='';
+			for(var i=1;i<=pageCount;i++){
+				if(pageActive!=i){
+					html += '<a class="fy_a" page="'+i+'">'+i+'</a>';
+				}else{
+					html += '<a class="fy_a dq" page="'+i+'">'+i+'</a>';
+				}
+			}
+			html+='<a class="fy_a" page="N">&gt;</a>';
+			$(".fy").html(html);
+			$(".paging").removeClass("hide");
+		}
+
+		//bind events
+		$(".paging li").click(function(){
+			var pageTo = $(this).children().attr("page");
+			if(pageTo == "P"){
+				pageTo = 1;
+			}else if(pageTo == "N"){
+				pageTo = pageCount;
+			}else{
+				pageTo = parseInt(pageTo);
+			}
+			showZlzxList(pageTo);
+		});
+
+	}
+});
+</script>
+
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">观众中心</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
+   <div class="nymainnr">
+
+   <div class="tz_list">
+   	<div class="zlzx_box">
+
+ 	</div>
+	<div class="paging hide">
+		<div class="fy">
+	    </div>
+	</div>
+	</div>
+
+	<div class="tz_detail hide">
+		<div id='exhibit_span' >
+		<div class="zhanshang_top">
+			<div class="gsqkbt">参展企业信息</div>
+			<div class="gsqknr">
+				<div class="gsqkwz">
+					<a class="gsqkwzbt" id='orgName_text' style="font-size:20px" href="#">慈溪市康洁净水设备有限公司</a>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【国家地区】</span><span  id='region_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业性质】</span><span id='orgType_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业规模】</span><span id='scale_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【行业类别】</span><span id='industryType_text' class="left"></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="zhanshang_ft">
+			<div class="gsqkbt">单位及产品简介</div>
+			<div class="ngs excontent" id='orgIntro_text'>
+				电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、 化工产品、五金及工具、机械、建材、能源
+			</div>
+		</div>
+		<div class="zhanshang_top" style="margin-top:25px">
+			<div class="gsqkbt">联系方式</div>
+			<div class="gsqknr">
+				<div class="gsqkwz">
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【邮编】</span><span  id='zipcode_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【网址】</span><span id='site_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【地址】</span><span id='address_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【固定电话】</span><span id='phone_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【手机电话】</span><span id='telephone_text' class="left">需登录后查看</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href=#>登录</a> 后查看企业联系方式</div> -->
+
+			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
+
+				    <!-- <strong>企业logo</strong>
+				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div> -->
+
+						<div class="gsqkbt">展品详细情况</div>
+					<table class="table table-bordered fview_table showitems"  style="margin-top:35px">
+						<tr>
+							<th>展品名称</th>
+							<th>展品型号</th>
+							<th>展品数量</th>
+							<th>长度（米）</th>
+							<th>宽度（米）</th>
+						</tr>
+					</table>
+
+		</div>
+		<div class="return_btn" style ="margin-top:18px"></div>
+	</div>
+
+</html>

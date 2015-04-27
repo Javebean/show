@@ -68,6 +68,7 @@ public class AudienceDwr {
 	 * @param id
 	 * @return
 	 */
+	@RemoteMethod
 	public String getAudienceById(String id)
 	{
 		return audienceService.getAudienceById(id);
@@ -129,4 +130,14 @@ public class AudienceDwr {
 		return audienceService.updateAudience(audience);
 	}
 	
+	/**
+	 * 重置密码
+	 * @param id
+	 * @return
+	 */
+	@RemoteMethod
+	public String resetPwd(String id)
+	{
+		return audienceService.resetPsw(id);
+	}
 }

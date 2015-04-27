@@ -190,5 +190,14 @@ public class ExhibitorsDwr {
 		return exhibitorsService.logout();
 	}
 	
-	
+	/**
+	 * 重置密码
+	 * @param id
+	 * @return
+	 */
+	@RemoteMethod
+	public String resetPwd(String id)
+	{
+		return exhibitorsService.resetPsw(id);
+	}
 }

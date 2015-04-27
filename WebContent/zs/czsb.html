@@ -1,32 +1,72 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
+
+<script type='text/javascript' src='dwr/engine.js'></script>
+
+<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
 <script>
 $(".a_subcnt").click(function(){
 	var url = $(this).attr("eurl");
 	$(".nymain_right").load(url);
 });
 </script>
+<script type="text/javascript">
+function checklogin()
+{
 
-   <div class="nyweizhi">µ±Ç°Î»ÖÃ£º <a href="index.html">Ê×Ò³</a> > <a href="Õ¹¹İÇé¿ö.html">²ÎÕ¹ÉÌ</a> > <font style=" font-weight:bold; color:#1F9AD6">²ÎÕ¹Éê±¨</font></div>
+	var func = function(data){
+		data = JSON.parse(data);
+		var result = data.result;
+	//	alert(usrname+"ç™»é™†...");
+		if(result)
+		{
+			var usrname = data.username;
+			jAlert("ç™»é™†æˆåŠŸ","ä¿¡æ¯");
+			//location.reload();
+		//	location.href ="#toptag";
+		//		alert(usrname+"ç™»é™†æˆåŠŸ");
+			//	$(".yonghu").removeClass("hide");
+			$(".yonghu").text("æ¬¢è¿æ‚¨ï¼Œ" + usrname);
+			document.getElementById('logintextfield001').value = "";
+			document.getElementById('logintextfield002').value = "";
+		}
+		else
+		{
+			jAlert("ç”¨æˆ·åæˆ–å¯†ç ä¸å¯¹","ä¿¡æ¯");
+		}
+
+	}
+	var usrnameValue = document.getElementById('logintextfield001').value;
+	//	alert(usrnameValue);
+	var paswordValue = document.getElementById('logintextfield002').value;
+	Exhibitor.login(usrnameValue,paswordValue,func);
+	return true;
+}
+</script>
+
+   <div class="nyweizhi">å½“å‰ä½ç½®ï¼š <a href="#">é¦–é¡µ</a> > <a href="#">å‚å±•å•†</a> > <font style=" font-weight:bold; color:#1F9AD6">å‚å±•ç”³æŠ¥</font></div>
    <div class="nymainnr">
     <div class="zwsq">
-     <div class="zwsqbt">Õ¹Î»ÉêÇë</div>
-     <span class="zwsqnr">Èç¹ûÄúµÄ¹«Ë¾»¹Î´xxÉêÇë²ÎÕ¹£¬ÇëÏÈ  <a eurl="zs/sqbg.html" class="a_subcnt" style="color:#F00;cursor:pointer;">×¢²á</a>£¬×¢²á³É¹¦ºóÏµÍ³»á×Ô¶¯Éú³É¡°xx»á¡±µÄÓÃ»§ÃûºÍÃÜÂë</span>
+     <div class="zwsqbt">å±•ä½ç”³è¯·</div>
+     <span class="zwsqnr">å¦‚æœæ‚¨çš„å…¬å¸è¿˜æœªç”³è¯·å‚å±•ï¼Œè¯·å…ˆ  <a eurl="zs/sqbg.html" class="a_subcnt" style="color:#F00;cursor:pointer;">æ³¨å†Œ</a>ï¼Œæ³¨å†ŒæˆåŠŸåç³»ç»Ÿä¼šè‡ªåŠ¨ç”Ÿæˆâ€œè¿åšä¼šâ€çš„ç”¨æˆ·åå’Œå¯†ç </span>
     </div>
     <div class="zs_login">
-     <div class="zwsqbt">Õ¹ÉÌµÇÂ¼</div>
-     <span class="zwsqnr">Èç¹ûÄúµÄ¹«Ë¾´ÓÒÑÉêÇë²ÎÕ¹£¬Ê¹ÓÃ×Ô¶¯Éú³ÉµÄ¡°xx»á¡±ÓÃ»§ÃûºÍÃÜÂë½øĞĞµÇÂ¼</span>
+     <div class="zwsqbt">å±•å•†ç™»å½•</div>
+     <span class="zwsqnr">å¦‚æœæ‚¨çš„å…¬å¸ä»å·²ç”³è¯·å‚å±•ï¼Œä½¿ç”¨ç³»ç»Ÿç”Ÿæˆçš„â€œè¿åšä¼šâ€ç”¨æˆ·åå’Œå¯†ç è¿›è¡Œç™»å½•</span>
     </div>
     <div class="login">
-     <div class="login_nr"><span class="yhm left">ÓÃ»§Ãû£º</span><input style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
-     <div class="login_nr"><span class="yhm left">ÃÜ&nbsp;&nbsp;Âë£º</span><input style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">ç”¨æˆ·åï¼š</span><input id='logintextfield001' style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">å¯†&nbsp;&nbsp;ç ï¼š</span><input id ='logintextfield002' style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
      <div class="login_button">
-      <input style=" display:block; width:74px; height:29px; background:url(images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" />
-      <a class="forget" href="#">Íü¼ÇÃÜÂë£¿</a>
+			<input style=" width:74px; height:29px; background:url(images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" onclick="checklogin();" />
+
+			<a class="forget" href="#">å¿˜è®°å¯†ç ï¼Ÿ</a>
      </div>
     </div>
 
-    
-   
+
+
 </html>

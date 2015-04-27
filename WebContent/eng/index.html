@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+	<script type="text/javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../jslib/json2.js"></script>
+	<script type="text/javascript" src="../jslib/jquery.hoverIntent.minified.js"></script>
+	<script src="../jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
+	<script type="text/javascript" src="../jslib/animateBackground-plugin.js"></script>
+
+	<script type='text/javascript' src='../dwr/engine.js'></script>
+	<script type='text/javascript' src='../dwr/interface/Zlzx.js'></script>
+	<script type='text/javascript' src='../dwr/interface/Zytz.js'></script>
+	<script type='text/javascript' src='../dwr/interface/Exhibitor.js'></script>
+	<script>
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		$(".header").load("pub_header.html");
+		$(".footer").load("pub_footer.html");
+
+		$("#kinMaxShow").kinMaxShow({
+			height:320,
+			button:{
+				showIndex:false,
+				normal:{background:'url(../images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
+				focus:{background:'url(../images/dian1.png)',border:'0'}
+			}
+		});
+
+	//	showZlzxList();
+	//	showZytzList();
+		function showZytzList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				rowCount = data.size;
+				data = data.data;
+
+				var html = "";
+				for(var i=0;i<data.length;i++){
+					var topic = data[i];
+
+					var timeStr = topic.publishTime;
+
+					var timePar = timeStr.split(' ');
+					var timeDate = timePar[0].split('-');
+					var mTime = parseInt(timeDate[1])+ 1;
+
+					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
+
+					html +=
+					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>';
+				}
+				$('.tzggnb ul').html(html);
+			}
+			Zytz.getShortZytzForPage(0,3,func);
+		}
+
+		function showZlzxList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				rowCount = data.size;
+				data = data.data;
+
+				var html = "";
+				var topic = data[0];
+				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
+				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[details]</a>';
+				if(data.length > 1)
+				{
+					html += '<ul>';
+						for(var i=1;i<data.length;i++){
+							var topic = data[i];
+
+							var timeStr = topic.publishTime;
+
+							var timePar = timeStr.split(' ');
+							var timeDate = timePar[0].split('-');
+							var mTime = parseInt(timeDate[1])+ 1;
+
+							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
+
+							html +=
+							'<li><a class="left" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
+
+						}
+						html += '</ul>';
+					}
+					$('.dtwz').html(html);
+				}
+				Zlzx.getShortZlzxForPage(0,5,func);
+			}
+			Date.prototype.diff = function(date){
+
+				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
+			}
+			// 构造两个日期
+			var now = new Date();
+			var date = new Date('2015/09/23 00:00:01');
+	//		var todaystr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' +  now.getDate() + '日'  ;
+
+			var todaystr = (now.getMonth() + 1) + '/' +  now.getDate() + '/' +  now.getFullYear()  ;
+
+			var diff = now.diff(date);
+			var daynum =0;
+			if (diff >0)
+			daynum = diff;
+			show_today(todaystr);
+			show_num(daynum);
+		});
+
+
+		function show_num(n){
+			var it = $(".t_num i");
+			var len = String(n).length;
+			for(var i=0;i<len;i++){
+				if(it.length<=i){
+					$(".t_num").append("<i></i>");
+				}
+				var num=String(n).charAt(i);
+				var y = -parseInt(num)*52.8; //y轴位置
+				var obj = $(".t_num i").eq(i);
+				obj.animate({ //滚动动画
+					backgroundPosition :'-10px '+String(y)+'px'
+				}, 800,'swing',function(){}
+				);
+			}
+		}
+
+		function show_today(n){
+			$(".date").text(n);
+		}
+
+
+	</script>
+
+	<script type="text/javascript">
+		function checklogin()
+		{
+
+			var func = function(data){
+				data = JSON.parse(data);
+				var result = data.result;
+				if(result)
+				{
+					var usrname = data.username;
+					//location.reload();
+					location.href ="#toptag";
+					//	alert(usrname+"登陆成功");
+					//	$(".yonghu").removeClass("hide");
+					$(".yonghu").text("welcom，" + usrname);
+				}
+
+			}
+			var usrnameValue = document.getElementById('login001').value;
+			//	alert(usrnameValue);
+			var paswordValue = document.getElementById('login002').value;
+			Exhibitor.login(usrnameValue,paswordValue,func);
+			return true;
+		}
+	</script>
+	<title>连博会</title>
+	<style type="">
+		.t_num i {
+			width: 26px;
+			height: 50px;
+			display: inline-block;
+			background: url(../images/number.png) no-repeat;
+			background-position: -10px -480px;
+			text-indent: -999em;
+			margin-bottom: -6px;
+		}
+	</style>
+</head>
+
+<body>
+	<a name="toptag"></a>
+	<div class="header">
+	</div>
+
+	<div class="banner">
+		<div id="show">
+			<div id="kinMaxShow">
+				<div>
+					<a href="#"><img src="../images/banner1.jpg"   /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/banner2.jpg"  /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/banner3.jpg"   /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/banner1.jpg"   /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="djs">
+		<span class="date">10 April 2015</span>
+		<span class="zhm">To <font color="#E00000">2</font> th <font color="#E00000">China Silk Road Int'l Logistics Expo, Lianyungang</font> </span>
+		<div class="time">Remain <span class="t_num"></span> Days</div>
+		<div class="zhxq">
+			<span class="zhsj left">Sep 22-24 2015</span>
+			<span class="zhdd right">Industrial Exhibition Center，Lianyungang </span>
+		</div>
+	</div>
+	<div class="news">
+		<div class="zhdt left">
+			<div class="zhdtbt">Exhibition News</div>
+			<div class="zhdtnb">
+				<a class="dtimg left" href="#"><img src="../images/dtimg.jpg" /></a>
+				<div class="dtwz left">
+					<a class="wzbt" href="zlzx_new01.html">Opening of the 2th LBH</a>
+					<a class="wznr" href="zlzx_new01.html">Logistics Park and Logistics Exhibition..[Read more]</a>
+					<ul>
+						<li><a class="left" href="zlzx_new02.html">Port handling equipment and technology</a><span class="right">03/15</span></li>
+						<li><a class="left" href="zlzx_new03.html">Shelf equipment access</a><span class="right">03/15</span></li>
+						<li><a class="left" href="zlzx_new04.html">Intermodal Container Technology</a><span class="right">03/15</span></li>
+						<li><a class="left" href="zlzx_new05.html">Logistics software solutions</a><span class="right">03/15</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="tzgg right">
+			<div class="tzggbt">Announcement</div>
+			<div class="tzggnb">
+				<ul>
+					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new01.html">Opening of the 2th LBH</a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new02.html">Theme special events </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new03.html">High-level think tank forum </a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new04.html">2015 Incoming international cooperation </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="app_login">
+		<div class="app left">
+			<div class="app_left left">
+				<div class="appimg left"><img src="../images/appimg1.jpg" /></div>
+				<div class="appwz right">
+					<span class="appwz1">Mobile App</span>
+					<a class="chakan" href="../phonedownload.html">Read more ></a>
+				</div>
+			</div>
+			<div class="app_right left">
+				<div class="appimg2 left"><img src="../images/appewm.jpg" /></div>
+				<div class="appwz_2 right">
+					<span class="appwz1">Wechat</span>
+					<p class="chakan" href="#">Scan</p>
+				</div>
+			</div>
+		</div>
+		<div class="login_en right">
+			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='username'}" onClick="if(this.value=='username')this.value='';" value="username"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='password'}" onClick="if(this.value=='password')this.value='';" value="password"  name=""  id= "login002" type="text" />
+			<div class="button">
+				<input style="background:url(../images/login_index.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
+				<input  style="background:url(../images/register_index.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="footer">
+	</div>
+</body>
+</html>

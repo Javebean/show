@@ -168,7 +168,9 @@ public class SceneServService {
 		JSONObject obj = new JSONObject();
 		obj.put("type", typeValue);
 		obj.put("num", contentValue);
-		return obj.toString();
+		String ret = obj.toString();
+		logger.debug("sceneserv:" + ret);
+		return ret;
 	}
 	
 	

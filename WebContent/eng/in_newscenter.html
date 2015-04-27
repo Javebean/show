@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/ny.css"/>
+<script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../jslib/json2.js"></script>
+<script type="text/javascript" src="../jslib/json2.js"></script>
+<script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+<title>连博会</title>
+
+</head>
+<script>
+$(document).ready(function(){
+	$(".nymain_right").load("zytz.html");
+	$(".header").load("pub_header.html");
+	$(".footer").load("pub_footer.html");
+	$(".menu_Left").click(loadContent);
+
+	function loadContent(){
+		$(".menu_Left").removeClass("menu_active");
+		$(this).addClass("menu_active");
+		var url = $(this).attr("eurl");
+		$(".nymain_right").load(url);
+	}
+});
+</script>
+<body>
+
+ <div class="header"></div>
+
+ <div class="banner"><img src="../images/nybanner.jpg" /></div>
+
+
+ <div class="nymain">
+  <div class="nymian_left left">
+   <div class="cdhbt">
+
+    <span class="cdhbten">NEWS</span>
+   </div>
+    <div id="firstpane" class="menu_list">
+
+    <a eurl="xw/zytz.html" class="menu_head menu_Left menu_active">Announcement</a>
+
+	<a eurl="xw/zlzx.html" class="menu_head menu_Left">Exhibition News</a>
+
+	<a eurl="xw/lcap.html" class="menu_head menu_Left ">Arrangement</a>
+
+	<a eurl="xw/zdhd.html" class="menu_head menu_Left">Events</a>
+
+	<a eurl="xw/hylt.html" class="menu_head menu_Left">Conference&Forum</a>
+
+    </div>
+   <div class="nyewm">
+    <img src="../images/nyewm.jpg" />
+    <span class="ewmwz">Weixin</span>
+   </div>
+   <a class="app" href="#">
+    <img src="../images/app.jpg" />
+    <span class="appwz">Logistics Expo<br />Mobile App</span>
+   </a>
+  </div>
+  <div class="nymain_right left">
+   <!-- 此处放右侧内容 -->
+
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="footer"></div>
+
+</body>
+</html>

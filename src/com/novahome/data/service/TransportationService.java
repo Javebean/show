@@ -136,11 +136,12 @@ public class TransportationService {
 		Map<String, Integer>map =  new ConcurrentHashMap<String, Integer>();
 		List<String>types = new ArrayList<String>();
 		List<Transportation>ls = transportationDao.getAllTransportation();
-		
+		//System.out.println(ls.size());
 		boolean flag = true;
 		String typeValue = "";
 		for(Transportation serv : ls)
 		{
+			//System.out.println(serv);
 			String type = serv.getType();
 			if(type!= null)
 			{
@@ -169,7 +170,9 @@ public class TransportationService {
 		JSONObject obj = new JSONObject();
 		obj.put("type", typeValue);
 		obj.put("num", contentValue);
-		return obj.toString();
+		String ret = obj.toString();
+		logger.debug("transportation:" + ret);
+		return ret;
 	}
 	
 

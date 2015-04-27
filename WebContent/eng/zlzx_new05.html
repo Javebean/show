@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/ny.css"/>
+<script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../jslib/json2.js"></script>
+<script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+<title>Logistics Expos</title>
+
+</head>
+<script>
+$(document).ready(function(){
+	var detail = getUrlParam("detail");
+	var topicId = getUrlParam("eid");
+
+	if(detail == "Zlzx"){
+		$(".a_zlzx").addClass("menu_active");
+		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").load(url);
+	}else{
+		$(".sub_index").text("Exhibition News");
+		$(".a_zytz").addClass("menu_active");
+		var url = 'zytzDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").load(url);
+	}
+
+	$(".header").load("pub_header.html");
+	$(".footer").load("pub_footer.html");
+	$(".menu_Left").click(loadContent);
+
+	function loadContent(){
+		$(".menu_Left").removeClass("menu_active");
+		$(this).addClass("menu_active");
+		var url = $(this).attr("eurl");
+		$(".nymain_right").load(url);
+	}
+
+	function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+});
+</script>
+<body>
+
+ <div class="header"></div>
+
+ <div class="banner"><img src="../images/nybanner.jpg" /></div>
+
+
+ <div class="nymain">
+  <div class="nymian_left left">
+   <div class="cdhbt">
+    <span class="cdhbten">NEWS</span>
+   </div>
+    <div id="firstpane" class="menu_list">
+
+			<a eurl="xw/zytz.html" class="menu_head menu_Left">Announcement</a>
+
+			<a eurl="xw/zlzx.html" class="menu_head menu_Left a_zlzx">Exhibition News</a>
+
+			<a eurl="xw/lcap.html" class="menu_head menu_Left">Arrangement</a>
+
+			<a eurl="xw/zdhd.html" class="menu_head menu_Left">Events</a>
+
+			<a eurl="xw/hylt.html" class="menu_head menu_Left">Conference&Forum</a>
+    </div>
+   <div class="nyewm">
+    <img src="../images/nyewm.jpg" />
+    <span class="ewmwz">Weixin</span>
+   </div>
+   <a class="app" href="#">
+    <img src="../images/app.jpg" />
+    <span class="appwz">Logistics Expo<br />Mobile App</span>
+   </a>
+  </div>
+  <div class="nymain_right left">
+   <div class="nyweizhi">Location:<a href="#">Home</a> > <a href="#">News</a> > <font class="sub_index" style=" font-weight:bold; color:#1F9AD6">Exhibition News</font></div>
+   <div class="nymainnr">
+		<div class="content_dt" style="padding:54px 0px 24px;margin:0px auto;font-size:18px;font-weight:bold;text-align:center;color:#D92026;font-family:Arial, 宋体;background-color:#FFFFFF;">
+  Logistics software solutions
+  </div>
+
+      <p style="text-indent:2em;">
+       China (Lianyungang) Silk Road International Logistics Fair as Lianyungang create "along the way" the important thing carrier bi-open door, and it is driven along with the bridge in West Asia and Europe, as well as an important platform for cooperation to achieve more trade exchanges. It is reported that the first expo even mainly by the exhibition and special events of two parts. Exhibition area is located in Lianyungang City Industrial Exhibition Centre, the exhibition consists of port services, logistics services business bridge pavilion, logistics equipment and technology exhibition, a total of four exhibition galleries east bridgehead. Special events are divided into five sections. First, even the Expo theme of the forum opening ceremony. The second is the "Silk Road economic belt" East bridgehead construction project promotion. Third International Cooperation and Development Roundtable Wharf. Fourth, "along the way" TPOs Lianyungang meeting. Fifth annual meeting of China's logistics entrepreneurs.
+   </div>
+  </div>
+ </div>

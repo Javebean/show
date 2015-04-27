@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type='text/javascript' src='dwr/engine.js'></script>
+    <script type="text/javascript" src="jslib/json2.js"></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+
+	<script type='text/javascript' src='dwr/interface/Audience.js'></script>
+
+<script>
+var formData = {};
+$(document).ready(function(){
+
+	//event binder
+	$("#submitForm").click(saveForm);
+
+	function saveForm(){
+		if(!$("#form").valid({
+			/* rules: {
+				sex: "required"
+			}, */
+
+			errorPlacement: function(error, element) { //指定错误信息位置
+				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox
+					var eid = element.attr('name'); //获取元素的name属性
+					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面
+				} else {
+					error.insertAfter(element.parent());
+				}
+			},
+		})){
+			return;
+		}
+		formData = getFormdata("regForm");
+
+		var func = function(data){
+			data = JSON.parse(data);
+			
+			if(data.result == true){
+				//location.href="ma_zlzx.jsp?menu=1";
+				$(".userForm").hide();
+				$("#login_id").text(data.username);
+				$("#login_pass").text(data.password);
+				$(".resultMsg").show();
+			}else{
+				alert(result.message);
+			}
+		};
+		Audience.saveAudience(formData,func);
+	}
+
+	function getFormdata(formName){
+		var form = document.forms[formName];
+		var entryNames = [];
+		for(var i=0;i<form.length;i++){
+			if(form[i].name != ""){
+				if(i==0 || (i>0 && form[i].name!=form[i-1].name)){
+					entryNames.push(form[i].name);
+				}
+			}
+		}
+
+		var data = {};
+		for(var i=0;i<entryNames.length;i++){
+			var key = entryNames[i];
+			data[key] = form[key].value;
+		}
+		
+		return data;
+	}
+});
+</script>
+<style>
+label.error {
+	margin-left: 28px;
+	width: auto;
+	color: red;
+	font-family:"微软雅黑", "宋体"; font-size:12px;
+	display: block;
+}
+.user_input{
+	display:block; float:left; width:470px; height:38px; padding:0 0 0 8px; border:0;color:#aba8a8;font-size:12px;
+}
+.user_radio{
+	display:block; float:left; padding:0;
+}
+.user_space{
+	display:block; float:left; margin:0 0 0 4px;
+}
+</style>
+   <div class="nyweizhi">Location: <a href="index.html">Home</a> > <a href="#">Audience</a> > <a href="#">Audience login</a> > <font style=" font-weight:bold; color:#1F9AD6">Application form</font></div>
+   <div class="nymainnr">
+
+	<div class="userForm">
+		<form class="form-horizontal" name="regForm" id="form">
+
+	     <div class="wssbbt">Application form</div>
+	     <div class="gzsq_tj">You also can  <a style=" color:#F00" href="#">Download</a> this form and send it to ：xxxx@xxx.com</div>
+	     <div class="table"><span class="table_left left required_label">姓&nbsp;&nbsp;名</span>
+	     	<input class="user_input required" name="name" type="text" />
+	     </div>
+	     <div class="table2"><span class="table2_left left">性&nbsp;&nbsp;别</span><span class="table2_right left">
+		     <label><input style="margin:12px 0 0 0;" class="user_radio" type="radio" name="sex" value="男" /><span class="user_space">男</span></label>
+		     <label><input style="margin:12px 0 0 20px;" class="user_radio" type="radio" name="sex" value="女" /><span class="user_space">女</span></label></span>
+	     </div>
+	     <div class="table"><span class="table_left left">职&nbsp;&nbsp;位</span>
+	     	<input class="user_input" name="position" type="text" />
+	     </div>
+	     <div class="table required_label"><span class="table_left left">联系方式</span>
+	     	<input class="user_input required" name="phone" type="text" />
+	     </div>
+	     <div class="table required_label"><span class="table_left left">电子邮箱</span>
+	     	<input class="user_input required" name="email" type="text" />
+	     </div>
+	     <div class="table"><span class="table_left left">邀请者</span>
+	     	<input class="user_input" name="inviter" type="text" />
+	     </div>
+	     <div class="table required_label"><span class="table_left left">公司名称</span>
+	     	<input class="user_input required" name="org" type="text" />
+	     </div>
+	     <div class="table2"><span class="table2_left left required_label">观展身份</span><span class="table2_right left">
+		     <label><input style="margin:12px 0 0 0;" class="user_radio required" type="radio" name="buyer" value="1" /><span class="user_space">采购商</span></label>
+		     <label><input style="margin:12px 0 0 20px;" class="user_radio required" type="radio" name="buyer" value="0" /><span class="user_space">观众</span></label></span>
+	     </div>
+	     <div class="table"><span class="table_left left">地&nbsp;&nbsp;址</span>
+	     	<input class="user_input" name="address" type="text" />
+	     </div>
+	     <div class="table"><span class="table_left left">信息来源</span>
+	     	<input class="user_input" name="infoSource" type="text" />
+	     </div>
+	     <div class="table"><span class="table_left left">参会目的</span>
+	     	<input class="user_input" name="target" type="text" />
+	     </div>
+
+	     <div class="tjxx_button">
+	      <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+	     </div>
+
+		</form>
+	</div>
+
+	<!-- message box -->
+	<div class="resultMsg" style="display:none;">
+		<h3>Remember username and password to log in!</h3>
+		<h3>Username：<span id="login_id"></span></h3>
+		<h3>Password：<span id="login_pass"></span></h3>
+	</div>
+
+
+
+</html>

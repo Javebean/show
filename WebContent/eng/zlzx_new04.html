@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/ny.css"/>
+<script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../jslib/json2.js"></script>
+<script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+
+<title>Logistics Expos</title>
+
+</head>
+<script>
+$(document).ready(function(){
+	var detail = getUrlParam("detail");
+	var topicId = getUrlParam("eid");
+
+	if(detail == "Zlzx"){
+		$(".a_zlzx").addClass("menu_active");
+		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").load(url);
+	}else{
+		$(".sub_index").text("Exhibition News");
+		$(".a_zytz").addClass("menu_active");
+		var url = 'zytzDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").load(url);
+	}
+
+	$(".header").load("pub_header.html");
+	$(".footer").load("pub_footer.html");
+	$(".menu_Left").click(loadContent);
+
+	function loadContent(){
+		$(".menu_Left").removeClass("menu_active");
+		$(this).addClass("menu_active");
+		var url = $(this).attr("eurl");
+		$(".nymain_right").load(url);
+	}
+
+	function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+});
+</script>
+<body>
+
+ <div class="header"></div>
+
+ <div class="banner"><img src="../images/nybanner.jpg" /></div>
+
+
+ <div class="nymain">
+  <div class="nymian_left left">
+   <div class="cdhbt">
+    <span class="cdhbten">NEWS</span>
+   </div>
+    <div id="firstpane" class="menu_list">
+
+			<a eurl="xw/zytz.html" class="menu_head menu_Left">Announcement</a>
+
+			<a eurl="xw/zlzx.html" class="menu_head menu_Left a_zlzx">Exhibition News</a>
+
+			<a eurl="xw/lcap.html" class="menu_head menu_Left">Arrangement</a>
+
+			<a eurl="xw/zdhd.html" class="menu_head menu_Left">Events</a>
+
+			<a eurl="xw/hylt.html" class="menu_head menu_Left">Conference&Forum</a>
+    </div>
+   <div class="nyewm">
+    <img src="../images/nyewm.jpg" />
+    <span class="ewmwz">Weixin</span>
+   </div>
+   <a class="app" href="#">
+    <img src="../images/app.jpg" />
+    <span class="appwz">Logistics Expo<br />Mobile App</span>
+   </a>
+  </div>
+  <div class="nymain_right left">
+   <div class="nyweizhi">Location:<a href="#">Home</a> > <a href="#">News</a> > <font class="sub_index" style=" font-weight:bold; color:#1F9AD6">Exhibition News</font></div>
+   <div class="nymainnr">
+		<div class="content_dt" style="padding:54px 0px 24px;margin:0px auto;font-size:18px;font-weight:bold;text-align:center;color:#D92026;font-family:Arial, 宋体;background-color:#FFFFFF;">
+  Intermodal Container Technology
+  </div>
+
+      <p style="text-indent:2em;">
+       As the intersection node "Silk Road economic belt" and "21st Century Maritime Silk Road" and "along the way" strategy, Lianyungang bear bidirectional open window and convert the pivotal role of land and sea. In recent years, Lianyungang based on their own strategic position and characteristics, actively seize "along the way" significant opportunities open two-way thing, international channel construction, promote trade facilitation, improving the city hosts features, aspects, institutional innovation has made some breakthroughs in order to seriously implement the national and provincial important instructions, Lianyungang municipal government in 2014 will be identified as the "Silk Road economic belt construction", this year also coincides with the thirtieth anniversary of the opening of Lianyungang, Lianyungang initiative Seizing an opportunity, preemptive machine, and the consent of the contractor proposed "China (Lianyungang) Silk Road international Logistics Fair", better play the leading role in Jiangsu coastal development.</div>
+
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="footer"></div>
+
+</body>
+</html>

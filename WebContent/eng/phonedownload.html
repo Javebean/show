@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="../css/ny.css"/>
+  <script type="text/javascript" language="../javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../jslib/json2.js"></script>
+  <script type="text/javascript" language="javascript" src="../jslib/16sucai.js"></script>
+
+  <title>连博会</title>
+
+</head>
+<script>
+$(document).ready(function(){
+
+  $(".header").load("pub_header.html");
+  $(".footer").load("pub_footer.html");
+
+});
+</script>
+
+<script>
+function dj(i)
+{
+
+  for(j=1;j<3;j++)
+  {
+    if(i==j){
+      document.getElementById("a"+j).className="libg";
+      document.getElementById("b"+j).style.display="";
+    }
+    else
+    {
+      document.getElementById("a"+j).className="li1";
+      document.getElementById("b"+j).style.display="none";
+    }
+  }
+}
+</script>
+
+<body>
+
+  <div class="header">
+
+  </div>
+  <div class="banner"><img src="../images/nybanner.jpg" /></div>
+  <div class="nymain">
+
+    <div class="nyweizhi2">Location<a href="index.html">Home</a> > <font style=" font-weight:bold; color:#1F9AD6">Mobile App</font></div>
+    <div class="nymainnr2">
+      <div class="apps_top">Official Mobile App</div>
+      <div class="apps_main">
+        <div class="apps_main_left left"><img src="../images/appsimg.jpg" /></div>
+        <div class="apps_main_right left">
+          <div id="c">
+            <ul>
+              <li id=a1 class="libg" style="margin:0"><a class="bg1" onclick="dj(1)"></a></li>
+              <li id=a2 class="li1"><a class="bg2" onclick="dj(2)"></a></li>
+            </ul>
+          </div>
+          <div id=b1 class="con2nb1" >
+            <div class="con2_left left">
+              <p style=" font-size:16px; color:#1f9bd5; font-weight:bold">Functions</p>
+              <p> [uploading] Exhibit efficient and quick release; </p>
+               <p> [Guide] Before and after the exhibition, easily for exhibitors; </p>
+               <p> [Service] To see the exhibition site and on-site support services; </p>
+               <p> [Directions] Routes at a glance; </p>
+               <p> [Forum] Meeting schedule; </p>
+               <p> [Guidelines] Inside and outside traffic information; </p>
+               <p> [Exhibitors] Query exhibitors Exhibits information; </p>
+               <p> [Resources] Reuters ready access to the latest notification, authoritative information; </p>
+               <p> [Assistant] To discuss the content of negotiations. </p> <br />
+               <p style = "font-size: 16px; color: # 1f9bd5;">  Waiting for you to discover more features... </p>
+            </div>
+
+            <div class="con2_right right">
+              <span class="sx">&nbsp;Scan</span>
+              <div class="aner"><img src="../images/an.jpg" /></div>
+              <span class="sx">Download apk <br />to your computer</span>
+              <a class="anx" href="#"><img src="../images/anx.jpg" /></a>
+            </div>
+          </div>
+          <div id=b2 class="con2nb1" style="display:none">
+            <div class="con2_left left">
+              <p style=" font-size:16px; color:#1f9bd5; font-weight:bold">Functions</p>
+              <p> [Uploading] Exhibit efficient and quick release; </p>
+               <p> [Guide] Before and after the exhibition, easily for exhibitors; </p>
+               <p> [Service] To see the exhibition site and on-site support services; </p>
+               <p> [Directions] Routes at a glance; </p>
+               <p> [Forum] Meeting schedule; </p>
+               <p> [Guidelines] Inside and outside traffic information; </p>
+               <p> [Exhibitors] Query exhibitors Exhibits information; </p>
+               <p> [Resources] Reuters ready access to the latest notification, authoritative information; </p>
+               <p> [Assistant] To discuss the content of negotiations. </p> <br />
+               <p style = "font-size: 16px; color: # 1f9bd5;">  Waiting for you to discover more features... </p>
+            </div>
+
+            <div class="con2_right right">
+              <span class="sx">App Store</span>
+              <a class="anx" href="#"><img src="../images/iosx.jpg" /></a>
+              <span class="sx" style=" margin-top:38px">&nbsp;Scan</span>
+              <div class="aner"><img src="../images/ios.jpg" /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">
+  </div>
+</body>
+</html>
