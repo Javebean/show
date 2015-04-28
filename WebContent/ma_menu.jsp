@@ -16,8 +16,7 @@ $(document).ready(function(){
       <li><a href="ma_audience.jsp">观众管理</a></li>
       <li><a href="ma_exhibitor.jsp">展商管理</a></li>
       <li><a href="ma_visitor.jsp">证件管理</a></li>
-      <li><a href="">Another nav item</a></li>
-      <li><a href="">More navigation</a></li>
+      <li><a href="ma_event.jsp">专题活动管理</a></li>
     </ul>
     <ul class="nav nav-sidebar">
       <li><a href="">Nav item again</a></li>

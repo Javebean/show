@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
+
+	<script type='text/javascript' src='jslib/uuid.js'></script>
+    <script type='text/javascript' src='dwr/engine.js'></script>
+      <script type="text/javascript" src="jslib/json2.js"></script>
+    <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+    <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+
+    <script type='text/javascript' src='dwr/interface/Event.js'></script>
+
+<style>
+.tablezh input{
+	 display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;
+}
+.photo1{
+	font-size:14px;
+}
+label.error {
+	margin-left: 28px;
+	width: auto;
+	color: red;
+	font-family:"微软雅黑", "宋体"; font-size:12px;
+	display: block;
+}
+</style>
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">观众中心</a> > <font style=" font-weight:bold; color:#1F9AD6">专题活动申请</font></div>
+   <div class="nymainnr">
+   <div class="userForm">
+   	<form class="form-horizontal" name="regForm" id="eventform">
+        <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">组&nbsp;织&nbsp;人&nbsp;</span>
+      <input name="organizer" type="text" class="required"/></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">活动名称&nbsp;&nbsp;</span>
+      <input  name="eventName" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">活动类型&nbsp;&nbsp;</span>
+      <input  name="type" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">邀请对象&nbsp;&nbsp;</span>
+      <input  name="invitee" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left" style="width:654px" ><span class="table3_left left" style=" background:none">备注说明&nbsp;&nbsp;</span>
+      <input  name="note" type="text" /></div>
+
+     </div>
+
+     <div class="table3">
+      <span class="table3_left left" style=" background:none">活动时长</span>
+      <span class="table3_right left">
+        <div class="sel_wrap left" style=" width:574px">
+        <label></label>
+        <select class="select required" name="period" id="c_period">
+        <option value="1小时">1小时</option>
+        <option value="2小时" selected="selected">2小时</option>
+        <option value="3小时以长">3小时以上</option>
+        </select>
+       </div>
+      </span>
+     </div>
+     <div class="tjxx_button">
+      <input id="submitEventForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+     </div>
+     </form>
+
+     </div>
+
+     <div class="resultMsg" style="display: none;">
+		<h3>申请完成，已提交工作人员审核。</h3>
+
+	</div>
+    </div>
+
+    <script type="text/javascript">
+    $(".sel_wrap").on("change", function() {
+    var o;
+    var opt = $(this).find('option');
+    opt.each(function(i) {
+    if (opt[i].selected == true) {
+    o = opt[i].innerHTML;
+    }
+    })
+    $(this).find('label').html(o);
+    }).trigger('change');
+    </script>
+
+<script type="text/javascript">
+var formData = {};
+$(document).ready(function(){
+
+	//event binder
+	$("#submitEventForm").click(saveForm);
+
+	function saveForm(){
+		if(!$("#eventform").valid({
+
+
+			errorPlacement: function(error, element) { //指定错误信息位置
+				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox
+					var eid = element.attr('name'); //获取元素的name属性
+					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面
+				} else {
+					error.insertAfter(element.parent());
+				}
+			},
+		})){
+			return;
+		}
+		formData = getFormdata("regForm");
+
+		var func = function(data){
+			data = JSON.parse(data);
+
+			if(data.result == true){
+				//location.href="ma_zlzx.jsp?menu=1";
+				$(".userForm").hide();
+				$(".resultMsg").show();
+			}else{
+				alert(data.message);
+			}
+		};
+		Event.saveEvent(formData,func);
+	}
+
+	function getFormdata(formName){
+		var form = document.forms[formName];
+		var entryNames = [];
+		for(var i=0;i<form.length;i++){
+			if(form[i].name != ""){
+				if(i==0 || (i>0 && form[i].name!=form[i-1].name)){
+					entryNames.push(form[i].name);
+				}
+			}
+		}
+
+		var data = {};
+		for(var i=0;i<entryNames.length;i++){
+			var key = entryNames[i];
+			data[key] = form[key].value;
+
+		}
+
+		return data;
+	}
+});
+</script>
+
+</html>

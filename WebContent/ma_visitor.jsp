@@ -2,14 +2,14 @@
 	<%@ include file="ma_header.jsp" %>
 	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
-	
-	
+
+
 	<script type='text/javascript' src='dwr/interface/Visitor.js'></script>
     <script type="text/javascript" src="js/manager/ma_visitor.js"></script>
     <script>
     	var menu = 6;
     </script>
-    
+
     <style>
     	.fview_table th{
     		text-align:center;
@@ -31,8 +31,8 @@
     <div class="container-fluid">
       <div class="row">
       <!-- menu -->
-		<jsp:include page="ma_menu.jsp" />   
-		    
+		<jsp:include page="ma_menu.jsp" />
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">证件管理</h2>
           <!-- search area -->
@@ -65,12 +65,11 @@
                 <tr>
                   <th>编号</th>
                   <th>姓名</th>
-                  <th>性别</th>
-                  <th>职务</th>
+
                   <th>号码</th>
-                  <th>电子邮箱</th>
+
                   <th>证件类型</th>
-                  <th>是否采购商</th>
+
                   <th>所属公司</th>
                   <th>申请时间</th>
                   <th>状态</th>
@@ -81,7 +80,7 @@
               </tbody>
             </table>
           </div>
-          
+
 			<div class="paging hide">
 				<nav>
 				<ul class="pagination pagination-lg">
@@ -91,7 +90,7 @@
 				</nav>
 			</div>
 
-			<div style='display: none'>
+			<%-- <div style='display: none'>
 				<div id='popup_box' style='padding: 10px; background: #fff;'>
 					<h2 class="sub-header">证件出样</h2>
 					<div class="form-group audit_box">
@@ -106,7 +105,74 @@
 						</div>
 					</div>
 				</div>
+			</div> --%>
+
+
+			<div style='display: none'>
+				<div id='popup_detail_box' style='padding: 10px; background: #fff;'>
+					<h2 class="sub-header">证件详细信息</h2>
+					<table class="table table-bordered table-striped fview_table visitor_detail">
+				        <tr>
+				          <th class="text-nowrap" width="14%">姓名</th>
+				          <td colspan="3"><span ename="name" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">性别</th>
+				          <td colspan="3"><span ename="sex" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">职位</th>
+				          <td colspan="3"><span ename="position" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">电话</th>
+				          <td colspan="3"><span ename="phone" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">电子邮箱</th>
+				          <td colspan="3"><span ename="email" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">证件类型</th>
+				          <td colspan="3"><span ename="type" class="fview_value"></span></td>
+				        </tr>
+								<tr>
+				          <th class="text-nowrap" width="14%">是否采购商</th>
+				          <td colspan="3"><span ename="buyer" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">公司名称</th>
+				          <td colspan="3"><span ename="org" class="fview_value"></span></td>
+				        </tr>
+
+								<tr>
+								<th class="text-nowrap" width="14%">申请状态</th>
+								<td colspan="3"><span ename="state" class="fview_value"></span></td>
+							</tr>
+				         				    </table>
+
+
+					<!-- <div class="form-group audit_box hide">
+						<div class="col-sm-offset-5 col-sm-5">
+							<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
+							<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+						</div>
+					</div> -->
+					<div class="form-group audit_box">
+						<div class="cp">
+					       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
+					       <div class="cp_name"></div>
+					      </div>
+					</div>
+					<div class="form-group audit_box">
+						<div class="col-sm-offset-2" style="margin-top:10px;">
+							<button type="button" class="btn btn-sm btn-success print_tp" eid="">打印</button>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
 
 
 		</div>

@@ -18,9 +18,11 @@ public class Event {
 
 	private String id;	//id,系统生成
 	private String aid;	//申请观众的id
+	private String organizer; // 发起人;
 	private String eventName;	//专题活动名称
-	private Date startTime;	//活动开始时间，第一版本可以忽略此字段
+	/*private Date startTime;	//活动开始时间，第一版本可以忽略此字段
 	private Date endTime;	//活动结束时间，第一版本可以忽略此字段
+*/	private String period;	// 活动时长
 	private String place;	//活动地点
 	private String type;	//活动类型
 	private String note;	//活动备注说明
@@ -48,7 +50,7 @@ public class Event {
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	public Date getStartTime() {
+	/*public Date getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(Date startTime) {
@@ -59,7 +61,7 @@ public class Event {
 	}
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
-	}
+	}*/
 	public String getPlace() {
 		return place;
 	}
@@ -91,13 +93,20 @@ public class Event {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", aid=" + aid + ", eventName=" + eventName
-				+ ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", place=" + place + ", type=" + type + ", note=" + note
-				+ ", invitee=" + invitee + ", applyTime=" + applyTime + "]";
+	public String getPeriod() {
+		return period;
 	}
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public String getOrganizer() {
+		return organizer;
+	}
+	public void setOrganizer(String organizer) {
+		this.organizer = organizer;
+	}
+	
+	
 	
 	
 }

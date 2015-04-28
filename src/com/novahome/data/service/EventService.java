@@ -92,6 +92,21 @@ public class EventService {
 		return ret;
 	}
 	
+	public String getEventById(String id)
+	{
+		Event event = (Event) eventDao.getEventById(id);
+		if(event == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		JSONObject obj = new JSONObject(event);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
+	
 	public String getEventByPeople(String aid)
 	{
 		List<Event>ls = eventDao.getEventByPeople(aid);

@@ -68,6 +68,14 @@ public class EventDao {
 		query.setParameter("aid", aid);
 		return query.list();
 	}  
+	
+	@SuppressWarnings("unchecked")
+	public Event getEventById(String id) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"from Event a where a.id=:id");
+		query.setParameter("id", id);
+		return (Event) query.uniqueResult();
+	}  
 		
 	@SuppressWarnings("unchecked")
 	public List<Event>getEventForPage(int start, int number)

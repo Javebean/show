@@ -2,12 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
+<script type="text/javascript" src="../plugins/jquery.alert/jquery.alerts.js"></script>
+<script type='text/javascript' src='../dwr/engine.js'></script>
+
+<script type='text/javascript' src='../dwr/interface/Audience.js'></script>
 <script>
 $(".a_subcnt").click(function(){
 	var url = $(this).attr("eurl");
 	$(".nymain_right").load(url);
 });
 </script>
+
+<script>
+function checklogin()
+{
+
+	var func = function(data){
+		data = JSON.parse(data);
+		var result = data.result;
+		//	alert(usrname+"登陆...");
+		if(result)
+		{
+			var usrname = data.username;
+			jAlert("login successfully","info");
+			$(".yonghu").text("welcome，" + usrname);
+			document.getElementById('logintexten001').value = "";
+			document.getElementById('logintexten002').value = "";
+		}
+		else
+		{
+			jAlert("wrong username or password","info");
+		}
+
+	}
+	var usrnameValue = document.getElementById('logintexten001').value;
+	//	alert(usrnameValue);
+	var paswordValue = document.getElementById('logintexten002').value;
+	Audience.login(usrnameValue,paswordValue,func);
+	return true;
+}
+</script>
+
 
    <div class="nyweizhi">Location:<a href="index.html">Home</a> > <a href="邀请函.html">Audience</a> > <font style=" font-weight:bold; color:#1F9AD6">Audience login</font></div>
    <div class="nymainnr">
@@ -22,13 +58,13 @@ $(".a_subcnt").click(function(){
      <span class="zwsqnr">If you have already applied, using the automatically generated username and password</span>
     </div>
     <div class="login">
-     <div class="login_nr"><span class="yhm left">Username:</span><input style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
-     <div class="login_nr"><span class="yhm left">password:</span><input style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">USER:&nbsp; </span><input id ='logintexten001' style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">PWD:&nbsp; </span><input id ='logintexten002' style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
      <div class="login_button">
-      <input style=" display:block; width:74px; height:29px; background:url(../images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" />
+      <input style=" display:block; width:74px; height:29px; background:url(../images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" onclick="checklogin();"/>
       <a class="forget" href="#">Forgot your password?</a>
      </div>
     </div>
-      
-  
+
+
 </html>

@@ -66,6 +66,19 @@ public class EventDwr {
 		return eventService.getEventByPeople(aid);
 	}
 	
+	
+	/**
+	 * 通过活动id查找活动和发起人信息（包含了发起观众的所有信息）
+	 * @param id
+	 * @return
+	 */
+	@RemoteMethod
+	public String getEventById(String id)
+	{
+		return eventService.getEventById(id);
+	}
+	
+	
 	/**
 	 * 通过活动id查找活动和发起人信息（包含了发起观众的所有信息）
 	 * @param id
