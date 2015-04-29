@@ -107,6 +107,11 @@ $(document).ready(function(){
 				$("#phone_text").text(data.exhibitors.phone);
 				$("#telephone_text").text(data.exhibitors.telephone);
 				$("#address_text").text(data.exhibitors.address);
+				$(".mustlogin").addClass("hide");
+			}
+			else
+			{
+				$(".mustlogin").removeClass("hide");
 			}
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
@@ -236,7 +241,7 @@ $(document).ready(function(){
 				电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、 化工产品、五金及工具、机械、建材、能源
 			</div>
 		</div>
-		<div class="zhanshang_top" style="margin-top:25px">
+		<div class="zhanshang_top" style="margin-top:45px">
 			<div class="gsqkbt">联系方式</div>
 			<div class="gsqknr">
 				<div class="gsqkwz">
@@ -249,7 +254,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href=#>登录</a> 后查看企业联系方式</div> -->
+		<div class="mustlogin" style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="in_exhibit_login.html">登录</a> 后查看企业联系方式</div>
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 

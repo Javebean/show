@@ -113,8 +113,8 @@ label.error {
      </div>
 
 
-     <div class="wssbbt required_label" style=" margin-top:60px;background-position: 60px 0px;  background-repeat: no-repeat;">2.参展单位简介</div>
-     <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="orgIntro" cols="" rows=""></textarea>
+     <div class="wssbbt required_label" style=" margin-top:60px;background-position: 60px 0px;  background-repeat: no-repeat;">2.参展单位及产品简介(请在400字以内)</div>
+     <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" id="introtextarea" name="orgIntro" cols="" rows="" onKeyDown="textdown(event)" onKeyUp="textup()"></textarea>
 
      <div class="wssbbt" style=" margin-top:10px;font-size: 17px;">企业logo上传</div>
      <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
@@ -260,5 +260,31 @@ o = opt[i].innerHTML;
 $(this).find('label').html(o);
 }).trigger('change');
 </script>
+
+
+<SCRIPT type="text/javascript">
+function textdown(e) {
+    textevent = e;
+    if (textevent.keyCode == 8) {
+        return;
+    }
+    if (document.getElementById('introtextarea').value.length >= 400) {
+			jAlert("对不起，此处限字400")
+        if (!document.all) {
+            textevent.preventDefault();
+        } else {
+            textevent.returnValue = false;
+        }
+    }
+}
+function textup() {
+    var s = document.getElementById('introtextarea').value;
+    //判断ID为text的文本区域字数是否超过100个
+    if (s.length > 400) {
+        document.getElementById('introtextarea').value = s.substring(0, 400);
+    }
+}
+</SCRIPT>
+
 
 </html>
