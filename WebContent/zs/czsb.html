@@ -29,7 +29,9 @@ function checklogin()
 		//	location.href ="#toptag";
 		//		alert(usrname+"登陆成功");
 			//	$(".yonghu").removeClass("hide");
-			$(".yonghu").text("欢迎您，" + usrname);
+			$(".yonghu").text("欢迎," + usrname);
+			$(".logout").removeClass("hide");
+			setCookie("user",usrname);
 			document.getElementById('logintextfield001').value = "";
 			document.getElementById('logintextfield002').value = "";
 		}
@@ -45,6 +47,13 @@ function checklogin()
 	Exhibitor.login(usrnameValue,paswordValue,func);
 	return true;
 }
+
+function setCookie(name,value)
+{
+	var exp = new Date();
+	exp.setTime(exp.getTime() + 60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
 </script>
 
    <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">参展申报</font></div>
@@ -59,7 +68,7 @@ function checklogin()
     </div>
     <div class="login">
      <div class="login_nr"><span class="yhm left">用户名：</span><input id='logintextfield001' style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
-     <div class="login_nr"><span class="yhm left">密&nbsp;&nbsp;码：</span><input id ='logintextfield002' style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
+     <div class="login_nr"><span class="yhm left">密&nbsp;&nbsp;码：</span><input id ='logintextfield002' style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="password" /></div>
      <div class="login_button">
 			<input style=" width:74px; height:29px; background:url(images/login.jpg); float:left; border:0; padding:0; cursor:pointer" name="" type="button" onclick="checklogin();" />
 

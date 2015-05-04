@@ -12,7 +12,7 @@
 	<script src="jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
 	<script type="text/javascript" src="jslib/animateBackground-plugin.js"></script>
 	<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
-	
+
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
@@ -151,7 +151,10 @@
 					location.href ="#toptag";
 				//	alert(usrname+"登陆成功");
 				//	$(".yonghu").removeClass("hide");
-					$(".yonghu").text("欢迎您，" + usrname);
+
+					$(".yonghu").text("欢迎," + usrname);
+					$(".logout").removeClass("hide");
+					setCookie("user",usrname);
 				}
 
 			}
@@ -161,6 +164,15 @@
 			Exhibitor.login(usrnameValue,paswordValue,func);
 			return true;
 		}
+
+		function setCookie(name,value)
+	{
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() + 60*60*1000);
+	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+
+
 	</script>
 	<title>连博会</title>
 	<style type="">
@@ -261,7 +273,7 @@
 		</div>
 		<div class="login right">
 			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
-			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='密码'}" onClick="if(this.value=='密码')this.value='';" value="密码"  name=""  id= "login002" type="text" />
+			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
 			<div class="button">
 				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
 				<input  style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>

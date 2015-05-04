@@ -17,8 +17,17 @@ $(document).ready(function(){
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
   $(".menu_Left").click(loadContent);
+  function loadContent(){
+    $(".menu_Left").removeClass("menu_active");
+    $(this).addClass("menu_active");
+    var url = $(this).attr("eurl");
+    $(".nymain_right").load(url);
+  }
 });
 </script>
+
+
+
 <body>
 
   <div class="header">

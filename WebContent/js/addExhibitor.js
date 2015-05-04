@@ -14,7 +14,7 @@ $(document).ready(function(){
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content"];
-	 
+
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$(".add_trans").click(function(){
 		addItemServ(this,trans_type_html);
 	});
-	
+
 	pageInit();
 	function pageInit(){
 		for(var i=0;i<CON_SCENE_TYPE.length;i++){
@@ -42,18 +42,18 @@ $(document).ready(function(){
 		$(".sceneserv select").append(scene_type_html);
 		$(".transserv select").append(trans_type_html);
 	}
-	
+
 	//test
 	$(".test_btn").click(function(){
 		var visitor = getDymiTableData(".visitors", visitorParams);
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		getFormdata("regForm");
 	});
-	
+
 	function deleteItem(){
 		$(this).parent().parent().parent().remove();
 	}
-	
+
 	function addItem(obj, count){
 		var html = '<tr class="item_row">';
 		var cell = '<td><div align="center"><input class="cell"/></div></td>';
@@ -61,27 +61,27 @@ $(document).ready(function(){
 			html += cell;
 		}
 		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
-		
+
 		$(obj).parent().prev().append(html.replace(/undefined/g,""));
 		$(".delete_item").click(deleteItem);
 	}
-	
+
 	function addItemServ(obj,selectHtml){
 		var html = '<tr class="item_row">';
 		html += '<td><div align="center"><select class="select">'+selectHtml+
 				'</select></div></td><td><div align="center"><input class="cell"/></div></td>';
 		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
-		
+
 		$(obj).parent().prev().append(html.replace(/undefined/g,""));
 		$(".delete_item").click(deleteItem);
 	}
-	
+
 	function getDymiTableData(tableID, params){
 		var itemList = [];
 		$(tableID+" .item_row").each(function(){
 			var item = {};
 			var row = $(this);
-			
+
 			if(row.find("input").eq(0).val()!=""){
 				for(var i=0;i<params.length;i++){
 					item[params[i]] = row.find("input").eq(i).val();
@@ -91,13 +91,13 @@ $(document).ready(function(){
 		});
 		return itemList;
 	}
-	
+
 	function getDymiTableDataServ(tableID, params){
 		var itemList = [];
 		$(tableID+" .item_row").each(function(){
 			var item = {};
 			var row = $(this);
-			
+
 			if(row.find("input").eq(0).val()!=""){
 				item[params[0]] = row.find("select").val();
 				item[params[1]] = row.find("input").eq(0).val();
@@ -106,31 +106,31 @@ $(document).ready(function(){
 		});
 		return itemList;
 	}
-	
+
 	function saveForm(){
 		if(!$("#form").valid({
-			 rules: { 
-				sex: "required" 
-			}, 
-				
-			errorPlacement: function(error, element) { //指定错误信息位置 
-				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox 
-					var eid = element.attr('name'); //获取元素的name属性 
-					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面 
+			 rules: {
+				sex: "required"
+			},
+
+			errorPlacement: function(error, element) { //指定错误信息位置
+				if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox
+					var eid = element.attr('name'); //获取元素的name属性
+					error.insertAfter(element.parent().parent().parent()); //将错误信息添加当前元素的父结点后面
 				} else if(element.is('textarea')){
 					error.insertAfter(element);
-				} else { 
+				} else {
 					if(element.parent().hasClass("right")){
 						error.css("margin-bottom","-20px");
 						error.css("margin-left","360px");
 					}
 					if(element.parent().parent().hasClass("tablezh")){
-						error.insertAfter(element.parent().parent()); 
+						error.insertAfter(element.parent().parent());
 					} else {
-						error.insertAfter(element.parent()); 
+						error.insertAfter(element.parent());
 					}
 				}
-			}, 		
+			},
 		})){
 			$(window).scrollTop(400);
 			jAlert("请检查输入内容", "信息");
@@ -145,7 +145,7 @@ $(document).ready(function(){
 			jAlert("请输入标摊数量", "信息");
 			return;
 		}
-		
+
 		if(isNaN(parseInt(btsl))){
 			$(window).scrollTop(1300);
 			jAlert("标摊数量请输入整数", "信息");
@@ -153,11 +153,11 @@ $(document).ready(function(){
 		} else {
 			formData.btsl = parseInt(btsl);
 		}
-		
+
 		if(picFlag_logo){
 			formData.logo = topicId_logo + ".jpg";
 		}
-		
+
 		//获取展品和参展人员数据
 		var visitor = getDymiTableData(".visitors", visitorParams);
 		var displayItem = getDymiTableData(".showitems", itemParams);
@@ -177,7 +177,7 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
+
 		//获取参展服务数据
 		var transportation = getDymiTableDataServ(".transserv", transParams);
 		for(var i=0;i<transportation.length;i++){
@@ -197,30 +197,31 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
+
 		var construction = [];
 		if(picFlag){
 			var cdata = {};
 			cdata.picture = topicId + ".jpg";
 			construction.push(cdata);
 		}
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
-			
+
 			if(data.result == true){
 				//location.href="ma_zlzx.jsp?menu=1";
 				$(".userForm").hide();
 				$("#login_id").text(data.username);
 				$("#login_pass").text(data.password);
 				$(".resultMsg").show();
+
 			}else{
 				jAlert(data.message, "信息");
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
 	}
-	
+
 	function getFormdata(formName){
 		var form = document.forms[formName];
 		var entryNames = [];
@@ -231,16 +232,18 @@ $(document).ready(function(){
 				}
 			}
 		}
-		
+
 		var data = {};
 		for(var i=0;i<entryNames.length;i++){
 			var key = entryNames[i];
 			data[key] = form[key].value;
 		}
-		
+
 		return data;
 	}
-	
+
+
+
 	setTimeout(function(){
 		$("#uploadify").uploadify({
 			'swf'      : 'uploadify.swf',
@@ -249,7 +252,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'sizeLimit' : 10485760,
-			
+
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
 			},
@@ -261,7 +264,7 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
+
 	setTimeout(function(){
 		$("#uploadify_logo").uploadify({
 			'swf'      : 'uploadify.swf',
@@ -270,7 +273,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'sizeLimit' : 3000000,
-			
+
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
 			},

@@ -1,12 +1,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
 
+  <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
+
+
+  <title>连博会</title>
+
+</head>
+<style>
+/*.yonghu{ font-size:10px; color:#007DC9;margin:0 0 0 0;  left no-repeat; padding-left:60px}*/
+.yonghu{ font-size:10px; color:#007DC9;margin:0 0 0 0;  float:left}
+
+</style>
+<style>
+.logout{margin:0 0 0 0;  float:left}
+.hide{
+	display:none;
+}
+</style>
+<script>
+$(document).ready(function(){
+
+  username = getCookie("user");
+  if(username)
+  {
+    $(".yonghu").text("欢迎," + username);
+    $(".logout").removeClass("hide");
+  }
+
+  $(".logout").click(function(){
+    $(".yonghu").text("");
+
+    delCookie("user");
+    $(".logout").addClass("hide");
+    location.reload();
+  });
+});
+</script>
+
+
+<script>
+//写cookies
+
+function setCookie(name,value)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+//读取cookies
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+function delCookie(name)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+</script>
+
+
+<body>
   <div class="top">
    <a class="logo left" href="#"><img src="images/logo.png" /></a>
    <div class="tel_ban right">
-     <span class="yonghu">_</span>
+     <span class="yonghu"></span>
+
+  <div class="logout hide"><img src="images/logout.png" /></div>
     <div class="ban"><a class="ch" href="index.html"><img src="images/ch.jpg" /></a><a class="en" href="eng/index.html"><img src="images/en.jpg" /></a></div>
 
     <div class="tel"><img src="images/tel.jpg" /></div>
@@ -23,5 +99,5 @@
     <li class="navmy"><a class="navmya" href="in_about.html">关于展会</a></li>
    </ul>
   </div>
-
+</body>
 </html>
