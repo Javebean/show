@@ -1,7 +1,6 @@
 package com.novahome.servlet.phone;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -39,6 +38,12 @@ private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
+	}
+	
+	private void process(HttpServletRequest request,
+			HttpServletResponse response) throws IOException
+	{
 		String uri = request.getRequestURI();
 		int subStart = uri.lastIndexOf("/");
 		int subEnd = uri.lastIndexOf(".");
@@ -52,7 +57,7 @@ private static final long serialVersionUID = 1L;
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
 		}
-			
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain;charset=UTF-8");
 		if(path.equals(METHOD_NAMES[0]))
 		{
@@ -104,7 +109,8 @@ private static final long serialVersionUID = 1L;
 			if(method != null)
 			{
 				try {
-					String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
+				//	String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
+					String value = str[0];
 					method.invoke(visitor, value);
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -115,10 +121,10 @@ private static final long serialVersionUID = 1L;
 				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (UnsupportedEncodingException e) {
+				} /*catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/ 
 			}
 		}
 		String buyerStr = request.getParameter("buyer");
@@ -159,7 +165,7 @@ private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		process(request, response);
 	}
 
 }

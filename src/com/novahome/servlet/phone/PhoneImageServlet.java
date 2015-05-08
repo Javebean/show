@@ -18,6 +18,9 @@ import org.apache.commons.fileupload.FileUploadBase;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONObject;
+
+import com.novahome.utils.HtmlParser;
 
 public class PhoneImageServlet extends HttpServlet {
 
@@ -29,16 +32,17 @@ public class PhoneImageServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			response.setCharacterEncoding("UTF-8");
 			System.out.println("IP:" + request.getRemoteAddr());
 			// 1、创建工厂类：DiskFileItemFactory
 			DiskFileItemFactory facotry = new DiskFileItemFactory();
-			String tempDir = getServletContext().getRealPath("/resources/tmp");
+			String tempDir = getServletContext().getRealPath("/resources/topicimages");
 			facotry.setRepository(new File(tempDir));//设置临时文件存放目录
 			// 2、创建核心解析类：ServletFileUpload
 			ServletFileUpload upload = new ServletFileUpload(facotry);
 			upload.setHeaderEncoding("UTF-8");// 解决上传的文件名乱码
-			upload.setFileSizeMax(1024 * 1024 * 1024);// 单个文件上传最大值是1M
-			upload.setSizeMax(2048 * 1024 * 1024);//文件上传的总大小限制
+			upload.setFileSizeMax(2 * 1024 * 1024);// 单个文件上传最大值是2M
+			upload.setSizeMax(5 * 1024 * 1024);//文件上传的总大小限制
 
 			// 3、判断用户的表单提交方式是不是multipart/form-data
 			boolean bb = upload.isMultipartContent(request);
@@ -81,21 +85,35 @@ public class PhoneImageServlet extends HttpServlet {
 					in.close();
 					out.close();
 					item.delete();//删除临时文件
+					JSONObject obj = new JSONObject();
+					obj.put("result", true);
+					obj.put("path", newFileName);
+					response.getWriter().write(obj.toString());
 				}
+				
 			}
+			
 		}catch(FileUploadBase.FileSizeLimitExceededException e){
-			request.setAttribute("message", "单个文件大小不能超出5M");
-			request.getRequestDispatcher("/message.jsp").forward(request,
-					response);
+			e.printStackTrace();
+			JSONObject obj = new JSONObject();
+			obj.put("result", false);
+			obj.put("errorno", 1);
+			obj.put("errormsg", "the picture is oversize");
+			response.getWriter().write(obj.toString());
 		}catch(FileUploadBase.SizeLimitExceededException e){
-			request.setAttribute("message", "总文件大小不能超出7M");
-			request.getRequestDispatcher("/message.jsp").forward(request,
-					response);
+			e.printStackTrace();
+			JSONObject obj = new JSONObject();
+			obj.put("result", false);
+			obj.put("errorno", 2);
+			obj.put("errormsg", "the content is oversize");
+			response.getWriter().write(obj.toString());
 	}catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("message", "上传失败");
-			request.getRequestDispatcher("/message.jsp").forward(request,
-					response);
+			JSONObject obj = new JSONObject();
+			obj.put("result", false);
+			obj.put("errorno", 3);
+			obj.put("errormsg", "uploading fails");
+			response.getWriter().write(obj.toString());
 		}
 	}
 

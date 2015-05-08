@@ -3,6 +3,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+
+
+
+
   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">商旅服务</a> > <font style=" font-weight:bold; color:#1F9AD6">火车票查询及预订</font></div>
   <div class="nymainnr">
     <div class="dp_top">
@@ -32,10 +36,30 @@
 
 
       </div>
-      <div class="dp_main_right right"><img src="downloadfile/sl/map.png" /></div>
+      <div id= "allmap" ></div>
+      <!-- <div id= "allmap" class="dp_main_right right"><img src="downloadfile/sl/map.png" /></div> -->
     </div>
 
 
   </div>
 
   </html>
+
+  <script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var start = "江苏省连云港市工业展览中心";
+    var end = "连云港火车站";
+    map.centerAndZoom(new BMap.Point(119.25456, 34.715693), 11);
+    map.clearOverlays();
+    map.enableScrollWheelZoom(true);
+    var routePolicy = [BMAP_DRIVING_POLICY_LEAST_TIME,BMAP_DRIVING_POLICY_LEAST_DISTANCE,BMAP_DRIVING_POLICY_AVOID_HIGHWAYS];
+    search(start,end,routePolicy[0]);
+    function search(start,end,route){
+      var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true},policy: route});
+      driving.search(start,end);
+    }
+    //三种驾车策略：最少时间，最短距离，避开高速
+
+
+  </script>

@@ -131,9 +131,17 @@ vList = [visitor01, visitor02];
     
     function updateState_onclick(){
 	   
-		var id ="4028b8814cb188b7014cb18aa0c8000b";
+		var id ="4028b8814cf9ddcd014cfa1da5c5000b";
 		var state =2;
     	Exhibitor.updateExhibitorState(id,state);
+    }
+    
+    function updateStateReason_onclick(){
+	   
+		var id ="4028b8814cf9ddcd014cfa1da5c5000b";
+		var state =2;
+		var reason ="没有详细介绍内容";
+    	Exhibitor.updateExhibitorStateReason(id,state,reason);
     }
     
     function delete_onclick(){
@@ -154,6 +162,8 @@ vList = [visitor01, visitor02];
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
 	<input type="button" value="更新状态"  onclick="javascript:updateState_onclick();" />
+	<input type="button" value="更新状态和驳回理由"  onclick="javascript:updateStateReason_onclick();" />
+	
 	
 </body>
 </html>

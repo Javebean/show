@@ -33,6 +33,7 @@ import com.novahome.data.pojo.Exhibitors;
 import com.novahome.data.pojo.SceneServ;
 import com.novahome.data.pojo.Transportation;
 import com.novahome.data.pojo.Visitor;
+import com.novahome.utils.MailUtil;
 
 
 @Service("exhibitorsService")
@@ -56,6 +57,11 @@ public class ExhibitorsService {
 	private VisitorDao visitorDao;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
+	private static final String SUBJECT_OBJECTION = "抱歉，您的连博会展商申请被驳回";
+	private static final String htmlPart1 = "<html><p>您好，</p><p>&nbsp; 抱歉，由于以下原因，您的连博会展商申请被驳回:</p><p><strong>";
+	private static final String htmlPart2 = "</strong></p><p>请您根据驳回原因重新申请或者联系工作人员,请勿回复此邮件，谢谢！</p></html>";
+	private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+
 	
 	public String getExhibitorsTotalCount()
 	{
@@ -397,6 +403,27 @@ public class ExhibitorsService {
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
 		ex.setState(state);
+		return true;
+	}
+	
+	public boolean updateExhibitorStateReason(String id, int state, String reason)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		ex.setState(state);
+		if(state == 2)
+		{
+			ex.setReason(reason);
+			String email = ex.getEmail();
+			if(email != null && email.matches(EMAIL_REGEX))  
+			{
+				logger.info("发送邮件...");
+				String content = htmlPart1 + reason + htmlPart2;
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, SUBJECT_OBJECTION, content);
+			}
+		}
+		else
+			ex.setReason("");
 		return true;
 	}
 	

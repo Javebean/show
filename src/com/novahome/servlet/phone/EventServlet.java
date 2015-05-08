@@ -41,6 +41,12 @@ public class EventServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
+	}
+
+	private void process(HttpServletRequest request,
+			HttpServletResponse response) throws IOException
+	{
 		String uri = request.getRequestURI();
 		int subStart = uri.lastIndexOf("/");
 		int subEnd = uri.lastIndexOf(".");
@@ -98,9 +104,9 @@ public class EventServlet extends HttpServlet{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
 		}
-		
+			
 	}
-
+	
 	private Event processEventParams(HttpServletRequest request)
 	{
 		Event event = new Event();
@@ -149,5 +155,11 @@ public class EventServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 		return method;
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
 	}
 }

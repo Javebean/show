@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -50,6 +49,12 @@ public class AudienceServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
+	}
+	
+	private void process(HttpServletRequest request,
+			HttpServletResponse response) throws IOException
+	{
 		String uri = request.getRequestURI();
 		int subStart = uri.lastIndexOf("/");
 		int subEnd = uri.lastIndexOf(".");
@@ -100,7 +105,7 @@ public class AudienceServlet extends HttpServlet{
 		{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
-		}
+		}	
 	}
 	
 	private Audience processAudienceParams(HttpServletRequest request)
@@ -164,7 +169,7 @@ public class AudienceServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		process(request, response);
 	}
 
 }

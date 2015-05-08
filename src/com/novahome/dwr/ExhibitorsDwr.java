@@ -168,6 +168,16 @@ public class ExhibitorsDwr {
 	}
 
 	/**
+	 * 更新展商状态信息和设置驳回原因
+	 * @param exhibitor
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateExhibitorStateReason(String id, int state, String reason)
+	{
+		return exhibitorsService.updateExhibitorStateReason(id, state, reason);
+	}
+	/**
 	 * 展商登陆
 	 * @param userName
 	 * @param password

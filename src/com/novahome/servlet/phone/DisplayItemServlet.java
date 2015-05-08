@@ -106,7 +106,7 @@ public class DisplayItemServlet extends HttpServlet{
 		width = processTransfer(widStr);
 		height = processTransfer(hgtStr);
 		weight = processTransfer(wgtStr);
-		if(numStr != null || !numStr.isEmpty())
+		if(numStr != null && !numStr.isEmpty())
 		{
 			number = Integer.parseInt(numStr);
 		}
@@ -126,7 +126,7 @@ public class DisplayItemServlet extends HttpServlet{
 	private double processTransfer(String param)
 	{
 		double ret;
-		if(param != null || !param.isEmpty())
+		if(param != null && !param.isEmpty())
 		{
 			ret = Double.parseDouble(param);
 		}
