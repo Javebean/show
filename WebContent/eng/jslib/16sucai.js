@@ -22,6 +22,9 @@ function loadContent(){
 	if ($('#uploadify').length > 0) {
 		$('#uploadify').uploadify('destroy');
 	}
+	if ($('#uploadify_logo').length > 0) {
+		$('#uploadify_logo').uploadify('destroy');
+	}
     $(".menu_Left").removeClass("menu_active");
     $(this).addClass("menu_active");
     var url = $(this).attr("eurl");
