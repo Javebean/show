@@ -67,6 +67,7 @@ public class AudienceServlet extends HttpServlet{
 			return;
 		}
 		
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain;charset=UTF-8");
 		if(path.equals(METHOD_NAMES[0]))
 		{
@@ -122,7 +123,7 @@ public class AudienceServlet extends HttpServlet{
 			if(method != null)
 			{
 				try {
-					String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
+					String value = str[0];
 					method.invoke(au, value);
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -133,10 +134,7 @@ public class AudienceServlet extends HttpServlet{
 				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
 		}
 		String buyerStr = request.getParameter("buyer");

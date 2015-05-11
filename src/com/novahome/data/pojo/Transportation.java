@@ -18,6 +18,7 @@ public class Transportation {
 	private String eid;	//申请展商id
 	private String type;	//运输服务申请项目
 	private int content=0;	//运输服务申请具体内容
+	private int time =0;
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -46,4 +47,12 @@ public class Transportation {
 	public void setContent(int content) {
 		this.content = content;
 	}
+	public int getTime() {
+		return time;
+	}
+	public void setTime(int time) {
+		this.time = time;
+	}
+	
+	
 }
