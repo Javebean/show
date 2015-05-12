@@ -185,46 +185,33 @@ label.error {
 
      <div class="wssbbt" style=" margin-top:60px">6.参展服务</div>
      <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">现场服务</div>
-	<table class="gridtable sceneserv" width="520">
-		<tr>
-		  <td><div align="center">服务类别</div></td>
-		  <td><div align="center">数量（个数）</div></td>
-		  <td></td>
-		</tr>
-		<tr class="item_row">
-		  <td><div align="center">
-		  	<select class="select">
-	        </select>
-		  </div></td>
-		  <td><div align="center"><input class="cell"/></div></td>
-		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
-		</tr>
-		</table>
-     <div class="button3">
-      <input class="add_scene" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     <a class="videoimg addSceneBtn">
+     点此预订您的现场服务 >>
+     </a>
+     <div class="scene_item_selected">
+     <!-- 已选的物品 -->
      </div>
-
-     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">货运物流</div>
-     <table class="gridtable transserv" width="520">
-		<tr>
-		  <td><div align="center">服务类别</div></td>
-		  <td><div align="center">数量（小时）</div></td>
-		  <td></td>
-		</tr>
-		<tr class="item_row">
-		  <td><div align="center">
-		  	<select class="select">
-	        </select>
-		  </div></td>
-		  <td><div align="center"><input class="cell"/></div></td>
-		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
-		</tr>
-		</table>
-     <div class="button3">
-      <input class="add_trans" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+     <a class="update_scene_item" style="display:none;"> 继续选择更多现场服务</a>
+     
+     
+     <div class="wssbbt" style=" margin-top:20px;padding-left:50px;font-size: 17px;">货运物流</div>
+     <div class="trans_select_box">
      </div>
-
-     <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">施工管理</div>
+     
+     <div class="hy" index="0">
+       <div class="hy1" style="margin-top:16px;">
+        <span class="hyspan"><input style=" display:block; float:left; padding:0; margin-top:10px" name="" type="checkbox" value="" /><span style="display:block; float:left; margin-left:20px"><strong>现场叉车服务</strong></span></span>
+        <span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>
+        <span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>
+       </div>
+       <div class="hy1">
+        <span class="hyspan" style=" padding-left:40px; width:120px">单位：3吨叉车</span>
+        <span class="hyspan">单价（元）：100元/小时</span>
+        <span class="hyspan">备注：不少于2小时</span>
+       </div>
+     </div>
+     
+     <div class="wssbbt" style=" margin-top:20px;padding-left:50px;font-size: 17px;">施工管理</div>
      <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
 	     <div class="picUpload">
 			<div style="margin-bottom:10px;"><img id="topic_image" class="thumbnail" width="300" height="200" src=""/>施工图片效果</div>
@@ -242,6 +229,19 @@ label.error {
 	   			<h3>用户名：<span id="login_id"></span></h3>
 	   			<h3>密     码：<span id="login_pass"></span></h3>
 	   </div>
+	   
+<div style="display:none;">
+	  <div id="sceneSelectBox">
+	  	  <div class="title_info">点击图片选取物品</div>
+	  	  <div class="sceneItemBox">
+		  <!-- 现场服务物品选择 -->
+		  </div>
+		  
+		  <div class="clear"></div>
+		  <input class="scene_ok_btn" name="" type="button">
+	</div>
+</div>
+	   
 
 <script type="text/javascript">
 $(".sel_wrap").on("change", function() {

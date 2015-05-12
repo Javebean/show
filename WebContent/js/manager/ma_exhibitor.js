@@ -89,7 +89,7 @@ $(document).ready(function(){
 				for(var i=0;i<data.sceneServ.length;i++){
 					var sdata = data.sceneServ[i];
 					html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
-				          '<td><span>'+sdata.content+'</span></td></tr>';
+				          '<td colspan="2"><span>'+sdata.content+'</span></td></tr>';
 				}
 				$(".scene_header").after(html);
 			}
@@ -98,7 +98,8 @@ $(document).ready(function(){
 				for(var i=0;i<data.transportation.length;i++){
 					var sdata = data.transportation[i];
 					html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
-				          '<td><span>'+sdata.content+'</span></td></tr>';
+				          '<td><span>'+sdata.content+'</span></td>'+
+				          '<td><span>'+sdata.time+'</span></td></tr>';
 				}
 				$(".trans_header").after(html);
 			}
@@ -119,7 +120,7 @@ $(document).ready(function(){
 			
 			$.colorbox({
 				inline : true,
-				innerWidth:800,
+				innerWidth:860,
 				innerHeight:500,
 				href : "#popup_box",
 				close : "关闭"

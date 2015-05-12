@@ -13,7 +13,7 @@ $(document).ready(function(){
 	var itemParams = ["name","version","number","length","width","height","weight"];
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
-	var transParams = ["type","content"];
+	var transParams = ["type","content","time"];
 
 	//event binder
 	$("#submitForm").click(saveForm);
@@ -24,23 +24,87 @@ $(document).ready(function(){
 	$(".add_visitor").click(function(){
 		addItem(this,4);
 	});
-	$(".add_scene").click(function(){
-		addItemServ(this,scene_type_html);
-	});
-	$(".add_trans").click(function(){
-		addItemServ(this,trans_type_html);
-	});
+	$(".addSceneBtn").click(showSceneBox);
+	
+	function showSceneBox(){
+		$.colorbox({
+			inline : true,
+			innerWidth:970,
+			href : "#sceneSelectBox",
+			close : "关闭"
+		});
+	}
 
 	pageInit();
+	
+	//初始化现场服务和货运物流
 	function pageInit(){
+		//现场服务
 		for(var i=0;i<CON_SCENE_TYPE.length;i++){
-			scene_type_html += '<option value="'+CON_SCENE_TYPE[i]+'">'+CON_SCENE_TYPE[i]+'</option>';
+			var item = CON_SCENE_TYPE[i];
+			scene_type_html += '<div class="oneItem" index="'+i+'">'+
+				   '<div class="itemImage"><img src="'+SCENE_IMAGE_BASE+item.image+'" /></div>'+
+			       '<div class="itemName">'+item.name+'</div>'+
+			       '<div class="itemInfo">'+item.info[0]+'<br/>'+item.info[1]+'<br/>'+item.info[2]+'</div></div>';
 		}
+		$(".sceneItemBox").append(scene_type_html);
+		
+		$(".oneItem").click(function(){
+			if($(this).hasClass("item_on")){
+				$(this).removeClass("item_on");
+			} else {
+				$(this).addClass("item_on");
+			}
+		});
+		
+		//添加选中的物品到页面
+		$(".scene_ok_btn").click(function(){
+			var html = '<div class="fwts">您已经选择了以下现场服务</div>';
+			$(".sceneItemBox .item_on").each(function(){
+				var index = $(this).attr("index");
+				var item = CON_SCENE_TYPE[index];
+				html+= '<div class="fwnr" index="'+index+'" itemname="'+item.name+'">'+
+					  '<input type="button" class="remove_item"/><span class="ydcp"><img src="'+SCENE_IMAGE_BASE+item.image+'" /></span>'+
+					  '<div class="ydxq"><div class="hy2" style="margin-top:16px;"><span class="hyspan2"><span class="fwnr_span1"><strong>名称：'+item.name+'</strong></span></span>'+
+				        '<span class="hyspan2"><span class="fwnr_span1"><strong>数量：</strong></span><input class="item_count" type="text" value=1 /><span class="fwnr_span2"><strong>个</strong></span></span>'+
+				       '</div><div class="hy2"><span class="hyspan2">'+item.info[0]+'</span>'+
+				       '<span class="hyspan2">'+item.info[1]+'</span>'+
+				       '<span class="hyspan2">'+item.info[2]+'</span></div></div></div>';
+			});
+			
+			$(".scene_item_selected").html(html);
+			
+			$(".scene_item_selected .remove_item").click(function(){
+				$(this).parent().remove();
+			});
+			
+			$(".addSceneBtn").hide();
+			$(".update_scene_item").show();
+			$.colorbox.close();
+		});
+		
+		$(".update_scene_item").click(function(){
+			$(".sceneItemBox .item_on").removeClass("item_on");
+			$(".fwnr").each(function(){
+				var index = $(this).attr("index");
+				$(".sceneItemBox .oneItem:eq("+index+")").addClass("item_on");
+			});
+			showSceneBox();
+		});
+		
+		//货运物流
+		var trans_type_html = "";
 		for(var i=0;i<CON_TRANS_TYPE.length;i++){
-			trans_type_html += '<option value="'+CON_TRANS_TYPE[i]+'">'+CON_TRANS_TYPE[i]+'</option>';
+			var item = CON_TRANS_TYPE[i];
+			trans_type_html += '<div class="hy" index="'+i+'" itemname="'+item.name+'">'+
+			       '<div class="hy1" style="margin-top:16px;"><span class="hyspan"><input class="trans_check" type="checkbox" value="" /><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
+	        '<span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>'+
+	        '<span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>'+
+	       '</div><div class="hy1"><span class="hyspan" style=" padding-left:40px; width:120px">'+item.info[0]+'</span>'+
+	        '<span class="hyspan">'+item.info[1]+'</span>'+
+	        '<span class="hyspan">'+item.info[2]+'</span></div></div>';
 		}
-		$(".sceneserv select").append(scene_type_html);
-		$(".transserv select").append(trans_type_html);
+		$(".trans_select_box").html(trans_type_html);
 	}
 
 	//test
@@ -66,16 +130,6 @@ $(document).ready(function(){
 		$(".delete_item").click(deleteItem);
 	}
 
-	function addItemServ(obj,selectHtml){
-		var html = '<tr class="item_row">';
-		html += '<td><div align="center"><select class="select">'+selectHtml+
-				'</select></div></td><td><div align="center"><input class="cell"/></div></td>';
-		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
-
-		$(obj).parent().prev().append(html.replace(/undefined/g,""));
-		$(".delete_item").click(deleteItem);
-	}
-
 	function getDymiTableData(tableID, params){
 		var itemList = [];
 		$(tableID+" .item_row").each(function(){
@@ -92,15 +146,31 @@ $(document).ready(function(){
 		return itemList;
 	}
 
-	function getDymiTableDataServ(tableID, params){
+	function getDymiTableDataServ(){
 		var itemList = [];
-		$(tableID+" .item_row").each(function(){
+		$(".fwnr").each(function(){
 			var item = {};
 			var row = $(this);
 
-			if(row.find("input").eq(0).val()!=""){
-				item[params[0]] = row.find("select").val();
-				item[params[1]] = row.find("input").eq(0).val();
+			if(row.find(".item_count").val()!=""){
+				item[sceneParams[0]] = row.attr("itemname");
+				item[sceneParams[1]] = row.find(".item_count").val();
+				itemList.push(item);
+			}
+		});
+		return itemList;
+	}
+	
+	function getDymiTableDataTrans(){
+		var itemList = [];
+		$(".hy").each(function(){
+			var item = {};
+			var row = $(this);
+
+			if(row.find(".trans_check").is(':checked')){
+				item[transParams[0]] = row.attr("itemname");
+				item[transParams[1]] = row.find(".trans_count").val();
+				item[transParams[2]] = row.find(".trans_time").val();
 				itemList.push(item);
 			}
 		});
@@ -179,21 +249,22 @@ $(document).ready(function(){
 		}
 
 		//获取参展服务数据
-		var transportation = getDymiTableDataServ(".transserv", transParams);
-		for(var i=0;i<transportation.length;i++){
-			var item = transportation[i];
-			if(!reg_num.test(item.content) && item.content!=""){
-				$(window).scrollTop(2400);
-				jAlert("货运物流数量请输入整数", "信息");
-				return;
-			}
-		}
-		var sceneServ = getDymiTableDataServ(".sceneserv", sceneParams);
+		var sceneServ = getDymiTableDataServ();
 		for(var i=0;i<sceneServ.length;i++){
 			var item = sceneServ[i];
 			if(!reg_num.test(item.content) && item.content!=""){
 				$(window).scrollTop(2200);
 				jAlert("现场服务数量请输入整数", "信息");
+				return;
+			}
+		}
+		
+		var transportation = getDymiTableDataTrans();
+		for(var i=0;i<transportation.length;i++){
+			var item = transportation[i];
+			if(!reg_num.test(item.content) || item.content=="" || !reg_num.test(item.time) || item.time==""){
+				$(window).scrollTop(2400);
+				jAlert("货运物流数量，时间请输入整数", "信息");
 				return;
 			}
 		}

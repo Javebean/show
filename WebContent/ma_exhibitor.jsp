@@ -166,31 +166,32 @@
 					
 					<table class="table table-bordered exb_service">
 						<tr>
-				          <th colspan="2">参展服务</th>
+				          <th colspan="3">参展服务</th>
 				        </tr>
 				         <!----------- 现场服务 ----------------->
 				        <tr>
-							<th colspan="2" class="t_sub_header">现场服务</th>
+							<th colspan="3" class="t_sub_header">现场服务</th>
 				        </tr>
 				        <tr class="scene_header">
 				          <td class="text-nowrap" width="50%">服务类别</td>
-				          <td class="text-nowrap" width="50%">数量</td>
+				          <td colspan="2" class="text-nowrap" width="50%">数量</td>
 				        </tr>
 				        <!----------- 货运物流 ----------------->
 				         <tr>
-							<th colspan="2" class="t_sub_header">货运物流</th>
+							<th colspan="3" class="t_sub_header">货运物流</th>
 				        </tr>
 				        <tr class="trans_header">
 				          <td class="text-nowrap" width="50%">服务类别</td>
-				          <td class="text-nowrap" width="50%">数量</td>
+				          <td class="text-nowrap" width="25%">数量</td>
+				          <td class="text-nowrap" width="25%">时间</td>
 				        </tr>
 				        
 				         <!----------- 施工管理 ----------------->
 				         <tr>
-							<th colspan="2" class="t_sub_header">施工管理</th>
+							<th colspan="3" class="t_sub_header">施工管理</th>
 				        </tr>
 				        <tr>
-				          <td colspan="2" class="">
+				          <td colspan="3" class="">
 				          	<img id="cons_image" class="thumbnail" width="400" height="300" src=""/>
 				          	<div>施工图片效果</div>
 				          </td>

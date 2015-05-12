@@ -550,3 +550,197 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 
 .return_btn{ display:block; width:71px; height:24px;background:url(../images/fanhui1.jpg);}
 .return_btn:hover{ background:url(../images/fanhui2.jpg)}
+.videoimg {
+  display: block;
+  width: 675px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  margin: 10px 0 0 20px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+  font-size: 16px;
+  font-family: Microsoft YaHei;
+  cursor:pointer;
+}
+
+#sceneSelectBox{
+	width:940px;
+}
+#sceneSelectBox .title_info{
+	width:100%;
+	text-align:center;
+	margin: 5px;
+}
+#sceneSelectBox .oneItem{
+	border: 1px solid #ddd;
+	width: 192px;
+	height: 190px;
+	padding: 10px;
+	float: left;
+  cursor: pointer;
+  margin: 10px 0px 0px 20px;
+}
+#sceneSelectBox .item_on{
+	border: 2px solid red;
+	padding: 9px;
+}
+#sceneSelectBox .itemImage img{
+	border: 1px solid #ddd;
+	width: 126px;
+  	height: 114px;
+}
+#sceneSelectBox .itemImage{
+	padding-left: 32px;
+}
+#sceneSelectBox .itemInfo{
+  color: #545454;
+  font-size: 12px;
+}
+#sceneSelectBox .itemName{
+	font-weight:bold;
+	font-size: 15px;
+	text-align: center;
+    padding: 5px 0px;
+}
+#sceneSelectBox .scene_ok_btn {
+	display: block;
+	width: 150px;
+	height: 40px;
+	background: url(../images/qd.jpg);
+	border: 0;
+	padding: 0;
+	margin: 26px auto 0 auto;
+	cursor: pointer;
+}
+.clear{
+	clear:both;
+}
+.fwts {
+  color: #666;
+  font-size: 15px;
+  font-family: Microsoft Yahei;
+  margin: 10px 0 0 20px;
+}
+.fwnr {
+  width: 711px;
+  height: 155px;
+  border: 1px solid #ccc;
+  margin: 18px auto 0 auto;
+  position: relative;
+}
+.ydcp {
+  display: block;
+  border: 1px solid #ddd;
+  width: 126px;
+  height: 114px;
+  float: left;
+  margin: 19px 0 0 19px;
+}
+.ydxq {
+  width: 503px;
+  height: 116px;
+  float: left;
+  margin: 19px 0 0 19px;
+}
+.hy2 {
+  width: 650px;
+  height: 35px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #6B6B6B;
+}
+.hyspan2 {
+  display: block;
+  height: 35px;
+  float: left;
+  line-height: 35px;
+  margin-right: 20px;
+}
+.update_scene_item {
+  display: block;
+  width: 713px;
+  height: 40px;
+  background: #E3E3E3;
+  text-align: center;
+  line-height: 40px;
+  margin: 23px 0 0 20px;
+  color: #666666;
+  font-size: 16px;
+  font-family: Microsoft YaHei;
+  cursor:pointer;
+}
+.remove_item {
+	display: block;
+	background: url(../images/del.jpg);
+	position: absolute;
+	top: 16px;
+	right: 18px;
+	width: 88px;
+	height: 27px;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.item_count {
+	width: 55px;
+	height: 24px;
+	border: 1px solid #CCC;
+	float: left;
+	padding: 0;
+	margin: 3px 0 0 0;
+	color: #aba8a8;
+	font-size: 12px;
+	line-height: 24px;
+	text-align: center;
+}
+.fwnr_span1{
+	display:block;
+	float:left;
+}
+.fwnr_span2{
+	display:block;
+	float:left;
+	margin-left:4px;
+}
+
+.hy {
+  width: 675px;
+  height: 96px;
+  margin: 18px 0 0 20px;
+  border: 1px solid #CCCCCC;
+}
+.hy1 {
+  width: 650px;
+  height: 35px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #6B6B6B;
+}
+.hyspan {
+  display: block;
+  width: 160px;
+  height: 35px;
+  float: left;
+  line-height: 35px;
+  margin-left: 10px;
+}
+.trans_count,.trans_time {
+	width: 55px;
+	height: 24px;
+	border: 1px solid #CCC;
+	float: left;
+	padding: 0;
+	margin: 3px 0 0 0;
+	color: #aba8a8;
+	font-size: 12px;
+	line-height: 24px;
+	text-align:center;
+}
+.trans_check {
+	display: block;
+	float: left;
+	padding: 0;
+	margin-top: 10px;
+}
