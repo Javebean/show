@@ -2,7 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+	<link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
+
 	<script type="text/javascript" src="../jslib/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../jslib/json2.js"></script>
 	<script type="text/javascript" src="../jslib/jquery.hoverIntent.minified.js"></script>
@@ -100,7 +103,6 @@
 			var date = new Date('2015/09/23 00:00:01');
 	//		var todaystr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' +  now.getDate() + '日'  ;
 
-			var todaystr = (now.getMonth() + 1) + '/' +  now.getDate() + '/' +  now.getFullYear()  ;
 
 			var diff = now.diff(date);
 			var daynum =0;
@@ -123,7 +125,7 @@
 				var obj = $(".t_num i").eq(i);
 				obj.animate({ //滚动动画
 					backgroundPosition :'-10px '+String(y)+'px'
-				}, 800,'swing',function(){}
+				}, 1400,'swing',function(){}
 				);
 			}
 		}
@@ -150,6 +152,8 @@
 					//	alert(usrname+"登陆成功");
 					//	$(".yonghu").removeClass("hide");
 					$(".yonghu").text("welcom，" + usrname);
+				    $(".logout").removeClass("hide");
+					setCookie("user",usrname);
 				}
 
 			}
@@ -159,6 +163,13 @@
 			Exhibitor.login(usrnameValue,paswordValue,func);
 			return true;
 		}
+		
+		function setCookie(name,value)
+	{
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() + 60*60*1000);
+	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
 	</script>
 	<title>连博会</title>
 	<style type="">

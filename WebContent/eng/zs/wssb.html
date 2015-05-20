@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link href="../plugins/uploadify/uploadify.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
+
+    <script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.cn.js"></script>
+	<script type="text/javascript" src="../plugins/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
+
+	<script type='text/javascript' src='../dwr/interface/Visitor.js'></script>
+    <script type="text/javascript" src="../js/addVisitor.js"></script>
+
+<style>
+.tablezh input{
+	 display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;
+}
+.photo1{
+	font-size:14px;
+}
+label.error {
+	margin-left: 28px;
+	width: auto;
+	color: red;
+	font-family:"微软雅黑", "宋体"; font-size:12px;
+	display: block;
+}
+</style>
+   <div class="nyweizhi">Location: <a href="#">Home</a> > <a href="#">Exhibitor</a> > <a href="#">Badge</a> > <font style=" font-weight:bold; color:#1F9AD6">Apply Online</font></div>
+   <div class="nymainnr">
+   <div class="userForm">
+   	<form class="form-horizontal" name="regForm" id="form">
+        <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">Name</span>
+      <input name="name" type="text" class="required"/></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">Gender</span>
+      <input  name="sex" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">Company</span>
+      <input  name="org" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">Position</span>
+      <input  name="position" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left" style=" background:none">Tel</span>
+      <input  name="phone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">Email</span>
+      <input  name="email" type="text" /></div>
+     </div>
+
+     <div class="table3">
+      <span class="table3_left left" style=" background:none">Badge Type</span>
+      <span class="table3_right left">
+        <div class="sel_wrap left" style=" width:574px">
+        <label></label>
+        <select class="select required" name="type" id="c_city">
+        <option value="1">Exhibitor</option>
+        <option value="2" selected="selected">Audience</option>
+        <option value="3">Press</option>
+        </select>
+       </div>
+      </span>
+     </div>
+     </form>
+     <div class="photo1">
+      <div class="picUpload" style="" >
+		<div style="float:left;">
+			Upload your Photo
+			<div>
+				<img id="topic_image" width="168" height="212" src="" style="border:1px solid #aba8a8;"/>
+			</div>
+		</div>
+
+		<div style="float:left;margin-left: 50px;height:169px;">
+			Photo preview:
+			<div style="width:118px;height:149px;overflow: hidden;border:1px solid #aba8a8;">
+				<img id="img_preview" style="width:118px;height:149px;" src="" />
+			</div>
+		</div>
+		<div style="padding-top:10px;clear:both;">image can be cut after uploading pictures</div>
+		<div id="queue"></div>
+	    <input type="file" name="uploadify" id="uploadify" />
+	</div>
+     </div>
+
+     <div class="photo2">
+      <div class="p_buttons">
+       <input id="chuyang" style="display:block; float:left; width:87px; height:27px; background:url(../images/chu_button.jpg); border:0; cursor:pointer; " name="" type="button" />
+      	<input id="submitForm" style="display:block; float:left; width:64px; height:27px; background:url(../images/o_button.jpg); border:0; cursor:pointer; margin-left:13px " name="" type="button" />
+      </div>
+
+      <div class="cp">
+       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
+       <div class="cp_name"></div>
+      </div>
+     </div>
+
+     </div>
+
+     <div class="resultMsg" style="display: none;">
+		<h3>Application is completed, the staff has been submitted for review.</h3>
+
+	</div>
+    </div>
+<script type="text/javascript">
+$(".sel_wrap").on("change", function() {
+var o;
+var opt = $(this).find('option');
+opt.each(function(i) {
+if (opt[i].selected == true) {
+o = opt[i].innerHTML;
+}
+})
+$(this).find('label').html(o);
+}).trigger('change');
+</script>
+
+</html>

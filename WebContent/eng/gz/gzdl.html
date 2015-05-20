@@ -14,33 +14,43 @@ $(".a_subcnt").click(function(){
 });
 </script>
 
-<script>
+<script type="text/javascript">
 function checklogin()
 {
 
 	var func = function(data){
 		data = JSON.parse(data);
 		var result = data.result;
-		//	alert(usrname+"登陆...");
 		if(result)
 		{
 			var usrname = data.username;
-			jAlert("login successfully","info");
-			$(".yonghu").text("welcome，" + usrname);
-			document.getElementById('logintexten001').value = "";
-			document.getElementById('logintexten002').value = "";
+			jAlert("登陆成功","信息");
+			//location.reload();
+			//	location.href ="#toptag";
+			//		alert(usrname+"登陆成功");
+			//	$(".yonghu").removeClass("hide");
+			$(".yonghu").text("Welcome," + usrname);
+			$(".logout").removeClass("hide");
+			setCookie("user",usrname);
+			document.getElementById('loginAudience001').value ="";
+			document.getElementById('loginAudience002').value = "";
 		}
 		else
 		{
-			jAlert("wrong username or password","info");
+			jAlert("用户名或密码不对","信息");
 		}
 
 	}
 	var usrnameValue = document.getElementById('logintexten001').value;
-	//	alert(usrnameValue);
 	var paswordValue = document.getElementById('logintexten002').value;
 	Audience.login(usrnameValue,paswordValue,func);
 	return true;
+}
+function setCookie(name,value)
+{
+	var exp = new Date();
+	exp.setTime(exp.getTime() + 60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
 </script>
 
@@ -51,7 +61,7 @@ function checklogin()
 
        <div class="zwsq">
      <div class="zwsqbt">Audience login</div>
-     <span class="zwsqnr">If you have not registered, please   <a eurl="gz/gzsqbg.html" class="a_subcnt" style="color:#F00;cursor:pointer;">Sign up</a>，The system will automatically generate a username and password after successful registration</span>
+     <span class="zwsqnr">If you have not registered, please<a eurl="gz/gzsqbg.html" class="a_subcnt" style="color:#F00;cursor:pointer;">Sign up</a>,The system will automatically generate a username and password after successful registration</span>
     </div>
     <div class="zs_login">
      <div class="zwsqbt">Audience login</div>
