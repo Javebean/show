@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Bootstrap core CSS -->
-<link href="../plugins/bootstrap/css/bootstrap-part.css" rel="stylesheet">
+<link href="plugins/bootstrap/css/bootstrap-part.css" rel="stylesheet">
 
-<script type='text/javascript' src='../dwr/engine.js'></script>
-<script type='text/javascript' src='../dwr/interface/Exhibitor.js'></script>
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
 
 <style>
 .exb_logo{
@@ -35,9 +35,9 @@
 
 <script>
 var ROWS_PER_PAGE = 10;
-var PIC_BASE = '../resources/topicimages/';
+var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
-var itemParams = ["name","version","number","length","width","height","weight"];
+var itemParams = ["name","version","number","length","width"];
 var visitorParams = ["name","sex","position","phone"];
 $(document).ready(function(){
 	showZlzxList(1);
@@ -67,8 +67,8 @@ $(document).ready(function(){
       				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
     				'<div class="exb_info" eid="'+topic.id+'">'+
     				'<a class="productbt">'+topic.orgName+'</a>'+
-    				'<div class="zycp"><span class="left">【Industry Type】</span><span class="left">'+topic.industryType+'</span></div>' +
-						'<div class="zycp"><span class="left">【Region】</span><span class="left">'+regiontext+'</span></div>' +
+    				'<div class="zycp"><span class="left">【行业类别】</span><span class="left">'+topic.industryType+'</span></div>' +
+						'<div class="zycp"><span class="left">【国家、地区】</span><span class="left">'+regiontext+'</span></div>' +
 						'<a class="more">查看详情 >></a></div></div>';
 			}
 			$('.zlzx_box').append(html.replace(/undefined/g,""));
@@ -107,11 +107,6 @@ $(document).ready(function(){
 				$("#phone_text").text(data.exhibitors.phone);
 				$("#telephone_text").text(data.exhibitors.telephone);
 				$("#address_text").text(data.exhibitors.address);
-				$(".mustlogin").addClass("hide");
-			}
-			else
-			{
-				$(".mustlogin").removeClass("hide");
 			}
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
@@ -208,7 +203,7 @@ $(document).ready(function(){
 });
 </script>
 
-   <div class="nyweizhi">Location: <a href="index.html">Home</a> > <a href="展馆情况.html">Exhibitor</a> > <font style=" font-weight:bold; color:#1F9AD6">Exhibitor&Products</font></div>
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">观众中心</a> > <font style=" font-weight:bold; color:#1F9AD6">参展商与产品</font></div>
    <div class="nymainnr">
 
    <div class="tz_list">
@@ -224,53 +219,51 @@ $(document).ready(function(){
 	<div class="tz_detail hide">
 		<div id='exhibit_span' >
 		<div class="zhanshang_top">
-			<div class="gsqkbt">Exhibitor</div>
+			<div class="gsqkbt">参展企业信息</div>
 			<div class="gsqknr">
 				<div class="gsqkwz">
 					<a class="gsqkwzbt" id='orgName_text' style="font-size:20px" href="#">慈溪市康洁净水设备有限公司</a>
-					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【Region】</span><span  id='region_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Ownership】</span><span id='orgType_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Scale】</span><span id='scale_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【Industry Type】</span><span id='industryType_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【国家地区】</span><span  id='region_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业性质】</span><span id='orgType_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【企业规模】</span><span id='scale_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【行业类别】</span><span id='industryType_text' class="left"></span></div>
 				</div>
 			</div>
 		</div>
 		<div class="zhanshang_ft">
-			<div class="gsqkbt">Product Introduction</div>
+			<div class="gsqkbt">单位及产品简介</div>
 			<div class="ngs excontent" id='orgIntro_text'>
 				电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、 化工产品、五金及工具、机械、建材、能源
 			</div>
 		</div>
 		<div class="zhanshang_top" style="margin-top:25px">
-			<div class="gsqkbt">Contact</div>
+			<div class="gsqkbt">联系方式</div>
 			<div class="gsqknr">
 				<div class="gsqkwz">
-					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【Zipcode】</span><span  id='zipcode_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【website】</span><span id='site_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Address】</span><span id='address_text' class="left">需登录后查看</span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Telephone】</span><span id='phone_text' class="left">需登录后查看</span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Cellphone】</span><span id='telephone_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【邮编】</span><span  id='zipcode_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【网址】</span><span id='site_text' class="left"></span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【地址】</span><span id='address_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【固定电话】</span><span id='phone_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【手机电话】</span><span id='telephone_text' class="left">需登录后查看</span></div>
 				</div>
 			</div>
 		</div>
 	</div>
-		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="参展申报.html">登录</a> 后查看企业联系方式</div> -->
+		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href=#>登录</a> 后查看企业联系方式</div> -->
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 
 				    <!-- <strong>企业logo</strong>
 				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div> -->
 
-						<div class="gsqkbt">Product Details</div>
+						<div class="gsqkbt">展品详细情况</div>
 					<table class="table table-bordered fview_table showitems"  style="margin-top:35px">
 						<tr>
-							<th>Name</th>
-							<th>Version No</th>
-							<th>Number</th>
-							<th>length(m)</th>
-							<th>width（m）</th>
-							<th>height（m）</th>
-							<th>weight(kg)</th>
+							<th>展品名称</th>
+							<th>展品型号</th>
+							<th>展品数量</th>
+							<th>长度（米）</th>
+							<th>宽度（米）</th>
 						</tr>
 					</table>
 

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" type="text/css" href="../css/ny.css"/>
 <script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../jslib/json2.js"></script>
@@ -18,11 +19,13 @@ $(document).ready(function(){
 	if(detail == "Zlzx"){
 		$(".a_zlzx").addClass("menu_active");
 		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").empty();
 		$(".detail_html").load(url);
 	}else{
 		$(".sub_index").text("notice");
 		$(".a_zytz").addClass("menu_active");
 		var url = 'zytzDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").empty();
 		$(".detail_html").load(url);
 	}
 
