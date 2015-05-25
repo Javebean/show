@@ -59,6 +59,13 @@ $(document).ready(function(){
 		
 		//添加选中的物品到页面
 		$(".scene_ok_btn").click(function(){
+			var preItems = {};
+			$(".fwnr").each(function(){
+				var row = $(this);
+				var name = row.attr("itemname");
+				preItems[name] = row.find(".item_count").val();
+			});
+			
 			var html = '<div class="fwts">您已经选择了以下现场服务</div>';
 			$(".sceneItemBox .item_on").each(function(){
 				var index = $(this).attr("index");
@@ -73,6 +80,14 @@ $(document).ready(function(){
 			});
 			
 			$(".scene_item_selected").html(html);
+			
+			$(".fwnr").each(function(){
+				var row = $(this);
+				var name = row.attr("itemname");
+				if(preItems[name]){
+					row.find(".item_count").val(preItems[name]);
+				}
+			});
 			
 			$(".scene_item_selected .remove_item").click(function(){
 				$(this).parent().remove();
