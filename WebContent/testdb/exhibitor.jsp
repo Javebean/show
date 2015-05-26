@@ -149,7 +149,7 @@ vList = [visitor01, visitor02];
     }
     
     function queryShortByName_onclick(){
-    	Exhibitor.getExhibitorsByName("顺丰速运（集团）有限公司");
+    	Exhibitor.getExhibitorsForPageByState(0,2,-1,"速运（集团）");
     }
     
     function queryRecStat_onclick(){

@@ -23,17 +23,34 @@ public class ExhibitorsDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public long getExhibitorsTotalCount()
+	public long getExhibitorsTotalCount(String orgName)
 	{
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select count(*) from Exhibitors");
+		Query query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createQuery("select count(*) from Exhibitors");
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createQuery(
+					"select count(*) from Exhibitors a where a.orgName like '%" + orgName +"%'");
+		}
 		return (Long) query.uniqueResult();
 	}
 	
-	public long getExhibitorsCountByState(int state)
+	public long getExhibitorsCountByState(int state, String orgName)
 	{
-		Query query = sessionFactory.getCurrentSession().createQuery(
+		Query query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createQuery(
 				"select count(*) from Exhibitors a where a.state = :state");
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createQuery(
+					"select count(*) from Exhibitors a where a.state = :state and a.orgName like '%" + orgName +"%'");
+		}
 		query.setParameter("state", state);
 		return (Long) query.uniqueResult();
 	}
@@ -67,12 +84,11 @@ public class ExhibitorsDao {
 		return (List<Exhibitors>) query.list();
 	}
 	
-	public Exhibitors getExhibitorByOrgNameWithState(String orgName, int state)
+	public Exhibitors getExhibitorByOrgNameWithRegistered(String orgName)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Exhibitors a where a.orgName=:orgName and a.state = :state");
+				"from Exhibitors a where a.orgName=:orgName and (a.state = 1 or a.state = 0)");
 				query.setParameter("orgName", orgName);
-				query.setParameter("state", state);
 		return (Exhibitors) query.uniqueResult();
 	}
 	
@@ -92,61 +108,6 @@ public class ExhibitorsDao {
 				return (Exhibitors) query.uniqueResult();
 	}
 	
-	/*public TotalExhibitInfo getTotalExhibitInfo(String id)
-	{
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Exhibitors e, Visitor v, DisplayItem d, Construction c, Transportation t, SceneServ s " +
-				"where e.id =v.eid and e.id = c.eid and e.id = d.eid and e.id = t.eid and e.id = s.eid " +
-				"and e.id = :id");
-				query.setString("id", id);
-				List ls = query.list();
-				TotalExhibitInfo info = new TotalExhibitInfo();
-				List<Construction>construction = new ArrayList<Construction>();
-				List<Transportation>transportation = new ArrayList<Transportation>();
-				List<SceneServ>sceneServ = new ArrayList<SceneServ>();
-				List<DisplayItem>displayItem = new ArrayList<DisplayItem>();
-				List<Visitor>visitor = new ArrayList<Visitor>();
-				for(int i=0; i<ls.size(); i++)
-				{
-					System.out.println("index: " + i);
-					Object[]objs = (Object[]) ls.get(i);
-					for(int j =0; j< objs.length;j++ )
-					{
-						switch (j)
-						{
-							case 0:
-								info.setExhibitors((Exhibitors) objs[j]);
-								break;
-							case 1:
-								visitor.add((Visitor) objs[j]);
-								break;
-							case 2:
-								displayItem.add((DisplayItem) objs[j]);
-								break;
-							case 3:
-								construction.add((Construction) objs[j]);
-								break;
-							case 4:
-								transportation.add((Transportation) objs[j]);
-								break;
-							case 5:
-								sceneServ.add((SceneServ) objs[j]);
-								break;
-						}
-					}
-					info.setConstruction(construction);
-					info.setDisplayItem(displayItem);
-					info.setSceneServ(sceneServ);
-					info.setVisitor(visitor);
-					info.setTransportation(transportation);
-					
-					JSONObject o = new JSONObject(info);
-					System.out.println(o.toString());
-				}
-				return null;
-		
-	}*/
-	
 	
 	@SuppressWarnings("unchecked")
 	public List<Exhibitors>getExhibitorForPage(int start, int number)
@@ -159,12 +120,23 @@ public class ExhibitorsDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ShortExhibitor>getShortExhibitorForPage(int start, int number)
+	public List<ShortExhibitor>getShortExhibitorForPage(int start, int number, String orgName)
 	{
-		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
+		SQLQuery query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
 				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a order by logo desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
 				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.orgName like '%" + orgName + "%' order by logo desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
 		Class cls = null;
@@ -179,34 +151,27 @@ public class ExhibitorsDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state)
+	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state, String orgName)
 	{
-		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.state = :state order by logo desc")
-				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		SQLQuery query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.state = :state order by logo desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+			
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.state = :state and a.orgName like '%" + orgName + "%' order by logo desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		}
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
-		Class cls = null;
-		try {
-			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
-		return list;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<ShortExhibitor>getShortExhibitorByOrgName(String orgName)
-	{
-		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.orgName = :orgName order by logo desc")
-				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
-		query.setParameter("orgName", orgName);
 		Class cls = null;
 		try {
 			cls = Class.forName("com.novahome.data.model.ShortExhibitor");

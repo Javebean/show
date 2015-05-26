@@ -51,7 +51,7 @@ audiencedata.password =  "test";
     }
     
     function queryByName_onclick(){
-    	Audience.getAudienceByName("泰勒斯威夫特");
+    	Audience.getAudienceForPage(0,2,"泰勒斯威夫特");
     }
 </script>
 

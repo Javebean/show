@@ -79,7 +79,7 @@ visitordata.eid = "4028b8814cb190bb014cb196cd350003";
     }
     
     function queryByName_onclick(){
-    	Visitor.getVisitorByName("王奕");
+    	Visitor.getVisitorForPageByState(0,4,-1, "王奕");
     }
 </script>
 

@@ -23,9 +23,16 @@ public class AudienceDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public long getAudienceTotalCount() {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select count(*) from Audience");
+	public long getAudienceTotalCount(String name) {
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createQuery("select count(*) from Audience");
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createQuery("select count(*) from Audience where name like '%" + name + "%'");
+		}
 		return (Long) query.uniqueResult();
 	}
 	
@@ -39,15 +46,7 @@ public class AudienceDao {
 		query.setString("username", username);
 		return (Audience) query.uniqueResult();
 	} 
-	
-	@SuppressWarnings("unchecked")
-	public List<Audience> getAudienceByName(String name) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-		"from Audience a where a.name=:name");
-		query.setParameter("name", name);
-		return query.list();
-	}  
-	
+
 	public Audience getAudienceById(String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 		"from Audience a where a.id=:id");
@@ -56,10 +55,19 @@ public class AudienceDao {
 	} 
 	
 	@SuppressWarnings("unchecked")
-	public List<Audience>getAudienceForPage(int start, int number)
+	public List<Audience>getAudienceForPage(int start, int number, String name)
 	{
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Audience order by id asc");
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createQuery(
+					"from Audience order by id asc");
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createQuery(
+				"from Audience where name like '%" + name + "%' order by id asc" );
+		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		
 		

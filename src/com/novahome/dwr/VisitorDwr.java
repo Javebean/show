@@ -95,27 +95,15 @@ public class VisitorDwr {
 	}
 	
 	/**
-	 * 通过人员名称获取现场证件
-	 * @param name
-	 * @return
-	 */
-	@RemoteMethod
-	public String getVisitorByName(String name)
-	{
-		return visitorService.getVisitorByName(name);
-	}
-
-	
-	/**
 	 * 分页查询现场证件申请信息
 	 * @param start
 	 * @param number
 	 * @return
 	 */
 	@RemoteMethod
-	public String getVisitorForPage(int start, int number)
+	public String getVisitorForPage(int start, int number, String name)
 	{
-		return visitorService.getVisitorForPage(start, number);
+		return visitorService.getVisitorForPage(start, number, name);
 	}
 	
 	/**
@@ -125,9 +113,9 @@ public class VisitorDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getVisitorForPageByState(int start, int number, int state)
+	public String getVisitorForPageByState(int start, int number, int state, String name)
 	{
-		return visitorService.getVisitorForPageByState(start, number, state);
+		return visitorService.getVisitorForPageByState(start, number, state, name);
 	}
 	
 	/**

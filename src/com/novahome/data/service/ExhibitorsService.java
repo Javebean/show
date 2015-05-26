@@ -21,6 +21,7 @@ import com.novahome.commonservice.PeopleState;
 import com.novahome.commonservice.RandCodeGenerator;
 import com.novahome.data.dao.ConstructionDao;
 import com.novahome.data.dao.DisplayItemDao;
+
 import com.novahome.data.dao.ExhibitorsDao;
 import com.novahome.data.dao.SceneServDao;
 import com.novahome.data.dao.TransportationDao;
@@ -65,14 +66,14 @@ public class ExhibitorsService {
 	
 	public String getExhibitorsTotalCount()
 	{
-		long count = exhibitorsDao.getExhibitorsTotalCount();
+		long count = exhibitorsDao.getExhibitorsTotalCount(null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
 	
 	public String getExhibitorsCountByState(int state)
 	{
-		long count = exhibitorsDao.getExhibitorsCountByState(state);
+		long count = exhibitorsDao.getExhibitorsCountByState(state, null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -184,7 +185,7 @@ public class ExhibitorsService {
 	public String getExhibitorForPage(int start, int number)
 	{
 		List<Exhibitors>ls = exhibitorsDao.getExhibitorForPage(start, number);
-		long size = exhibitorsDao.getExhibitorsTotalCount();
+		long size = exhibitorsDao.getExhibitorsTotalCount(null);
 		return procssListRet(ls,size);
 	}
 	
@@ -209,21 +210,21 @@ public class ExhibitorsService {
 		return ret;
 	}
 	
-	public String getShortExhibitorsForPage(int start, int number)
+	public String getShortExhibitorsForPage(int start, int number, String orgName)
 	{
-		long size = exhibitorsDao.getExhibitorsTotalCount();
-		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPage(start, number);
+		long size = exhibitorsDao.getExhibitorsTotalCount(orgName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPage(start, number, orgName);
 		return procssListRet(ls,size);
 	}
 	
-	public String getShortExhibitorForPageByState(int start, int number, int state)
+	public String getShortExhibitorForPageByState(int start, int number, int state, String orgName)
 	{
 		if(state == -1)
 		{
-			return this.getShortExhibitorsForPage(start, number);
+			return this.getShortExhibitorsForPage(start, number, orgName);
 		}
-		long size = exhibitorsDao.getExhibitorsCountByState(state);
-		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByState(start, number, state);
+		long size = exhibitorsDao.getExhibitorsCountByState(state, orgName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByState(start, number, state, orgName);
 		return procssListRet(ls,size);
 	}
 	
@@ -231,19 +232,16 @@ public class ExhibitorsService {
 	{
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
-		List<Exhibitors> exList = exhibitorsDao.getExhibitorByOrgName(orgName);
-		for(Exhibitors ex : exList)
+		Exhibitors ex = exhibitorsDao.getExhibitorByOrgNameWithRegistered(orgName);
+		if(ex != null)
 		{
-			if(ex != null && ex.getState()==1)
-			{
-				obj.put("result", false);
-				obj.put("message", "该公司已注册过，如有疑问请致电！");
-				obj.put("username", ex.getUsername());	
-				obj.put("id", ex.getId());
-				String ret = obj.toString();
-				logger.info(ret);
-				return ret;
-			}
+			obj.put("result", false);
+			obj.put("message", "该公司已注册过，如有疑问请致电！");
+			obj.put("username", ex.getUsername());	
+			obj.put("id", ex.getId());
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
 		}
 		exhibitor.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateExhibitUser();
@@ -276,7 +274,7 @@ public class ExhibitorsService {
 	{
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
-		Exhibitors ex = exhibitorsDao.getExhibitorByOrgNameWithState(orgName, 1);
+		Exhibitors ex = exhibitorsDao.getExhibitorByOrgNameWithRegistered(orgName);
 		if(ex != null)
 		{
 			obj.put("result", false);
@@ -451,26 +449,6 @@ public class ExhibitorsService {
 		obj.put("password", pwd);
 		String ret = obj.toString();
 		logger.info(ret);
-		return ret;
-	}
-	
-	public String getShortExhibitorByOrgName(String orgName)
-	{
-		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorByOrgName(orgName);
-		if(ls == null || ls.isEmpty())
-		{
-			logger.warn(ERROR_STR);
-			return ERROR_STR;
-		}
-		JSONObject obj = new JSONObject();
-		JSONArray array = new JSONArray();
-		for(Object exhibitor : ls )
-		{
-			array.put(new JSONObject(exhibitor));
-		}
-		obj.put("data", array);
-		String ret = obj.toString();
-		logger.debug("exhibitors:" + ret);
 		return ret;
 	}
 	

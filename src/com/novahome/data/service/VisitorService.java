@@ -3,7 +3,7 @@ package com.novahome.data.service;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.annotation.Resource;
 
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.VisitorDao;
-import com.novahome.data.model.ShortExhibitor;
 import com.novahome.data.pojo.Visitor;
 import com.novahome.utils.CutImageUtils;
 
@@ -32,7 +31,7 @@ public class VisitorService {
 
 	public String getVisitorTotalCount() 
 	{
-		long count = visitorDao.getVisitorTotalCount();
+		long count = visitorDao.getVisitorTotalCount(null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -46,7 +45,7 @@ public class VisitorService {
 	
 	public String getVisitorCountByState(int state)
 	{
-		long count = visitorDao.getVisitorCountByState(state);
+		long count = visitorDao.getVisitorCountByState(state, null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -160,41 +159,22 @@ public class VisitorService {
 		return ret;
 	}
 	
-	public String getVisitorByName(String name)
-	{
-		List<Visitor> ls = visitorDao.getVisitorByName(name);
-		if(ls == null || ls.isEmpty())
-		{
-			logger.warn(ERROR_STR);
-			return ERROR_STR;
-		}
-		JSONObject obj = new JSONObject();
-		JSONArray array = new JSONArray();
-		for(Visitor visitor : ls )
-		{
-			array.put(new JSONObject(visitor));
-		}
-		obj.put("data", array);
-		String ret = obj.toString();
-		logger.debug(ret);
-		return ret;
-	}
 	
-	public String getVisitorForPage(int start, int number)
+	public String getVisitorForPage(int start, int number, String name)
 	{
-		long size = visitorDao.getVisitorTotalCount();
-		List<Visitor>ls = visitorDao.getVisitorForPage(start, number);
+		long size = visitorDao.getVisitorTotalCount(name);
+		List<Visitor>ls = visitorDao.getVisitorForPage(start, number, name);
 		return procssListRet(ls,size);
 	}
 	
-	public String getVisitorForPageByState(int start, int number,int state)
+	public String getVisitorForPageByState(int start, int number,int state, String name)
 	{
 		if(state == -1)
 		{
-			return this.getVisitorForPage(start, number);
+			return this.getVisitorForPage(start, number, name);
 		}
-		long size = visitorDao.getVisitorCountByState(state);
-		List<Visitor>ls = visitorDao.getVisitorForPageByState(start, number, state);
+		long size = visitorDao.getVisitorCountByState(state, name);
+		List<Visitor>ls = visitorDao.getVisitorForPageByState(start, number, state, name);
 		return procssListRet(ls,size);
 	}
 	

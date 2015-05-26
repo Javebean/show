@@ -76,9 +76,9 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getShortExhibitorsForPage(int start, int number)
+	public String getShortExhibitorsForPage(int start, int number, String orgName)
 	{
-		return exhibitorsService.getShortExhibitorsForPage(start, number);
+		return exhibitorsService.getShortExhibitorsForPage(start, number, orgName);
 	}
 	
 	/**
@@ -89,9 +89,9 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getExhibitorsForPageByState(int start, int number, int state)
+	public String getExhibitorsForPageByState(int start, int number, int state, String orgName)
 	{
-		return exhibitorsService.getShortExhibitorForPageByState(start, number,state);
+		return exhibitorsService.getShortExhibitorForPageByState(start, number,state, orgName);
 	}
 	
 	/**
@@ -211,17 +211,6 @@ public class ExhibitorsDwr {
 		return exhibitorsService.resetPsw(id);
 	}
 	
-	/**
-	 * 根据展商名称查询展商信息
-	 * @param start
-	 * @param number
-	 * @return
-	 */
-	@RemoteMethod
-	public String getExhibitorsByName(String orgName)
-	{
-		return exhibitorsService.getShortExhibitorByOrgName(orgName);
-	}
 	
 	/**
 	 * 获取展商引荐单位及相关引荐数量

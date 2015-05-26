@@ -53,17 +53,6 @@ public class AudienceDwr {
 	}
 	
 	/**
-	 * 通过观众的名字查找注册观众
-	 * @param name
-	 * @return
-	 */
-	@RemoteMethod
-	public String getAudienceByName(String name)
-	{
-		return audienceService.getAudienceByName(name);
-	}
-	
-	/**
 	 * 通过id查找注册观众
 	 * @param id
 	 * @return
@@ -92,9 +81,9 @@ public class AudienceDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getAudienceForPage(int start, int number)
+	public String getAudienceForPage(int start, int number, String name)
 	{
-		return audienceService.getAudienceForPage(start, number);
+		return audienceService.getAudienceForPage(start, number, name);
 	}
 	
 	/**

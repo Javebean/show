@@ -35,7 +35,7 @@ public class AudienceService {
 	
 	public String getAudienceTotalCount() 
 	{
-		long count = audienceDao.getAudienceTotalCount();
+		long count = audienceDao.getAudienceTotalCount(null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -83,25 +83,6 @@ public class AudienceService {
 		return ret;
 	}
 	
-	public String getAudienceByName(String name)
-	{
-		List<Audience> ls = audienceDao.getAudienceByName(name);
-		if(ls == null || ls.isEmpty())
-		{
-			logger.warn(ERROR_STR);
-			return ERROR_STR;
-		}
-		JSONObject obj = new JSONObject();
-		JSONArray array = new JSONArray();
-		for(Audience audience : ls )
-		{
-			array.put(new JSONObject(audience));
-		}
-		obj.put("data", array);
-		String ret = obj.toString();
-		logger.debug(ret);
-		return ret;
-	}
 	
 	public String getAudienceById(String id)
 	{
@@ -172,15 +153,15 @@ public class AudienceService {
 		}
 	}
 	
-	public String getAudienceForPage(int start, int number)
+	public String getAudienceForPage(int start, int number, String name)
 	{
-		List<Audience>ls = audienceDao.getAudienceForPage(start, number);
+		List<Audience>ls = audienceDao.getAudienceForPage(start, number, name);
 		if(ls == null || ls.isEmpty())
 		{
 			logger.warn(ERROR_STR);
 			return ERROR_STR;
 		}
-		long size = audienceDao.getAudienceTotalCount();
+		long size = audienceDao.getAudienceTotalCount(name);
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Audience audience : ls )
