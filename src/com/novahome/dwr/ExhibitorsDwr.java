@@ -210,4 +210,29 @@ public class ExhibitorsDwr {
 	{
 		return exhibitorsService.resetPsw(id);
 	}
+	
+	/**
+	 * 根据展商名称查询展商信息
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorsByName(String orgName)
+	{
+		return exhibitorsService.getShortExhibitorByOrgName(orgName);
+	}
+	
+	/**
+	 * 获取展商引荐单位及相关引荐数量
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getRecommenderStat()
+	{
+		return exhibitorsService.getRecommenderStat();
+	}
+	
 }

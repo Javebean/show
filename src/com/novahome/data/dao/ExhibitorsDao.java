@@ -38,17 +38,33 @@ public class ExhibitorsDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getExhibitorsCountByRecommender(String recommender)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(a.id) from Exhibitors a where a.state = :state and a.recommender = :recommender");
+		query.setParameter("state", 1);
+		query.setParameter("recommender", recommender);
+		return (Long) query.uniqueResult();
+	}
+	
+	public List<String>getDistinctRecommenders()
+	{
+		SQLQuery  query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select DISTINCT recommender from exhibitors");
+		return query.list();
+	}
+	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
 		return sessionFactory.getCurrentSession().save(exhibitor).toString();
 	}
 	
-	public Exhibitors getExhibitorByOrgName(String orgName)
+	public List<Exhibitors> getExhibitorByOrgName(String orgName)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Exhibitors a where a.orgName=:orgName");
 				query.setString("orgName", orgName);
-		return (Exhibitors) query.uniqueResult();
+		return (List<Exhibitors>) query.list();
 	}
 	
 	public Exhibitors getExhibitorByOrgNameWithState(String orgName, int state)
@@ -183,6 +199,24 @@ public class ExhibitorsDao {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ShortExhibitor>getShortExhibitorByOrgName(String orgName)
+	{
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.orgName = :orgName order by logo desc")
+				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+				  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		query.setParameter("orgName", orgName);
+		Class cls = null;
+		try {
+			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
+		return list;
+	}
 	
 	public long deleteExhibitorById (String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
@@ -196,4 +230,6 @@ public class ExhibitorsDao {
 		s.update(exhibitor);
 		return true;
 	}
+	
+	
 }

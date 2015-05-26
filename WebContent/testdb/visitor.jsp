@@ -77,6 +77,10 @@ visitordata.eid = "4028b8814cb190bb014cb196cd350003";
     function delete_onclick(){
     	Visitor.deleteVisitorById("4028b8814cb59d81014cb5a733620003");
     }
+    
+    function queryByName_onclick(){
+    	Visitor.getVisitorByName("王奕");
+    }
 </script>
 
 <body>
@@ -90,6 +94,6 @@ visitordata.eid = "4028b8814cb190bb014cb196cd350003";
 	<input type="button" value="page查询ByState"  onclick="javascript:queryPageByState_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
-	
+	<input type="button" value="根据姓名查找现场证件"  onclick="javascript:queryByName_onclick();" />
 </body>
 </html>

@@ -160,6 +160,26 @@ public class VisitorService {
 		return ret;
 	}
 	
+	public String getVisitorByName(String name)
+	{
+		List<Visitor> ls = visitorDao.getVisitorByName(name);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(Visitor visitor : ls )
+		{
+			array.put(new JSONObject(visitor));
+		}
+		obj.put("data", array);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
 	public String getVisitorForPage(int start, int number)
 	{
 		long size = visitorDao.getVisitorTotalCount();

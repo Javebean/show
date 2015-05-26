@@ -49,6 +49,10 @@ audiencedata.password =  "test";
     function delete_onclick(){
     	Audience.deleteAudienceById("2");
     }
+    
+    function queryByName_onclick(){
+    	Audience.getAudienceByName("泰勒斯威夫特");
+    }
 </script>
 
 <body>
@@ -58,6 +62,6 @@ audiencedata.password =  "test";
 	<input type="button" value="登陆"  onclick="javascript:login_onclick();" />
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
-	
+	<input type="button" value="根据姓名查找用户"  onclick="javascript:queryByName_onclick();" />
 </body>
 </html>

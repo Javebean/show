@@ -74,6 +74,14 @@ public class VisitorDao {
 				return query.list();
 	}
 	
+	public List<Visitor>getVisitorByName(String name)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Visitor a where a.name=:name");
+				query.setString("name", name);
+				return query.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Visitor>getVisitorForPage(int start, int number)
 	{

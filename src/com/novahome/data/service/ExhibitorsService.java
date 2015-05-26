@@ -229,20 +229,21 @@ public class ExhibitorsService {
 	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
-		System.out.println("*******"+exhibitor);
-
 		JSONObject obj = new JSONObject();
 		String orgName = exhibitor.getOrgName();
-		Exhibitors ex = exhibitorsDao.getExhibitorByOrgName(orgName);
-		if(ex != null && ex.getState()==1)
+		List<Exhibitors> exList = exhibitorsDao.getExhibitorByOrgName(orgName);
+		for(Exhibitors ex : exList)
 		{
-			obj.put("result", false);
-			obj.put("message", "该公司已注册过，如有疑问请致电！");
-			obj.put("username", ex.getUsername());	
-			obj.put("id", ex.getId());
-			String ret = obj.toString();
-			logger.info(ret);
-			return ret;
+			if(ex != null && ex.getState()==1)
+			{
+				obj.put("result", false);
+				obj.put("message", "该公司已注册过，如有疑问请致电！");
+				obj.put("username", ex.getUsername());	
+				obj.put("id", ex.getId());
+				String ret = obj.toString();
+				logger.info(ret);
+				return ret;
+			}
 		}
 		exhibitor.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateExhibitUser();
@@ -453,4 +454,53 @@ public class ExhibitorsService {
 		return ret;
 	}
 	
+	public String getShortExhibitorByOrgName(String orgName)
+	{
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorByOrgName(orgName);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(Object exhibitor : ls )
+		{
+			array.put(new JSONObject(exhibitor));
+		}
+		obj.put("data", array);
+		String ret = obj.toString();
+		logger.debug("exhibitors:" + ret);
+		return ret;
+	}
+	
+	
+	public String getRecommenderStat()
+	{
+		List<String>ls = exhibitorsDao.getDistinctRecommenders();
+		String recNameTol ="";
+		String numTol = "";
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		for(String rec : ls)
+		{
+			if(rec== null || rec.isEmpty())
+				continue;
+			long num = exhibitorsDao.getExhibitorsCountByRecommender(rec);
+			recNameTol += rec + ",";
+			numTol += num + ",";
+		}
+		recNameTol = recNameTol.substring(0, recNameTol.length()-1);
+		numTol = numTol.substring(0, numTol.length()-1);
+		JSONObject obj = new JSONObject();
+		obj.put("name", recNameTol);
+		obj.put("num", numTol);
+		String ret = obj.toString();
+		logger.debug("recommenders:" + ret);
+		return ret;
+		
+	}
 }

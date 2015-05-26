@@ -85,7 +85,7 @@ public class VisitorDwr {
 	
 	/**
 	 * 通过公司名称获取现场证件
-	 * @param id
+	 * @param org
 	 * @return
 	 */
 	@RemoteMethod
@@ -93,6 +93,18 @@ public class VisitorDwr {
 	{
 		return visitorService.getVisitorByOrg(org);
 	}
+	
+	/**
+	 * 通过人员名称获取现场证件
+	 * @param name
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorByName(String name)
+	{
+		return visitorService.getVisitorByName(name);
+	}
+
 	
 	/**
 	 * 分页查询现场证件申请信息

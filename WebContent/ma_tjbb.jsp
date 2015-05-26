@@ -20,6 +20,7 @@
           <h2 class="sub-header">统计报表</h2>
 			<div class="statistics"><a href="ma_tjbb_xcfw.jsp">现场服务统计表</a></div>
 			<div class="statistics"><a href="ma_tjbb_hywl.jsp">货运物流统计表</a></div>
+			<div class="statistics"><a href="ma_tjbb_people.jsp">参会人员统计</a></div>
 		</div>
       </div>
     </div>

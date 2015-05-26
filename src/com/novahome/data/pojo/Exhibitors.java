@@ -48,6 +48,7 @@ public class Exhibitors {
 	private int state;		 //默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private String logo;	//企业logo
 	private Date applyTime;	//申请时间（系统生成）
+	private String recommender;
 	
 	private String reason; //驳回原因
 	@Id
@@ -248,6 +249,11 @@ public class Exhibitors {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	
+	public String getRecommender() {
+		return recommender;
+	}
+	public void setRecommender(String recommender) {
+		this.recommender = recommender;
+	}
 	
 }

@@ -147,6 +147,14 @@ vList = [visitor01, visitor02];
     function delete_onclick(){
     	Exhibitor.deleteExhibitorById("4028b8814cb188b7014cb189c9880002");
     }
+    
+    function queryShortByName_onclick(){
+    	Exhibitor.getExhibitorsByName("顺丰速运（集团）有限公司");
+    }
+    
+    function queryRecStat_onclick(){
+    	Exhibitor.getRecommenderStat();
+    }
 </script>
 
 <body>
@@ -163,7 +171,8 @@ vList = [visitor01, visitor02];
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
 	<input type="button" value="更新状态"  onclick="javascript:updateState_onclick();" />
 	<input type="button" value="更新状态和驳回理由"  onclick="javascript:updateStateReason_onclick();" />
-	
+	<input type="button" value="根据展商名称查询展商"  onclick="javascript:queryShortByName_onclick();" />
+	<input type="button" value="展商引荐信息"  onclick="javascript:queryRecStat_onclick();" />
 	
 </body>
 </html>
