@@ -1,6 +1,7 @@
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
 var search_state = -1;
+var search_name = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
@@ -13,10 +14,25 @@ $(document).ready(function(){
 	showTopicList(1);
 
 	//event binder
-	$(".state_search").change(function(){
-		search_state = $(this).val();
-		showTopicList(1);
+	$(".print_tp").click(function(){
+		window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&pic="+$(this).attr("eimage"),'证件打印');
 	});
+	
+	$(".do_search").click(function(){
+		doSearch();
+	});
+	
+	$(window).keydown(function(event){
+		if(event.keyCode==13){
+			doSearch();
+		}
+	});
+	
+	function doSearch(){
+		search_state = $(".state_search").val();
+		search_name = $(".name_search").val();
+		showTopicList(1);
+	}
 
 	function jumpto(e){
 		location.href=e.data;
@@ -75,7 +91,7 @@ $(document).ready(function(){
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}
-		Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state, func);
+		Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, func);
 	}
 
 	// function viewTP(){
@@ -101,10 +117,13 @@ $(document).ready(function(){
 		var imagesrc = $(this).attr("imagesrc");
 		if(imagesrc != "undefined"){
 			$(".cp_image").attr("src",PIC_BASE + imagesrc);
+			$(".print_tp").attr("eimage",imagesrc);
 		} else {
 			$(".cp_image").attr("src",IMAGE_NOT_FOUND);
+			$(".print_tp").attr("eimage",IMAGE_NOT_FOUND);
 		}
 		$(".cp_name").text($(this).attr("ename"));
+		$(".print_tp").attr("ename",$(this).attr("ename"));
 
 		var eid = $(this).attr("eid");
 		var func = function(data){

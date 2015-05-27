@@ -1,6 +1,7 @@
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
 var search_state = -1;
+var search_name = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
@@ -9,10 +10,21 @@ $(document).ready(function(){
 	showTopicList(1);
 	
 	//event binder
-	$(".state_search").change(function(){
-		search_state = $(this).val();
-		showTopicList(1);
+	$(".do_search").click(function(){
+		doSearch();
 	});
+	
+	$(window).keydown(function(event){
+		if(event.keyCode==13){
+			doSearch();
+		}
+	});
+	
+	function doSearch(){
+		search_state = $(".state_search").val();
+		search_name = $(".name_search").val();
+		showTopicList(1);
+	}
 	
 	function jumpto(e){
 		location.href=e.data;
@@ -61,7 +73,7 @@ $(document).ready(function(){
 			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		}
-		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state,func);
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 	}
 	
 	var itemParams = ["name","version","number","length","width"];

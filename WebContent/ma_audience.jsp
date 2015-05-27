@@ -15,6 +15,29 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">观众列表</h2>
+          
+          <!-- search area -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<span class="glyphicon glyphicon-search navbar-brand" aria-hidden="true"></span>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="navbar-form navbar-left" role="search">
+							<div class="form-group" style="margin-left: 10px;">
+								<span>观众姓名:</span>
+							</div>
+							<div class="form-group">
+								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
+							</div>
+							
+							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
+						</div>
+					</div>
+					
+				</div>
+			</nav>
+			
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

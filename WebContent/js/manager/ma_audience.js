@@ -1,10 +1,27 @@
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
+	var search_name = "";
 
 	var buyer = ["观众","采购商"];
 	//init page
 	showTopicList(1);
+	
+	//event binder
+	$(".do_search").click(function(){
+		doSearch();
+	});
+	
+	$(window).keydown(function(event){
+		if(event.keyCode==13){
+			doSearch();
+		}
+	});
+	
+	function doSearch(){
+		search_name = $(".name_search").val();
+		showTopicList(1);
+	}
 
 	function jumpto(e){
 		location.href=e.data;
@@ -14,7 +31,11 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			rowCount = data.size;
-			if(!rowCount || rowCount==0) return;
+			if(!rowCount || rowCount==0) {
+				$('.pt_cen_box').empty();
+				$('.pt_cen_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
 
 			initPaging(page,rowCount);
 			data = data.data;
@@ -53,7 +74,7 @@ $(document).ready(function(){
 			$('.view_tp').click(viewTP);
 			$('.delete_tp').click(deleteTP);
 		}
-		Audience.getAudienceForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
+		Audience.getAudienceForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_name,func);
 	}
 
 	function viewTP(){

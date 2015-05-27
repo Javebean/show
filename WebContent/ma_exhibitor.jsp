@@ -38,11 +38,11 @@
 					<div class="navbar-header">
 						<span class="glyphicon glyphicon-search navbar-brand" aria-hidden="true"></span>
 					</div>
-					<div class="navbar-header">
-						<span class="navbar-brand" href="#">审核状态</span>
-					</div>
 					<div class="collapse navbar-collapse">
-						<form class="navbar-form navbar-left" role="search">
+						<div class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<span>审核状态:</span>
+							</div>
 							<div class="form-group">
 								<select class="form-control search_ele state_search">
 									<option value="-1">全部</option>
@@ -51,8 +51,17 @@
 									<option value="2">已驳回</option>
 								</select>
 							</div>
-						</form>
+							<div class="form-group" style="margin-left: 10px;">
+								<span>展商名称:</span>
+							</div>
+							<div class="form-group">
+								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
+							</div>
+							
+							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
+						</div>
 					</div>
+					
 				</div>
 			</nav>
 
@@ -97,6 +106,10 @@
 				        <tr>
 				          <th class="text-nowrap" width="14%">法定代表人</th>
 				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">招商引荐单位</th>
+				          <td colspan="3"><span ename="recommender" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
 				          <th class="text-nowrap" width="14%">地址</th>

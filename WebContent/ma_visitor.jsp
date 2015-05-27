@@ -25,7 +25,7 @@
     	}
     	.cp{ width:322px; height:391px; background:url(images/samplecard.png); margin-top:40px; padding-top:1px}
 		.cp_photo{ width:118px; height:149px; margin:146px 0 0 108px}
-		.cp_name{ color:#2c2c2c; font-size:12px; margin:12px 0 0 150px;font-weight:bold;}
+		.cp_name{ color:#2c2c2c; font-size:20px; margin:5px 0 0 150px;font-weight:bold;}
     </style>
 
     <div class="container-fluid">
@@ -41,11 +41,12 @@
 					<div class="navbar-header">
 						<span class="glyphicon glyphicon-search navbar-brand" aria-hidden="true"></span>
 					</div>
-					<div class="navbar-header">
-						<span class="navbar-brand" href="#">审核状态</span>
-					</div>
+					
 					<div class="collapse navbar-collapse">
-						<form class="navbar-form navbar-left" role="search">
+						<div class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<span>审核状态:</span>
+							</div>
 							<div class="form-group">
 								<select class="form-control search_ele state_search">
 									<option value="-1">全部</option>
@@ -54,8 +55,17 @@
 									<option value="2">已驳回</option>
 								</select>
 							</div>
-						</form>
+							<div class="form-group" style="margin-left: 10px;">
+								<span>现场证件人员姓名:</span>
+							</div>
+							<div class="form-group">
+								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
+							</div>
+							
+							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
+						</div>
 					</div>
+					
 				</div>
 			</nav>
 
