@@ -72,7 +72,7 @@ $(document).ready(function(){
 			$('.update_tp').click(updateTP);
 			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
-		}
+		};
 		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 	}
 	
@@ -80,16 +80,20 @@ $(document).ready(function(){
 	var visitorParams = ["name","sex","position","phone"];
 	function viewTP(){
 		$("#popup_box span").empty();
+		$("#popup_box input").val("");
+		
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
 			
 			setViewTable(".exb_detail",data.exhibitors);
+			data.exhibitors.tytzzs=data.exhibitors.tytzzs?"是":"否";
+			data.exhibitors.swzs=data.exhibitors.swzs?"是":"否";
+			setViewTable(".areaapply",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			setDymTable(".visitors", visitorParams, data.visitor);
 			
 			if(data.exhibitors.logo){
-				var sdata = data.construction[0];
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
@@ -137,7 +141,7 @@ $(document).ready(function(){
 				href : "#popup_box",
 				close : "关闭"
 			});
-		}
+		};
 		Exhibitor.getTotalExhibitInfoById(eid,func);
 	}
 	
@@ -173,7 +177,7 @@ $(document).ready(function(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) showTopicList(1);
-		}
+		};
 		Exhibitor.deleteExhibitorById(eid,func);
 	}
 	
@@ -181,22 +185,23 @@ $(document).ready(function(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) {
-				$.colorbox.close()
+				$.colorbox.close();
 				showTopicList(1);
 			}
-		}
+		};
 		Exhibitor.updateExhibitorState(eid,1,func);
 	}
 	
 	function rejectTP(){
 		var eid = $(this).attr("eid");
+		var reason = $("#reject_reason").val();
 		var func = function(data){
 			if(data==true) {
-				$.colorbox.close()
+				$.colorbox.close();
 				showTopicList(1);
 			}
-		}
-		Exhibitor.updateExhibitorState(eid,2,func);
+		};
+		Exhibitor.updateExhibitorStateReason(eid,2,reason,func);
 	}
 	
 	function initPaging(pageActive, rowCount){

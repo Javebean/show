@@ -151,10 +151,32 @@
 				          <th class="text-nowrap" width="14%">传真</th>
 				          <td><span ename="fax" class="fview_value"></span></td>
 				        </tr>
+				         <tr>
+				          <th class="text-nowrap" colspan="4">参展单位及产品简介</th>
+				        </tr>
+				        <tr>
+				          <td colspan="4"><span ename="orgIntro" class="fview_value"></span></td>
+				        </tr>
 				    </table>
 				    
 				    <strong>企业logo</strong>
 				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div>
+				    
+				    <strong>摊位申请</strong>
+					<table class="table table-bordered fview_table areaapply">
+						<tr>
+							<th width="15%">申请标摊数量</th>
+							<th width="17%">是否申请统一特展</th>
+							<th width="15%">是否室外展示</th>
+							<th width="53%">特装服务类容</th>
+						</tr>
+						<tr>
+							<td><span ename="btsl" class="fview_value"></span></td>
+							<td><span ename="tytzzs" class="fview_value"></span></td>
+							<td><span ename="swzs" class="fview_value"></span></td>
+							<td><span ename="tzfw" class="fview_value"></span></td>
+						</tr>
+					</table>
 				    
 				    <strong>展品情况</strong>
 					<table class="table table-bordered fview_table showitems">
@@ -210,11 +232,18 @@
 				          </td>
 				        </tr>
 				    </table>
-					
-					<div class="form-group audit_box hide">
-						<div class="col-sm-offset-5 col-sm-5">
-							<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
-							<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+				    
+				    <div class="audit_box hide">
+					    <div class="form-group">
+						    <label>驳回原因：（如需驳回请填写此项）</label>
+						    <input type="text" class="form-control" id="reject_reason" style="width: 100%;"/>
+						  </div>
+						
+						<div class="form-group">
+							<div class="col-sm-offset-5 col-sm-5">
+								<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
+								<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+							</div>
 						</div>
 					</div>
 				</div>
