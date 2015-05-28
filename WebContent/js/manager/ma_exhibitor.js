@@ -5,42 +5,42 @@ var search_name = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
-	
+
 	//init page
 	showTopicList(1);
-	
+
 	//event binder
 	$(".do_search").click(function(){
 		doSearch();
 	});
-	
+
 	$(window).keydown(function(event){
 		if(event.keyCode==13){
 			doSearch();
 		}
 	});
-	
+
 	function doSearch(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
 		showTopicList(1);
 	}
-	
+
 	function jumpto(e){
 		location.href=e.data;
 	}
-	
+
 	function showTopicList(page){
 		var func = function(data){
 			data = JSON.parse(data);
-			
+
 			rowCount = data.size;
 			if(!rowCount || rowCount==0) {
 				$('.pt_cen_box').empty();
 				$('.pt_cen_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
 				return;
 			}
-				
+
 			initPaging(page,rowCount);
 			data = data.data;
 
@@ -49,13 +49,13 @@ $(document).ready(function(){
 			var status = ["申请","已批准","已驳回"];
 			for(var i=0;i<data.length;i++){
 				var topic = data[i];
-				
+
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
-				
+
 				var statestr = status[topic.state];
-				
-				html += 
+
+				html +=
 					'<tr>' +
 					'<td>' + (i+1) + '</td>' +
 	                '<td>' + topic.orgName + '</td>' +
@@ -75,30 +75,30 @@ $(document).ready(function(){
 		};
 		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 	}
-	
+
 	var itemParams = ["name","version","number","length","width"];
 	var visitorParams = ["name","sex","position","phone"];
 	function viewTP(){
 		$("#popup_box span").empty();
 		$("#popup_box input").val("");
-		
+
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
-			
+
 			setViewTable(".exb_detail",data.exhibitors);
 			data.exhibitors.tytzzs=data.exhibitors.tytzzs?"是":"否";
 			data.exhibitors.swzs=data.exhibitors.swzs?"是":"否";
 			setViewTable(".areaapply",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			setDymTable(".visitors", visitorParams, data.visitor);
-			
+
 			if(data.exhibitors.logo){
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
-			
+
 			$(".dym_row").remove();
 			if(data.sceneServ.length>0){
 				var html="";
@@ -125,7 +125,7 @@ $(document).ready(function(){
 			} else {
 				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
 			}
-			
+
 			if(data.exhibitors.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.exhibitors.id);
@@ -133,7 +133,7 @@ $(document).ready(function(){
 			} else {
 				$(".audit_box").addClass("hide");
 			}
-			
+
 			$.colorbox({
 				inline : true,
 				innerWidth:860,
@@ -144,7 +144,7 @@ $(document).ready(function(){
 		};
 		Exhibitor.getTotalExhibitInfoById(eid,func);
 	}
-	
+
 	function setViewTable(tableID,data){
 		$(tableID+" .fview_value").each(function(){
 			var key = $(this).attr("ename");
@@ -153,7 +153,7 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
 	function setDymTable(tableID, params, data){
 		var html = '';
 		for(var i=0;i<data.length;i++){
@@ -168,11 +168,11 @@ $(document).ready(function(){
 			}
 			html += '</tr>';
 		}
-		
+
 		$(tableID+" .item_row").remove();
 		$(tableID).append(html.replace(/undefined/g,""));
 	}
-	
+
 	function deleteTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
@@ -180,7 +180,7 @@ $(document).ready(function(){
 		};
 		Exhibitor.deleteExhibitorById(eid,func);
 	}
-	
+
 	function updateTP(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
@@ -191,7 +191,7 @@ $(document).ready(function(){
 		};
 		Exhibitor.updateExhibitorState(eid,1,func);
 	}
-	
+
 	function rejectTP(){
 		var eid = $(this).attr("eid");
 		var reason = $("#reject_reason").val();
@@ -203,7 +203,7 @@ $(document).ready(function(){
 		};
 		Exhibitor.updateExhibitorStateReason(eid,2,reason,func);
 	}
-	
+
 	function initPaging(pageActive, rowCount){
 		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 		if(pageCount>1){
@@ -219,7 +219,7 @@ $(document).ready(function(){
 			$(".pagination").html(html);
 			$(".paging").removeClass("hide");
 		}
-		
+
 		//bind events
 		$(".paging li").click(function(){
 			var pageTo = $(this).children().attr("page");
@@ -232,6 +232,6 @@ $(document).ready(function(){
 			}
 			showTopicList(pageTo);
 		});
-		
+
 	}
 });
