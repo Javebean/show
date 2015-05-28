@@ -43,7 +43,7 @@ public class Exhibitors {
 	private String tzfw;	//是否需要特装服务，如果需要，填写内容
 	private String tssm;	//其他要求说明
 	private String orgIntro;	//单位及产品简介（限定500字以内，超过不准写）
-	private String inviter;	//邀请人
+	
 	private String booth;	//展位号
 	private int state;		 //默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private String logo;	//企业logo
@@ -211,12 +211,7 @@ public class Exhibitors {
 	public void setOrgIntro(String orgIntro) {
 		this.orgIntro = orgIntro;
 	}
-	public String getInviter() {
-		return inviter;
-	}
-	public void setInviter(String inviter) {
-		this.inviter = inviter;
-	}
+	
 	public String getBooth() {
 		return booth;
 	}

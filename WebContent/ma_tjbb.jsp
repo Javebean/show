@@ -10,17 +10,17 @@
     }
     </style>
 
-	  
+
     <div class="container-fluid">
       <div class="row">
       <!-- menu -->
-		<jsp:include page="ma_menu.jsp" />   
-		    
+		<jsp:include page="ma_menu.jsp" />
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">统计报表</h2>
 			<div class="statistics"><a href="ma_tjbb_xcfw.jsp">现场服务统计表</a></div>
 			<div class="statistics"><a href="ma_tjbb_hywl.jsp">货运物流统计表</a></div>
-			<div class="statistics"><a href="ma_tjbb_people.jsp">参会人员统计</a></div>
+			<div class="statistics"><a href="ma_tjbb_people.jsp">招展招商引荐单位统计表</a></div>
 		</div>
       </div>
     </div>

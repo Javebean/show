@@ -18,12 +18,12 @@ public class RandCodeGenerator {
 		return generateShortUUID(shortBuffer).toString();
 	}
 	
-	/*public static void main(String[] args)
+	public static void main(String[] args)
 	{
 		System.out.println(RandCodeGenerator.generateExhibitUser());
 		System.out.println(RandCodeGenerator.generateAudiUser());
 		System.out.println(RandCodeGenerator.generatePwd());
-	}*/
+	}
 	
 	
 	public static String generatePwd()
@@ -36,7 +36,6 @@ public class RandCodeGenerator {
 			shortBuffer.append(x%10);
 		}
 		return shortBuffer.toString();
-		
 	}
 	
 	public static String generateAudiUser()
@@ -50,7 +49,7 @@ public class RandCodeGenerator {
 	private static StringBuffer generateShortUUID(StringBuffer shortBuffer)
 	{
 		String uuid = UUID.randomUUID().toString().replace("-", "");
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 5; i++) {
 			String str = uuid.substring(i * 4, i * 4 + 4);
 			int x = Integer.parseInt(str, 16);
 			shortBuffer.append(x%10);
