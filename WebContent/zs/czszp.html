@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Bootstrap core CSS -->
@@ -41,14 +41,19 @@ var itemParams = ["name","version","number","length","width","height","weight"];
 var visitorParams = ["name","sex","position","phone"];
 $(document).ready(function(){
 	showZlzxList(1);
-
 	function showZlzxList(page){
 		var func = function(data){
 			data = JSON.parse(data);
 			rowCount = data.size;
+
+			if(!rowCount || rowCount==0) {
+				$('.zlzx_box').empty();
+				$('.zlzx_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
+
 			initPaging(page,rowCount);
 			data = data.data;
-
 			$('.zlzx_box').empty();
 			var html = "";
 			for(var i=0;i<data.length;i++){
@@ -62,7 +67,6 @@ $(document).ready(function(){
 				{
 					regiontext = topic.region;
 				}
-
       			html +=
       				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
     				'<div class="exb_info" eid="'+topic.id+'">'+
@@ -78,18 +82,15 @@ $(document).ready(function(){
 				$(".tz_list").removeClass("hide");
 			});
 		}
-		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,null,func);
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,"",func);
 	}
-
 	function loadDetail(){
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
 		var eid = $(this).attr("eid");
 	//	viewTP(eid);
-
 		viewSpan(eid);
 	}
-
 	function viewSpan(eid){
 		$("#popup_box span").empty();
 		var func = function(data){
@@ -115,26 +116,19 @@ $(document).ready(function(){
 			}
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
-
 	}
-
 	function viewTP(eid){
 		$("#popup_box span").empty();
 		var func = function(data){
 			data = JSON.parse(data);
-
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
-
-
 			if(data.exhibitors.logo){
 				var sdata = data.construction[0];
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
-
-
 			if(data.exhibitors.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.exhibitors.id);
@@ -142,11 +136,9 @@ $(document).ready(function(){
 			} else {
 				$(".audit_box").addClass("hide");
 			}
-
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
 	}
-
 	function setViewTable(tableID,data){
 		$(tableID+" .fview_value").each(function(){
 			var key = $(this).attr("ename");
@@ -155,7 +147,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-
 	function setDymTable(tableID, params, data){
 		var html = '';
 		for(var i=0;i<data.length;i++){
@@ -170,11 +161,9 @@ $(document).ready(function(){
 			}
 			html += '</tr>';
 		}
-
 		$(tableID+" .item_row").remove();
 		$(tableID).append(html.replace(/undefined/g,""));
 	}
-
 	function initPaging(pageActive, rowCount){
 		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 		if(pageCount>1){
@@ -190,7 +179,6 @@ $(document).ready(function(){
 			$(".fy").html(html);
 			$(".paging").removeClass("hide");
 		}
-
 		//bind events
 		$(".paging li").click(function(){
 			var pageTo = $(this).children().attr("page");
@@ -203,7 +191,6 @@ $(document).ready(function(){
 			}
 			showZlzxList(pageTo);
 		});
-
 	}
 });
 </script>
