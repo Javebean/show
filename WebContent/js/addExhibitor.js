@@ -112,7 +112,7 @@ $(document).ready(function(){
 		for(var i=0;i<CON_TRANS_TYPE.length;i++){
 			var item = CON_TRANS_TYPE[i];
 			trans_type_html += '<div class="hy" index="'+i+'" itemname="'+item.name+'">'+
-			       '<div class="hy1" style="margin-top:16px;"><span class="hyspan"><input class="trans_check" type="checkbox" value="" /><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
+			       '<div class="hy1" style="margin-top:16px;"><span class="hyspan"><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
 	        '<span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>'+
 	        '<span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>'+
 	       '</div><div class="hy1"><span class="hyspan" style=" padding-left:40px; width:120px">'+item.info[0]+'</span>'+
@@ -182,7 +182,7 @@ $(document).ready(function(){
 			var item = {};
 			var row = $(this);
 
-			if(row.find(".trans_check").is(':checked')){
+			if(row.find(".trans_count").val()!=""){
 				item[transParams[0]] = row.attr("itemname");
 				item[transParams[1]] = row.find(".trans_count").val();
 				item[transParams[2]] = row.find(".trans_time").val();

@@ -46,6 +46,13 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			rowCount = data.size;
+			
+			if(!rowCount || rowCount==0) {
+				$('.zlzx_box').empty();
+				$('.zlzx_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
+			
 			initPaging(page,rowCount);
 			data = data.data;
 
@@ -78,7 +85,7 @@ $(document).ready(function(){
 				$(".tz_list").removeClass("hide");
 			});
 		}
-		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,func);
+		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,"",func);
 	}
 
 	function loadDetail(){
