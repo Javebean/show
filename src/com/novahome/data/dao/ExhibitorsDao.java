@@ -153,6 +153,8 @@ public class ExhibitorsDao {
 	@SuppressWarnings("unchecked")
 	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state, String orgName)
 	{
+		//sql  ="(select * from exhibitors where logo is not null order by applyTime desc  limit 999999) union (select * from exhibitors where logo is null order by applyTime desc  limit 999999)";
+		
 		SQLQuery query;
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{

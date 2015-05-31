@@ -9,7 +9,7 @@
     <script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
     <script type='text/javascript' src='dwr/engine.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
-    
+
 	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
 </head>
 
@@ -25,7 +25,16 @@ $(document).ready(function(){
 	Zytz.getZytzById(topicId,func);
 });
 </script>
-
+<style>
+#content{
+	font-size: 13px;
+	line-height: 1.8;
+  margin-top:30px;
+}
+#title{
+  text-align:center;
+}
+</style>
 
 <body>
 	<div id="title"></div>
