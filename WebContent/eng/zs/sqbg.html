@@ -4,13 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="../plugins/uploadify/uploadify.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../plugins/colorbox/colorbox.css" >
-
+	 <script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
+  	<script type="text/javascript" src="../jslib/json2.js"></script>
+ 	 <script type="text/javascript" src="../jslib/uuid.js"></script>
+ 	 <script type="text/javascript" src="../plugins/jquery.alert/jquery.alerts.js"></script>
+  	<script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+ 	 <script type='text/javascript' src='../dwr/engine.js'></script>
+  	<script type='text/javascript' src='../dwr/interface/Exhibitor.js'></script>
+  	<script type="text/javascript" src="js/constants.js"></script>
     <script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.js"></script>
 	<script type="text/javascript" src="../plugins/jquery.validate/jquery.validate.cn.js"></script>
 	<script type="text/javascript" src="../plugins/uploadify/jquery.uploadify.js"></script>
 	<script type="text/javascript" src="../plugins/colorbox/jquery.colorbox-min.js"></script>
 
-    <script type="text/javascript" src="../js/addExhibitor.js"></script>
+    <script type="text/javascript" src="js/addExhibitor.js"></script>
+  
 <style>
 .exib_input{
 	display:block; float:left; width:566px; height:38px; padding:0 0 0 8px; border:0;color:#aba8a8;font-size:12px;
@@ -82,7 +90,7 @@ label.error {
 	</div>
 	</div>
 	<div class="tablezh">
-      <div class="table4 left"><span class="table3_left left required_label">Industry Type</span>
+      <div class="table4 left"><span class="table3_left left required_label">Type</span>
       <input class="exib_input2 required" name="industryType" type="text" /></div>
       <div class="table4 right"><span class="table3_left left">Scale</span>
       <input class="exib_input2" name="scale" type="text" /></div>
@@ -133,15 +141,15 @@ label.error {
      </form> -->
 
      <div class="wssbbt" style=" margin-top:60px">4. Exhibits</div>
-		<table class="gridtable showitems" width="662">
+		<table class="gridtable showitems" width="652">
 		<tr>
 		  <td><div align="center">Name</div></td>
 		  <td><div align="center">Model</div></td>
 		  <td><div align="center">Quantity</div></td>
-		  <td><div align="center">Length(meter)</div></td>
-		  <td><div align="center">Width(meter)</div></td>
-		  <td><div align="center">Height(meter)</div></td>
-		  <td><div align="center">Weight(tons)</div></td>
+		  <td><div align="center">Length(m)</div></td>
+		  <td><div align="center">Width</div></td>
+		  <td><div align="center">Height</div></td>
+		  <td><div align="center">Weight(t)</div></td>
 		</tr>
 		<tr class="item_row">
 		  <td><div align="center"><input class="cell"/></div></td>
@@ -176,7 +184,7 @@ label.error {
 		</tr>
 		</table>
    <div class="button3">
-      <input class="add_visitor" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+      <input class="add_visitor" style=" display:block; width:87px; height:27px; background:url(../images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
      </div>
 
      <div class="wssbbt" style=" margin-top:60px">6.Exhibitors Service</div>

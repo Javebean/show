@@ -4,9 +4,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="css/ny.css"/>
-  <link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
-  <link href="plugins/uploadify/uploadify.css" rel="stylesheet"/>
   <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="jslib/json2.js"></script>
   <script type="text/javascript" src="jslib/uuid.js"></script>
@@ -16,24 +13,14 @@
   <script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
   <script type="text/javascript" src="js/constants.js"></script>
 
-
-    <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
-	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
-	<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
-	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
-
-    <script type="text/javascript" src="js/addExhibitor.js"></script>
-
-
   <title>连博会</title>
 
 </head>
 <script>
 $(document).ready(function(){
-
+  $(".nymain_right").load("zs/sqbg.html");
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
-  $(".nymain_right").load("zs/sqbg.html");
   $(".menu_Left").click(loadContent);
 });
 </script>
@@ -89,6 +76,12 @@ $(document).ready(function(){
     <div class="nymain_right left">
     </div>
   </div>
+
+
+
+
+
+
 
   <div class="footer">
   </div>
