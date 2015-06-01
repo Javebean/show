@@ -126,14 +126,14 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a order by logo desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a order by applyTime desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
 				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.orgName like '%" + orgName + "%' order by logo desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.orgName like '%" + orgName + "%' order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
 					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
 		}
@@ -152,6 +152,41 @@ public class ExhibitorsDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<ShortExhibitor>getShortExhibitorForPageByState(int start, int number, int state, String orgName)
+	{
+		//sql  ="(select * from exhibitors where logo is not null order by applyTime desc  limit 999999) union (select * from exhibitors where logo is null order by applyTime desc  limit 999999)";
+		
+		SQLQuery query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.state = :state order by applyTime desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+			
+		}
+		else
+		{
+			query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.state = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+		}
+		query.setParameter("state", state);
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		Class cls = null;
+		try {
+			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ShortExhibitor>getShortExhibitorForPageByStateLogoOrder(int start, int number, int state, String orgName)
 	{
 		//sql  ="(select * from exhibitors where logo is not null order by applyTime desc  limit 999999) union (select * from exhibitors where logo is null order by applyTime desc  limit 999999)";
 		
@@ -184,6 +219,7 @@ public class ExhibitorsDao {
 		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
 		return list;
 	}
+	
 	
 	public long deleteExhibitorById (String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(

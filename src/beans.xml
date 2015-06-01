@@ -30,7 +30,12 @@
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="testWhileIdle" value="true" />
+        <property name= "timeBetweenEvictionRunsMillis" value="7200000" />  
+        <property name= "numTestsPerEvictionRun" value="30" />  
+        <property name="minEvictableIdleTimeMillis" value="7200000" />
 	</bean>
+
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">

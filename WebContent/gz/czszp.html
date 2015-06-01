@@ -78,7 +78,7 @@ $(document).ready(function(){
 				$(".tz_list").removeClass("hide");
 			});
 		}
-		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,func);
+		Exhibitor.getExhibitorsForPageByStateLogoOrder((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,"",func);
 	}
 
 	function loadDetail(){

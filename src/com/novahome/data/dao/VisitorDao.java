@@ -104,11 +104,11 @@ public class VisitorDao {
 		Query query;
 		if(name == null || name.isEmpty() || name.trim().isEmpty())
 		{
-			query = sessionFactory.getCurrentSession().createQuery("from Visitor order by id desc");
+			query = sessionFactory.getCurrentSession().createQuery("from Visitor order by applyTime desc");
 		}
 		else
 		{
-			query = sessionFactory.getCurrentSession().createQuery("from Visitor where name like '%" + name  + "%' order by id desc");
+			query = sessionFactory.getCurrentSession().createQuery("from Visitor where name like '%" + name  + "%' order by applyTime desc");
 		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		
@@ -122,12 +122,12 @@ public class VisitorDao {
 		if(name == null || name.isEmpty() || name.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createQuery(
-				"from Visitor a where a.state = :state order by a.id desc");
+				"from Visitor a where a.state = :state order by a.applyTime desc");
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createQuery(
-					"from Visitor a where a.state = :state and a.name like '%" + name + "%' order by a.id desc");
+					"from Visitor a where a.state = :state and a.name like '%" + name + "%' order by a.applyTime desc");
 		}
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行

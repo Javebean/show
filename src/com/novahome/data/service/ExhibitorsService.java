@@ -228,6 +228,26 @@ public class ExhibitorsService {
 		return procssListRet(ls,size);
 	}
 	
+	/**
+	 * 2015.6.1新增，order排序
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param orgName
+	 * @return
+	 */
+	public String getShortExhibitorForPageByStateLogoOrder(int start, int number, int state, String orgName)
+	{
+		if(state == -1)
+		{
+			//如果没有state限制就是全是time顺序
+			return this.getShortExhibitorsForPage(start, number, orgName);
+		}
+		long size = exhibitorsDao.getExhibitorsCountByState(state, orgName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateLogoOrder(start, number, state, orgName);
+		return procssListRet(ls,size);
+	}
+	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
 		JSONObject obj = new JSONObject();

@@ -61,12 +61,12 @@ public class AudienceDao {
 		if(name == null || name.isEmpty() || name.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createQuery(
-					"from Audience order by id asc");
+					"from Audience order by applyTime desc");
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createQuery(
-				"from Audience where name like '%" + name + "%' order by id asc" );
+				"from Audience where name like '%" + name + "%' order by applyTime desc" );
 		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数		

@@ -95,6 +95,18 @@ public class ExhibitorsDwr {
 	}
 	
 	/**
+	 * 根据logo顺序查询
+	 * 2015.6.1新增
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorsForPageByStateLogoOrder(int start, int number, int state, String orgName)
+	{
+		return exhibitorsService.getShortExhibitorForPageByStateLogoOrder(start, number,state, orgName);
+	}
+	/**
 	 * 分页查询展商信息
 	 * @param start
 	 * @param number

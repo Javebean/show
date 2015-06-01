@@ -107,17 +107,25 @@ $(document).ready(function(){
 			showSceneBox();
 		});
 
+		//初始化招商引荐单位
+		var recommender_sel_html = "";
+		for(var i=0; i< CON_REC_SEL.length; i++){
+			var item = CON_REC_SEL[i];
+			recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+		}
+		$("#recommender_dropbox").html(recommender_sel_html);
+		
 		//货运物流
 		var trans_type_html = "";
 		for(var i=0;i<CON_TRANS_TYPE.length;i++){
 			var item = CON_TRANS_TYPE[i];
 			trans_type_html += '<div class="hy" index="'+i+'" itemname="'+item.name+'">'+
-			       '<div class="hy1" style="margin-top:16px;"><span class="hyspan"><input class="trans_check" type="checkbox" value="" /><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
-	        '<span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>'+
-	        '<span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>'+
-	       '</div><div class="hy1"><span class="hyspan" style=" padding-left:40px; width:120px">'+item.info[0]+'</span>'+
-	        '<span class="hyspan">'+item.info[1]+'</span>'+
-	        '<span class="hyspan">'+item.info[2]+'</span></div></div>';
+						'<div class="hy1" style="margin-top:16px;"><span class="hyspan"><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
+					'<span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>'+
+					'<span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>'+
+				'</div><div class="hy1"><span class="hyspan" style=" padding-left:40px; width:120px">'+item.info[0]+'</span>'+
+					'<span class="hyspan">'+item.info[1]+'</span>'+
+					'<span class="hyspan">'+item.info[2]+'</span></div></div>';
 		}
 		$(".trans_select_box").html(trans_type_html);
 	}
@@ -332,7 +340,8 @@ $(document).ready(function(){
 
 	setTimeout(function(){
 		$("#uploadify").uploadifive({
-			'uploader' : 'imageUpload?topicId=' + topicId,
+			'queueID'          : 'queue',
+			'uploadScript' : 'imageUpload?topicId=' + topicId,
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
@@ -341,7 +350,7 @@ $(document).ready(function(){
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
 			},
-			onUploadSuccess : function(file, data, response) {
+			onUploadComplete : function(file, data, response) {
 				picFlag = true;
 				setTimeout(function(){
 					$("#topic_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());

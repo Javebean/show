@@ -8,14 +8,15 @@
     <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
   	<script type="text/javascript" src="jslib/json2.js"></script>
  	 <script type="text/javascript" src="jslib/uuid.js"></script>
+		<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
  	 <script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
-  	<script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+  
  	 <script type='text/javascript' src='dwr/engine.js'></script>
   	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
   	<script type="text/javascript" src="js/constants.js"></script>
     <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
 	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
-	<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
+
 	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
 
     <script type="text/javascript" src="js/addExhibitor.js"></script>
@@ -66,9 +67,20 @@ label.error {
 	<div class="table3"><span class="table3_left left">法定代表人</span>
      	<input class="exib_input" name="president" type="text" />
 	</div>
-	<div class="table3"><span class="table3_left left required_label">招商引荐单位</span>
+	<!-- <div class="table3"><span class="table3_left left required_label">招商引荐单位</span>
      	<input class="exib_input required" name="recommender" type="text" />
+	</div> -->
+
+	<div class="table3"><span class="table3_left left required_label">招商引荐单位</span>
+		<div class="sel_wrap left" style=" width:574px">
+			<label></label>
+			<select class="select required" name="recommender" id="recommender_dropbox">
+
+			</select>
 	</div>
+</div>
+
+
 	<div class="table3"><span class="table3_left left required_label">地&nbsp;&nbsp;&nbsp;&nbsp;址</span>
      	<input class="exib_input required" name="address" type="text" />
 	</div>

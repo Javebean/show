@@ -66,7 +66,7 @@ public class ZytzDao {
 	public List<ShortZytz>getShortZytzForPage(int start, int number)
 	{
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.title, a.publishTime,a.abs from Zytz a order by id desc")
+				"Select a.id, a.title, a.publishTime,a.abs from Zytz a order by a.publishTime desc")
 				 .addScalar("id").addScalar("title")
 				  .addScalar("publishTime").addScalar("abs") ;
 		query.setFirstResult(start);//设置起始行
