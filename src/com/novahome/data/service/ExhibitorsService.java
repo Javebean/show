@@ -58,11 +58,6 @@ public class ExhibitorsService {
 	private VisitorDao visitorDao;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
-	private static final String SUBJECT_OBJECTION = "抱歉，您的连博会展商申请被驳回";
-	private static final String htmlPart1 = "<html><p>您好，</p><p>&nbsp; 抱歉，由于以下原因，您的连博会展商申请被驳回:</p><p><strong>";
-	private static final String htmlPart2 = "</strong></p><p>请您根据驳回原因重新申请或者联系工作人员,请勿回复此邮件，谢谢！</p></html>";
-	private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-
 	
 	public String getExhibitorsTotalCount()
 	{
@@ -353,7 +348,17 @@ public class ExhibitorsService {
 			displayItemDao.saveDisplayItem(d);
 		}
 		String ret = obj.toString();
+		
+		String email = exhibitor.getEmail();
+		if(email != null && email.matches(Constants.EMAIL_REGEX))  
+		{
+			logger.info("发送展商注册邮件...");
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, userName,pwd);
+			logger.debug("content:" + content);
+			MailUtil.sendMail(email, Constants.EXT_SUBJECT_REGISTER, content);
+		}
 		logger.info(ret);
+		
 		return ret;
 	}
 	
@@ -422,6 +427,17 @@ public class ExhibitorsService {
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
 		ex.setState(state);
+		if(state == 1)
+		{
+			String email = ex.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				logger.info("发送展商申请通过邮件...");
+				String content = Constants.EXT_APPROVED;
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, Constants.EXT_SUBJECT_APPROVED, content);
+			}
+		}
 		return true;
 	}
 	
@@ -433,12 +449,12 @@ public class ExhibitorsService {
 		{
 			ex.setReason(reason);
 			String email = ex.getEmail();
-			if(email != null && email.matches(EMAIL_REGEX))  
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
-				logger.info("发送邮件...");
-				String content = htmlPart1 + reason + htmlPart2;
+				logger.info("发送展商驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
 				logger.debug("content:" + content);
-				MailUtil.sendMail(email, SUBJECT_OBJECTION, content);
+				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
 		}
 		else

@@ -17,17 +17,17 @@ $(document).ready(function(){
 	$(".print_tp").click(function(){
 		window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&pic="+$(this).attr("eimage"),'证件打印');
 	});
-	
+
 	$(".do_search").click(function(){
 		doSearch();
 	});
-	
+
 	$(window).keydown(function(event){
 		if(event.keyCode==13){
 			doSearch();
 		}
 	});
-	
+
 	function doSearch(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
@@ -75,10 +75,10 @@ $(document).ready(function(){
 	                '<td>' + topic.applyTime + '</td>' +
 	                '<td>' + statestr + '</td><td>';
 	              //  '<td>' + status[topic.state] + '</td>' +
-                if(topic.state == 0){
-                	html += '<button type="button" class="btn btn-sm btn-success update_tp" eid="'+topic.id+'">批准</button>'+
-                	'<button type="button" class="btn btn-sm btn-danger reject_tp" eid="'+topic.id+'">驳回</button>';
-                }
+                // if(topic.state == 0){
+                // 	html += '<button type="button" class="btn btn-sm btn-success update_tp" eid="'+topic.id+'">批准</button>'+
+                // 	'<button type="button" class="btn btn-sm btn-danger reject_tp" eid="'+topic.id+'">驳回</button>';
+                // }
                 html +=
 									'<button type="button" class="btn btn-sm btn-primary detail_tp" eid="'+topic.id+'" ename="'+topic.name+'" imagesrc="'+topic.photo+'">查看</button>' +
 									'<button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
@@ -114,6 +114,7 @@ $(document).ready(function(){
 
 	function detailTP(){
 		$("#popup_detail_box span").empty();
+		$("#popup_detail_box input").val("");
 		var imagesrc = $(this).attr("imagesrc");
 		if(imagesrc != "undefined"){
 			$(".cp_image").attr("src",PIC_BASE + imagesrc);
@@ -130,7 +131,13 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 
 			setViewTable(".visitor_detail",data);
-
+			if(data.state == 0){
+				$(".audit_box").removeClass("hide");
+				$(".update_tp").attr("eid",data.id);
+				$(".reject_tp").attr("eid",data.id);
+			} else {
+				$(".audit_box").addClass("hide");
+			}
 			$.colorbox({
 				inline : true,
 				innerWidth:800,
@@ -179,6 +186,7 @@ $(document).ready(function(){
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) {
+				$.colorbox.close();
 				showTopicList(1);
 			}
 		}
@@ -187,12 +195,14 @@ $(document).ready(function(){
 
 	function rejectTP(){
 		var eid = $(this).attr("eid");
+		var reason = $("#reject_reason").val();
 		var func = function(data){
 			if(data==true) {
+				$.colorbox.close();
 				showTopicList(1);
 			}
 		}
-		Visitor.updateVisitorState(eid,2,func);
+		Visitor.updateVisitorStateReason(eid,2,reason, func);
 	}
 
 	function initPaging(pageActive, rowCount){

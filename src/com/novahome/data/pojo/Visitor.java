@@ -28,6 +28,7 @@ public class Visitor {
 	private int buyer = 0;	//是否为采购商， 1=是采购商，0= 不是采购商，缺省为非采购商
 	private String org;	//所属公司名称
 	private int state = 0;	//申请状态  state=0 申请；1 =批准； 2=驳回
+	private String reason; //驳回原因
 	private Date applyTime;	//申请时间，系统生成
 	@Id
 	@Column(length = 32)
@@ -112,5 +113,12 @@ public class Visitor {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	
 	
 }

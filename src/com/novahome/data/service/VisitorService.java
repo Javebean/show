@@ -18,6 +18,7 @@ import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.VisitorDao;
 import com.novahome.data.pojo.Visitor;
 import com.novahome.utils.CutImageUtils;
+import com.novahome.utils.MailUtil;
 
 @Service("visitorService")
 @Transactional(readOnly = false)
@@ -215,6 +216,40 @@ public class VisitorService {
 	{
 		Visitor visitor = visitorDao.getVisitorById(id);
 		visitor.setState(state);
+		if(state == 1)
+		{
+			String email = visitor.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				logger.info("发送现场证件申请通过邮件...");
+				String content = Constants.VISITOR_APPROVED;
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_APPROVED, content);
+			}
+		}
+		return true;
+	}
+	
+	public boolean updateVisitorStateReason(String id, int state, String reason)
+	{
+		Visitor visitor = visitorDao.getVisitorById(id);
+		visitor.setState(state);
+		if(state == 2)
+		{
+			visitor.setReason(reason);
+			String email = visitor.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				logger.info("发送现场证件申请驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.VISITOR_REFUSE, reason);
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_OBJECTION, content);
+			}
+		}
+		else
+		{
+			visitor.setReason("");
+		}
 		return true;
 	}
 }

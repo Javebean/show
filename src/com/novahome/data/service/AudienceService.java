@@ -20,6 +20,7 @@ import com.novahome.commonservice.PeopleState;
 import com.novahome.commonservice.RandCodeGenerator;
 import com.novahome.data.dao.AudienceDao;
 import com.novahome.data.pojo.Audience;
+import com.novahome.utils.MailUtil;
 
 
 
@@ -42,7 +43,6 @@ public class AudienceService {
 	
 	public String saveAudience(Audience audience)
 	{
-		System.out.println("*******"+audience);
 		audience.setApplyTime(new Date());
 		String userName = RandCodeGenerator.generateAudiUser();
 		String pwd = RandCodeGenerator.generatePwd();
@@ -65,6 +65,16 @@ public class AudienceService {
 		obj.put("password", pwd);
 		obj.put("id", id);
 		String ret = obj.toString();
+		
+		String email = audience.getEmail();
+		if(email != null && email.matches(Constants.EMAIL_REGEX))  
+		{
+			logger.info("发送观众注册邮件...");
+			String content = MailUtil.replaceVariable(Constants.AUDIENCE_REGISTER, userName,pwd);
+			logger.debug("content:" + content);
+			MailUtil.sendMail(email, Constants.AUDIENCE_SUBJECT_REGISTER, content);
+		}
+		
 		logger.debug(ret);
 		return ret;
 	}

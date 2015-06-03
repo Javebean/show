@@ -141,7 +141,7 @@ public class VisitorDwr {
 	}
 	
 	/**
-	 * 更新现场证件申请信息
+	 * 更新现场证件申请状态
 	 * @param transportation
 	 * @return
 	 */
@@ -149,5 +149,16 @@ public class VisitorDwr {
 	public boolean updateVisitorState(String id, int state)
 	{
 		return visitorService.updateVisitorState(id, state);
+	}
+	
+	/**
+	 * 更新现场证件申请状态和驳回原因
+	 * @param transportation
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateVisitorStateReason(String id, int state, String reason)
+	{
+		return visitorService.updateVisitorStateReason(id, state, reason);
 	}
 }

@@ -41,7 +41,7 @@
 					<div class="navbar-header">
 						<span class="glyphicon glyphicon-search navbar-brand" aria-hidden="true"></span>
 					</div>
-					
+
 					<div class="collapse navbar-collapse">
 						<div class="navbar-form navbar-left" role="search">
 							<div class="form-group">
@@ -61,11 +61,11 @@
 							<div class="form-group">
 								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
 							</div>
-							
+
 							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</nav>
 
@@ -174,11 +174,26 @@
 					       <div class="cp_name"></div>
 					      </div>
 					</div>
-					<div class="form-group audit_box">
+					<div class="form-group print_box">
 						<div class="col-sm-offset-2" style="margin-top:10px;">
 							<button type="button" class="btn btn-sm btn-success print_tp" eid="">打印</button>
 						</div>
 					</div>
+
+					<div class="audit_box hide">
+						<div class="form-group">
+							<label>驳回原因：（如需驳回请填写此项）</label>
+							<input type="text" class="form-control" id="reject_reason" style="width: 100%;"/>
+						</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-5">
+							<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
+							<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+						</div>
+					</div>
+				</div>
+
 				</div>
 			</div>
 
