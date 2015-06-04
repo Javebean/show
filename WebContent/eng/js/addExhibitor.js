@@ -2,7 +2,7 @@
 var formData = {};
 var picFlag = false;
 var picFlag_logo = false;
-var PIC_BASE = 'resources/topicimages/';
+var PIC_BASE = '../resources/topicimages/';
 var topicId = Math.uuid();
 var topicId_logo = Math.uuid();
 var scene_type_html = "";
@@ -334,7 +334,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		$("#uploadify").uploadify({
 			'swf'      : 'uploadify.swf',
-			'uploader' : 'imageUpload?topicId=' + topicId,
+			'uploader' : '../imageUpload?topicId=' + topicId,
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
@@ -378,7 +378,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		$("#uploadify_logo").uploadify({
 			'swf'      : 'uploadify.swf',
-			'uploader' : 'imageUpload?topicId=' + topicId_logo,
+			'uploader' : '../imageUpload?topicId=' + topicId_logo,
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
