@@ -9,14 +9,14 @@ $(document).ready(function(){
 	//event binder
 	$("#submitForm").click(saveForm);
 	$("#chuyang").click(chuyang);
-	
+
 	//test
 	$(".test_btn").click(function(){
 		var visitor = getDymiTableData(".visitors", visitorParams);
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		getFormdata("regForm");
 	});
-	
+
 	function chuyang(){
 		var formData = getFormdata("regForm");
 		$(".cp_name").text(formData.name);
@@ -32,7 +32,7 @@ $(document).ready(function(){
 		    });
 		}
 	}
-	
+
 	function saveForm(){
 		if(!$("#form").valid()){
 			$(window).scrollTop(400);
@@ -47,7 +47,7 @@ $(document).ready(function(){
 		if(picFlag){
 			formData.photo = topicId + ".jpg";
 		}
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
 			if(data.result == true){
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		};
 		Visitor.saveVisitor(formData,pic_scare,func);
 	}
-	
+
 	function getFormdata(formName){
 		var form = document.forms[formName];
 		var entryNames = [];
@@ -71,16 +71,16 @@ $(document).ready(function(){
 				}
 			}
 		}
-		
+
 		var data = {};
 		for(var i=0;i<entryNames.length;i++){
 			var key = entryNames[i];
 			data[key] = form[key].value;
 		}
-		
+
 		return data;
 	}
-	
+
 	setTimeout(function(){
 		$("#uploadify").uploadify({
 			'swf'      : 'uploadify.swf',
@@ -88,8 +88,31 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 10485760,
-			
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
+
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
 			},
@@ -104,18 +127,18 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
+
 	function preview(img, selection) {
 	    var scaleX = 134 / (selection.width || 1);
 	    var scaleY = 170 / (selection.height || 1);
-	  
+
 	    $('#img_preview').css({
 	        width: Math.round(scaleX * 168) + 'px',
 	        height: Math.round(scaleY * 212) + 'px',
 	        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
 	        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
 	    });
-	    
+
 	    pic_scare = "";
 	    if(selection.width>10){
 	    	pic_scare += selection.x1+","+selection.y1+","+selection.width+","+selection.height;

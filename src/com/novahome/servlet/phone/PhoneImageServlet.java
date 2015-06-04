@@ -41,7 +41,7 @@ public class PhoneImageServlet extends HttpServlet {
 			// 2、创建核心解析类：ServletFileUpload
 			ServletFileUpload upload = new ServletFileUpload(facotry);
 			upload.setHeaderEncoding("UTF-8");// 解决上传的文件名乱码
-			upload.setFileSizeMax(2 * 1024 * 1024);// 单个文件上传最大值是2M
+			upload.setFileSizeMax(3 * 1024 * 1024);// 单个文件上传最大值是3M
 			upload.setSizeMax(5 * 1024 * 1024);//文件上传的总大小限制
 
 			// 3、判断用户的表单提交方式是不是multipart/form-data

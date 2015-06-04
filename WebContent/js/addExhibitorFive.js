@@ -114,7 +114,7 @@ $(document).ready(function(){
 			recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
 		}
 		$("#recommender_dropbox").html(recommender_sel_html);
-		
+
 		//货运物流
 		var trans_type_html = "";
 		for(var i=0;i<CON_TRANS_TYPE.length;i++){
@@ -345,7 +345,20 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 10485760,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onError: function(errorType, file) {
+				var msgText = "上传失败\n";
+				switch (errorType) {
+						case 'FILE_SIZE_LIMIT_EXCEEDED':
+								msgText += "文件大小超过限制(5MB)";
+								break;
+						default:
+								msgText += "错误代码：" + errorType + "\n" + errorMsg;
+				}
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
@@ -367,7 +380,20 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 3000000,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onError: function(errorType, file) {
+        var msgText = "上传失败\n";
+				switch (errorType) {
+						case 'FILE_SIZE_LIMIT_EXCEEDED':
+								msgText += "文件大小超过限制(5MB)";
+								break;
+						default:
+								msgText += "错误代码：" + errorType + "\n" + errorMsg;
+				}
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;

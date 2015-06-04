@@ -345,7 +345,30 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 10485760,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
@@ -366,7 +389,30 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 3000000,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;

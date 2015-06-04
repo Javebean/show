@@ -14,7 +14,7 @@ $(document).ready(function(){
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];
-	
+
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		addItem(this,4);
 	});
 	$(".addSceneBtn").click(showSceneBox);
-	
+
 	function showSceneBox(){
 		$.colorbox({
 			inline : true,
@@ -36,7 +36,7 @@ $(document).ready(function(){
 	}
 
 	pageInit();
-	
+
 	//初始化现场服务和货运物流
 	function pageInit(){
 		//现场服务
@@ -46,10 +46,10 @@ $(document).ready(function(){
 				   '<div class="itemImage"><img src="'+SCENE_IMAGE_BASE+item.image+'" /></div>'+
 			       '<div class="itemName">'+item.name+'</div>'+
 			       '<div class="itemInfo">'+item.info[0]+'<br/>'+item.info[1]+'<br/>'+item.info[2]+'</div></div>';
-			
+
 		}
 		$(".sceneItemBox").append(scene_type_html);
-		
+
 		$(".oneItem").click(function(){
 			if($(this).hasClass("item_on")){
 				$(this).removeClass("item_on");
@@ -57,7 +57,7 @@ $(document).ready(function(){
 				$(this).addClass("item_on");
 			}
 		});
-		
+
 		//添加选中的物品到页面
 		$(".scene_ok_btn").click(function(){
 			var preItems = {};
@@ -66,7 +66,7 @@ $(document).ready(function(){
 				var name = row.attr("itemname");
 				preItems[name] = row.find(".item_count").val();
 			});
-			
+
 			var html = '<div class="fwts">You have selected the following on-site service</div>';
 			$(".sceneItemBox .item_on").each(function(){
 				var index = $(this).attr("index");
@@ -79,9 +79,9 @@ $(document).ready(function(){
 				       '<span class="hyspan2">'+item.info[1]+'</span>'+
 				       '<span class="hyspan2">'+item.info[2]+'</span></div></div></div>';
 			});
-			
+
 			$(".scene_item_selected").html(html);
-			
+
 			$(".fwnr").each(function(){
 				var row = $(this);
 				var name = row.attr("itemname");
@@ -89,16 +89,16 @@ $(document).ready(function(){
 					row.find(".item_count").val(preItems[name]);
 				}
 			});
-			
+
 			$(".scene_item_selected .remove_item").click(function(){
 				$(this).parent().remove();
 			});
-			
+
 			$(".addSceneBtn").hide();
 			$(".update_scene_item").show();
 			$.colorbox.close();
 		});
-		
+
 		$(".update_scene_item").click(function(){
 			$(".sceneItemBox .item_on").removeClass("item_on");
 			$(".fwnr").each(function(){
@@ -107,7 +107,7 @@ $(document).ready(function(){
 			});
 			showSceneBox();
 		});
-		
+
 		//货运物流
 		var trans_type_html = "";
 		for(var i=0;i<CON_TRANS_TYPE.length;i++){
@@ -176,7 +176,7 @@ $(document).ready(function(){
 		});
 		return itemList;
 	}
-	
+
 	function getDymiTableDataTrans(){
 		var itemList = [];
 		$(".hy").each(function(){
@@ -274,7 +274,7 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
+
 		var transportation = getDymiTableDataTrans();
 		for(var i=0;i<transportation.length;i++){
 			var item = transportation[i];
@@ -338,7 +338,30 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 10485760,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
@@ -359,7 +382,30 @@ $(document).ready(function(){
 			'fileDesc' : 'Image Files',
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
-			'sizeLimit' : 3000000,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
 
 			onUploadError : function(event, queueID, fileObj, errorObj) {
 				return false;
