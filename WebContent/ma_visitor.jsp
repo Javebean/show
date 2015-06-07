@@ -23,9 +23,10 @@
     	.glyphicon-search{
     		font-size:20px;
     	}
-    	.cp{ width:322px; height:391px; background:url(images/samplecard.png); margin-top:40px; padding-top:1px}
-		.cp_photo{ width:118px; height:149px; margin:146px 0 0 108px}
+    	.cp{ width:322px; height:415px; background:url(images/samplecard.png); margin-top:40px; padding-top:1px}
+		.cp_photo{ width:118px; height:149px; margin:171px 0 0 108px}
 		.cp_name{ color:#2c2c2c; font-size:20px; margin:5px 0 0 150px;font-weight:bold;}
+		.cp_company{ color:#2c2c2c; font-size:20px; margin:15px 0 0 150px;font-weight:bold;}
     </style>
 
     <div class="container-fluid">
@@ -172,6 +173,7 @@
 						<div class="cp">
 					       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
 					       <div class="cp_name"></div>
+								<div class="cp_company"></div>
 					      </div>
 					</div>
 					<div class="form-group print_box">

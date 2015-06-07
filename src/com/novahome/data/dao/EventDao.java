@@ -37,6 +37,7 @@ public class EventDao {
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Audience a, Event e where e.aid = a.id and e.id = :id");
+		//???可以考虑从audience的id换成audience的username来查询，引文username也是系统唯一的
 				query.setString("id", id);
 				Object[] obs = (Object[])query.uniqueResult();
 				logger.info("obs0:" + obs[0]  );

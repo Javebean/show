@@ -2,14 +2,14 @@
 	<%@ include file="ma_header.jsp" %>
 	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
-	
-	
+
+
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
     <script type="text/javascript" src="js/manager/ma_exhibitor.js"></script>
     <script>
     	var menu = 5;
     </script>
-    
+
     <style>
     	.fview_table th{
     		text-align:center;
@@ -28,8 +28,8 @@
     <div class="container-fluid">
       <div class="row">
       <!-- menu -->
-		<jsp:include page="ma_menu.jsp" />   
-		    
+		<jsp:include page="ma_menu.jsp" />
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">展商管理</h2>
           <!-- search area -->
@@ -57,11 +57,11 @@
 							<div class="form-group">
 								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
 							</div>
-							
+
 							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</nav>
 
@@ -81,7 +81,7 @@
               </tbody>
             </table>
           </div>
-          
+
 			<div class="paging hide">
 				<nav>
 				<ul class="pagination pagination-lg">
@@ -108,7 +108,7 @@
 				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">招商引荐单位</th>
+				          <th class="text-nowrap" width="14%">招展引荐单位</th>
 				          <td colspan="3"><span ename="recommender" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
@@ -158,10 +158,10 @@
 				          <td colspan="4"><span ename="orgIntro" class="fview_value"></span></td>
 				        </tr>
 				    </table>
-				    
+
 				    <strong>企业logo</strong>
 				    <div><img id="logo_image" class="thumbnail" width="75" height="75" src=""/></div>
-				    
+
 				    <strong>摊位申请</strong>
 					<table class="table table-bordered fview_table areaapply">
 						<tr>
@@ -177,7 +177,7 @@
 							<td><span ename="tzfw" class="fview_value"></span></td>
 						</tr>
 					</table>
-				    
+
 				    <strong>展品情况</strong>
 					<table class="table table-bordered fview_table showitems">
 						<tr>
@@ -188,7 +188,7 @@
 							<th>宽度（米）</th>
 						</tr>
 					</table>
-					
+
 					<strong>参展人员名单</strong>
 					<table class="table table-bordered fview_table visitors">
 						<tr>
@@ -198,7 +198,7 @@
 							<th>联系电话（手机）</th>
 						</tr>
 					</table>
-					
+
 					<table class="table table-bordered exb_service">
 						<tr>
 				          <th colspan="3">参展服务</th>
@@ -220,7 +220,7 @@
 				          <td class="text-nowrap" width="25%">数量</td>
 				          <td class="text-nowrap" width="25%">时间</td>
 				        </tr>
-				        
+
 				         <!----------- 施工管理 ----------------->
 				         <tr>
 							<th colspan="3" class="t_sub_header">施工管理</th>
@@ -232,13 +232,13 @@
 				          </td>
 				        </tr>
 				    </table>
-				    
+
 				    <div class="audit_box hide">
 					    <div class="form-group">
 						    <label>驳回原因：（如需驳回请填写此项）</label>
 						    <input type="text" class="form-control" id="reject_reason" style="width: 100%;"/>
 						  </div>
-						
+
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-5">
 								<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>

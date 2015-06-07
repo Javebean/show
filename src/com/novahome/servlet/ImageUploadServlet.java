@@ -187,7 +187,8 @@ public class ImageUploadServlet extends HttpServlet {
 		g.dispose();
 		ImageIO.write(tag, "JPEG", new File(basepath + File.separator
 				+ topicId + ".jpg"));
-
+		System.out.println("servlet image:" +  topicId);
+		
 		image = src.getScaledInstance(334, 220, Image.SCALE_DEFAULT);
 		tag = new BufferedImage(334, 220, BufferedImage.TYPE_INT_RGB);
 		g = tag.getGraphics();
@@ -195,7 +196,7 @@ public class ImageUploadServlet extends HttpServlet {
 		g.dispose();
 		ImageIO.write(tag, "JPEG", new File(basepath + File.separator
 				+ "s_" + topicId + ".jpg"));
-
+		
 		tmpFile.delete();
 		writer.print("success");
 		writer.flush();

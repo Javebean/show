@@ -24,7 +24,7 @@ public class VisitorServlet extends HttpServlet{
 private static final long serialVersionUID = 1L;
 	
 	private VisitorService visitorService;
-	private static final String[] METHOD_NAMES = {"apply","details","getbyorgid","getbyorgname"};
+	private static final String[] METHOD_NAMES = {"apply","details","getbyorgid","getbyorgname","getbyid"};
 	private static final Logger logger = Logger.getLogger(VisitorServlet.class);
 	@Override
 	public void init()
@@ -86,6 +86,19 @@ private static final long serialVersionUID = 1L;
 				return;
 			}
 			response.getWriter().write(visitorService.getVisitorByOrg(org));
+		}
+		else if(path.equals(METHOD_NAMES[4]))
+		{
+			String id;
+			String idWild = request.getParameter("id");
+			if(idWild != null && !idWild.isEmpty())
+				id = new String(idWild.getBytes("ISO-8859-1"),"utf-8");
+			else
+			{
+				response.getWriter().write("{\"error\":\"id参数缺失\"}");
+				return;
+			}
+			response.getWriter().write(visitorService.getVisitorById(id));
 		}
 		else
 		{

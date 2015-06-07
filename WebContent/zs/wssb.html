@@ -39,16 +39,16 @@ label.error {
       <input  name="sex" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left" style=" background:none">公&nbsp;&nbsp;&nbsp;&nbsp;司</span>
-      <input  name="org" type="text" /></div>
+      <div class="table4 left"><span class="table3_left left required_label">公&nbsp;&nbsp;&nbsp;&nbsp;司</span>
+      <input  name="org" type="text" class="required" /></div>
       <div class="table4 right"><span class="table3_left left" style=" background:none">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
       <input  name="position" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left" style=" background:none">电&nbsp;&nbsp;&nbsp;&nbsp;话</span>
-      <input  name="phone" type="text" /></div>
-      <div class="table4 right"><span class="table3_left left" style=" background:none">电子邮箱</span>
-      <input  name="email" type="text" /></div>
+      <div class="table4 left"><span class="table3_left left required_label" >电&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+      <input  name="phone" type="text" class="required"/></div>
+      <div class="table4 right"><span class="table3_left left required_label">电子邮箱</span>
+      <input  name="email" type="text" class="required"/></div>
      </div>
 
      <div class="table3">
@@ -57,8 +57,8 @@ label.error {
         <div class="sel_wrap left" style=" width:574px">
         <label></label>
         <select class="select required" name="type" id="c_city">
-        <option value="1">展商</option>
-        <option value="2" selected="selected">观众</option>
+        <option value="1" selected="selected">展商</option>
+        <option value="2" >观众</option>
         <option value="3">媒体</option>
         </select>
        </div>
@@ -95,6 +95,7 @@ label.error {
       <div class="cp">
        <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
        <div class="cp_name"></div>
+			<div class="cp_company"></div>
       </div>
      </div>
 

@@ -69,6 +69,11 @@ public class VisitorService {
 				int width = Integer.parseInt(array[2]);
 				int height = Integer.parseInt(array[3]);
 				String srcName = visitor.getPhoto();
+				System.out.println("srcName:********" + srcName );
+				System.out.println("x:"+ originX);
+				System.out.println("y:"+ originX);
+				System.out.println("width:"+ width);
+				System.out.println("height:"+ height);
 				String srcPath = "";
 				if(srcName != null && !srcName.isEmpty())
 				{

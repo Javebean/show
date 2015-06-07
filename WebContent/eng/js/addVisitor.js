@@ -19,7 +19,14 @@ $(document).ready(function(){
 
 	function chuyang(){
 		var formData = getFormdata("regForm");
+		if(formData.type == 1)
+			$(".cp").css('background','url(../images/exhibitcard.png)');
+		else
+		{
+			$(".cp").css('background','url(../images/guestcard.png)');
+		}
 		$(".cp_name").text(formData.name);
+		$(".cp_company").text(formData.org);
 		if(picFlag){
 			$(".cp_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
 			 var scaleX = 134 / (img_selection.width || 1);
@@ -129,8 +136,8 @@ $(document).ready(function(){
 	},10);
 
 	function preview(img, selection) {
-	    var scaleX = 134 / (selection.width || 1);
-	    var scaleY = 170 / (selection.height || 1);
+	    var scaleX = 118 / (selection.width || 1);
+	    var scaleY = 149 / (selection.height || 1);
 
 	    $('#img_preview').css({
 	        width: Math.round(scaleX * 168) + 'px',

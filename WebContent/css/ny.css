@@ -393,10 +393,12 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 .p_buttons{ width:164px; height:27px; }
 
 
-.cp{ width:322px; height:391px; background:url(../images/samplecard.png); margin-top:40px; padding-top:1px}
-.cp_photo{ width:118px; height:149px; margin:146px 0 0 108px}
+.cp{ width:322px; height:415px; background:url(../images/guestcard.png); margin-top:40px; padding-top:1px}
+.cp_photo{ width:118px; height:149px; margin:171px 0 0 108px}
 
-.cp_name{ color:#2c2c2c; font-size:20px; margin:5px 0 0 150px;font-weight:bold;}
+.cp_name{ color:#2c2c2c; font-size:20px; margin:7px 0 0 150px;font-weight:bold;}
+.cp_company{ color:#2c2c2c; font-size:20px; margin:15px 0 0 150px;font-weight:bold;}
+
 .cp_position{color:#2c2c2c; font-size:12px;margin:12px 0 0 150px}
 .cp_number{color:#2c2c2c; font-size:12px;margin:12px 0 0 150px}
 .p_buttons2{ width:240px; height:27px; margin-top:19px}

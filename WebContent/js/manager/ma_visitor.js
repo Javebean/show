@@ -15,7 +15,14 @@ $(document).ready(function(){
 
 	//event binder
 	$(".print_tp").click(function(){
-		window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&pic="+$(this).attr("eimage"),'证件打印');
+		type = $(this).attr("etype");
+		if(type == 1)
+		{
+			window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+		}
+		else {
+			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+		}
 	});
 
 	$(".do_search").click(function(){
@@ -80,7 +87,7 @@ $(document).ready(function(){
                 // 	'<button type="button" class="btn btn-sm btn-danger reject_tp" eid="'+topic.id+'">驳回</button>';
                 // }
                 html +=
-									'<button type="button" class="btn btn-sm btn-primary detail_tp" eid="'+topic.id+'" ename="'+topic.name+'" imagesrc="'+topic.photo+'">查看</button>' +
+									'<button type="button" class="btn btn-sm btn-primary detail_tp" eid="'+topic.id+'" ename="'+topic.name+ '" ecompany="'+topic.org+ '" etype='+topic.type+' imagesrc="'+topic.photo+'">查看</button>' +
 									'<button type="button" class="btn btn-sm btn-danger delete_tp" eid="'+topic.id+'">删除</button></td>'+
                 '</tr>';
 			}
@@ -115,6 +122,13 @@ $(document).ready(function(){
 	function detailTP(){
 		$("#popup_detail_box span").empty();
 		$("#popup_detail_box input").val("");
+		typecard = $(this).attr("etype");
+		if(typecard == 1)
+			$(".cp").css('background','url(images/exhibitcard.png)');
+		else
+		{
+			$(".cp").css('background','url(images/guestcard.png)');
+		}
 		var imagesrc = $(this).attr("imagesrc");
 		if(imagesrc != "undefined"){
 			$(".cp_image").attr("src",PIC_BASE + imagesrc);
@@ -124,8 +138,10 @@ $(document).ready(function(){
 			$(".print_tp").attr("eimage",IMAGE_NOT_FOUND);
 		}
 		$(".cp_name").text($(this).attr("ename"));
+		$(".cp_company").text($(this).attr("ecompany"));
 		$(".print_tp").attr("ename",$(this).attr("ename"));
-
+		$(".print_tp").attr("ecompany",$(this).attr("ecompany"));
+		$(".print_tp").attr("etype",$(this).attr("etype"));
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);

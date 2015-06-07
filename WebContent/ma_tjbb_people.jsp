@@ -57,7 +57,7 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div id="chart" style="width:600px; height:250px;"></div>
-          <h2 class="sub-header">招展招商引荐单位统计表</h2>
+          <h2 class="sub-header">招展引荐单位统计表</h2>
           <table class="table table-bordered table-striped fview_table" style="width:600px;">
 		        <tr>
 		          <th class="text-nowrap" width="80%">单位名称</th>

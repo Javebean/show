@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
+<style>
+.cp {
+	width: 322px;
+	height: 391px;
+	background: url(images/guestcard.jpg);
+
+}
+
+.cp_photo {
+	width: 118px;
+	height: 149px;
+	overflow: hidden;
+	position: absolute;
+	top: 180px;
+	left: 108px;
+}
+
+.cp_name {
+	color: #2c2c2c;
+	font-size: 20px;
+	font-weight: bold;
+	position: absolute;
+	top: 340px;
+	left: 160px;
+}
+.cp_company{ color:#2c2c2c; font-size:20px; 	position: absolute;
+	top: 380px;
+	left: 160px;;font-weight:bold;}
+</style>
+<script>
+var PIC_BASE = 'resources/topicimages/';
+$(document).ready(function(){
+	var url = location.href;
+	var name = decodeURI(url.substring(url.indexOf("name=")+5,url.indexOf("&org=")));
+	var org = decodeURI(url.substring(url.indexOf("&org=")+5,url.indexOf("&pic=")));
+	var pic = url.substring(url.indexOf("&pic=")+5,url.length);
+
+	$(".cp_image").attr("src",PIC_BASE+pic);
+	$(".cp_name").text(name);
+	$(".cp_company").text(org);
+	if(!pic){
+		$(".cp_image").hide();
+	}
+
+	window.print();
+
+});
+</script>
+
+  <div>
+		<div><img style="width:322px; height:415;" src="images/guestcard.png" /></div>
+       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
+       <div class="cp_name"></div>
+			<div class="cp_company"></div>
+	</div>
+
+</html>

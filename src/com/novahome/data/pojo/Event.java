@@ -27,6 +27,7 @@ public class Event {
 	private String type;	//活动类型
 	private String note;	//活动备注说明
 	private String invitee;	//活动邀请对象
+	private int state = 0; //活动申请状态
 	private Date applyTime;	//活动申请时间，系统生成
 	@Id
 	@Column(length = 32)
@@ -105,8 +106,12 @@ public class Event {
 	public void setOrganizer(String organizer) {
 		this.organizer = organizer;
 	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	
-	
-	
-	
+
 }

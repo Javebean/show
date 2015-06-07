@@ -48,7 +48,7 @@ public class SendThread implements Runnable{
 		 //创建邮件Session所需的Properties对象
 		try {
 			mailUser = queue.take();
-			logger.info("smtpServer:" + smtpServer + ";user:" + mailUser.getUser());
+			logger.info("smtpServer:" + smtpServer + ";user:" + mailUser.getUser() + ";psw:" + mailUser.getPassword());
 			Properties props = new Properties();
 			props.put("mail.smtp.host" , smtpServer);
 			props.put("mail.smtp.auth" , "true");

@@ -7,8 +7,7 @@
 	width: 322px;
 	height: 391px;
 	background: url(images/samplecard.png);
-	margin-top: 40px;
-	padding-top: 1px
+
 }
 
 .cp_photo {
@@ -16,7 +15,7 @@
 	height: 149px;
 	overflow: hidden;
 	position: absolute;
-	top: 146px;
+	top: 180px;
 	left: 108px;
 }
 
@@ -25,32 +24,38 @@
 	font-size: 20px;
 	font-weight: bold;
 	position: absolute;
-	top: 310px;
+	top: 340px;
 	left: 160px;
 }
+.cp_company{ color:#2c2c2c; font-size:20px; 	position: absolute;
+	top: 380px;
+	left: 160px;;font-weight:bold;}
 </style>
 <script>
 var PIC_BASE = 'resources/topicimages/';
 $(document).ready(function(){
 	var url = location.href;
-	var name = decodeURI(url.substring(url.indexOf("name=")+5,url.indexOf("&pic=")));
+	var name = decodeURI(url.substring(url.indexOf("name=")+5,url.indexOf("&org=")));
+	var org = decodeURI(url.substring(url.indexOf("&org=")+5,url.indexOf("&pic=")));
 	var pic = url.substring(url.indexOf("&pic=")+5,url.length);
-	
+
 	$(".cp_image").attr("src",PIC_BASE+pic);
 	$(".cp_name").text(name);
-	
+	$(".cp_company").text(org);
 	if(!pic){
 		$(".cp_image").hide();
 	}
-	
+
 	window.print();
+
 });
 </script>
-    
-   <div>
-		<div><img style="width:322px; height:391px;" src="images/samplecard.png" /></div>
+
+  <div>
+		<div><img style="width:322px; height:415;" src="images/exhibitcard.png" /></div>
        <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
        <div class="cp_name"></div>
+			<div class="cp_company"></div>
 	</div>
 
 </html>

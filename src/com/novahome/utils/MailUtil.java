@@ -70,16 +70,16 @@ public class MailUtil {
 			}
 		}
 	}
-	/*
+	
 	public static void main(String[] args)
 	{
 		sendMail("540380151@qq.com","test1", "hello");
-		sendMail("540380151@qq.com","test2", "hello");
+		/*sendMail("540380151@qq.com","test2", "hello");
 		sendMail("540380151@qq.com","test3", "hello");
 		sendMail("540380151@qq.com","test4", "hello");
-		sendMail("540380151@qq.com","test5", "hello");
+		sendMail("540380151@qq.com","test5", "hello");*/
 	}
-    */
+    
 	public static void sendMail(String to, String subject, String content)
 	{
 		if(props == null)
