@@ -46,9 +46,15 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			rowCount = data.size;
+			
+			if(!rowCount || rowCount==0) {
+				$('.zlzx_box').empty();
+				$('.zlzx_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
+			
 			initPaging(page,rowCount);
 			data = data.data;
-
 			$('.zlzx_box').empty();
 			var html = "";
 			for(var i=0;i<data.length;i++){
@@ -62,7 +68,6 @@ $(document).ready(function(){
 				{
 					regiontext = topic.region;
 				}
-
       			html +=
       				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
     				'<div class="exb_info" eid="'+topic.id+'">'+
@@ -80,7 +85,6 @@ $(document).ready(function(){
 		}
 		Exhibitor.getExhibitorsForPageByStateLogoOrder((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,"",func);
 	}
-
 	function loadDetail(){
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
@@ -88,6 +92,26 @@ $(document).ready(function(){
 	//	viewTP(eid);
 
 		viewSpan(eid);
+		}
+		//读取cookies
+	function getCookie(name)
+	{
+	    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+	    if(arr=document.cookie.match(reg))
+
+	        return unescape(arr[2]);
+	    else
+	        return null;
+	}
+
+	function delCookie(name)
+	{
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() - 1);
+	    var cval=getCookie(name);
+	    if(cval!=null)
+	        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 	}
 
 	function viewSpan(eid){
@@ -112,6 +136,12 @@ $(document).ready(function(){
 			else
 			{
 				$(".mustlogin").removeClass("hide");
+				if(getCookie('user')!= null)
+				{
+					delCookie('user');
+					$(".yonghu").text("");
+					$(".logout").addClass("hide");
+				}
 			}
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
@@ -125,16 +155,12 @@ $(document).ready(function(){
 
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
-
-
 			if(data.exhibitors.logo){
 				var sdata = data.construction[0];
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
-
-
 			if(data.exhibitors.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.exhibitors.id);
@@ -190,7 +216,6 @@ $(document).ready(function(){
 			$(".fy").html(html);
 			$(".paging").removeClass("hide");
 		}
-
 		//bind events
 		$(".paging li").click(function(){
 			var pageTo = $(this).children().attr("page");
@@ -206,6 +231,7 @@ $(document).ready(function(){
 
 	}
 });
+
 </script>
 
    <div class="nyweizhi">Location: <a href="index.html">Home</a> > <a href="展馆情况.html">Exhibitor</a> > <font style=" font-weight:bold; color:#1F9AD6">Exhibitor&Products</font></div>
@@ -247,14 +273,14 @@ $(document).ready(function(){
 				<div class="gsqkwz">
 					<div style="font-size:16px; margin-top:15px" class="gsqkwzxq"><span class="left">【Zipcode】</span><span  id='zipcode_text' class="left"></span></div>
 					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【website】</span><span id='site_text' class="left"></span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Address】</span><span id='address_text' class="left">需登录后查看</span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Telephone】</span><span id='phone_text' class="left">需登录后查看</span></div>
-					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Cellphone】</span><span id='telephone_text' class="left">需登录后查看</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Address】</span><span id='address_text' class="left">log in to view</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Telephone】</span><span id='phone_text' class="left">log in to view</span></div>
+					<div style="font-size:16px; margin-top:15px"class="gsqkwzxq"><span class="left">【Cellphone】</span><span id='telephone_text' class="left">log in to view</span></div>
 				</div>
 			</div>
 		</div>
 	</div>
-		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="参展申报.html">登录</a> 后查看企业联系方式</div> -->
+		<div class="mustlogin" style="margin-top:25px"class="ts">Please <a style="color:#f40000" href="in_exhibit_login.html">Sign up</a> to view</div>
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 
