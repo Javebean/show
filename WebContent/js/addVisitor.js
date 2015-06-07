@@ -148,7 +148,7 @@ $(document).ready(function(){
 
 	    pic_scare = "";
 	    if(selection.width>10){
-	    	pic_scare += selection.x1+","+selection.y1+","+selection.width+","+selection.height;
+	    	pic_scare += selection.x1+","+selection.y1+","+selection.width+","+selection.height+",168"+",212";
 	    	img_selection = selection;
 	    }
 	}
