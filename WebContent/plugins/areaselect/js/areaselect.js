@@ -1010,7 +1010,7 @@ function allCountyPage(page) {
 	} else {
 		$(".countyAll .pre a").addClass("can");
 	}
-	var start;
+	/*var start;
 	var end;
 	if (page <= 1) {
 		page = 1;
@@ -1042,7 +1042,7 @@ function allCountyPage(page) {
 		var countyName = countiesAll[i].areaName.substr(0, 4);;
 		var li = $('<li><a href="javascript:onclick=addrInputAll(' + i + ')" id="' + c_id + '">' + countyName + '</a></li>');
 		$(".countyAll .list ul").append(li);
-	}
+	}*/
 	$(".countyAll .list #countyPage1").remove();
 	$(".countyAll .list").append("<label id='countyPage1' style='display:none;'>" + page + "</label>");
 	$(".provinceCityAll").hide();
