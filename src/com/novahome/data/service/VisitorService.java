@@ -1,11 +1,14 @@
 package com.novahome.data.service;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -51,6 +54,7 @@ public class VisitorService {
 		return "{\"count\":" + count +"}";
 	}
 	
+	
 	public String saveVisitor(Visitor visitor, String cutIndex)
 	{
 		String[]array;
@@ -62,28 +66,50 @@ public class VisitorService {
 		if(cutIndex != null && !cutIndex.isEmpty())
 		{
 			array = cutIndex.split(",");
-			if(array.length == 4)
+			if(array.length == 6)
 			{
 				int originX = Integer.parseInt(array[0]);
 				int originY = Integer.parseInt(array[1]);
 				int width = Integer.parseInt(array[2]);
 				int height = Integer.parseInt(array[3]);
+				int divWidth = Integer.parseInt(array[4]);
+				int divHeight = Integer.parseInt(array[5]);
 				String srcName = visitor.getPhoto();
-				System.out.println("srcName:********" + srcName );
-				System.out.println("x:"+ originX);
-				System.out.println("y:"+ originX);
-				System.out.println("width:"+ width);
-				System.out.println("height:"+ height);
+				logger.info("srcName:********" + srcName );
+				logger.info("x:"+ originX);
+				logger.info("y:"+ originX);
+				logger.info("width:"+ width);
+				logger.info("height:"+ height);
+				logger.info("divwidth:"+ divWidth);
+				logger.info("divheight:"+ divHeight);
 				String srcPath = "";
 				if(srcName != null && !srcName.isEmpty())
 				{
 					srcPath += basePath + srcName;
+					logger.info("srcPath:"+ srcPath);
 					File srcFile = new File(srcPath);
 					if(srcFile.exists())
 					{
+						int editedX=0, editedY = 0, editedWidth=0, editedHeight = 0;
+						try {
+							BufferedImage srcImage = ImageIO.read(srcFile);
+							int picWidth = srcImage.getWidth();
+							int picHeight = srcImage.getHeight();
+							double widthscale = picWidth/1.0/divWidth;
+							double heightscale = picHeight/1.0/divHeight;
+							logger.info("widthscale:"+ widthscale);
+							logger.info("heightscale:"+ heightscale);
+							editedX = (int) (widthscale * originX);
+							editedY = (int) (heightscale * originY);
+							editedWidth = (int) (widthscale * width);
+							editedHeight = (int) (heightscale * height);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						String picName = null;
 						try {
-							picName = CutImageUtils.cut(srcFile, basePath,originX,originY,width,height);
+							picName = CutImageUtils.cut(srcFile, basePath,editedX,editedY,editedWidth,editedHeight);
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

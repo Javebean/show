@@ -15,7 +15,7 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">观众列表</h2>
-          
+
           <!-- search area -->
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
@@ -30,14 +30,14 @@
 							<div class="form-group">
 								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
 							</div>
-							
+
 							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</nav>
-			
+
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -103,11 +103,11 @@
 				          <td colspan="3"><span ename="buyer" class="fview_value"></span></td>
 				        </tr>
 								<tr>
-				          <th class="text-nowrap" width="14%">地址</th>
+				          <th class="text-nowrap" width="14%">联系地址</th>
 				          <td colspan="3"><span ename="address" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">消息来源</th>
+				          <th class="text-nowrap" width="14%">地区</th>
 				          <td colspan="3"><span ename="infoSource" class="fview_value"></span></td>
 				        </tr>
 								<tr>
