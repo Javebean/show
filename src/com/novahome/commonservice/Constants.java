@@ -1,10 +1,10 @@
 package com.novahome.commonservice;
 
-import java.util.UUID;
 
 public class Constants {
 	
-	public static final String PRJ_NAME="show";        //  你项目的名称
+	//public static final String PRJ_NAME="show";        //  你项目的名称
+	public static final String BARCODE_MID_STR = "/resources/barcodeimages/";
 	
 	public static final String SESSION_ID = "_userId";
 	public static final String SESSION_NAME = "_userName";
@@ -67,9 +67,10 @@ public class Constants {
 	
 	public static final String VISITOR_APPROVED = "<p>您好，</p>"
 			+ "<p>您的连博会现场证件申请已通过审核，感谢您参加9月22日在连云港举办的第二届中国(连云港)丝绸之路国际物流博览会。</p>"
-			+ "<p>该证件用于展会期间进出展馆使用，您可于展会期间至现场工作人员处打印您的证件。</p>"
+			+ "<p>现场证件用于展会期间进出展馆使用，您可以打印下方二维码至展会以方便现场办理证件。</p>"
 			+ "<p>&nbsp;</p>"
-			+ "<p>这封邮件为连博会官方通知确认邮件，请不要回复该邮件。</p>"
+			+ "<p>这封邮件为连博会官方通知确认邮件，请勿回复该邮件。</p>"
+			+ "<p><img src='[arg0]'/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;中国(连云港)丝绸之路国际物流博览会</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;电话： 86 518 85865601</p>"

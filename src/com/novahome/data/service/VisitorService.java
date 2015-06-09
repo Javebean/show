@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.VisitorDao;
 import com.novahome.data.pojo.Visitor;
+import com.novahome.utils.BarcodeUtils;
+import com.novahome.utils.ConfigUtils;
 import com.novahome.utils.CutImageUtils;
 import com.novahome.utils.MailUtil;
 
@@ -60,7 +62,7 @@ public class VisitorService {
 		String[]array;
 		String nowpath = System.getProperty("user.dir");            
 		String tempdir = nowpath.replace("bin", "webapps");
-		tempdir+="\\"+Constants.PRJ_NAME; 
+		tempdir+="\\"+ ConfigUtils.getPrj();
 		String basePath = tempdir + "\\resources\\topicimages\\";
 		System.out.println("*******" + basePath);
 		if(cutIndex != null && !cutIndex.isEmpty())
@@ -252,8 +254,11 @@ public class VisitorService {
 			String email = visitor.getEmail();
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
+				String picName = BarcodeUtils.createBarcode(id);
+				String imgSrc = ConfigUtils.getRemote() + ConfigUtils.getPrj() + Constants.BARCODE_MID_STR + picName;
 				logger.info("发送现场证件申请通过邮件...");
-				String content = Constants.VISITOR_APPROVED;
+				String content = MailUtil.replaceVariable(Constants.VISITOR_APPROVED, imgSrc);
+				
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_APPROVED, content);
 			}
