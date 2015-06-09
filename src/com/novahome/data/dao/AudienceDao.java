@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,23 @@ public class AudienceDao {
 		}
 		return (Long) query.uniqueResult();
 	}
+	
+	/*public long getAudienceCountByRegion(String region)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(a.id) from Exhibitors a where a.state = :state and a.recommender = :recommender");
+		query.setParameter("state", 1);
+		query.setParameter("region", region);
+		return (Long) query.uniqueResult();
+	}
+	
+	public List<String>getDistinctRecommenders()
+	{
+		SQLQuery  query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select DISTINCT recommender from exhibitors");
+		return query.list();
+	}*/
+	
 	
 	public String saveAudience(Audience audience) {
 		return sessionFactory.getCurrentSession().save(audience).toString();

@@ -71,6 +71,23 @@ public class ExhibitorsDao {
 		return query.list();
 	}
 	
+	public long getExhibitorsCountByRegion(String region)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(a.id) from Exhibitors a where a.state = :state and a.region = :region");
+		query.setParameter("state", 1);
+		query.setParameter("region", region);
+		return (Long) query.uniqueResult();
+	}
+	
+	public List<String>getDistinctRegion()
+	{
+		SQLQuery  query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select DISTINCT region from exhibitors a where a.state = :state");
+		query.setParameter("state", 1);
+		return query.list();
+	}
+	
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
 		return sessionFactory.getCurrentSession().save(exhibitor).toString();

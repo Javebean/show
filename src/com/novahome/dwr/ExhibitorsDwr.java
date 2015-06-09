@@ -236,4 +236,17 @@ public class ExhibitorsDwr {
 		return exhibitorsService.getRecommenderStat();
 	}
 	
+	
+	/**
+	 * 获取展商地区及相关数量
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getRegionStat()
+	{
+		return exhibitorsService.getRegionStat();
+	}
+	
 }

@@ -517,4 +517,33 @@ public class ExhibitorsService {
 		return ret;
 		
 	}
+	
+	public String getRegionStat()
+	{
+		List<String>ls = exhibitorsDao.getDistinctRegion();
+		String regNameTol ="";
+		String numTol = "";
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		for(String rec : ls)
+		{
+			if(rec== null || rec.isEmpty())
+				continue;
+			long num = exhibitorsDao.getExhibitorsCountByRegion(rec);
+			regNameTol += rec + ",";
+			numTol += num + ",";
+		}
+		regNameTol = regNameTol.substring(0, regNameTol.length()-1);
+		numTol = numTol.substring(0, numTol.length()-1);
+		JSONObject obj = new JSONObject();
+		obj.put("name", regNameTol);
+		obj.put("num", numTol);
+		String ret = obj.toString();
+		logger.debug("region:" + ret);
+		return ret;
+		
+	}
 }
