@@ -29,13 +29,13 @@ $(document).ready(function(){
 		$(".cp_company").text(formData.org);
 		if(picFlag){
 			$(".cp_image").attr("src",PIC_BASE+topicId+".jpg?"+Math.random());
-			 var scaleX = 134 / (img_selection.width || 1);
-			 var scaleY = 170 / (img_selection.height || 1);
+			 var scaleX = 168 / (img_selection.width || 1);
+			 var scaleY = 212 / (img_selection.height || 1);
 			$('.cp_image').css({
-		        width: Math.round(scaleX * 168) + 'px',
-		        height: Math.round(scaleY * 212) + 'px',
-		        marginLeft: '-' + Math.round(scaleX * img_selection.x1) + 'px',
-		        marginTop: '-' + Math.round(scaleY * img_selection.y1) + 'px'
+		        width: Math.round(scaleX * 118) + 'px',
+		        height: Math.round(scaleY * 149) + 'px',
+		        marginLeft: '-' + Math.round(img_selection.x1 * 118 / img_selection.width) + 'px',
+		        marginTop: '-' + Math.round(img_selection.y1 * 149 / img_selection.height) + 'px'
 		    });
 		}
 	}
