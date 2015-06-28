@@ -33,12 +33,25 @@ if(accountid==null){
 	<script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
 	<script type='text/javascript' src='dwr/engine.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
+    <script type='text/javascript' src='dwr/engine.js'></script>
+	<script type='text/javascript' src='dwr/interface/Account.js'></script>
     
     <style>
     #add_topic{
     	margin-left:100px;
     }
+    .banner_menu a{
+    	cursor:pointer;
+    }
     </style>
+    
+    <script>
+    function logout(){
+    	Account.logout(function(){
+    		window.location.href = "adminLogin.jsp";
+    	});
+    }
+    </script>
   </head>
   <body>
    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -50,18 +63,16 @@ if(accountid==null){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand">连博会后台管理</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+          <ul class="nav navbar-nav navbar-right banner_menu">
+          	<li><a>当前用户: <%= session.getAttribute("_userName")%></a></li>
+            <li><a onclick="logout();"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 注销</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
+          <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
