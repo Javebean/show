@@ -1,8 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<% String menuAccess = (String)session.getAttribute("_menuAccess"); %>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".menu-box li").removeClass("active");
 	$(".menu-box li[elevel='"+menu+"']").addClass("active");
+	
+	var menuAccess = <%=menuAccess%>;
+	var acesArr = menuAccess.split(",");
+	$(".menu-box li").hide();
+	for(var i=0;i<acesArr.length;i++){
+		$(".menu-box li[elevel='"+acesArr[i]+"']").show();
+	}
 });
 </script>
   <div class="col-sm-3 col-md-2 sidebar menu-box">
