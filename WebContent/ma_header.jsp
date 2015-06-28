@@ -67,7 +67,7 @@ if(accountid==null){
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right banner_menu">
-          	<li><a>当前用户: <%= session.getAttribute("_userName")%></a></li>
+          	<li><a>当前用户: <%= username%></a></li>
             <li><a onclick="logout();"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 注销</a></li>
           </ul>
           <!-- <form class="navbar-form navbar-right">
