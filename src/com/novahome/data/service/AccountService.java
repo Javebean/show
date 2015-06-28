@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.novahome.commonservice.Constants;
 import com.novahome.commonservice.MD5;
+import com.novahome.commonservice.PeopleState;
 import com.novahome.data.dao.AccountDao;
 import com.novahome.data.pojo.Account;
 import com.novahome.utils.Ut;
@@ -44,7 +45,8 @@ public class AccountService {
 		if (MD5.compute(password).equals(account.getPassword())) {
 			session.setAttribute(Constants.SESSION_ID, account.getId());
 			session.setAttribute(Constants.SESSION_NAME, account.getUsername());
-			session.setAttribute(Constants.USER_CLASS, account);
+			session.setAttribute(Constants.SESSION_SHOW_TYPE, PeopleState.STAFF);
+			session.setAttribute(Constants.MENU_ACCESS, account.getPrivilege());
 			j.put("result", true);
 			j.put("message", "成功登录");
 			j.put("cookie", MD5.compute(account.getId()+":"+account.getPassword()));
@@ -100,7 +102,8 @@ public class AccountService {
 		HttpSession session = WebContextFactory.get().getSession();
 		session.removeAttribute(Constants.SESSION_ID);
 		session.removeAttribute(Constants.SESSION_NAME);
-		session.removeAttribute(Constants.USER_CLASS);
+		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
+		session.removeAttribute(Constants.MENU_ACCESS);
 		return true;
 	}
 

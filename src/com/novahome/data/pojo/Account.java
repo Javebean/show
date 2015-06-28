@@ -14,6 +14,7 @@ public class Account {
 	private String username;
 	private String password;
 	private String showname;
+	private String privilege;
 	
 	@Id
 	@Column(length = 32)
@@ -42,6 +43,12 @@ public class Account {
 	}
 	public void setShowname(String showname) {
 		this.showname = showname;
+	}
+	public String getPrivilege() {
+		return privilege;
+	}
+	public void setPrivilege(String privilege) {
+		this.privilege = privilege;
 	}
 	
 	
