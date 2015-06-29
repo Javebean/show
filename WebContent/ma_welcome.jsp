@@ -11,7 +11,10 @@
 		<jsp:include page="ma_menu.jsp" />
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="sub-header">后台管理首页：内容待定。</h2>
+          <div style="margin-top:20px;">
+          	<img src="images/adminheader.png" width="120px" height="120px"/>
+          	<h2>这里是后台管理.</h2>
+          </div>
 		</div>
       </div>
     </div>
