@@ -21,7 +21,7 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			if(data.result === true) {
-				window.location.href = "ma_zlzx.jsp";
+				window.location.href = "ma_welcome.jsp";
 			} else {
 				$("#message").text(data.message);
 			}
