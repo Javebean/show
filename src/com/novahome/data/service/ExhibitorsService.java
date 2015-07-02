@@ -61,14 +61,14 @@ public class ExhibitorsService {
 	
 	public String getExhibitorsTotalCount()
 	{
-		long count = exhibitorsDao.getExhibitorsTotalCount(null);
+		long count = exhibitorsDao.getExhibitorsTotalCountFinalAudit(null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
 	
 	public String getExhibitorsCountByState(int state)
 	{
-		long count = exhibitorsDao.getExhibitorsCountByState(state, null);
+		long count = exhibitorsDao.getExhibitorsCountByStateFinalAudit(state, null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
@@ -180,7 +180,7 @@ public class ExhibitorsService {
 	public String getExhibitorForPage(int start, int number)
 	{
 		List<Exhibitors>ls = exhibitorsDao.getExhibitorForPage(start, number);
-		long size = exhibitorsDao.getExhibitorsTotalCount(null);
+		long size = exhibitorsDao.getExhibitorsTotalCountFinalAudit(null);
 		return procssListRet(ls,size);
 	}
 	
@@ -205,21 +205,57 @@ public class ExhibitorsService {
 		return ret;
 	}
 	
-	public String getShortExhibitorsForPage(int start, int number, String orgName)
+	public String getShortExhibitorsForPageFinalAudit(int start, int number, String orgName)
 	{
-		long size = exhibitorsDao.getExhibitorsTotalCount(orgName);
-		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPage(start, number, orgName);
+		long size = exhibitorsDao.getExhibitorsTotalCountFinalAudit(orgName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageFinalAudit(start, number, orgName);
 		return procssListRet(ls,size);
 	}
 	
-	public String getShortExhibitorForPageByState(int start, int number, int state, String orgName)
+	public String getShortExhibitorsForPageFirst(int start, int number, String orgName, String showName)
+	{
+		long size = exhibitorsDao.getExhibitorsTotalCountFirst(orgName, showName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageFirst(start, number, orgName,showName);
+		return procssListRet(ls,size);
+	}
+	
+	/**
+	 * 后台界面所用，用于最终审核
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param orgName
+	 * @return
+	 */
+	public String getShortExhibitorForPageByStateFinalAudit(int start, int number, int state, String orgName)
 	{
 		if(state == -1)
 		{
-			return this.getShortExhibitorsForPage(start, number, orgName);
+			return this.getShortExhibitorsForPageFinalAudit(start, number, orgName);
 		}
-		long size = exhibitorsDao.getExhibitorsCountByState(state, orgName);
-		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByState(start, number, state, orgName);
+		long size = exhibitorsDao.getExhibitorsCountByStateFinalAudit(state, orgName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateFinalAudit(start, number, state, orgName);
+		return procssListRet(ls,size);
+	}
+	
+	
+	/**
+	 * 后台界面所用，用于初次审核
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param orgName
+	 * @param orgName
+	 * @return
+	 */
+	public String getShortExhibitorForPageByStateFirst(int start, int number, int state, String orgName, String showName)
+	{
+		if(state == -1)
+		{
+			return this.getShortExhibitorsForPageFirst(start, number, orgName, showName);
+		}
+		long size = exhibitorsDao.getExhibitorsCountByStateFirst(state, orgName, showName);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateFirst(start, number, state, orgName, showName);
 		return procssListRet(ls,size);
 	}
 	
@@ -236,9 +272,9 @@ public class ExhibitorsService {
 		if(state == -1)
 		{
 			//如果没有state限制就是全是time顺序
-			return this.getShortExhibitorsForPage(start, number, orgName);
+			return this.getShortExhibitorsForPageFinalAudit(start, number, orgName);
 		}
-		long size = exhibitorsDao.getExhibitorsCountByState(state, orgName);
+		long size = exhibitorsDao.getExhibitorsCountByStateFinalAudit(state, orgName);
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateLogoOrder(start, number, state, orgName);
 		return procssListRet(ls,size);
 	}
@@ -423,6 +459,58 @@ public class ExhibitorsService {
 		return exhibitorsDao.updateExhibitor(exhibitor);
 	}
 	
+	/**
+	 * 初次审批，更新firststate
+	 * @param id
+	 * @param state
+	 * @return
+	 */
+	public boolean updateExhibitorFirstState(String id, int state)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		ex.setFirstState(state);
+		if(state == 1)
+		{
+			String email = ex.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				//logger.info("发送展商申请通过邮件...");
+				String content = Constants.EXT_APPROVED;
+				logger.debug("content:" + content);
+				//MailUtil.sendMail(email, Constants.EXT_SUBJECT_APPROVED, content);
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param state
+	 * @param reason
+	 * @return
+	 */
+	public boolean updateExhibitorFirstStateReason(String id, int state, String reason)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		ex.setFirstState(state);
+		if(state == 2)
+		{
+			ex.setReason(reason);
+			String email = ex.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				logger.info("发送展商驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
+			}
+		}
+		else
+			ex.setReason("");
+		return true;
+	}
+	
 	public boolean updateExhibitorState(String id, int state)
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
@@ -438,6 +526,10 @@ public class ExhibitorsService {
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_APPROVED, content);
 			}
 		}
+		else if(state == 2)
+		{
+			ex.setFirstState(2);
+		}
 		return true;
 	}
 	
@@ -447,6 +539,7 @@ public class ExhibitorsService {
 		ex.setState(state);
 		if(state == 2)
 		{
+			ex.setFirstState(2);
 			ex.setReason(reason);
 			String email = ex.getEmail();
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  

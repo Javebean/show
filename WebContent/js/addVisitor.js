@@ -21,6 +21,8 @@ $(document).ready(function(){
 		var formData = getFormdata("regForm");
 		if(formData.type == 1)
 			$(".cp").css('background','url(images/exhibitcard.png)');
+		else if(formData.type == 4)
+			$(".cp").css('background','url(images/staffcard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');

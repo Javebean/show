@@ -15,7 +15,6 @@ public class Account {
 	private String password;
 	private String showname;
 	private String privilege;
-	
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")

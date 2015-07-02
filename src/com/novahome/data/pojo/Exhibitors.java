@@ -45,12 +45,15 @@ public class Exhibitors {
 	private String orgIntro;	//单位及产品简介（限定500字以内，超过不准写）
 	
 	private String booth;	//展位号
-	private int state;		 //默认正常状态，state=0 申请；1 =批准； 2=驳回
+	private int state;		 //终极审核，默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private String logo;	//企业logo
 	private Date applyTime;	//申请时间（系统生成）
 	private String recommender;
 	
 	private String reason; //驳回原因
+	
+	private int firstState; //默认正常状态，state=0 申请；1 =批准； 2=驳回
+	
 	@Id
 	@Column(length = 64)
 	@GeneratedValue(generator = "system-uuid")
@@ -250,5 +253,12 @@ public class Exhibitors {
 	public void setRecommender(String recommender) {
 		this.recommender = recommender;
 	}
+	public int getFirstState() {
+		return firstState;
+	}
+	public void setFirstState(int firstState) {
+		this.firstState = firstState;
+	}
+
 	
 }

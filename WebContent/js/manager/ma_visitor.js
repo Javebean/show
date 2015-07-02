@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var rowCount = 0;
 
 	var status = ["申请","已批准","已驳回"];
-	var types = ["","展商","观众","媒体"];
+	var types = ["","展商","观众","媒体","工作人员"];
 	var shifou = ["否","是"];
 
 	//init page
@@ -20,9 +20,15 @@ $(document).ready(function(){
 		{
 			window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
 		}
+		else if(type == 4)
+		{
+			window.open("ma_printstaff.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+
+		}
 		else {
 			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
 		}
+
 	});
 
 	$(".do_search").click(function(){
@@ -125,6 +131,8 @@ $(document).ready(function(){
 		typecard = $(this).attr("etype");
 		if(typecard == 1)
 			$(".cp").css('background','url(images/exhibitcard.png)');
+		else if(typecard == 4)
+			$(".cp").css('background','url(images/staffcard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');

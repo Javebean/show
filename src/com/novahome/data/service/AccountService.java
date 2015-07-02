@@ -1,7 +1,6 @@
 package com.novahome.data.service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -45,6 +44,7 @@ public class AccountService {
 		if (MD5.compute(password).equals(account.getPassword())) {
 			session.setAttribute(Constants.SESSION_ID, account.getId());
 			session.setAttribute(Constants.SESSION_NAME, account.getUsername());
+			session.setAttribute(Constants.SESSION_OFFICIAL_NAME, account.getShowname());
 			session.setAttribute(Constants.SESSION_SHOW_TYPE, PeopleState.STAFF);
 			session.setAttribute(Constants.MENU_ACCESS, account.getPrivilege());
 			j.put("result", true);
@@ -103,6 +103,7 @@ public class AccountService {
 		session.removeAttribute(Constants.SESSION_ID);
 		session.removeAttribute(Constants.SESSION_NAME);
 		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
+		session.removeAttribute(Constants.SESSION_OFFICIAL_NAME);
 		session.removeAttribute(Constants.MENU_ACCESS);
 		return true;
 	}

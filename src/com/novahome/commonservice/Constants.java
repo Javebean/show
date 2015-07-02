@@ -8,6 +8,7 @@ public class Constants {
 
 	public static final String SESSION_ID = "_userId";
 	public static final String SESSION_NAME = "_userName";
+	public static final String SESSION_OFFICIAL_NAME = "_officialName";
 	public static final String USER_CLASS = "_userClass";
 
 	public static final String MENU_ACCESS = "_menuAccess";

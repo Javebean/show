@@ -37,6 +37,23 @@ public class AudienceDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getAudienceCountByRegion(String region)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select count(a.id) from Audience a where a.state = :state and a.infoSource = :region");
+		query.setParameter("state", 0);
+		query.setParameter("region", region);
+		return (Long) query.uniqueResult();
+	}
+	
+	public List<String>getDistinctRegion()
+	{
+		SQLQuery  query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select DISTINCT infoSource from Audience a where a.state = :state");
+		query.setParameter("state", 0);
+		return query.list();
+	}
+	
 	/*public long getAudienceCountByRegion(String region)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(

@@ -129,4 +129,15 @@ public class AudienceDwr {
 	{
 		return audienceService.resetPsw(id);
 	}
+	
+	/**
+	 * 获取观众地区及相关数量
+	 * @return
+	 */
+	@RemoteMethod
+	public String getRegionStat()
+	{
+		return audienceService.getRegionStat();
+	}
+	
 }

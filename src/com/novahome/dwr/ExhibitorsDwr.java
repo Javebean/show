@@ -78,11 +78,14 @@ public class ExhibitorsDwr {
 	@RemoteMethod
 	public String getShortExhibitorsForPage(int start, int number, String orgName)
 	{
-		return exhibitorsService.getShortExhibitorsForPage(start, number, orgName);
+		return exhibitorsService.getShortExhibitorsForPageFinalAudit(start, number, orgName);
 	}
 	
 	/**
-	 * 分页查询已通过审核的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
+	 * 分页查询已通过初次审核的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
+	 * 如果state 为 负数，查看所有已通过初次审核的展商
+	 * 
+	 * 
 	 * 2015.4.17新增
 	 * @param start
 	 * @param number
@@ -91,10 +94,26 @@ public class ExhibitorsDwr {
 	@RemoteMethod
 	public String getExhibitorsForPageByState(int start, int number, int state, String orgName)
 	{
-		return exhibitorsService.getShortExhibitorForPageByState(start, number,state, orgName);
+		return exhibitorsService.getShortExhibitorForPageByStateFinalAudit(start, number,state, orgName);
 	}
 	
 	/**
+	 * 分页查询刚刚申请的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
+	 * 
+	 * 2015.7.2新增
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorsForPageByStateFirst(int start, int number, int state, String orgName, String showName)
+	{
+		return exhibitorsService.getShortExhibitorForPageByStateFirst(start, number,state, orgName, showName);
+	}
+	
+	
+	/**
+	 * 门户网站所用方法
 	 * 根据logo顺序查询
 	 * 2015.6.1新增
 	 * @param start

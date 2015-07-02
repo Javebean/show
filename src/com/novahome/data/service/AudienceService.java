@@ -183,7 +183,38 @@ public class AudienceService {
 		String ret = obj.toString();
 		logger.debug("audience:" + ret);
 		return ret;
-		
+	}
+	
+	/**
+	 * 获取观众地区统计
+	 * @return
+	 */
+	public String getRegionStat()
+	{
+		List<String>ls = audienceDao.getDistinctRegion();
+		String regNameTol ="";
+		String numTol = "";
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		for(String rec : ls)
+		{
+			if(rec== null || rec.isEmpty())
+				continue;
+			long num = audienceDao.getAudienceCountByRegion(rec);
+			regNameTol += rec + ",";
+			numTol += num + ",";
+		}
+		regNameTol = regNameTol.substring(0, regNameTol.length()-1);
+		numTol = numTol.substring(0, numTol.length()-1);
+		JSONObject obj = new JSONObject();
+		obj.put("name", regNameTol);
+		obj.put("num", numTol);
+		String ret = obj.toString();
+		logger.debug("region:" + ret);
+		return ret;
 	}
 	
 	public long deleteAudienceById(String id)

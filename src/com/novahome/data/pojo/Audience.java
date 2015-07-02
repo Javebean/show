@@ -30,8 +30,9 @@ public class Audience {
 	private String password;	//用户密码（系统生成）
 	private String address;		//地址
 	private String target;		//参会目的
-	private int state =0;		//默认正常状态，state=0 申请；1 =批准； 2=驳回
+	private int state =0;		//终极审核，默认正常状态，state=0 申请；1 =批准； 2=驳回
 	private Date applyTime;		//申请时间（系统生成）
+	private int firstState =0 ;  ////初级审核，默认正常状态，state=0 申请；1 =批准； 2=驳回
 	
 	@Id
 	@Column(length = 32)
@@ -134,6 +135,15 @@ public class Audience {
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
+	
+	
+	
+	public int getFirstState() {
+		return firstState;
+	}
+	public void setFirstState(int firstState) {
+		this.firstState = firstState;
+	}
 	@Override
 	public String toString() {
 		return "Audience [id=" + id + ", name=" + name + ", sex=" + sex
@@ -142,19 +152,11 @@ public class Audience {
 				+ ", infoSource=" + infoSource + ", org=" + org + ", username="
 				+ username + ", password=" + password + ", address=" + address
 				+ ", target=" + target + ", state=" + state + ", applyTime="
-				+ applyTime + ", getId()=" + getId() + ", getName()="
-				+ getName() + ", getSex()=" + getSex() + ", getPosition()="
-				+ getPosition() + ", getPhone()=" + getPhone()
-				+ ", getEmail()=" + getEmail() + ", getBuyer()=" + getBuyer()
-				+ ", getInviter()=" + getInviter() + ", getInfoSource()="
-				+ getInfoSource() + ", getOrg()=" + getOrg()
-				+ ", getUsername()=" + getUsername() + ", getPassword()="
-				+ getPassword() + ", getAddress()=" + getAddress()
-				+ ", getTarget()=" + getTarget() + ", getState()=" + getState()
-				+ ", getApplyTime()=" + getApplyTime() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ applyTime + ", firstState=" + firstState + "]";
 	}
+	
+	
+	
 	
 	
 }

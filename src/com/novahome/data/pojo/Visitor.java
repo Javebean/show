@@ -27,9 +27,13 @@ public class Visitor {
 	private int type = 2;	//证件类型，1 = 展商，2=观众， 3= 媒体，缺省为观众
 	private int buyer = 0;	//是否为采购商， 1=是采购商，0= 不是采购商，缺省为非采购商
 	private String org;	//所属公司名称
-	private int state = 0;	//申请状态  state=0 申请；1 =批准； 2=驳回
+	private int state = 0;	//终极审核，申请状态  state=0 申请；1 =批准； 2=驳回
 	private String reason; //驳回原因
 	private Date applyTime;	//申请时间，系统生成
+	private int firstState = 0; //初次审核，申请状态  state=0 申请；1 =批准； 2=驳回
+	private String idNo;
+	private String idFont;
+	private String idBack;
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -119,6 +123,29 @@ public class Visitor {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	
+	public int getFirstState() {
+		return firstState;
+	}
+	public void setFirstState(int firstState) {
+		this.firstState = firstState;
+	}
+	public String getIdNo() {
+		return idNo;
+	}
+	public void setIdNo(String idNo) {
+		this.idNo = idNo;
+	}
+	public String getIdFont() {
+		return idFont;
+	}
+	public void setIdFont(String idFont) {
+		this.idFont = idFont;
+	}
+	public String getIdBack() {
+		return idBack;
+	}
+	public void setIdBack(String idBack) {
+		this.idBack = idBack;
+	}
 	
 }
