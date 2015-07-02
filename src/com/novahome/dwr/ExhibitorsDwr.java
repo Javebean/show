@@ -208,6 +208,29 @@ public class ExhibitorsDwr {
 	{
 		return exhibitorsService.updateExhibitorStateReason(id, state, reason);
 	}
+	
+	/**
+	 * 更新展商状态信息,初次审批
+	 * @param exhibitor
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateExhibitorFirstState(String id, int state)
+	{
+		return exhibitorsService.updateExhibitorFirstState(id, state);
+	}
+
+	/**
+	 * 更新展商状态信息和设置驳回原因
+	 * @param exhibitor
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateExhibitorFirstStateReason(String id, int state, String reason)
+	{
+		return exhibitorsService.updateExhibitorFirstStateReason(id, state, reason);
+	}
+	
 	/**
 	 * 展商登陆
 	 * @param userName
