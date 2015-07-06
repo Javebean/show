@@ -106,9 +106,9 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public String getExhibitorsForPageByStateFirst(int start, int number, int state, String orgName, String showName)
+	public String getExhibitorsForPageByStateFirst(int start, int number, int state, String orgName)
 	{
-		return exhibitorsService.getShortExhibitorForPageByStateFirst(start, number,state, orgName, showName);
+		return exhibitorsService.getShortExhibitorForPageByStateFirst(start, number,state, orgName);
 	}
 	
 	

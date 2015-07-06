@@ -248,8 +248,10 @@ public class ExhibitorsService {
 	 * @param orgName
 	 * @return
 	 */
-	public String getShortExhibitorForPageByStateFirst(int start, int number, int state, String orgName, String showName)
+	public String getShortExhibitorForPageByStateFirst(int start, int number, int state, String orgName)
 	{
+		HttpSession session=  WebContextFactory.get().getSession();
+		String showName = (String) session.getAttribute(Constants.SESSION_OFFICIAL_NAME);
 		if(state == -1)
 		{
 			return this.getShortExhibitorsForPageFirst(start, number, orgName, showName);
