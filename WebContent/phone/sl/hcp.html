@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <link rel="stylesheet" type="text/css" href="../ny.css"/>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XDzugohLA4PEvEeu1BkuBVy6"></script>
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+    <style type="text/css">
+      body, html {width: 100%;height: 100%; margin:0;font-family:"微软雅黑";}
+      #allmap{height:320px;width:96%;}
+      #r-result,#r-result table{width:100%;}
+    </style>
+  <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">商旅服务</a> > <font style=" font-weight:bold; color:#1F9AD6">火车票查询及预订</font></div>
+  <div class="nymainnr">
+    <div class="dp_top">
+      <span class="dp2">
+       <span style=" margin-left:30px">携程旅行网&nbsp;&nbsp;<a href="http://www.ctrip.com/">http://www.ctrip.com</a></span>
+        </span>
+      <span class="dp2">
+        <span>铁路客户服务中心&nbsp;&nbsp;<a href="http://www.12306.cn/">http://www.12306.cn</a></span>
+        
+      </span>
+    </div>
+    <div class="dp_main">
+      <div class="dp_main_left left">
+        <span class="dp_map_bt">A.火车票代售点</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：海昌北路146-1</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85607922</p><br />
+        <span class="dp_map_bt">B.上铁国旅火车票代售处</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：江苏省连云港市新浦区</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85575022</p><br />
+        <span class="dp_map_bt">C.上铁国旅解放东路火车票代售处</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：解放东路138-1</p>
+        <br />
+        <span class="dp_map_bt">D.上海铁路局连云港站代售点</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：新浦区兴隆路17-23号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85846868</p><br />
+        <span class="dp_map_bt">E.上海铁路局连云港售票处（海昌北路）</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：海昌北路146号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85681986</p><br />
+
+
+      </div>
+      <div id= "allmap" ></div>
+      <!-- <div id= "allmap" class="dp_main_right right"><img src="downloadfile/sl/map.png" /></div> -->
+    </div>
+
+
+  </div>
+
+  </html>
+
+  <script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var start = "江苏省连云港市工业展览中心";
+    var end = "连云港火车站";
+    map.centerAndZoom(new BMap.Point(119.25456, 34.715693), 11);
+    map.clearOverlays();
+    map.enableScrollWheelZoom(true);
+    var routePolicy = [BMAP_DRIVING_POLICY_LEAST_TIME,BMAP_DRIVING_POLICY_LEAST_DISTANCE,BMAP_DRIVING_POLICY_AVOID_HIGHWAYS];
+    search(start,end,routePolicy[0]);
+    function search(start,end,route){
+      var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true},policy: route});
+      driving.search(start,end);
+    }
+    //三种驾车策略：最少时间，最短距离，避开高速
+
+
+  </script>

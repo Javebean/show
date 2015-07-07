@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <link rel="stylesheet" type="text/css" href="../../css/ny.css"/>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XDzugohLA4PEvEeu1BkuBVy6"></script>
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+    <style type="text/css">
+      body, html {width: 100%;height: 100%; margin:0;font-family:"微软雅黑";}
+      #allmap{height:320px;width:96%;}
+      #r-result,#r-result table{width:100%;}
+    </style>
+  <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">商旅服务</a> > <font style=" font-weight:bold; color:#1F9AD6">飞机票查询及预订</font></div>
+  
+  <div class="nymainnr">
+  <div class="dp_top">
+      <span class="dp2">
+       <span style=" margin-left:30px">去哪儿网&nbsp;&nbsp;<a href="http://www.qunar.com/">http://www.qunar.com/</a></span>
+        </span>
+      <span class="dp2">
+        <span style=" margin-left:30px">携程旅行网&nbsp;&nbsp;<a href="http://www.ctrip.com/">http://www.ctrip.com/</a></span>
+        
+      </span>
+    </div>
+
+    <div class="dp_main">
+      <div class="dp_main_left left">
+        <span class="dp_map_bt">A.航空售票处（海连中路）</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：新浦区海连中路40-1号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85012390</p><br />
+        <span class="dp_map_bt">B.千岛假日宾馆航空售票处</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：海连中路145号千岛假日宾馆</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85700875</p><br />
+        <span class="dp_map_bt">C.航空售票处（新生民路）</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：新浦区新生民路1号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85011081</p><br />
+        <span class="dp_map_bt">D.东方航空售票处</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：海昌路步行中街3层</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85405777</p><br />
+        <span class="dp_map_bt">E.连云港机场民航售票处（通灌南路）</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：通灌南路58号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85421566</p><br />
+        <span class="dp_map_bt">F.龙泰航空（连云港店）</span>
+        <p>&nbsp;&nbsp;&nbsp;地址：新浦区郁州南路58-32号</p>
+        <p>&nbsp;&nbsp;&nbsp;电话：0518-85835366</p><br />
+
+      </div>
+       <div id= "allmap" ></div>
+    </div>
+
+
+  </div>
+  
+
+  </html>
+
+  <script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var start = "江苏省连云港市工业展览中心";
+    var end = "连云港白塔埠机场";
+    map.centerAndZoom(new BMap.Point(119.25456, 34.715693), 11);
+    map.clearOverlays();
+    map.enableScrollWheelZoom(true);
+    var routePolicy = [BMAP_DRIVING_POLICY_LEAST_TIME,BMAP_DRIVING_POLICY_LEAST_DISTANCE,BMAP_DRIVING_POLICY_AVOID_HIGHWAYS];
+    search(start,end,routePolicy[0]);
+    function search(start,end,route){
+      var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true},policy: route});
+      driving.search(start,end);
+    }
+    //三种驾车策略：最少时间，最短距离，避开高速
+
+
+  </script>

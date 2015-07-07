@@ -255,7 +255,13 @@ public class VisitorService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
 				String picName = BarcodeUtils.createBarcode(id);
-				String imgSrc = ConfigUtils.getRemote() + ConfigUtils.getPrj() + Constants.BARCODE_MID_STR + picName;
+				String nowpath = System.getProperty("user.dir");            
+				String tempdir = nowpath.replace("bin", "webapps");
+				tempdir+="/"+ ConfigUtils.getPrj();
+				//String basePath = tempdir + "\\resources\\topicimages\\";
+				String imgSrc = tempdir + Constants.BARCODE_MID_STR + picName;
+
+				//String imgSrc = ConfigUtils.getRemote() + ConfigUtils.getPrj() + Constants.BARCODE_MID_STR + picName;
 				logger.info("发送现场证件申请通过邮件...");
 				String content = MailUtil.replaceVariable(Constants.VISITOR_APPROVED, imgSrc);
 				
