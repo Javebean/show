@@ -73,7 +73,12 @@ $(document).ready(function(){
 			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		};
-		Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+		
+		if(step == 1){
+			Exhibitor.getExhibitorsForPageByStateFirst((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+		} else if(step == 2) {
+			Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+		}
 	}
 
 	var itemParams = ["name","version","number","length","width"];

@@ -8,6 +8,10 @@
     <script type="text/javascript" src="js/manager/ma_exhibitor.js"></script>
     <script>
     	var menu = 5;
+    	var step = <%= request.getParameter("step")%>;
+    	if(step==2){
+    		menu = 8;
+    	}
     </script>
 
     <style>

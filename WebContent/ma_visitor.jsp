@@ -27,6 +27,10 @@
 		.cp_photo{ width:118px; height:149px; margin:171px 0 0 108px}
 		.cp_name{ color:#2c2c2c; font-size:20px; margin:5px 0 0 150px;font-weight:bold;}
 		.cp_company{ color:#2c2c2c; font-size:20px; margin:15px 0 0 150px;font-weight:bold;}
+		.cp_image_fro, .cp_image_bac{
+			height:240px;
+			width:360px;
+		}
     </style>
 
     <div class="container-fluid">
@@ -144,6 +148,10 @@
 				          <td colspan="3"><span ename="email" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
+				          <th class="text-nowrap" width="14%">身份证号</th>
+				          <td colspan="3"><span ename="idNo" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
 				          <th class="text-nowrap" width="14%">证件类型</th>
 				          <td colspan="3"><span ename="type" class="fview_value"></span></td>
 				        </tr>
@@ -161,15 +169,16 @@
 								<td colspan="3"><span ename="state" class="fview_value"></span></td>
 							</tr>
 				         				    </table>
-
-
-					<!-- <div class="form-group audit_box hide">
-						<div class="col-sm-offset-5 col-sm-5">
-							<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
-							<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
-						</div>
-					</div> -->
-					<div class="form-group audit_box">
+					
+					<h4>身份证正反面：</h4>
+					<div class="form-group">
+						<img class="cp_image_fro" src="" />
+					</div>
+					<div class="form-group">
+						<img class="cp_image_bac" src="" />
+					</div>
+					
+					<div class="form-group">
 						<div class="cp">
 					       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
 					       <div class="cp_name"></div>
@@ -181,7 +190,7 @@
 							<button type="button" class="btn btn-sm btn-success print_tp" eid="">打印</button>
 						</div>
 					</div>
-
+		
 					<div class="audit_box hide">
 						<div class="form-group">
 							<label>驳回原因：（如需驳回请填写此项）</label>

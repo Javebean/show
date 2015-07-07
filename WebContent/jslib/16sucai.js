@@ -19,12 +19,14 @@ $(document).ready(function()
 });
 
 function loadContent(){
-	if ($('#uploadify').length > 0) {
-		$('#uploadify').uploadify('destroy');
+	var uploadifyList = ['#uploadify','#uploadify_logo','#uploadify_vheader','#uploadify_idfront','#uploadify_idback'];
+	for(var i in uploadifyList){
+		var key = uploadifyList[i];
+		if ($(key).length > 0) {
+			$(key).uploadify('destroy');
+		}
 	}
-	if ($('#uploadify_logo').length > 0) {
-		$('#uploadify_logo').uploadify('destroy');
-	}
+	
     $(".menu_Left").removeClass("menu_active");
     $(this).addClass("menu_active");
     var url = $(this).attr("eurl");

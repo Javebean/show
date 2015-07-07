@@ -5,6 +5,13 @@ var picFlag_logo = false;
 var PIC_BASE = 'resources/topicimages/';
 var topicId = Math.uuid();
 var topicId_logo = Math.uuid();
+
+var pic_icheader_ID = "";
+var pic_icfro_ID = "";
+var pic_icbac_ID = "";
+var pic_scare = "";
+var img_selection;
+
 var scene_type_html = "";
 var trans_type_html = "";
 var reg_num = /^[1-9]\d*$/;
@@ -22,14 +29,19 @@ $(document).ready(function(){
 		addItem(this,7);
 	});
 	$(".add_visitor").click(function(){
-		addItem(this,4);
+		addVisitorLine();
+		//addItem(this,4);
 	});
+	$("#chuyang").click(chuyang);
+	$("#submitVisitorForm").click(saveVisitorForm);
+	
 	$(".addSceneBtn").click(showSceneBox);
 
 	function showSceneBox(){
 		$.colorbox({
 			inline : true,
 			innerWidth:970,
+			speed: 0,
 			href : "#sceneSelectBox",
 			close : "关闭"
 		});
@@ -114,6 +126,7 @@ $(document).ready(function(){
 			recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
 		}
 		$("#recommender_dropbox").html(recommender_sel_html);
+		$("#recommender_dropbox").trigger("change");
 
 		//货运物流
 		var trans_type_html = "";
@@ -128,6 +141,62 @@ $(document).ready(function(){
 	        '<span class="hyspan">'+item.info[2]+'</span></div></div>';
 		}
 		$(".trans_select_box").html(trans_type_html);
+	}
+	
+	function addVisitorLine(){
+		//Empty inputs
+		$("#addVisitorform .tablezh input").val("");
+		
+		//Init image src
+		$("#topic_image_vheader").attr("src","");
+		$("#topic_image_idfront").attr("src","");
+		$("#topic_image_idback").attr("src","");
+		$(".cp_image").attr("src","");
+		
+		pic_icheader_ID = "";
+		pic_icfro_ID = "";
+		pic_icbac_ID = "";
+		
+		$.colorbox({
+			inline : true,
+			innerWidth:750,
+			speed: 0,
+			href : "#addVisitorBox",
+			close : "关闭",
+			onClosed : function(){
+				
+			}
+		});
+	}
+	
+	function saveVisitorForm(){
+		if(!$("#addVisitorform").valid()){
+			jAlert("请检查输入内容", "信息");
+			return;
+		}
+		if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
+			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
+			return;
+		}
+		var formData = getFormdata("addVisitorform");
+		formData.photo = topicId + ".jpg";
+		formData.idFont = pic_icfro_ID + ".jpg";
+		formData.idBack = pic_icbac_ID + ".jpg";
+
+		var html = '<tr class="item_row">'+
+					'<td><div align="center">'+formData.name+'</div></td>' +
+					'<td><div align="center">'+formData.sex+'</div></td>' +
+					'<td><div align="center">'+formData.position+'</div></td>' +
+					'<td><div align="center">'+formData.phone+'</div></td>' +
+					'<td><div align="center">'+formData.idNo+'</div></td>';
+					
+		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
+
+		$(".visitors").append(html.replace(/undefined/g,""));
+		$(".delete_item").click(deleteItem);
+		$(".visitors .item_row").last().data("newvisitor",formData);
+		
+		$.colorbox.close();
 	}
 
 	//test
@@ -252,7 +321,11 @@ $(document).ready(function(){
 		}
 
 		//获取展品和参展人员数据
-		var visitor = getDymiTableData(".visitors", visitorParams);
+		var visitor = [];
+		$(".visitors .item_row").each(function(){
+			visitor.push($(this).data("newvisitor"));
+		});
+		
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight"];
 		for(var i=0;i<displayItem.length;i++){
@@ -421,6 +494,178 @@ $(document).ready(function(){
 				picFlag_logo = true;
 				setTimeout(function(){
 					$("#topic_image_logo").attr("src",PIC_BASE+topicId_logo+".jpg?"+Math.random());
+				},300);
+			}
+		});
+	},10);
+	
+	
+	setTimeout(function(){
+		$("#uploadify_vheader").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + 'NEWID',
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
+
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				pic_icheader_ID = data;
+				setTimeout(function(){
+					$("#topic_image_vheader").attr("src",PIC_BASE+pic_icheader_ID+".jpg?"+Math.random());
+					//暂时注掉图片切割
+					//$("#img_preview_vheader").attr("src",PIC_BASE+pic_icheader_ID+".jpg?"+Math.random());
+					//$('#topic_image_vheader').imgAreaSelect({ onSelectChange: preview,aspectRatio: '118:149',autoHide: true });
+				},300);
+			}
+		});
+	},10);
+	
+	function preview(img, selection) {
+		var oriHeight = $("#topic_image_vheader").height();
+		var scaleX = 118 / (selection.width || 1);
+	    var scaleY = 149 / (selection.height || 1);
+
+	    $('#img_preview_vheader').css({
+	        width: Math.round(scaleX * 300) + 'px',
+	        height: Math.round(scaleY * oriHeight) + 'px',
+	        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+	        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+	    });
+
+	    pic_scare = "";
+	    if(selection.width>10){
+	    	pic_scare += selection.x1+","+selection.y1+","+selection.width+","+selection.height+",300,"+oriHeight;
+	    	img_selection = selection;
+	    }
+	}
+	
+	function chuyang(){
+		$(".cp_name").text(document.forms["addVisitorform"]["name"].value);
+		$(".cp_company").text(document.forms["addVisitorform"]["org"].value);
+		if(pic_icheader_ID){
+			var oriHeight = $("#img_preview_vheader").height();
+			$(".cp_image").attr("src",PIC_BASE+pic_icheader_ID+".jpg?"+Math.random());
+			 var scaleX = 300 / (img_selection.width || 1);
+			 var scaleY = oriHeight / (img_selection.height || 1);
+			$('.cp_image').css({
+		        width: Math.round(scaleX * 118) + 'px',
+		        height: Math.round(scaleY * 149) + 'px',
+		        marginLeft: '-' + Math.round(img_selection.x1 * 118 / img_selection.width) + 'px',
+		        marginTop: '-' + Math.round(img_selection.y1 * 149 / img_selection.height) + 'px'
+		    });
+		}
+	}
+	
+	setTimeout(function(){
+		$("#uploadify_idfront").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + 'NEWID',
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
+
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				pic_icfro_ID = data;
+				setTimeout(function(){
+					$("#topic_image_idfront").attr("src",PIC_BASE+pic_icfro_ID+".jpg?"+Math.random());
+				},300);
+			}
+		});
+	},10);
+	
+	setTimeout(function(){
+		$("#uploadify_idback").uploadify({
+			'swf'      : 'uploadify.swf',
+			'uploader' : 'imageUpload?topicId=' + 'NEWID',
+			'fileDesc' : 'Image Files',
+			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'multi' : false,
+			'queueSizeLimit' : 1,
+			'fileSizeLimit' : '5MB',
+
+			onSelectError: function(file, errorCode, errorMsg) {
+        var msgText = "上传失败\n";
+        switch (errorCode) {
+            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+                break;
+            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
+                break;
+            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                msgText += "文件大小为0";
+                break;
+            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
+                break;
+            default:
+                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        }
+        alert(msgText);
+    },
+
+			onUploadError : function(event, queueID, fileObj, errorObj) {
+				return false;
+			},
+			onUploadSuccess : function(file, data, response) {
+				pic_icbac_ID = data;
+				setTimeout(function(){
+					$("#topic_image_idback").attr("src",PIC_BASE+pic_icbac_ID+".jpg?"+Math.random());
 				},300);
 			}
 		});

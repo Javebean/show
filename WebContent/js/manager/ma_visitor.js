@@ -155,6 +155,9 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 
 			setViewTable(".visitor_detail",data);
+			$(".cp_image_fro").attr("src",PIC_BASE+data.idFont);
+			$(".cp_image_bac").attr("src",PIC_BASE+data.idBack);
+			
 			if(data.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.id);

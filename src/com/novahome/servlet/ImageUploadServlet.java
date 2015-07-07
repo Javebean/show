@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -39,6 +40,10 @@ public class ImageUploadServlet extends HttpServlet {
 		System.out.println("topicId:"+topicId);
 		if (topicId == null)
 			return;
+		if(topicId.equals("NEWID")){
+			topicId = UUID.randomUUID().toString();
+		}
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		String name = null;
@@ -198,7 +203,7 @@ public class ImageUploadServlet extends HttpServlet {
 				+ "s_" + topicId + ".jpg"));
 		
 		tmpFile.delete();
-		writer.print("success");
+		writer.print(topicId);
 		writer.flush();
 	}
 }
