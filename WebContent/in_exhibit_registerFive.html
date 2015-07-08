@@ -7,6 +7,7 @@
   <link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
   <link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
   <link href="plugins/uploadify/uploadifive.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="plugins/areaselect/css/cityLayout.css" >
   <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="jslib/json2.js"></script>
   <script type="text/javascript" src="jslib/uuid.js"></script>
@@ -104,7 +105,10 @@ label.error {
      </div>
      <div class="tablezh">
       <div class="table4 left"><span class="table3_left left required_label">国家地区</span>
-      <input class="exib_input2 required" name="region" type="text" /></div>
+        <input name="region" id="start1" autocomplete="off" type="text" class="exib_input2 required city_input  inputFocus proCityQueryAll proCitySelAll" ov="请选择/输入城市名称">
+
+      <!-- <input class="exib_input2 required" name="region" type="text" /> -->
+      </div>
       <div class="table4 right"><span class="table3_left left required_label">企业性质</span>
 	      <div class="sel_wrap right" style=" width:241px">
 	        <label></label>
@@ -263,6 +267,45 @@ label.error {
 </div>
 
 
+<!--弹出省省市-->
+<div class="provinceCityAll">
+
+	<div class="tabs clearfix">
+		<ul>
+			<li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+			<li><a href="javascript:" tb="provinceAll">省份</a></li>
+			<li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+
+		</ul>
+	</div>
+
+	<div class="con">
+		<div class="hotCityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="provinceAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="cityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+
+	</div>
+
+</div>
+
 <script type="text/javascript">
 $(".sel_wrap").on("change", function() {
 var o;
@@ -300,6 +343,6 @@ function textup() {
     }
 }
 </SCRIPT>
-
+<script type="text/javascript" src="plugins/areaselect/js/areaselect.js"></script>
 
 </html>

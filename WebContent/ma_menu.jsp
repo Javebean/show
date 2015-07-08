@@ -23,8 +23,8 @@ $(document).ready(function(){
     </ul>
     <ul class="nav nav-sidebar">
       <li elevel="4"><a href="ma_audience.jsp">观众管理</a></li>
-      <li elevel="5"><a href="ma_exhibitor.jsp?step=1">展商管理(1)</a></li>
-      <li elevel="8"><a href="ma_exhibitor.jsp?step=2">展商管理(2)</a></li>
+      <li elevel="5"><a href="ma_exhibitor.jsp?step=1">展商管理(一级审批)</a></li>
+      <li elevel="8"><a href="ma_exhibitor.jsp?step=2">展商管理(终极审批)</a></li>
       <li elevel="6"><a href="ma_visitor.jsp">证件管理</a></li>
       <li elevel="7"><a href="ma_event.jsp">专题活动管理</a></li>
     </ul>
