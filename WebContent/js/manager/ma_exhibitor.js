@@ -73,7 +73,7 @@ $(document).ready(function(){
 			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		};
-		
+
 		if(step == 1){
 			Exhibitor.getExhibitorsForPageByStateFirst((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 		} else if(step == 2) {
@@ -194,7 +194,12 @@ $(document).ready(function(){
 				showTopicList(1);
 			}
 		};
-		Exhibitor.updateExhibitorState(eid,1,func);
+		if(step == 1){
+			Exhibitor.updateExhibitorFirstState(eid,1,func)
+		} else if(step == 2) {
+			Exhibitor.updateExhibitorState(eid,1,func);
+		}
+
 	}
 
 	function rejectTP(){
@@ -206,7 +211,12 @@ $(document).ready(function(){
 				showTopicList(1);
 			}
 		};
-		Exhibitor.updateExhibitorStateReason(eid,2,reason,func);
+		if(step == 1){
+			Exhibitor.updateExhibitorFirstStateReason(eid,1,func)
+		} else if(step == 2) {
+			Exhibitor.updateExhibitorStateReason(eid,2,reason,func);
+			}
+
 	}
 
 	function initPaging(pageActive, rowCount){
