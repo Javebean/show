@@ -34,7 +34,7 @@ $(document).ready(function(){
 	});
 	$("#chuyang").click(chuyang);
 	$("#submitVisitorForm").click(saveVisitorForm);
-	
+
 	$(".addSceneBtn").click(showSceneBox);
 
 	function showSceneBox(){
@@ -142,21 +142,21 @@ $(document).ready(function(){
 		}
 		$(".trans_select_box").html(trans_type_html);
 	}
-	
+
 	function addVisitorLine(){
 		//Empty inputs
 		$("#addVisitorform .tablezh input").val("");
-		
+
 		//Init image src
 		$("#topic_image_vheader").attr("src","");
 		$("#topic_image_idfront").attr("src","");
 		$("#topic_image_idback").attr("src","");
 		$(".cp_image").attr("src","");
-		
+
 		pic_icheader_ID = "";
 		pic_icfro_ID = "";
 		pic_icbac_ID = "";
-		
+
 		$.colorbox({
 			inline : true,
 			innerWidth:750,
@@ -164,11 +164,11 @@ $(document).ready(function(){
 			href : "#addVisitorBox",
 			close : "关闭",
 			onClosed : function(){
-				
+
 			}
 		});
 	}
-	
+
 	function saveVisitorForm(){
 		if(!$("#addVisitorform").valid()){
 			jAlert("请检查输入内容", "信息");
@@ -179,7 +179,7 @@ $(document).ready(function(){
 			return;
 		}
 		var formData = getFormdata("addVisitorform");
-		formData.photo = topicId + ".jpg";
+		formData.photo = pic_icheader_ID + ".jpg";
 		formData.idFont = pic_icfro_ID + ".jpg";
 		formData.idBack = pic_icbac_ID + ".jpg";
 
@@ -189,13 +189,13 @@ $(document).ready(function(){
 					'<td><div align="center">'+formData.position+'</div></td>' +
 					'<td><div align="center">'+formData.phone+'</div></td>' +
 					'<td><div align="center">'+formData.idNo+'</div></td>';
-					
+
 		html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
 
 		$(".visitors").append(html.replace(/undefined/g,""));
 		$(".delete_item").click(deleteItem);
 		$(".visitors .item_row").last().data("newvisitor",formData);
-		
+
 		$.colorbox.close();
 	}
 
@@ -325,7 +325,7 @@ $(document).ready(function(){
 		$(".visitors .item_row").each(function(){
 			visitor.push($(this).data("newvisitor"));
 		});
-		
+
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight"];
 		for(var i=0;i<displayItem.length;i++){
@@ -498,8 +498,8 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
-	
+
+
 	setTimeout(function(){
 		$("#uploadify_vheader").uploadify({
 			'swf'      : 'uploadify.swf',
@@ -546,7 +546,7 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
+
 	function preview(img, selection) {
 		var oriHeight = $("#topic_image_vheader").height();
 		var scaleX = 118 / (selection.width || 1);
@@ -565,7 +565,7 @@ $(document).ready(function(){
 	    	img_selection = selection;
 	    }
 	}
-	
+
 	function chuyang(){
 		$(".cp_name").text(document.forms["addVisitorform"]["name"].value);
 		$(".cp_company").text(document.forms["addVisitorform"]["org"].value);
@@ -582,7 +582,7 @@ $(document).ready(function(){
 		    });
 		}
 	}
-	
+
 	setTimeout(function(){
 		$("#uploadify_idfront").uploadify({
 			'swf'      : 'uploadify.swf',
@@ -626,7 +626,7 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
+
 	setTimeout(function(){
 		$("#uploadify_idback").uploadify({
 			'swf'      : 'uploadify.swf',
