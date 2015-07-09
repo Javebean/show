@@ -212,7 +212,7 @@ $(document).ready(function(){
 			}
 		};
 		if(step == 1){
-			Exhibitor.updateExhibitorFirstStateReason(eid,1,func)
+			Exhibitor.updateExhibitorFirstStateReason(eid,2,reason,func);
 		} else if(step == 2) {
 			Exhibitor.updateExhibitorStateReason(eid,2,reason,func);
 			}
