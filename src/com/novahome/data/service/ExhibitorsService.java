@@ -378,6 +378,7 @@ public class ExhibitorsService {
 			v.setApplyTime(new Date());
 			v.setEid(id);
 			v.setOrg(exhibitor.getOrgName());
+			v.setType(1);
 			visitorDao.saveVisitor(v);
 		}
 		for(DisplayItem d : displayItem)
