@@ -18,7 +18,25 @@ $(document).ready(function()
 
 });
 
+var APP_VERSION = "1.0.0";
+function JloadRewrite(){
+	if(!$.prototype.loadFlag){
+		$.prototype.loadFlag = "Y";
+		$.prototype.load = function(base) {
+			return function() {
+				var self = this;
+				var url = arguments[0];
+				url += "?ver="+APP_VERSION;
+				base.call(self,url);
+			}
+		}($.prototype.load);
+	}
+}
+JloadRewrite();
+
 function loadContent(){
+	JloadRewrite();
+	
 	var uploadifyList = ['#uploadify','#uploadify_logo','#uploadify_vheader','#uploadify_idfront','#uploadify_idback'];
 	for(var i in uploadifyList){
 		var key = uploadifyList[i];
@@ -31,4 +49,10 @@ function loadContent(){
     $(this).addClass("menu_active");
     var url = $(this).attr("eurl");
     $(".nymain_right").load(url);
+}
+
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
 }

@@ -23,8 +23,15 @@ $(document).ready(function(){
 
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
-  $(".nymain_right").load("zs/zgqk.html");
   $(".menu_Left").click(loadContent);
+  
+  var detail = getUrlParam("detail");
+  if(detail){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+  } else {
+	  $(".nymain_right").load("zs/zgqk.html");
+  }
 });
 </script>
 

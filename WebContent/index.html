@@ -185,10 +185,24 @@
 			text-indent: -999em;
 			margin-bottom: -6px;
 		}
+		.link_access{
+			color:blue;
+			text-decoration:underline;
+			font-size: 14px;
+		}
+		#rolling_info{
+		  position: absolute;
+		  top: 52px;
+		  left: 700px;
+		  z-index: 5000;
+		  width: 300px;
+		}
 	</style>
 </head>
 
 <body>
+	<!-- 滚动通知 -->
+	<marquee id="rolling_info" onMouseOver="this.stop()" onMouseOut="this.start()"><a class="link_access" href="in_exhibit_register.html">展商注册</a>和<a class="link_access" href="in_exhibit.html?detail=zs/wssb.html">证件办理</a>须在本网站申请！</marquee>
 	<a name="toptag"></a>
 	<div class="header">
 	</div>
