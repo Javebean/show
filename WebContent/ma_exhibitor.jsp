@@ -149,6 +149,18 @@
 				          <th class="text-nowrap" width="14%">电子邮箱</th>
 				          <td><span ename="email" class="fview_value"></span></td>
 				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">现场联系人</th>
+				          <td><span ename="secontact" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">职务</th>
+				          <td><span ename="secontactPosition" class="fview_value"></span></td>
+				        </tr>
+				         <tr>
+				          <th class="text-nowrap" width="14%">手机号码</th>
+				          <td><span ename="sephone" class="fview_value"></span></td>
+				          <th class="text-nowrap" width="14%">电子邮箱</th>
+				          <td><span ename="seemail" class="fview_value"></span></td>
+				        </tr>
 				         <tr>
 				          <th class="text-nowrap" width="14%">固定电话</th>
 				          <td><span ename="telephone" class="fview_value"></span></td>
