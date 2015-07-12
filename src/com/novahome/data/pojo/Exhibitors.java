@@ -32,6 +32,12 @@ public class Exhibitors {
 	private String contactPosition;	//联系人职务
 	private String phone;	//手机号码
 	private String email;	//电子邮箱
+	
+	private String secontact;	//现场联系人
+	private String secontactPosition;	//现场联系人职务
+	private String sephone;	//现场手机号码
+	private String seemail;	//现场电子邮箱
+	
 	private String telephone;	//固定电话
 	private String fax;	//传真
 	private String username;	//展商登陆名（系统生成）
@@ -259,6 +265,30 @@ public class Exhibitors {
 	public void setFirstState(int firstState) {
 		this.firstState = firstState;
 	}
-
+	public String getSecontact() {
+		return secontact;
+	}
+	public void setSecontact(String secontact) {
+		this.secontact = secontact;
+	}
+	public String getSecontactPosition() {
+		return secontactPosition;
+	}
+	public void setSecontactPosition(String secontactPosition) {
+		this.secontactPosition = secontactPosition;
+	}
+	public String getSephone() {
+		return sephone;
+	}
+	public void setSephone(String sephone) {
+		this.sephone = sephone;
+	}
+	public String getSeemail() {
+		return seemail;
+	}
+	public void setSeemail(String seemail) {
+		this.seemail = seemail;
+	}
+	
 	
 }
