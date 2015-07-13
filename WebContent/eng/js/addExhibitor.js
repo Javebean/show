@@ -78,14 +78,14 @@ $(document).ready(function(){
 				preItems[name] = row.find(".item_count").val();
 			});
 
-			var html = '<div class="fwts">您已经选择了以下现场服务</div>';
+			var html = '<div class="fwts">You have already selected the following Services</div>';
 			$(".sceneItemBox .item_on").each(function(){
 				var index = $(this).attr("index");
 				var item = CON_SCENE_TYPE[index];
 				html+= '<div class="fwnr" index="'+index+'" itemname="'+item.name+'">'+
 					  '<input type="button" class="remove_item"/><span class="ydcp"><img src="'+SCENE_IMAGE_BASE+item.image+'" /></span>'+
-					  '<div class="ydxq"><div class="hy2" style="margin-top:16px;"><span class="hyspan2"><span class="fwnr_span1"><strong>名称：'+item.name+'</strong></span></span>'+
-				        '<span class="hyspan2"><span class="fwnr_span1"><strong>数量：</strong></span><input class="item_count" type="text" value=1 /><span class="fwnr_span2"><strong>个</strong></span></span>'+
+					  '<div class="ydxq"><div class="hy2" style="margin-top:16px;"><span class="hyspan2"><span class="fwnr_span1"><strong>Model：'+item.name+'</strong></span></span>'+
+				        '<span class="hyspan2"><span class="fwnr_span1"><strong>Number：</strong></span><input class="item_count" type="text" value=1 /><span class="fwnr_span2"><strong>个</strong></span></span>'+
 				       '</div><div class="hy2"><span class="hyspan2">'+item.info[0]+'</span>'+
 				       '<span class="hyspan2">'+item.info[1]+'</span>'+
 				       '<span class="hyspan2">'+item.info[2]+'</span></div></div></div>';
@@ -134,8 +134,8 @@ $(document).ready(function(){
 			var item = CON_TRANS_TYPE[i];
 			trans_type_html += '<div class="hy" index="'+i+'" itemname="'+item.name+'">'+
 			       '<div class="hy1" style="margin-top:16px;"><span class="hyspan"><span style="display:block; float:left; margin-left:20px"><strong>'+item.name+'</strong></span></span>'+
-	        '<span class="hyspan"><span style="display:block; float:left; "><strong>数量：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>辆</strong></span></span>'+
-	        '<span class="hyspan"><span style="display:block; float:left; "><strong>时间：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>小时</strong></span></span>'+
+	        '<span class="hyspan"><span style="display:block; float:left; "><strong>Number：</strong></span><input class="trans_count" type="text" /><span style="display:block; float:left;margin-left:4px "></span></span>'+
+	        '<span class="hyspan"><span style="display:block; float:left; "><strong>Time：</strong></span><input class="trans_time" type="text" /><span style="display:block; float:left;margin-left:4px "><strong>Hours</strong></span></span>'+
 	       '</div><div class="hy1"><span class="hyspan" style=" padding-left:40px; width:120px">'+item.info[0]+'</span>'+
 	        '<span class="hyspan">'+item.info[1]+'</span>'+
 	        '<span class="hyspan">'+item.info[2]+'</span></div></div>';
@@ -171,11 +171,11 @@ $(document).ready(function(){
 
 	function saveVisitorForm(){
 		if(!$("#addVisitorform").valid()){
-			jAlert("请检查输入内容", "信息");
+			jAlert("Check your Input", "Message");
 			return;
 		}
 		if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
-			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
+			jAlert("Upload your photo，Front of your ID，Back of your ID。", "Message");
 			return;
 		}
 		var formData = getFormdata("addVisitorform");
@@ -295,22 +295,22 @@ $(document).ready(function(){
 			},
 		})){
 			$(window).scrollTop(400);
-			jAlert("请检查输入内容", "信息");
+			jAlert("Check your input", "Message");
 			return;
 		}
 		var formData = getFormdata("regForm");
 		formData.tytzzs= $("input[name='tytzzs']:checked").val();
 		formData.swzs= $("input[name='swzs']:checked").val();
 		var btsl = formData.btsl;
-		if(btsl == "标摊每个3m X 3m"){
+		if(btsl == "Standard 3m X 3m"){
 			$(window).scrollTop(1300);
-			jAlert("请输入标摊数量", "信息");
+			jAlert("Number of Standard booth", "Message");
 			return;
 		}
 
 		if(isNaN(parseInt(btsl))){
 			$(window).scrollTop(1300);
-			jAlert("标摊数量请输入整数", "信息");
+			jAlert("Number of Standard booth shoube be an Integer", "Message");
 			return;
 		} else {
 			formData.btsl = parseInt(btsl);
@@ -332,14 +332,14 @@ $(document).ready(function(){
 			var item = displayItem[i];
 			if(!reg_num.test(item.number) && item.number!=""){
 				$(window).scrollTop(1500);
-				jAlert("展品数量请输入整数", "信息");
+				jAlert("Number of Exhibits should be an Integer", "Message");
 				return;
 			} else if((!reg_float.test(item.length) && item.length!="")
 					||(!reg_float.test(item.width) && item.width!="")
 					||(!reg_float.test(item.height) && item.height!="")
 					||(!reg_float.test(item.weight) && item.weight!="")){
 				$(window).scrollTop(1500);
-				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
+				jAlert("length,width,heighta and weight should be a number", "Message");
 				return;
 			}
 		}
@@ -350,7 +350,7 @@ $(document).ready(function(){
 			var item = sceneServ[i];
 			if(!reg_num.test(item.content) && item.content!=""){
 				$(window).scrollTop(2200);
-				jAlert("现场服务数量请输入整数", "信息");
+				jAlert("Service number shouble be an Integer", "Message");
 				return;
 			}
 		}
@@ -360,7 +360,7 @@ $(document).ready(function(){
 			var item = transportation[i];
 			if(!reg_num.test(item.content) || item.content=="" || !reg_num.test(item.time) || item.time==""){
 				$(window).scrollTop(2400);
-				jAlert("货运物流数量，时间请输入整数", "信息");
+				jAlert("transportation number and time should be an Integer", "Message");
 				return;
 			}
 		}
@@ -383,7 +383,7 @@ $(document).ready(function(){
 				$(".resultMsg").show();
 
 			}else{
-				jAlert(data.message, "信息");
+				jAlert(data.message, "Message");
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
@@ -422,23 +422,23 @@ $(document).ready(function(){
 			'fileSizeLimit' : '5MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
-        var msgText = "上传失败\n";
+        var msgText = "Upload Failed\n";
         switch (errorCode) {
-            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                break;
-            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
-                break;
-            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                msgText += "文件大小为0";
-                break;
-            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
-                break;
-            default:
-                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+            //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+            msgText += "Maximum of " + this.settings.queueSizeLimit + "Files";
+            break;
+        case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            msgText += "File size exceeds limit( " + this.settings.fileSizeLimit + " )";
+            break;
+        case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            msgText += "Size is 0";
+            break;
+        case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            msgText += "Format is not correct, Only " + this.settings.fileTypeExts;
+            break;
+        default:
+            msgText += "Error code:" + errorCode + "\n" + errorMsg;
         }
         alert(msgText);
     },
@@ -466,23 +466,23 @@ $(document).ready(function(){
 			'fileSizeLimit' : '5MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
-        var msgText = "上传失败\n";
+        var msgText = "Upload Failed\n";
         switch (errorCode) {
-            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                break;
-            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
-                break;
-            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                msgText += "文件大小为0";
-                break;
-            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
-                break;
-            default:
-                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+            //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+            msgText += "Maximum of " + this.settings.queueSizeLimit + "Files";
+            break;
+        case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            msgText += "File size exceeds limit( " + this.settings.fileSizeLimit + " )";
+            break;
+        case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            msgText += "Size is 0";
+            break;
+        case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            msgText += "Format is not correct, Only " + this.settings.fileTypeExts;
+            break;
+        default:
+            msgText += "Error code:" + errorCode + "\n" + errorMsg;
         }
         alert(msgText);
     },
@@ -511,23 +511,23 @@ $(document).ready(function(){
 			'fileSizeLimit' : '5MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
-        var msgText = "上传失败\n";
+        var msgText = "Upload Failed\n";
         switch (errorCode) {
-            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                break;
-            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
-                break;
-            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                msgText += "文件大小为0";
-                break;
-            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
-                break;
-            default:
-                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+            //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+            msgText += "Maximum of " + this.settings.queueSizeLimit + "Files";
+            break;
+        case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            msgText += "File size exceeds limit( " + this.settings.fileSizeLimit + " )";
+            break;
+        case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            msgText += "Size is 0";
+            break;
+        case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            msgText += "Format is not correct, Only " + this.settings.fileTypeExts;
+            break;
+        default:
+            msgText += "Error code:" + errorCode + "\n" + errorMsg;
         }
         alert(msgText);
     },
@@ -594,23 +594,23 @@ $(document).ready(function(){
 			'fileSizeLimit' : '5MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
-        var msgText = "上传失败\n";
+        var msgText = "Upload Failed\n";
         switch (errorCode) {
-            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                break;
-            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
-                break;
-            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                msgText += "文件大小为0";
-                break;
-            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
-                break;
-            default:
-                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+            //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+            msgText += "Maximum of " + this.settings.queueSizeLimit + "Files";
+            break;
+        case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            msgText += "File size exceeds limit( " + this.settings.fileSizeLimit + " )";
+            break;
+        case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            msgText += "Size is 0";
+            break;
+        case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            msgText += "Format is not correct, Only " + this.settings.fileTypeExts;
+            break;
+        default:
+            msgText += "Error code:" + errorCode + "\n" + errorMsg;
         }
         alert(msgText);
     },
@@ -640,21 +640,21 @@ $(document).ready(function(){
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
         switch (errorCode) {
-            case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-                //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                msgText += "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
-                break;
-            case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                msgText += "文件大小超过限制( " + this.settings.fileSizeLimit + " )";
-                break;
-            case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                msgText += "文件大小为0";
-                break;
-            case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-                msgText += "文件格式不正确，仅限 " + this.settings.fileTypeExts;
-                break;
-            default:
-                msgText += "错误代码：" + errorCode + "\n" + errorMsg;
+        case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+            //this.queueData.errorMsg = "每次最多上传 " + this.settings.queueSizeLimit + "个文件";
+            msgText += "Maximum of " + this.settings.queueSizeLimit + "Files";
+            break;
+        case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            msgText += "File size exceeds limit( " + this.settings.fileSizeLimit + " )";
+            break;
+        case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            msgText += "Size is 0";
+            break;
+        case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            msgText += "Format is not correct, Only " + this.settings.fileTypeExts;
+            break;
+        default:
+            msgText += "Error code:" + errorCode + "\n" + errorMsg;
         }
         alert(msgText);
     },
