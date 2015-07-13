@@ -3,6 +3,10 @@ var formData = {};
 var picFlag = false;
 var picFlag_logo = false;
 var PIC_BASE = 'resources/topicimages/';
+if(location.href.indexOf("/eng/")!=-1){
+	PIC_BASE = '../resources/topicimages/';
+}
+
 var topicId = Math.uuid();
 var topicId_logo = Math.uuid();
 

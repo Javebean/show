@@ -49,6 +49,17 @@
     <servlet-name>ckeImageUpload</servlet-name>
     <url-pattern>/ckeImageUpload</url-pattern>
   </servlet-mapping>
+  
+  <!-- 英文版的Mapping -->
+  <servlet-mapping>
+    <servlet-name>imageUpload</servlet-name>
+    <url-pattern>/eng/imageUpload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ckeImageUpload</servlet-name>
+    <url-pattern>/eng/ckeImageUpload</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>testVolley</servlet-name>
     <servlet-class>com.novahome.servlet.phone.TestVolleyServlet</servlet-class>
