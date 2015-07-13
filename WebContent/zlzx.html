@@ -11,10 +11,13 @@
 var ROWS_PER_PAGE = 10;
 $(document).ready(function(){
 	showZlzxList(1);
-
 	function showZlzxList(page){
 		var func = function(data){
 			data = JSON.parse(data);
+			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+			if(data.error!=null){
+				data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+			} 
 			rowCount = data.size;
 			initPaging(page,rowCount);
 			data = data.data;

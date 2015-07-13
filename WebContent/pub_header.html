@@ -21,6 +21,27 @@
 .hide{
 	display:none;
 }
+
+ #rolling_info{
+		  color:#FF7100;
+		  font-size:20px;
+		  font-family:"宋体";
+		  z-index: 5000;
+		  width: 300px;
+		  position:relative;
+		  top:45px;
+		  left:180px;
+	}
+		#rolling_info a.link_access{
+			color:#FF7100;
+			font-size:20px;
+			text-decoration:none;
+		}
+	
+		#rolling_info a.link_access:link {color: #FF7100}		/* 未访问的链接 */
+		#rolling_info a.link_access:visited {color: #FF7100}	/* 已访问的链接 */
+		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
+		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */ 
 </style>
 <script>
 $(document).ready(function(){
@@ -79,13 +100,18 @@ function delCookie(name)
 <body>
   <div class="top">
    <a class="logo left" href="#"><img src="images/logo.png" /></a>
+   
+   	<marquee id="rolling_info" onMouseOver="this.stop()" onMouseOut="this.start()"><a class="link_access" href="in_exhibit_register.html">展商注册</a>和<a class="link_access" href="in_exhibit.html?detail=zs/wssb.html">证件办理</a>须在本网站申请！</marquee>
+   
    <div class="tel_ban right">
      <span class="yonghu"></span>
 
-  <div class="logout hide"><img src="images/logout.png" /></div>
-    <div class="ban"><a class="ch" href="index.html"><img src="images/ch.jpg" /></a><a class="en" href="eng/index.html"><img src="images/en.jpg" /></a></div>
+  	<div class="logout hide"><img src="images/logout.png" /></div>
+    	<div class="ban"><a class="ch" href="index.html"><img src="images/ch.jpg" /></a><a class="en" href="eng/index.html"><img src="images/en.jpg" /></a></div>
 
-    <div class="tel"><img src="images/tel.jpg" /></div>
+    	<div class="tel"><img src="images/tel.jpg" />
+    </div>
+    
    </div>
   </div>
   <div class="navbar">

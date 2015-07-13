@@ -45,6 +45,10 @@ $(document).ready(function(){
 	function showZlzxList(page){
 		var func = function(data){
 			data = JSON.parse(data);
+			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+			if(data.error!=null){
+				data=JSON.parse('{"data":[{"id":0,"orgName":"","region":"","phone":"","username":"","state":"","industryType":"","applyTime":"","logo":"","booth":""}],"size":0}');
+			} 
 			rowCount = data.size;
 			initPaging(page,rowCount);
 			data = data.data;
@@ -86,7 +90,6 @@ $(document).ready(function(){
 		$(".tz_detail").removeClass("hide");
 		var eid = $(this).attr("eid");
 	//	viewTP(eid);
-
 		viewSpan(eid);
 	}
 
@@ -115,6 +118,11 @@ $(document).ready(function(){
 		$("#popup_box span").empty();
 		var func = function(data){
 			data = JSON.parse(data);
+			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+			if(data.error!=null){
+				return;
+			} 
+			
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			$("#orgName_text").text(data.exhibitors.orgName);
@@ -184,6 +192,8 @@ $(document).ready(function(){
 	}
 
 	function setDymTable(tableID, params, data){
+		if(data==undefined)
+			data=new Array();
 		var html = '';
 		for(var i=0;i<data.length;i++){
 			html += '<tr class="item_row">';
