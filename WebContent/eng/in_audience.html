@@ -7,24 +7,20 @@
   <link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
   <script type="text/javascript" language="javascript" src="../jslib/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="../jslib/json2.js"></script>
+  <script type='text/javascript' src='../jslib/uuid.js'></script>
   <script type="text/javascript" language="javascript" src="jslib/16sucai.js"></script>
+  <script type='text/javascript' src='../dwr/engine.js'></script>
+  <script type="text/javascript" src="../plugins/jquery.alert/jquery.alerts.js"></script>
 
   <title>Lianyungang Logistics Expos</title>
 
 </head>
 <script>
 $(document).ready(function(){
-  $(".nymain_right").load("gz/yqh.html");
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
+  $(".nymain_right").load("gz/yqh.html");
   $(".menu_Left").click(loadContent);
-
-  function loadContent(){
-    $(".menu_Left").removeClass("menu_active");
-    $(this).addClass("menu_active");
-    var url = $(this).attr("eurl");
-    $(".nymain_right").load(url);
-  }
 });
 </script>
 <body>

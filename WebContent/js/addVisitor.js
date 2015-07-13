@@ -4,6 +4,10 @@ var picFlag = false;
 var picFlagFro = false;
 var picFlagBac = false;
 var PIC_BASE = 'resources/topicimages/';
+if(location.href.indexOf("/eng/")!=-1){
+	PIC_BASE = '../resources/topicimages/';
+}
+
 var pic_scare = "";
 var topicId = Math.uuid();
 var pic_icfro_ID = Math.uuid();

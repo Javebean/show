@@ -32,6 +32,18 @@ function JloadRewrite(){
 			}
 		}($.prototype.load);
 	}
+	
+	jQuery._evalUrl = function( url ) {
+		return jQuery.ajax({
+			url: url+"?ver="+APP_VERSION,
+			type: "GET",
+			dataType: "script",
+			async: false,
+			global: false,
+			"throws": true,
+			cache: true
+		});
+	};
 }
 JloadRewrite();
 
