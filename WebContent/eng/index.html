@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="../jslib/jquery.hoverIntent.minified.js"></script>
 	<script src="../jslib/jquery.kinMaxShow-1.1.min.js" type="text/javascript"  charset="utf-8"></script>
 	<script type="text/javascript" src="../jslib/animateBackground-plugin.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.alert/jquery.alerts.js"></script>
 
 	<script type='text/javascript' src='../dwr/engine.js'></script>
 	<script type='text/javascript' src='../dwr/interface/Zlzx.js'></script>
@@ -182,10 +183,23 @@
 			text-indent: -999em;
 			margin-bottom: -6px;
 		}
+		.link_access{
+			color:blue;
+			text-decoration:underline;
+			font-size: 14px;
+		}
+		#rolling_info{
+		  position: absolute;
+		  top: 52px;
+		  left: 700px;
+		  z-index: 5000;
+		  width: 300px;
+		}
 	</style>
 </head>
 
-<body>
+<body><!-- 滚动通知 -->
+	<marquee id="rolling_info" onMouseOver="this.stop()" onMouseOut="this.start()"><a class="link_access" href="in_exhibit_register.html">Exhibitor Registration</a>  and  <a class="link_access" href="in_exhibit.html?detail=zs/wssb.html">Badge Apply </a> Must be applied on this site</marquee>
 	<a name="toptag"></a>
 	<div class="header">
 	</div>
