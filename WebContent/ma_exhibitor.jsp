@@ -138,7 +138,7 @@
 				          <td><span ename="scale" class="fview_value"></span></td>
 				        </tr>
 				         <tr>
-				          <th class="text-nowrap" width="14%">联系人</th>
+				          <th class="text-nowrap" width="14%">公司联系人</th>
 				          <td><span ename="contact" class="fview_value"></span></td>
 				          <th class="text-nowrap" width="14%">职务</th>
 				          <td><span ename="contactPosition" class="fview_value"></span></td>
