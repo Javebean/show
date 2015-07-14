@@ -13,8 +13,8 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.novahome.data.dao.TransportationDao;
 
+import com.novahome.data.dao.TransportationDao;
 import com.novahome.data.pojo.Transportation;
 
 @Service("transportationService")
@@ -166,7 +166,12 @@ public class TransportationService {
 		String contentValue = "";
 		for(String type : types)
 			contentValue += map.get(type) + ",";
-		contentValue = contentValue.substring(0, contentValue.length()-1);
+		try {
+			//catch StringIndexOutOfBoundsException
+			contentValue = contentValue.substring(0, contentValue.length()-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JSONObject obj = new JSONObject();
 		obj.put("type", typeValue);
 		obj.put("num", contentValue);

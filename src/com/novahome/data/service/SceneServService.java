@@ -164,7 +164,12 @@ public class SceneServService {
 		String contentValue = "";
 		for(String type : types)
 			contentValue += map.get(type) + ",";
-		contentValue = contentValue.substring(0, contentValue.length()-1);
+		try{
+			//catch StringIndexOutOfBoundsException
+			contentValue = contentValue.substring(0, contentValue.length()-1);
+		}catch(Exception e){
+			System.out.println(e);
+		}
 		JSONObject obj = new JSONObject();
 		obj.put("type", typeValue);
 		obj.put("num", contentValue);
