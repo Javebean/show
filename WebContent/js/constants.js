@@ -1,9 +1,11 @@
 //现场服务类别
 var SCENE_IMAGE_BASE = "resources/xcfwImages/";
 var CON_SCENE_TYPE = [
-                      {name:"吧椅",image:"ydcp.jpg",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
-                      {name:"单人沙发",image:"ydcp.jpg",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
-                      {name:"折椅",image:"ydcp.jpg",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]}
+                      {name:"折椅",image:"zheyi.png",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
+                      {name:"汽巴椅",image:"qibayi.png",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
+                      {name:"办公椅",image:"bangongyi.png",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
+                      {name:"黒皮椅",image:"heipiyi.png",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]},
+                      {name:"咨询台",image:"zixuntai.png",info:["提前10天预订单价（RMB）：40.00","现场租赁单价（RMB）：60.00","押金（RMB）：100.00"]}
                       ];
 
 //货运物流

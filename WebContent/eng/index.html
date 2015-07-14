@@ -21,7 +21,11 @@
 	</script>
 	<script type="text/javascript">
 	$(function(){
-		$(".header").load("pub_header.html");
+		/* $(".header").load("pub_header.html"); */
+		$(".header").load("pub_header.html",function(){
+			$("#myRolling").append($("#rolling_info"));
+		});
+		
 		$(".footer").load("pub_footer.html");
 
 		$("#kinMaxShow").kinMaxShow({
@@ -38,6 +42,10 @@
 		function showZytzList(){
 			var func = function(data){
 				data = JSON.parse(data);
+				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+				if(data.error!=null){
+					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+				} 
 				rowCount = data.size;
 				data = data.data;
 
@@ -64,6 +72,10 @@
 		function showZlzxList(){
 			var func = function(data){
 				data = JSON.parse(data);
+				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+				if(data.error!=null){
+					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+				} 
 				rowCount = data.size;
 				data = data.data;
 
@@ -183,18 +195,26 @@
 			text-indent: -999em;
 			margin-bottom: -6px;
 		}
-		.link_access{
-			color:blue;
-			text-decoration:underline;
-			font-size: 14px;
-		}
 		#rolling_info{
-		  position: absolute;
-		  top: 52px;
-		  left: 700px;
+		  color:#FF7100;
+		  font-size:20px;
+		  font-family:"宋体";
 		  z-index: 5000;
 		  width: 300px;
+		  position:relative;
+		  top:45px;
+		  left:200px;
+	}
+		#rolling_info a.link_access{
+			color:#FF7100;
+			font-size:20px;
+			text-decoration:none;
 		}
+	
+		#rolling_info a.link_access:link {color: #FF7100}		/* 未访问的链接 */
+		#rolling_info a.link_access:visited {color: #FF7100}	/* 已访问的链接 */
+		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
+		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */ 
 	</style>
 </head>
 

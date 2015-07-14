@@ -65,7 +65,7 @@ label.error {
 	   		<div class="userForm">
 				<form class="form-horizontal" name="regForm" id="form">
 					<div class="form-group">
-						<label class="col-sm-1 control-label">单位名称*</label>
+						<label class="col-sm-1 control-label">单位名称</label>
 						<div class="col-xs-3">
 							<input name="orgName" class="form-control required">
 						</div>
