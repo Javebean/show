@@ -150,7 +150,6 @@ $(document).ready(function(){
 	function addVisitorLine(){
 		//Empty inputs
 		$("#addVisitorform .tablezh input").val("");
-
 		//Init image src
 		$("#topic_image_vheader").attr("src","");
 		$("#topic_image_idfront").attr("src","");
@@ -160,7 +159,6 @@ $(document).ready(function(){
 		pic_icheader_ID = "";
 		pic_icfro_ID = "";
 		pic_icbac_ID = "";
-
 		$.colorbox({
 			inline : true,
 			innerWidth:750,
@@ -420,7 +418,7 @@ $(document).ready(function(){
 			'swf'      : 'uploadify.swf',
 			'uploader' : 'imageUpload?topicId=' + topicId,
 			'fileDesc' : 'Image Files',
-			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
 			'fileSizeLimit' : '5MB',
@@ -464,7 +462,7 @@ $(document).ready(function(){
 			'swf'      : 'uploadify.swf',
 			'uploader' : 'imageUpload?topicId=' + topicId_logo,
 			'fileDesc' : 'Image Files',
-			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
 			'fileSizeLimit' : '5MB',
@@ -509,7 +507,7 @@ $(document).ready(function(){
 			'swf'      : 'uploadify.swf',
 			'uploader' : 'imageUpload?topicId=' + 'NEWID',
 			'fileDesc' : 'Image Files',
-			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
 			'fileSizeLimit' : '5MB',
@@ -592,7 +590,7 @@ $(document).ready(function(){
 			'swf'      : 'uploadify.swf',
 			'uploader' : 'imageUpload?topicId=' + 'NEWID',
 			'fileDesc' : 'Image Files',
-			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
 			'fileSizeLimit' : '5MB',
@@ -636,7 +634,7 @@ $(document).ready(function(){
 			'swf'      : 'uploadify.swf',
 			'uploader' : 'imageUpload?topicId=' + 'NEWID',
 			'fileDesc' : 'Image Files',
-			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
+			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
 			'fileSizeLimit' : '5MB',

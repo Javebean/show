@@ -58,7 +58,14 @@ html {overflow-x:hidden; width: 100%; background:#ffffff center top repeat-y}
 	width:300px;
 }
 .btn_delrow{
-	display:block; width:87px; height:27px; background:url(images/shanchu.jpg); border:0; float:left; margin-left:7px;cursor:pointer;
+	display:block; 
+	width:87px; 
+	height:27px; 
+	background:url(images/shanchu.jpg); 
+	border:0; 
+	float:left; 
+	margin-left:7px;
+	cursor:pointer;
 }
 label.error {
 	margin-left: 28px;
@@ -66,6 +73,23 @@ label.error {
 	color: red;
 	font-family:"微软雅黑", "宋体"; font-size:12px;
 	display: block;
+}
+#addVisitorBox .photo11 {
+	font-size: 14px;
+}
+
+#addVisitorBox .photo3 {
+	width: 700px;
+	border-bottom: 1px dashed #DBDBDB;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.photo11 {
+	width: 700px;
+	border-bottom: 1px dashed #DBDBDB;
+	margin-top: 39px;
+	margin-left: 20px;
 }
 </style>
 
@@ -158,7 +182,9 @@ label.error {
 			<div style="margin-bottom:10px;"><img id="topic_image_logo" class="thumbnail" width="75" height="75" src=""/></div>
 			<div id="queue"></div>
 		</div>
-		<div><input type="file" name="uploadify_logo" id="uploadify_logo" /></div>
+		<div>
+			<input type="file" name="uploadify_logo" id="uploadify_logo" />
+		</div>
      </div>
 
      <div class="wssbbt" style=" margin-top:60px">3.摊位申请</div>
@@ -207,16 +233,18 @@ label.error {
 		  <td><div align="center">姓名</div></td>
 		  <td><div align="center">性别</div></td>
 		  <td><div align="center">职务</div></td>
-		  <td><div align="center">联系电话（手机）</div></td>
+		  <td><div align="center">电话（手机）</div></td>
+		  <td><div align="center">身份证号</div></td>
 		  <td></td>
 		</tr>
-		<tr class="item_row">
+		<!-- <tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
 		  <td><div align="center"><input class="cell"/></div></td>
 		  <td><div align="center"><input class="cell"/></div></td>
 		  <td><div align="center"><input class="cell"/></div></td>
 		  <td><div align="center"><input class="cell"/></div></td>
 		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
-		</tr>
+		</tr> -->
 		</table>
      <div class="button3">
       <input class="add_visitor" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
@@ -266,6 +294,123 @@ label.error {
 
 		  <div class="clear"></div>
 		  <input class="scene_ok_btn" name="" type="button">
+	</div>
+</div>
+
+<!-- 添加参展人员弹出框 -->
+<div style="display:none;">
+	<div id="addVisitorBox">
+	<form id="test"></form>
+		<form class="form-horizontal" name="addVisitorform" id="addVisitorform">
+			<div class="tablezh">
+				<div class="table4 left">
+					<span class="table3_left left required_label">姓&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+					<input name="name" type="text" class="exib_input2 required" />
+				</div>
+				<div class="table4 right">
+					<span class="table3_left left" style="background: none">性&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+					<input name="sex" type="text" class="exib_input2"/>
+				</div>
+			</div>
+			<div class="tablezh">
+				<div class="table4 left">
+					<span class="table3_left left required_label">身份证号</span>
+					<input name="idNo" type="text" class="required exib_input2" />
+				</div>
+				<div class="table4 right">
+					<span class="table3_left left" style="background: none">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
+					<input name="position" type="text" class="exib_input2"/>
+				</div>
+			</div>
+			<div class="tablezh">
+				<div class="table4 left">
+					<span class="table3_left left required_label">电&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+					<input name="phone" type="text" class="required exib_input2" />
+				</div>
+				<div class="table4 right">
+					<span class="table3_left left required_label">电子邮箱</span> <input
+						name="email" type="text" class="required exib_input2" />
+				</div>
+			</div>
+		</form>
+		
+		<!-- 证件头像  -->
+		<div class="photo11">
+			<div class="picUpload" style="">
+				<div style="float: left;">
+					上传照片:
+					<div>
+						<img id="topic_image_vheader" width="118" height="149" src=""/>
+					</div>
+				</div>
+
+				<!-- <div style="float: left; margin-left: 50px; height: 169px;">
+					照片预览：
+					<div
+						style="width: 118px; height: 149px; overflow: hidden; border: 1px solid #aba8a8;">
+						<img id="img_preview_vheader" style="width: 118px; height: 149px;" src="" />
+					</div>
+				</div> -->
+				<div style="padding-top: 10px; clear: both;"></div>
+				<div id="queue"></div>
+				<input type="file" name="uploadify_vheader" id="uploadify_vheader" />
+			</div>
+		</div>
+		
+		<!-- 身份证正面  -->
+		<div class="photo3">
+			<div class="picUpload">
+				<div>
+					上传身份证正面:
+					<div>
+						<img id="topic_image_idfront" width="270" height="180" src=""
+							style="border: 1px solid #aba8a8;" />
+					</div>
+				</div>
+
+				<div id="queue"></div>
+				<input type="file" name="uploadify" id="uploadify_idfront" />
+			</div>
+		</div>
+		
+		<!-- 身份证背面 -->
+		<div class="photo3">
+			<div class="picUpload">
+				<div>
+					上传身份证背面:
+					<div>
+						<img id="topic_image_idback" width="270" height="180" src=""
+							style="border: 1px solid #aba8a8;" />
+					</div>
+				</div>
+
+				<div id="queue"></div>
+				<input type="file" name="uploadify" id="uploadify_idback" />
+			</div>
+		</div>
+
+		<!-- <div class="photo2" style="margin-top:17px;height:515px;">
+			<div class="p_buttons">
+				<input id="chuyang"
+					style="display: block; float: left; width: 87px; height: 27px; background: url(images/chu_button.jpg); border: 0; cursor: pointer;"
+					name="" type="button" />
+			</div>
+
+			<div class="cp">
+				<div class="cp_photo" style="overflow: hidden;">
+					<img class="cp_image" style="width: 118px; height: 149px;" src="" />
+				</div>
+				<div class="cp_name"></div>
+				<div class="cp_company"></div>
+			</div>
+		</div> -->
+		<div>
+			<div class="p_buttons">
+				<input id="submitVisitorForm"
+					style="display: block; float: left; width: 64px; height: 27px; background: url(images/o_button_submit.jpg); border: 0; cursor: pointer; margin-left: 20px"
+					name="" type="button" />
+			</div>
+		</div>
 	</div>
 </div>
 
