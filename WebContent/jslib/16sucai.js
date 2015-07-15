@@ -28,7 +28,12 @@ function JloadRewrite(){
 				var self = this;
 				var url = arguments[0];
 				url += "?ver="+APP_VERSION;
-				base.call(self,url);
+				
+				if(arguments.length>1){
+					base.call(self,url,arguments[1]);
+				} else {
+					base.call(self,url);
+				}
 			}
 		}($.prototype.load);
 	}
