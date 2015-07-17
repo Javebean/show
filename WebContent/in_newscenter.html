@@ -17,8 +17,14 @@ $(document).ready(function(){
 
 	$(".header").load("pub_header.html");
 	$(".footer").load("pub_footer.html");
-	$(".nymain_right").load("xw/tzgg.html");
 	$(".menu_Left").click(loadContent);
+	var detail = getUrlParam("detail");
+  if(detail){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+  } else {
+	  $(".nymain_right").load("zytz.html");
+  }
 });
 </script>
 <body>
@@ -36,7 +42,7 @@ $(document).ready(function(){
    </div>
     <div id="firstpane" class="menu_list">
 
-    <a eurl="xw/tzgg.html" class="menu_head menu_Left menu_active">重要通知</a>
+    <a eurl="zytz.html" class="menu_head menu_Left menu_active">重要通知</a>
 
 	<a eurl="zlzx.html" class="menu_head menu_Left">展览资讯</a>
 
