@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/ny.css"/>
+  <script>
+  $(document).ready(function(){
+    $(".newsnr").click(loadDetail);
+    $('.return_btn').click(function(){
+      $(".tz_detail").addClass("hide");
+      $(".tz_list").removeClass("hide");
+    });
+
+    function loadDetail(){
+      var url = $(this).attr("eurl");
+      $(".detail_html").empty();
+      $(".detail_html").load(url,function() {
+			$(".tz_detail").removeClass("hide");
+		});
+      $(".tz_list").addClass("hide");
+    }
+  });
+  </script>
+
+  <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">新闻中心</a> > <font style=" font-weight:bold; color:#1F9AD6">通知公告</font></div>
+  <div class="nymainnr">
+    <div class="tz_list">
+    <a class="newsnr" eurl="xw/tzgg_new01.html">
+      <div class="news_wz2">
+        <div class="news_wzbt2">
+          <span class="news_wzbt_nr left">第二届连博会开幕</span>
+          <span class="new_wzbt_day right">2015-9-22</span>
+        </div>
+        <div class="new_wznr2">时间：9月22日上午9:00-11:20</div>
+
+      </div>
+    </a>
+    <a class="newsnr" eurl="xw/tzgg_new02.html">
+      <div class="news_wz2">
+        <div class="news_wzbt2">
+          <span class="news_wzbt_nr left">高层次论坛</span>
+          <span class="new_wzbt_day right">2015-05-03</span>
+        </div>
+        <div class="new_wznr2">时间：9月22日上午9:00-11:20</div>
+
+      </div>
+    </a>
+    <a class="newsnr" eurl="xw/tzgg_new03.html">
+      <div class="news_wz2">
+        <div class="news_wzbt2">
+          <span class="news_wzbt_nr left">即将到来的国际合作</span>
+          <span class="new_wzbt_day right">2015-05-03</span>
+        </div>
+        <div class="new_wznr2">时间：9月22日上午9:00-11:20</div>
+
+      </div>
+    </a>
+
+  </div>
+  <div class="tz_detail hide">
+    <div class="detail_html"></div>
+    <div class="return_btn" style ="margin-top:18px"></div>
+  </div>
+</div>
+
+
+</html>

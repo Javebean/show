@@ -15,7 +15,8 @@
 
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
-	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	<!--  <script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	-->
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
 	<script>
 	</script>
@@ -39,7 +40,7 @@
 		});
 
 		showZlzxList();
-		showZytzList();
+		/*showZytzList();
 		function showZytzList(){
 			var func = function(data){
 				data = JSON.parse(data);
@@ -68,7 +69,7 @@
 				$('.tzggnb ul').html(html);
 			}
 			Zytz.getShortZytzForPage(0,3,func);
-		}
+		}*/
 
 		function showZlzxList(){
 			var func = function(data){
@@ -279,6 +280,10 @@
 			<div class="tzggbt">通知公告</div>
 			<div class="tzggnb">
 				<ul>
+					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/tzgg_new01.html">第二届连博会开幕</a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/tzgg_new02.html">高层次论坛</a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/tzgg_new03.html">即将到来的国际合作</a></li>
+					
 				</ul>
 			</div>
 		</div>
