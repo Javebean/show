@@ -86,7 +86,7 @@
           </div>
 
 			<div class="paging hide">
-				<nav class="paging_bar" style="float:left;">
+				<nav class="paging_bar">
   				 </nav>
 			</div>
 
