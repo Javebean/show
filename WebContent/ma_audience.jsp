@@ -58,12 +58,8 @@
           </div>
 
 			<div class="paging hide">
-				<nav>
-				<ul class="pagination pagination-lg">
-					<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-					<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-				</ul>
-				</nav>
+				<nav class="paging_bar" style="float:left;">
+  				 </nav>
 			</div>
 
 			<div style='display: none'>

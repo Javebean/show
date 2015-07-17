@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var ROWS_PER_PAGE = 10;
+	var ROWS_PER_PAGE = 20;
 	var rowCount = 0;
 	var search_name = "";
 
@@ -37,7 +37,7 @@ $(document).ready(function(){
 				return;
 			}
 
-			initPaging(page,rowCount);
+			initPager(".paging_bar",page,rowCount,ROWS_PER_PAGE,showTopicList);
 			data = data.data;
 
 			$('.pt_cen_box').empty();
@@ -118,36 +118,5 @@ $(document).ready(function(){
 			if(data==true) location.reload();
 		}
 		Audience.deleteAudienceById(eid,func);
-	}
-
-	function initPaging(pageActive, rowCount){
-		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
-		if(pageCount>1){
-			var html = '<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';
-			for(var i=1;i<=pageCount;i++){
-				if(pageActive!=i){
-					html += '<li><a page="'+i+'">'+i+'</a></li>';
-				}else{
-					html += '<li class="active"><a page="'+i+'">'+i+'</a></li>';
-				}
-			}
-			html+='<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>';
-			$(".pagination").html(html);
-			$(".paging").removeClass("hide");
-		}
-
-		//bind events
-		$(".paging li").click(function(){
-			var pageTo = $(this).children().attr("page");
-			if(pageTo == "P"){
-				pageTo = 1;
-			}else if(pageTo == "N"){
-				pageTo = pageCount;
-			}else{
-				pageTo = parseInt(pageTo);
-			}
-			showTopicList(pageTo);
-		});
-
 	}
 });

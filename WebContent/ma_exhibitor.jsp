@@ -3,7 +3,6 @@
 	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
 
-
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
     <script type="text/javascript" src="js/manager/ma_exhibitor.js"></script>
     <script>
@@ -87,12 +86,8 @@
           </div>
 
 			<div class="paging hide">
-				<nav>
-				<ul class="pagination pagination-lg">
-					<li><a page="P" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-					<li><a page="N" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-				</ul>
-				</nav>
+				<nav class="paging_bar" style="float:left;">
+  				 </nav>
 			</div>
 
 			<div style='display: none'>

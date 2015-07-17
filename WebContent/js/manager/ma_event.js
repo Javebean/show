@@ -15,7 +15,7 @@ $(document).ready(function(){
 			rowCount = data.size;
 			if(!rowCount || rowCount==0) return;
 
-			initPaging(page,rowCount);
+			initPager(".paging_bar",page,rowCount,ROWS_PER_PAGE,showTopicList);
 			data = data.data;
 
 			$('.pt_cen_box').empty();
