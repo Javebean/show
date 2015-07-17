@@ -93,6 +93,7 @@ public class ckeImageUploadServlet extends HttpServlet {
 					JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(output); 
 					encoder.encode(tag); 
 					output.close(); 
+					
 				}
 				else{ 
 		   
