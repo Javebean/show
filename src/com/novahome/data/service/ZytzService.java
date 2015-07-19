@@ -79,6 +79,7 @@ public class ZytzService {
 	public String getZytzById(String id)
 	{
 		Zytz zytz = zytzDao.getZytzById(id);
+		logger.debug("zytz id:" + id);
 		if(zytz == null)
 		{
 			logger.warn(ERROR_STR);

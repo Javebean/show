@@ -76,6 +76,7 @@ public class ZlzxService {
 	public String getZlzxById(String id)
 	{
 		Zlzx zlzx = zlzxDao.getZlzxById(id);
+		logger.debug("zlzx id:" + id);
 		if(zlzx == null)
 		{
 			logger.warn(ERROR_STR);
