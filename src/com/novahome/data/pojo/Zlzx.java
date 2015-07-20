@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Zlzx {
 
-	private String id; //id,系统生成
+	private String id; //id,系统生成 
 	private String soruce;	//新闻来源
 	private Date publishTime;	//发布时间
 	private String title;	//新闻标题
@@ -68,6 +68,17 @@ public class Zlzx {
 	}
 	public void setAbs(String abs) {
 		this.abs = abs;
+	}
+	public Zlzx() {
+	}
+	public Zlzx(String soruce, Date publishTime, String title, String content,
+			String abs, int state) {
+		this.soruce = soruce;
+		this.publishTime = publishTime;
+		this.title = title;
+		this.content = content;
+		this.abs = abs;
+		this.state = state;
 	}
 	
 	
