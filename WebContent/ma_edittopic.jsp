@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String accountid = (String)session.getAttribute(Constants.SESSION_ID);
 String username = (String)session.getAttribute(Constants.SESSION_NAME);
 if(accountid==null){
-	response.sendRedirect("adminLogin.jsp");
+	response.sendRedirect("admin.jsp");
 }
 String topicId = (String)request.getParameter("topicId");
 %>

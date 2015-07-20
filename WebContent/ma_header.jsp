@@ -9,14 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String accountid = (String)session.getAttribute(Constants.SESSION_ID);
 String username = (String)session.getAttribute(Constants.SESSION_NAME);
 if(accountid==null){
-	response.sendRedirect("adminLogin.jsp");
+	response.sendRedirect("admin.jsp");
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+
     <title>nova team</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,14 +29,14 @@ if(accountid==null){
 
     <!-- Custom styles for this template -->
     <link href="css/manager.css" rel="stylesheet">
-	
+
 	<script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
 	<script type='text/javascript' src='dwr/engine.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
     <script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/interface/Account.js'></script>
 	<script type="text/javascript" src="js/util.js"></script>
-    
+
     <style>
     #add_topic{
     	margin-left:100px;
@@ -45,11 +45,11 @@ if(accountid==null){
     	cursor:pointer;
     }
     </style>
-    
+
     <script>
     function logout(){
     	Account.logout(function(){
-    		window.location.href = "adminLogin.jsp";
+    		window.location.href = "admin.jsp";
     	});
     }
     </script>
