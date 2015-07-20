@@ -10,12 +10,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.novahome.data.model.ShortZlzx;
 import com.novahome.data.pojo.Event;
 import com.novahome.data.pojo.Zlzx;
 import com.novahome.data.pojo.Zytz;
 
+//@Transactional
 @Component("zlzxDao")
 public class ZlzxDao {
 

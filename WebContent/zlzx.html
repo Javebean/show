@@ -19,7 +19,8 @@ $(document).ready(function(){
 				data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
 			} 
 			rowCount = data.size;
-			initPaging(page,rowCount);
+			initPager(".fy",page,rowCount,ROWS_PER_PAGE,showZlzxList);
+			//initPaging(page,rowCount); alter by javebean
 			data = data.data;
 
 			$('.zlzx_box').empty();
@@ -55,7 +56,7 @@ $(document).ready(function(){
 		$(".tz_list").addClass("hide");
 	}
 
-	function initPaging(pageActive, rowCount){
+	/* function initPaging(pageActive, rowCount){
 		var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 		if(pageCount>1){
 			var html='';
@@ -84,7 +85,57 @@ $(document).ready(function(){
 			showZlzxList(pageTo);
 		});
 
-	}
+	} */
+	//add by javebean
+	var initPager = function(tagetObj, curPage, itemCount, pageSize, pageFunction) {
+		var headhtml = '<ul class="pagination" style="margin:0px;">'+
+		'<li><a class="page_first" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+	    var endhtml = '<li><a class="page_last" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul>';
+		if(itemCount<=pageSize){
+			$(tagetObj).empty();
+		} else {
+			var pageCount = Math.ceil(itemCount/pageSize);
+			var start = 1;
+			var end = 1;
+			if(pageCount<=10) {
+				start = 1;
+				end = pageCount;
+			} else if(curPage<6){
+				start = 1;
+				end = 10;
+			} else if(pageCount - curPage<10) {
+				start = pageCount-9;
+				end = pageCount;
+			} else {
+				start = curPage - 5;
+				end = parseInt(curPage) + 4;
+			}
+
+			var html = "";
+			html += headhtml;
+			for(var index=start;index<=end;index++){
+				if(index==curPage){
+					html+='<li class="active"><a class="page_between" pageIndex="'+index+'">'+index+' <span class="sr-only"></span></a></li>';
+				} else {
+					html+='<li><a class="page_between" pageIndex="'+index+'">'+index+'</a></li>';
+				}
+			}
+			html += endhtml;
+
+			$(tagetObj).html(html);
+			$(tagetObj+" .page_first").click(function(){
+				pageFunction(1);
+			});
+			$(tagetObj+" .page_last").click(function(){
+				pageFunction(pageCount);
+			});
+			$(tagetObj+" .page_between").click(function(){
+				var index = $(this).attr("pageIndex");
+				pageFunction(index);
+			});
+			$(".paging").removeClass("hide");
+		}
+};
 });
 </script>
 

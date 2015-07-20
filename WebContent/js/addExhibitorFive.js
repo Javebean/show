@@ -479,7 +479,7 @@ $(document).ready(function(){
 	
 	setTimeout(function(){
 		$("#uploadify_logo").uploadifive({
-		/*	'queueID'          : 'queue',*/
+			/*'queueID'          : 'queue',*/
 
 			'uploadScript' : 'imageUpload?topicId=' + topicId_logo,
 			'fileDesc' : 'Image Files',

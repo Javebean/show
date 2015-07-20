@@ -70,6 +70,17 @@ public class Zytz {
 	public void setAbs(String abs) {
 		this.abs = abs;
 	}
+	public Zytz() {
+	}
+	public Zytz(String soruce, Date publishTime, String title, String content,
+			int state, String abs) {
+		this.soruce = soruce;
+		this.publishTime = publishTime;
+		this.title = title;
+		this.content = content;
+		this.state = state;
+		this.abs = abs;
+	}
 	
 	
 }
