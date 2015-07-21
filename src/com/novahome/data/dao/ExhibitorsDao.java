@@ -141,7 +141,7 @@ public class ExhibitorsDao {
 	public Exhibitors getExhibitorByOrgNameWithRegistered(String orgName)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Exhibitors a where a.orgName=:orgName and (a.state = 1 or a.state = 0) and (a.firstState = 1 or a.firstState = 1)");
+				"from Exhibitors a where a.orgName=:orgName and (a.state = 1 or a.state = 0) and (a.firstState = 0 or a.firstState = 1)");
 				query.setParameter("orgName", orgName);
 		return (Exhibitors) query.uniqueResult();
 	}

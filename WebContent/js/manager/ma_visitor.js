@@ -23,7 +23,10 @@ $(document).ready(function(){
 		else if(type == 4)
 		{
 			window.open("ma_printstaff.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
-
+		}
+		else if(type == 3)
+		{
+			window.open("ma_printpress.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
 		}
 		else {
 			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
@@ -133,6 +136,8 @@ $(document).ready(function(){
 			$(".cp").css('background','url(images/exhibitcard.png)');
 		else if(typecard == 4)
 			$(".cp").css('background','url(images/staffcard.png)');
+		else if(typecard == 3)
+				$(".cp").css('background','url(images/presscard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');
@@ -157,7 +162,7 @@ $(document).ready(function(){
 			setViewTable(".visitor_detail",data);
 			$(".cp_image_fro").attr("src",PIC_BASE+data.idFont);
 			$(".cp_image_bac").attr("src",PIC_BASE+data.idBack);
-			
+
 			if(data.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.id);

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String accountid = (String)session.getAttribute(Constants.SESSION_ID);
 String username = (String)session.getAttribute(Constants.SESSION_NAME);
 if(accountid==null){
-	response.sendRedirect("adminLogin.jsp");
+	response.sendRedirect("admin.jsp");
 }
 String topicId = UUID.randomUUID().toString();
 %>
@@ -16,7 +16,7 @@ String topicId = UUID.randomUUID().toString();
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+
     <title>nova team</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,19 +31,19 @@ String topicId = UUID.randomUUID().toString();
     <!-- Custom styles for this template -->
     <link href="css/manager.css" rel="stylesheet">
     <link href="plugins/uploadify/uploadify.css" rel="stylesheet"/>
-	
+
 	<script src="jslib/jquery-1.11.1.min.js"></script>
 	<script src='dwr/engine.js'></script>
 	<script src='dwr/util.js'></script>
     <script src="jslib/json2.js"></script>
     <link rel="stylesheet" type="text/css" href="plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
 	<script type="text/javascript" src="plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
-    
+
     <script src="plugins/uploadify/jquery.uploadify.js"></script>
 	<script src='dwr/interface/PTopic.js'></script>
     <script src="js/addnewtopic.js"></script>
     <script src="plugins/ckEditor/ckeditor.js"></script>
-    
+
     <script>
     	var topicId = '<%=topicId%>';
     	var menu = 0;
@@ -78,8 +78,8 @@ String topicId = UUID.randomUUID().toString();
     <div class="container-fluid">
       <div class="row">
       <!-- menu -->
-		<jsp:include page="ma_menu.jsp" />   
-		    
+		<jsp:include page="ma_menu.jsp" />
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">添加图片新闻</h2>
           <!-- jobListBox -->
@@ -113,7 +113,7 @@ String topicId = UUID.randomUUID().toString();
 	                  </div>
 	                </td>
 	            </tr>
-	             
+
 	            <tr>
 	                <th scope="row">&nbsp;</th>
 	                <td>
@@ -122,7 +122,7 @@ String topicId = UUID.randomUUID().toString();
 	            </tr>
 	          </tbody></table>
 	   		</div>
-   		
+
         </div>
       </div>
     </div>

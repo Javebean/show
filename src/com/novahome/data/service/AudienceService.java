@@ -125,6 +125,7 @@ public class AudienceService {
 			obj.put("result", true);
 			obj.put("message", "成功登录");
 			obj.put("username", audience.getUsername());
+			obj.put("type", 2);
 			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
 			String ret = obj.toString();
 			logger.info(ret);
@@ -150,6 +151,7 @@ public class AudienceService {
 			obj.put("result", true);
 			obj.put("message", "成功登录");
 			obj.put("username", audience.getUsername());
+			//obj.put("type", 2);
 			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
 			String ret = obj.toString();
 			logger.info(ret);

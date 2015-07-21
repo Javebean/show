@@ -406,7 +406,7 @@ public class ExhibitorsService {
 		HttpSession session = WebContextFactory.get().getSession();
 		JSONObject obj = new JSONObject();
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(userName);
-		if (exhibitor == null) {
+		if (exhibitor == null || exhibitor.getState() != 1) {
 			obj.put("result", false);
 			obj.put("message", "该用户不存在！");
 			return obj.toString();
@@ -418,6 +418,7 @@ public class ExhibitorsService {
 			obj.put("result", true);
 			obj.put("message", "成功登录");
 			obj.put("username", exhibitor.getUsername());
+			obj.put("type", 1);
 			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
 			String ret = obj.toString();
 			logger.info(ret);

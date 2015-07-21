@@ -31,6 +31,8 @@ $(document).ready(function(){
 			$(".cp").css('background','url(images/exhibitcard.png)');
 		else if(formData.type == 4)
 			$(".cp").css('background','url(images/staffcard.png)');
+		else if(formData.type == 3)
+				$(".cp").css('background','url(images/presscard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');
@@ -167,7 +169,7 @@ $(document).ready(function(){
 	    	img_selection = selection;
 	    }
 	}
-	
+
 	//身份证正面
 	setTimeout(function(){
 		$("#uploadify_idfront").uploadify({
@@ -212,7 +214,7 @@ $(document).ready(function(){
 			}
 		});
 	},10);
-	
+
 	//身份证背面
 	setTimeout(function(){
 		$("#uploadify_idback").uploadify({

@@ -25,6 +25,7 @@ function checklogin()
 		if(result)
 		{
 			var usrname = data.username;
+			var loginType = data.type;
 			jAlert("登陆成功","信息");
 			//location.reload();
 			//	location.href ="#toptag";
@@ -33,6 +34,7 @@ function checklogin()
 			$(".yonghu").text("欢迎," + usrname);
 			$(".logout").removeClass("hide");
 			setCookie("user",usrname);
+			setCookie("type", loginType);
 			document.getElementById('loginAudience001').value ="";
 			document.getElementById('loginAudience002').value = "";
 		}

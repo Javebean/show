@@ -26,10 +26,10 @@
 		 $(".header").load("pub_header.html",function(){
 			$("#myRolling").append($("#rolling_info"));
 		});
-	
+
 		$(".footer").load("pub_footer.html");
-		
-		
+
+
 		$("#kinMaxShow").kinMaxShow({
 			height:320,
 			button:{
@@ -47,7 +47,7 @@
 				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
 				if(data.error!=null){
 					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
-				} 
+				}
 				rowCount = data.size;
 				data = data.data;
 
@@ -77,12 +77,12 @@
 				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
 				if(data.error!=null){
 					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
-				} 
-				
+				}
+
 				rowCount = data.size;
 				data = data.data;
-					
-				
+
+
 				var html = "";
 				var topic = data[0];
 				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
@@ -163,6 +163,7 @@
 				if(result)
 				{
 					var usrname = data.username;
+					var loginType = data.type;
 					//location.reload();
 					location.href ="#toptag";
 				//	alert(usrname+"登陆成功");
@@ -171,6 +172,11 @@
 					$(".yonghu").text("欢迎," + usrname);
 					$(".logout").removeClass("hide");
 					setCookie("user",usrname);
+					setCookie("type", loginType);
+					//alert(getCookie("type"));
+				}
+				else {
+					alert("登录失败，请检查用户名和密码");
 				}
 
 			}
@@ -214,17 +220,17 @@
 		  left:680px \9;
 	}
 
- 
+
 		#rolling_info a.link_access{
 			color:#FF7100;
 			font-size:20px;
 			text-decoration:none;
 		}
-	
+
 		#rolling_info a.link_access:link {color: #FF7100}		/* 未访问的链接 */
 		#rolling_info a.link_access:visited {color: #FF7100}	/* 已访问的链接 */
 		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
-		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */ 
+		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */
 	</style>
 
 </head>
@@ -283,7 +289,7 @@
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new02.html">丝路投资合作交流会</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new03.html">物流企业授牌大会</a></li>
-					
+
 				</ul>
 			</div>
 		</div>
