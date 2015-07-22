@@ -61,11 +61,14 @@ input,textarea,select,button {outline:none;}
 .time_left{ margin:25px 5px 0 5px}
 
 
-.news{ width:1060px; height:347px; margin:0 auto}
+.news{ width:1060px; height:557px; margin:0 auto}
 .zhdt{ width:704px; height:278px; margin-top:31px}
+
 .zhdtbt{ width:682px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px}
 .zhdtnb{ width:704px; height:241px;}
 .dtimg{ display:block; width:273px; height:210px; margin-top:22px}
+.dtimg2{ display:block; width:203px; height:100px; margin-top:22px}
+
 .dtwz{ width:415px; height:218px;margin-top:22px; margin-left:10px}
 .wzbt{ display:block; width:415px; height:20px; line-height:20px;font-size:18px; font-family:Microsoft YaHei; color:#3b3b3b}
 .wznr{ display:block; width:415px; height:60px; line-height:20px; color:#757575; font-size:13px; margin-top:13px}
@@ -83,8 +86,22 @@ input,textarea,select,button {outline:none;}
 
 .tzggnb ul{}
 .tzggnb ul li{}
-.tzggnb ul li a{ font-size:14px; color:#686868}
+.tzggnb ul li a{ font-size:13px; color:#686868}
 .tzggnb ul li a:hover{color:#09C}
+
+.hylt{ width:650px; height:158px; margin-top:31px}
+.hyltbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px}
+.hyltnb{ width:308px; height:0px}
+
+.hyltnb ul{}
+.hyltnb ul li{line-height:25px; background:url(images/narrow.gif) 5px 6px no-repeat;}
+.hyltnb ul li a{ font-size:13px; color:#686868}
+.hyltnb ul li a:hover{color:#09C}
+
+
+.button2{ width:200px; height:278px; margin-top:31px}
+.button3{ width:200px; height:100px; margin-top:31px}
+
 
 .app_login{ width:1060px; height:169px; margin:0 auto}
 .app{ width:708px; height:169px; background:url(../images/app_bg.jpg)}
@@ -100,6 +117,14 @@ input,textarea,select,button {outline:none;}
 .app_right{width:300px; height:107px; margin:33px 0 0 26px;}
 .appimg2{ width:109px; height:107px}
 .appwz_2{width:188px; height:53px; margin:30px 0 0 0}
+
+.review{width:1060px; height:300px; margin-top:30px}
+.reviewbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
+
+.review_left{ width:340px; height:107px; }
+.reviewimg{ width:320px; height:107px;}
+
+.review_right{width:340px; height:107px; }
 
 
 .login{ width:309px; height:169px; background:url(../images/login_bg.jpg)}
@@ -125,3 +150,14 @@ input,textarea,select,button {outline:none;}
 .footer1 a:hover{ color:#000}
 
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
+
+.hzfb { width:1000px; margin:0 auto; overflow:hidden; zoom:1; }
+.zl_hzfb { width:241px; float:left; }
+.zlhb_top { width:213px; height:25px; line-height:25px; border-bottom:1px solid #909090; margin-bottom:19px; }
+.zlhb_bot { width:205px; padding-left:35px; height:38px; padding-bottom:16px; border-right:1px solid #909090; }
+.zlhb_bot td { padding-right:15px; line-height:38px; }
+.gj_hzfb { float:left; width:739px; }
+.gjhb_top { width:739px; height:25px; line-height:25px; border-bottom:1px solid #909090; margin-bottom:19px; }
+.gjhb_bot { width:688px; height:38px; line-height:38px; padding:0 0 16px 51px; }
+.gjhb_bot td { padding:0 10px; line-height:38px; }
+.gjhb_bot td.space_fb { padding:0; }
