@@ -169,6 +169,7 @@ public class VisitorService {
 		}
 		JSONObject obj = new JSONObject(visitor);
 		String ret = obj.toString();
+		System.out.println(ret+"*****************************************");
 		logger.debug(ret);
 		return ret;
 	}

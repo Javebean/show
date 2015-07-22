@@ -17,6 +17,19 @@
 .tablezh input{
 	 display:block; float:left; width:233px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px;
 }
+
+/* 增加对性别下拉框的样式 by javebean*/
+select {
+	display: block;
+	float: left;
+	width: 233px;
+	height: 38px;
+	padding: 0 0 0 8px;
+	border: 0;
+	color: #aba8a8;
+	font-size: 12px;
+}
+
 .photo1{
 	font-size:14px;
 }
@@ -36,7 +49,7 @@ label.error {
 	display: block;
 }
 </style>
-   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">观众中心</a> > <a href="#">证件办理</a> > <font style=" font-weight:bold; color:#1F9AD6">网上申报</font></div>
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">媒体中心</a> > <a href="#">证件办理</a> > <font style=" font-weight:bold; color:#1F9AD6">网上申报</font></div>
    <div class="nymainnr">
    <div class="userForm">
    	<form class="form-horizontal" name="regForm" id="form">
@@ -44,7 +57,12 @@ label.error {
       <div class="table4 left"><span class="table3_left left required_label">姓&nbsp;&nbsp;&nbsp;&nbsp;名</span>
       <input name="name" type="text" class="required"/></div>
       <div class="table4 right"><span class="table3_left left" style=" background:none">性&nbsp;&nbsp;&nbsp;&nbsp;别</span>
-      <input  name="sex" type="text" /></div>
+      	<!-- <input  name="sex" type="text" /> -->
+	    		<select name="sex">
+				  <option value ="男">男</option>
+				  <option value ="女">女</option>
+				</select>
+      </div>
      </div>
      <div class="tablezh">
       <div class="table4 left"><span class="table3_left left required_label">公&nbsp;&nbsp;&nbsp;&nbsp;司</span>
@@ -53,15 +71,26 @@ label.error {
       <input  name="position" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left required_label" >电&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+      <div class="table4 left"><span class="table3_left left required_label" >手&nbsp;&nbsp;&nbsp;&nbsp;机</span>
       <input  name="phone" type="text" class="required"/></div>
       <div class="table4 right"><span class="table3_left left required_label">电子邮箱</span>
       <input  name="email" type="text" class="required"/></div>
      </div>
      
      <div class="tablezh">
+     		<!-- 此处添加身份证明字段。必填 -->
 				<div class="table4 left">
-					<span class="table3_left left required_label">身份证号</span>
+					<span class="table3_left left required_label" >身份证件</span>
+					<select name="idType" class="required">
+					  <option value ="0">身份证</option>
+					  <option value ="1">护照</option>
+					  <option value ="2">港澳通行证</option>
+					  <option value ="3">台胞证</option>
+					</select>
+				</div>
+     	
+				<div class="table4 right">
+					<span class="table3_left left required_label">证件号码</span>
 					<input name="idNo" type="text" class="required" />
 				</div>
 			</div>

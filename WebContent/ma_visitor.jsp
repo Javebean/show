@@ -80,7 +80,7 @@
                   <th>编号</th>
                   <th>姓名</th>
 
-                  <th>号码</th>
+                  <th>手机</th>
 
                   <th>证件类型</th>
 
@@ -143,7 +143,11 @@
 				          <td colspan="3"><span ename="email" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">身份证号</th>
+				          <th class="text-nowrap" width="14%">身份证件</th>
+				          <td colspan="3"><span ename="idType" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">证件号码</th>
 				          <td colspan="3"><span ename="idNo" class="fview_value"></span></td>
 				        </tr>
 				        <tr>

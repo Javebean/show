@@ -186,9 +186,25 @@ $(document).ready(function(){
 
 			var key = $(this).attr("ename");
 			if(data[key]){
-					$(this).text(data[key]);
+				//对idType进行判断。予以友好显示
+					if(key=="idType"){
+						switch (data[key]) {
+						case 0:
+							$(this).text("身份证");break;
+						case 1:
+							$(this).text("护照");break;
+						case 2:
+							$(this).text("港澳通行证");break;
+						case 3:
+							$(this).text("台胞证");break;
+						default:
+							break;
+						}
+					}else{
+						$(this).text(data[key]);
+					}
 			}
-			if(key == "state")
+		if(key == "state")
 			{
 				$(this).text(status[data[key]]);
 			}
