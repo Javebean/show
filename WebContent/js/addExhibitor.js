@@ -176,10 +176,46 @@ $(document).ready(function(){
 			jAlert("请检查输入内容", "信息");
 			return;
 		}
-		if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
+		//针对证件类型号码的判断
+		//身份证
+		if($("select[name=idType]").val()==0){
+			var value = $("input[name=idNo]").val().trim();
+			if(!$.isNumeric( value ) || value.length!=18){
+				jAlert("请输入有效的18位身份证号码", "信息");
+				return;
+			}
+		}
+		//护照
+		if($("select[name=idType]").val()==1){
+			var value = $("input[name=idNo]").val().trim();
+			if(!$.isNumeric( value ) || value.length!=11){
+				jAlert("请输入有效的11位护照号码", "信息");
+				return;
+			}
+		}
+		//港澳台通行证
+		if($("select[name=idType]").val()==2){
+			var value = $("input[name=idNo]").val().trim();
+			if(!$.isNumeric( value ) || value.length!=11){
+				jAlert("请输入有效的11位港澳台通行证号码", "信息");
+				return;
+			}
+		}
+		//台胞证
+		if($("select[name=idType]").val()==3){
+			var value = $("input[name=idNo]").val().trim();
+			if(!$.isNumeric( value ) || value.length!=9){
+				jAlert("请输入有效的9位台胞证号码", "信息");
+				return;
+			}
+		}
+		
+		
+		/*证件照，身份证正面照，身份证背面照改为非必填*/
+		/*if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
 			return;
-		}
+		}*/
 		var formData = getFormdata("addVisitorform");
 		formData.photo = pic_icheader_ID + ".jpg";
 		formData.idFont = pic_icfro_ID + ".jpg";

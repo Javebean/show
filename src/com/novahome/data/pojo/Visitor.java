@@ -34,6 +34,8 @@ public class Visitor {
 	private String idNo;
 	private String idFont;
 	private String idBack;
+	private int idType;//添加身份证明字段 by javebean
+	
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -148,4 +150,10 @@ public class Visitor {
 		this.idBack = idBack;
 	}
 	
+	public void setIdType(int idType) {
+		this.idType = idType;
+	}
+	public int getIdType() {
+		return idType;
+	}
 }

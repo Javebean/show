@@ -44,7 +44,17 @@
 	color: #aba8a8;
 	font-size: 12px;
 }
-
+/* 增加对性别下拉框的样式 by javebean*/
+select {
+	display: block;
+	float: left;
+	width: 233px;
+	height: 38px;
+	padding: 0 0 0 8px;
+	border: 0;
+	color: #aba8a8;
+	font-size: 12px;
+}
 .showitems .item_row .cell {
 	display: block;
 	width: 65px;
@@ -270,8 +280,8 @@ label.error {
 		  <td><div align="center">姓名</div></td>
 		  <td><div align="center">性别</div></td>
 		  <td><div align="center">职务</div></td>
-		  <td><div align="center">电话（手机）</div></td>
-		  <td><div align="center">身份证号</div></td>
+		  <td><div align="center">手机</div></td>
+		  <td><div align="center">证件号码</div></td>
 		  <td></td>
 		</tr>
 		<!-- <tr class="item_row">
@@ -346,18 +356,31 @@ label.error {
 				</div>
 				<div class="table4 right">
 					<span class="table3_left left" style="background: none">性&nbsp;&nbsp;&nbsp;&nbsp;别</span>
-					<input name="sex" type="text" class="exib_input2"/>
+					<!-- <input name="sex" type="text" class="exib_input2"/> -->
+					<select name="sex" class="exib_input2">
+					  <option value ="男">男</option>
+					  <option value ="女">女</option>
+					</select>
 				</div>
 			</div>
 			<div class="tablezh">
+				<!-- 此处添加身份证明字段。必填 -->
 				<div class="table4 left">
-					<span class="table3_left left required_label">身份证号</span>
+					<span class="table3_left left required_label" >身份证明</span>
+					<select name="idType" class="required">
+					  <option value ="0">身份证</option>
+					  <option value ="1">护照</option>
+					  <option value ="2">港澳通行证</option>
+					  <option value ="3">台胞证</option>
+					</select>
+				</div>
+				
+			
+				<div class="table4 right">
+					<span class="table3_left left required_label">证件号码</span>
 					<input name="idNo" type="text" class="required exib_input2" />
 				</div>
-				<div class="table4 right">
-					<span class="table3_left left" style="background: none">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
-					<input name="position" type="text" class="exib_input2"/>
-				</div>
+				
 			</div>
 			<div class="tablezh">
 				<div class="table4 left">
@@ -365,10 +388,16 @@ label.error {
 					<input name="phone" type="text" class="required exib_input2" />
 				</div>
 				<div class="table4 right">
-					<span class="table3_left left required_label">电子邮箱</span> <input
-						name="email" type="text" class="required exib_input2" />
+					<span class="table3_left left" style="background: none">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
+					<input name="position" type="text" class="exib_input2"/>
 				</div>
 			</div>
+			
+			<div class="table3">
+				<span class="table3_left left required_label">电子邮箱</span>
+				<input name="email" type="text" class="required exib_input2" />
+			</div>
+			
 		</form>
 		
 		<!-- 证件头像  -->

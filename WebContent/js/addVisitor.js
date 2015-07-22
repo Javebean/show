@@ -59,10 +59,18 @@ $(document).ready(function(){
 			jAlert("请检查输入内容", "信息");
 			return;
 		}
-		if(!picFlag || !picFlagFro || !picFlagBac){
+		if(getCookie("type")!="1"){
+			if($("#c_city").val()==1){
+				jAlert("展商未登陆，请登录后再来！", "信息");
+				return;
+			}
+		}
+		/*修改证件照，身份证正面照，身份证背面照为非必填*/
+		/*if(!picFlag || !picFlagFro || !picFlagBac){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
 			return;
-		}
+		}*/
+		
 		var formData = getFormdata("regForm");
 		if(picFlag){
 			formData.photo = topicId + ".jpg";
