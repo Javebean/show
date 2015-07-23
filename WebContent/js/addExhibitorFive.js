@@ -168,7 +168,8 @@ $(document).ready(function(){
 		//身份证
 		if($("select[name=idType]").val()==0){
 			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || value.length!=18){
+			var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+			if(!reg.test( value ) || value.length!=18){
 				jAlert("请输入有效的18位身份证号码", "信息");
 				return;
 			}
