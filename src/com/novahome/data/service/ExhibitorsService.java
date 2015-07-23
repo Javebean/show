@@ -43,7 +43,7 @@ import com.novahome.utils.MailUtil;
 public class ExhibitorsService {
 
 	private static final Logger logger = Logger.getLogger(ExhibitorsService.class);
-	
+
 	@Resource(name = "exhibitorsDao")
 	private ExhibitorsDao exhibitorsDao;
 	@Resource(name = "constructionDao")
@@ -58,21 +58,21 @@ public class ExhibitorsService {
 	private VisitorDao visitorDao;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
-	
+
 	public String getExhibitorsTotalCount()
 	{
 		long count = exhibitorsDao.getExhibitorsTotalCountFinalAudit(null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
-	
+
 	public String getExhibitorsCountByState(int state)
 	{
 		long count = exhibitorsDao.getExhibitorsCountByStateFinalAudit(state, null);
 		logger.debug("count:" + count);
 		return "{\"count\":" + count +"}";
 	}
-	
+
 	public String getTotalExhibitInfoById(String id)
 	{
 		JSONObject obj = processTotalExhibitInfoById(id);
@@ -81,7 +81,7 @@ public class ExhibitorsService {
 			return obj.toString();
 		HttpSession session=  WebContextFactory.get().getSession();
 		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
-		
+
 		if(userName == null || userName.isEmpty())
 			userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
@@ -90,7 +90,7 @@ public class ExhibitorsService {
 		logger.debug(ret);
 		return ret;
 	}
-	
+
 	public String getTotalExhibitInfoByIdWithServlet(String id)
 	{
 		JSONObject obj = processTotalExhibitInfoById(id);
@@ -101,7 +101,7 @@ public class ExhibitorsService {
 		logger.debug(ret);
 		return ret;
 	}
-	
+
 	private JSONObject processTotalExhibitInfoById(String id)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorById(id);
@@ -130,7 +130,7 @@ public class ExhibitorsService {
 		JSONObject obj = new JSONObject(info);
 		return obj;
 	}
-	
+
 	public String getExhibitorById(String id)
 	{
 		JSONObject obj = processExhibitorById(id);
@@ -139,7 +139,7 @@ public class ExhibitorsService {
 			return obj.toString();
 		System.out.println("obj:"+ obj.toString());
 		HttpSession session=  WebContextFactory.get().getSession();
-		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);	
+		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
 		if(userName == null || userName.isEmpty())
 			userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
@@ -148,7 +148,7 @@ public class ExhibitorsService {
 		logger.debug(ret);
 		return ret;
 	}
-	
+
 	public String getExhibitorByIdWithServlet(String id)
 	{
 		JSONObject obj = processExhibitorById(id);
@@ -159,7 +159,7 @@ public class ExhibitorsService {
 		logger.debug(ret);
 		return ret;
 	}
-	
+
 	private JSONObject processExhibitorById(String id)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorById(id);
@@ -176,14 +176,14 @@ public class ExhibitorsService {
 		JSONObject obj = new JSONObject(exhibitor);
 		return obj;
 	}
-	
+
 	public String getExhibitorForPage(int start, int number)
 	{
 		List<Exhibitors>ls = exhibitorsDao.getExhibitorForPage(start, number);
 		long size = exhibitorsDao.getExhibitorsTotalCountFinalAudit(null);
 		return procssListRet(ls,size);
 	}
-	
+
 	private String procssListRet(List ls, long size)
 	{
 		if(ls == null || ls.isEmpty())
@@ -191,7 +191,7 @@ public class ExhibitorsService {
 			logger.warn(ERROR_STR);
 			return ERROR_STR;
 		}
-		
+
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(Object exhibitor : ls )
@@ -204,21 +204,21 @@ public class ExhibitorsService {
 		logger.debug("exhibitors:" + ret);
 		return ret;
 	}
-	
+
 	public String getShortExhibitorsForPageFinalAudit(int start, int number, String orgName)
 	{
 		long size = exhibitorsDao.getExhibitorsTotalCountFinalAudit(orgName);
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageFinalAudit(start, number, orgName);
 		return procssListRet(ls,size);
 	}
-	
+
 	public String getShortExhibitorsForPageFirst(int start, int number, String orgName, String showName)
 	{
 		long size = exhibitorsDao.getExhibitorsTotalCountFirst(orgName, showName);
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageFirst(start, number, orgName,showName);
 		return procssListRet(ls,size);
 	}
-	
+
 	/**
 	 * 后台界面所用，用于最终审核
 	 * @param start
@@ -237,8 +237,8 @@ public class ExhibitorsService {
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateFinalAudit(start, number, state, orgName);
 		return procssListRet(ls,size);
 	}
-	
-	
+
+
 	/**
 	 * 后台界面所用，用于初次审核
 	 * @param start
@@ -260,7 +260,7 @@ public class ExhibitorsService {
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateFirst(start, number, state, orgName, showName);
 		return procssListRet(ls,size);
 	}
-	
+
 	/**
 	 * 2015.6.1新增，order排序
 	 * @param start
@@ -280,7 +280,7 @@ public class ExhibitorsService {
 		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateLogoOrder(start, number, state, orgName);
 		return procssListRet(ls,size);
 	}
-	
+
 	public String saveExhibitor(Exhibitors exhibitor)
 	{
 		JSONObject obj = new JSONObject();
@@ -290,7 +290,7 @@ public class ExhibitorsService {
 		{
 			obj.put("result", false);
 			obj.put("message", "该公司已注册过，如有疑问请致电！");
-			obj.put("username", ex.getUsername());	
+			obj.put("username", ex.getUsername());
 			obj.put("id", ex.getId());
 			String ret = obj.toString();
 			logger.info(ret);
@@ -308,8 +308,8 @@ public class ExhibitorsService {
 		String id = exhibitorsDao.saveExhibitor(exhibitor);
 		logger.info("save exhibitor");
 		exhibitor.setId(id);
-		
-		
+
+
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功注册,即将跳转！");
@@ -319,9 +319,9 @@ public class ExhibitorsService {
 		String ret = obj.toString();
 		logger.info(ret);
 		return ret;
-		
+
 	}
-	
+
 	public String saveTotalExhibitInfo(Exhibitors exhibitor, List<Construction>construction,List<Transportation>transportation,
 			List<SceneServ>sceneServ, List<Visitor>visitor,List<DisplayItem>displayItem)
 	{
@@ -332,7 +332,7 @@ public class ExhibitorsService {
 		{
 			obj.put("result", false);
 			obj.put("message", "该公司已注册过，如有疑问请致电！");
-			obj.put("username", ex.getUsername());	
+			obj.put("username", ex.getUsername());
 			obj.put("id", ex.getId());
 			String ret = obj.toString();
 			logger.info(ret);
@@ -350,14 +350,14 @@ public class ExhibitorsService {
 		String id = exhibitorsDao.saveExhibitor(exhibitor);
 		logger.info("save exhibitor");
 		exhibitor.setId(id);
-		
+
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功注册,即将跳转！");
 		obj.put("username", userName);
 		obj.put("password", pwd);
 		obj.put("id", id);
-		
+
 		for(Construction c : construction)
 		{
 			c.setEid(id);
@@ -387,9 +387,9 @@ public class ExhibitorsService {
 			displayItemDao.saveDisplayItem(d);
 		}
 		String ret = obj.toString();
-		
+
 		String email = exhibitor.getEmail();
-		if(email != null && email.matches(Constants.EMAIL_REGEX))  
+		if(email != null && email.matches(Constants.EMAIL_REGEX))
 		{
 			logger.info("发送展商注册邮件...");
 			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, userName,pwd);
@@ -397,18 +397,26 @@ public class ExhibitorsService {
 			MailUtil.sendMail(email, Constants.EXT_SUBJECT_REGISTER, content);
 		}
 		logger.info(ret);
-		
+
 		return ret;
 	}
-	
+
 	public String login(String userName, String password)
 	{
 		HttpSession session = WebContextFactory.get().getSession();
 		JSONObject obj = new JSONObject();
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(userName);
-		if (exhibitor == null || exhibitor.getState() != 1) {
+		if (exhibitor == null ) {
 			obj.put("result", false);
-			obj.put("message", "该用户不存在！");
+			obj.put("message", "该用户不存在");
+			logger.debug(obj.toString());
+			return obj.toString();
+		}
+		else if(exhibitor.getState() != 1)
+		{
+			obj.put("result", false);
+			obj.put("message", "该用户尚未审批通过");
+			logger.debug(obj.toString());
 			return obj.toString();
 		}
 		if (MD5.compute(password).equals(exhibitor.getPassword())) {
@@ -431,13 +439,21 @@ public class ExhibitorsService {
 			return ret;
 		}
 	}
-	
-	public String loginByServlet(String username,String password) {	
+
+	public String loginByServlet(String username,String password) {
 		JSONObject obj = new JSONObject();
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
 		if (exhibitor == null) {
 			obj.put("result", false);
 			obj.put("message", "该用户不存在！");
+			logger.debug(obj.toString());
+			return obj.toString();
+		}
+		else if(exhibitor.getState() != 1)
+		{
+			obj.put("result", false);
+			obj.put("message", "该用户尚未审批通过");
+			logger.debug(obj.toString());
 			return obj.toString();
 		}
 		if (MD5.compute(password).equals(exhibitor.getPassword())) {
@@ -456,13 +472,13 @@ public class ExhibitorsService {
 			return ret;
 		}
 	}
-	
+
 	public boolean updateExhibitor(Exhibitors exhibitor)
 	{
 		exhibitor.setApplyTime(new Date());
 		return exhibitorsDao.updateExhibitor(exhibitor);
 	}
-	
+
 	/**
 	 * 初次审批，更新firststate
 	 * @param id
@@ -476,7 +492,7 @@ public class ExhibitorsService {
 		if(state == 1)
 		{
 			String email = ex.getEmail();
-			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				//logger.info("发送展商申请通过邮件...");
 				String content = Constants.EXT_APPROVED;
@@ -486,9 +502,9 @@ public class ExhibitorsService {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param id
 	 * @param state
 	 * @param reason
@@ -502,7 +518,7 @@ public class ExhibitorsService {
 		{
 			ex.setReason(reason);
 			String email = ex.getEmail();
-			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
 				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
@@ -514,7 +530,7 @@ public class ExhibitorsService {
 			ex.setReason("");
 		return true;
 	}
-	
+
 	public boolean updateExhibitorState(String id, int state)
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
@@ -522,7 +538,7 @@ public class ExhibitorsService {
 		if(state == 1)
 		{
 			String email = ex.getEmail();
-			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商申请通过邮件...");
 				String content = Constants.EXT_APPROVED;
@@ -536,7 +552,7 @@ public class ExhibitorsService {
 		}
 		return true;
 	}
-	
+
 	public boolean updateExhibitorStateReason(String id, int state, String reason)
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
@@ -546,7 +562,7 @@ public class ExhibitorsService {
 			ex.setFirstState(2);
 			ex.setReason(reason);
 			String email = ex.getEmail();
-			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
 				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
@@ -558,12 +574,12 @@ public class ExhibitorsService {
 			ex.setReason("");
 		return true;
 	}
-	
+
 	public long deleteExhibitorById(String id)
 	{
 		return exhibitorsDao.deleteExhibitorById(id);
 	}
-	
+
 	public boolean logout() {
 		HttpSession session = WebContextFactory.get().getSession();
 		session.removeAttribute(Constants.SESSION_SHOW_ID);
@@ -571,7 +587,7 @@ public class ExhibitorsService {
 		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
 		return true;
 	}
-	
+
 	public String resetPsw(String id)
 	{
 		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
@@ -584,8 +600,8 @@ public class ExhibitorsService {
 		logger.info(ret);
 		return ret;
 	}
-	
-	
+
+
 	public String getRecommenderStat()
 	{
 		List<String>ls = exhibitorsDao.getDistinctRecommenders();
@@ -612,9 +628,9 @@ public class ExhibitorsService {
 		String ret = obj.toString();
 		logger.debug("recommenders:" + ret);
 		return ret;
-		
+
 	}
-	
+
 	public String getRegionStat()
 	{
 		List<String>ls = exhibitorsDao.getDistinctRegion();
@@ -641,6 +657,6 @@ public class ExhibitorsService {
 		String ret = obj.toString();
 		logger.debug("region:" + ret);
 		return ret;
-		
+
 	}
 }

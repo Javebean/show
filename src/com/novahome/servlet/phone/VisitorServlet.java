@@ -22,7 +22,7 @@ import com.novahome.utils.HtmlParser;
 public class VisitorServlet extends HttpServlet{
 
 private static final long serialVersionUID = 1L;
-	
+
 	private VisitorService visitorService;
 	private static final String[] METHOD_NAMES = {"apply","details","getbyorgid","getbyorgname","getbyid"};
 	private static final Logger logger = Logger.getLogger(VisitorServlet.class);
@@ -32,15 +32,15 @@ private static final long serialVersionUID = 1L;
 		 ApplicationContext ctx = WebApplicationContextUtils
 		    		.getRequiredWebApplicationContext(this.getServletConfig()
 		    				.getServletContext());
-		 visitorService = (VisitorService) ctx.getBean("visitorService");    		
+		 visitorService = (VisitorService) ctx.getBean("visitorService");
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
-	
+
 	private void process(HttpServletRequest request,
 			HttpServletResponse response) throws IOException
 	{
@@ -105,9 +105,9 @@ private static final long serialVersionUID = 1L;
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
 		}
-		
+
 	}
-	
+
 	private Visitor processVisitorParams(HttpServletRequest request)
 	{
 		Visitor visitor = new Visitor();
@@ -118,6 +118,10 @@ private static final long serialVersionUID = 1L;
 			Entry<String,String[]>entry = (Entry<String, String[]>) it.next();
 			String key = entry.getKey();
 			String[]str = entry.getValue();
+			if(key.equals("buyer") || key.equals("type")|| key.equals("idType"))
+			{
+				continue;
+			}
 			Method method = getMehthods(Visitor.class, key);
 			if(method != null)
 			{
@@ -137,7 +141,7 @@ private static final long serialVersionUID = 1L;
 				} /*catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/ 
+				}*/
 			}
 		}
 		String buyerStr = request.getParameter("buyer");
@@ -147,7 +151,7 @@ private static final long serialVersionUID = 1L;
 		else
 			buyer = Integer.parseInt(buyerStr);
 		visitor.setBuyer(buyer);
-		
+
 		String typeStr = request.getParameter("type");
 		int type ;
 		if(typeStr == null || typeStr.isEmpty())
@@ -155,9 +159,18 @@ private static final long serialVersionUID = 1L;
 		else
 			type = Integer.parseInt(typeStr);
 		visitor.setType(type);
+
+		String idTypeStr = request.getParameter("idType");
+		int idType ;
+		if(idTypeStr == null || idTypeStr.isEmpty())
+			idType = 0;
+		else
+			idType = Integer.parseInt(idTypeStr);
+		visitor.setIdType(idType);
+
 		return visitor;
 	}
-	
+
 	private Method getMehthods(Class clz, String name)
 	{
 		Method method = null;
@@ -173,8 +186,8 @@ private static final long serialVersionUID = 1L;
 		}
 		return method;
 	}
-	
-	
+
+
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

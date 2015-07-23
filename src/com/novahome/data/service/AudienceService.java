@@ -116,6 +116,7 @@ public class AudienceService {
 		if (audience == null) {
 			obj.put("result", false);
 			obj.put("message", "该用户不存在！");
+			logger.debug(obj.toString());
 			return obj.toString();
 		}
 		if (MD5.compute(password).equals(audience.getPassword())) {
@@ -145,6 +146,7 @@ public class AudienceService {
 		if (audience == null) {
 			obj.put("result", false);
 			obj.put("message", "该用户不存在！");
+			logger.debug(obj.toString());
 			return obj.toString();
 		}
 		if (MD5.compute(password).equals(audience.getPassword())) {

@@ -29,9 +29,9 @@ import com.novahome.data.service.ZytzService;
 import com.novahome.utils.HtmlParser;
 
 public class AudienceServlet extends HttpServlet{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String[] METHOD_NAMES = {"login","logout","register"};
@@ -43,15 +43,15 @@ public class AudienceServlet extends HttpServlet{
 		 ApplicationContext ctx = WebApplicationContextUtils
 		    		.getRequiredWebApplicationContext(this.getServletConfig()
 		    				.getServletContext());
-		 audienceService = (AudienceService) ctx.getBean("audienceService");    		
+		 audienceService = (AudienceService) ctx.getBean("audienceService");
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
-	
+
 	private void process(HttpServletRequest request,
 			HttpServletResponse response) throws IOException
 	{
@@ -66,7 +66,7 @@ public class AudienceServlet extends HttpServlet{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
 		}
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain;charset=UTF-8");
 		if(path.equals(METHOD_NAMES[0]))
@@ -100,15 +100,15 @@ public class AudienceServlet extends HttpServlet{
 		else if(path.equals(METHOD_NAMES[2]))
 		{
 			Audience audience = processAudienceParams(request);
-			response.getWriter().write(audienceService.saveAudience(audience));	
+			response.getWriter().write(audienceService.saveAudience(audience));
 		}
 		else
 		{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
-		}	
+		}
 	}
-	
+
 	private Audience processAudienceParams(HttpServletRequest request)
 	{
 		Audience au = new Audience();
@@ -119,6 +119,10 @@ public class AudienceServlet extends HttpServlet{
 			Entry<String,String[]>entry = (Entry<String, String[]>) it.next();
 			String key = entry.getKey();
 			String[]str = entry.getValue();
+			if(key.equals("buyer"))
+			{
+				continue;
+			}
 			Method method = getMehthods(Audience.class, key);
 			if(method != null)
 			{
@@ -134,7 +138,7 @@ public class AudienceServlet extends HttpServlet{
 				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} 
+				}
 			}
 		}
 		String buyerStr = request.getParameter("buyer");
@@ -146,7 +150,7 @@ public class AudienceServlet extends HttpServlet{
 		au.setBuyer(buyer);
 		return au;
 	}
-	
+
 	private Method getMehthods(Class clz, String name)
 	{
 		Method method = null;
@@ -162,8 +166,8 @@ public class AudienceServlet extends HttpServlet{
 		}
 		return method;
 	}
-	
-	
+
+
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
