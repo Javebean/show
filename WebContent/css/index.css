@@ -67,7 +67,10 @@ input,textarea,select,button {outline:none;}
 .zhdtbt{ width:682px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px}
 .zhdtnb{ width:704px; height:241px;}
 .dtimg{ display:block; width:273px; height:210px; margin-top:22px}
-.dtimg2{ display:block; width:203px; height:100px; margin-top:22px}
+.dtimg2{ display:block; width:163px; height:100px; margin:-30px 0 0 0}
+.dtimg3{ display:block; width:163px; height:100px; margin:-100px 0 0 152px}
+.dtimg4{ display:block; width:163px; height:100px; margin:-32px 0 0 -30px}
+.dtimg5{ display:block; width:163px; height:100px; margin:-100px 0 0 122px}
 
 .dtwz{ width:415px; height:218px;margin-top:22px; margin-left:10px}
 .wzbt{ display:block; width:415px; height:20px; line-height:20px;font-size:18px; font-family:Microsoft YaHei; color:#3b3b3b}
@@ -90,17 +93,17 @@ input,textarea,select,button {outline:none;}
 .tzggnb ul li a:hover{color:#09C}
 
 .hylt{ width:650px; height:158px; margin-top:31px}
-.hyltbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px}
+.hyltbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px}
 .hyltnb{ width:308px; height:0px}
 
 .hyltnb ul{}
-.hyltnb ul li{line-height:25px; background:url(images/narrow.gif) 5px 6px no-repeat;}
-.hyltnb ul li a{ font-size:13px; color:#686868}
+.hyltnb ul li{line-height:40px; background:url(../images/narrow.png) 3px 15px no-repeat;}
+.hyltnb ul li a{padding-left:15px; font-size:13px; color:#686868}
 .hyltnb ul li a:hover{color:#09C}
 
 
-.button2{ width:200px; height:278px; margin-top:31px}
-.button3{ width:200px; height:100px; margin-top:31px}
+.button2{ width:200px; height:178px; margin:70px 0 0 80px}
+.button3{ width:200px; height:100px; margin:31px 0 0 80px}
 
 
 .app_login{ width:1060px; height:169px; margin:0 auto}
@@ -118,8 +121,8 @@ input,textarea,select,button {outline:none;}
 .appimg2{ width:109px; height:107px}
 .appwz_2{width:188px; height:53px; margin:30px 0 0 0}
 
-.review{width:1060px; height:300px; margin-top:30px}
-.reviewbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
+.review{width:1060px; height:300px; margin-top:5px}
+.reviewbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
 
 .review_left{ width:340px; height:107px; }
 .reviewimg{ width:320px; height:107px;}
@@ -151,13 +154,7 @@ input,textarea,select,button {outline:none;}
 
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
 
-.hzfb { width:1000px; margin:0 auto; overflow:hidden; zoom:1; }
-.zl_hzfb { width:241px; float:left; }
-.zlhb_top { width:213px; height:25px; line-height:25px; border-bottom:1px solid #909090; margin-bottom:19px; }
+.hzfb { width:1060px; margin:0 auto; overflow:hidden; zoom:1; }
+.zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
 .zlhb_bot { width:205px; padding-left:35px; height:38px; padding-bottom:16px; border-right:1px solid #909090; }
 .zlhb_bot td { padding-right:15px; line-height:38px; }
-.gj_hzfb { float:left; width:739px; }
-.gjhb_top { width:739px; height:25px; line-height:25px; border-bottom:1px solid #909090; margin-bottom:19px; }
-.gjhb_bot { width:688px; height:38px; line-height:38px; padding:0 0 16px 51px; }
-.gjhb_bot td { padding:0 10px; line-height:38px; }
-.gjhb_bot td.space_fb { padding:0; }
