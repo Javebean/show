@@ -16,11 +16,11 @@ input,textarea,select,button {outline:none;}
 
 .top{ width:1060px; height:87px;}
 
-.logo{ display:block; width:333px; height:43px; margin-top:25px;}
+.logo{ display:block; width:333px; height:80px; margin-top:0px;}
 
-.tel_ban{ width:286px; height:43px; margin-top:28px}
-.tel_ban{ width:286px; height:50px; margin-top:24px}
-.ban{ width:104px; height:23px; float:right; margin:0 0 0 0}
+.tel_ban{ width:286px; height:35px; margin-top:50px}
+
+.ban{ width:104px; height:23px; float:right; margin:0 0 0 0 0}
 .ch{ display:block; width:44px; height:23px; float:left}
 
 .en{ display:block; width:60px; height:23px; float:left}
@@ -93,17 +93,17 @@ input,textarea,select,button {outline:none;}
 .tzggnb ul li a:hover{color:#09C}
 
 .hylt{ width:650px; height:158px; margin-top:31px}
-.hyltbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px}
+.hyltbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hylt_bg.jpg) left no-repeat; padding-left:28px}
 .hyltnb{ width:308px; height:0px}
 
 .hyltnb ul{}
-.hyltnb ul li{line-height:40px; background:url(../images/narrow.png) 3px 15px no-repeat;}
+.hyltnb ul li{line-height:32px; background:url(../images/narrow.png) 3px 15px no-repeat;}
 .hyltnb ul li a{padding-left:15px; font-size:13px; color:#686868}
 .hyltnb ul li a:hover{color:#09C}
 
 
-.button2{ width:200px; height:178px; margin:70px 0 0 80px}
-.button3{ width:200px; height:100px; margin:31px 0 0 80px}
+.button2{ width:200px; height:178px; margin:70px 0 0 100px}
+.button3{ width:200px; height:100px; margin:31px 0 0 100px}
 
 
 .app_login{ width:1060px; height:169px; margin:0 auto}
@@ -122,7 +122,7 @@ input,textarea,select,button {outline:none;}
 .appwz_2{width:188px; height:53px; margin:30px 0 0 0}
 
 .review{width:1060px; height:300px; margin-top:5px}
-.reviewbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
+.reviewbt{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/review_bg.jpg) left no-repeat; padding-left:28px;margin-top:20px}
 
 .review_left{ width:340px; height:107px; }
 .reviewimg{ width:320px; height:107px;}
@@ -155,6 +155,6 @@ input,textarea,select,button {outline:none;}
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
 
 .hzfb { width:1060px; margin:0 auto; overflow:hidden; zoom:1; }
-.zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
+.zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hzmt_bg.jpg) left no-repeat; padding-left:28px;margin-top:50px}
 .zlhb_bot { width:205px; padding-left:35px; height:38px; padding-bottom:16px; border-right:1px solid #909090; }
 .zlhb_bot td { padding-right:15px; line-height:38px; }
