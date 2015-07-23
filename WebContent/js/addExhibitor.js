@@ -210,8 +210,8 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
-		
+
+
 		/*证件照，身份证正面照，身份证背面照改为非必填*/
 		/*if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
@@ -365,6 +365,15 @@ $(document).ready(function(){
 			visitor.push($(this).data("newvisitor"));
 		});
 
+		var emailvalue = $("input[name=email]").val().trim();
+		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	//	alert(emailvalue);
+		if(!emailreg.test(emailvalue))
+		{
+			jAlert("请输入有效的电子邮箱", "信息");
+			return;
+		}
+
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight"];
 		for(var i=0;i<displayItem.length;i++){
@@ -458,7 +467,7 @@ $(document).ready(function(){
 			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -502,7 +511,7 @@ $(document).ready(function(){
 			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -547,7 +556,7 @@ $(document).ready(function(){
 			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -630,7 +639,7 @@ $(document).ready(function(){
 			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -674,7 +683,7 @@ $(document).ready(function(){
 			'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";

@@ -65,7 +65,14 @@ $(document).ready(function(){
 				return;
 			}
 		}
-		
+		var emailvalue = $("input[name=email]").val().trim();
+		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	//	alert(emailvalue);
+		if(!emailreg.test(emailvalue))
+		{
+			jAlert("请输入有效的电子邮箱", "信息");
+			return;
+		}
 		//针对证件类型号码的判断
 		//身份证
 		if($("select[name=idType]").val()==0){
@@ -76,10 +83,11 @@ $(document).ready(function(){
 				return;
 			}
 		}
+
 		//护照
 		if($("select[name=idType]").val()==1){
 			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || value.length!=11){
+			if( value.length!=11){
 				jAlert("请输入有效的11位护照号码", "信息");
 				return;
 			}
@@ -87,7 +95,7 @@ $(document).ready(function(){
 		//港澳台通行证
 		if($("select[name=idType]").val()==2){
 			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || value.length!=11){
+			if( value.length!=11){
 				jAlert("请输入有效的11位港澳台通行证号码", "信息");
 				return;
 			}
@@ -95,7 +103,7 @@ $(document).ready(function(){
 		//台胞证
 		if($("select[name=idType]").val()==3){
 			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || value.length!=9){
+			if(value.length!=9){
 				jAlert("请输入有效的9位台胞证号码", "信息");
 				return;
 			}
@@ -105,14 +113,14 @@ $(document).ready(function(){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
 			return;
 		}*/
-		
-		
+
+
 		/*修改证件照，身份证正面照，身份证背面照为非必填*/
 		/*if(!picFlag || !picFlagFro || !picFlagBac){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
 			return;
 		}*/
-		
+
 		var formData = getFormdata("regForm");
 		if(picFlag){
 			formData.photo = topicId + ".jpg";
@@ -161,7 +169,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -229,7 +237,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -274,7 +282,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";

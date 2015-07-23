@@ -57,6 +57,7 @@ private static final long serialVersionUID = 1L;
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
 			return;
 		}
+		logger.info("request visitor phone servlet:" + path);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain;charset=UTF-8");
 		if(path.equals(METHOD_NAMES[0]))

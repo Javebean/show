@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	//event binder
 	$("#submitForm").click(saveForm);
-	
+
 	//添加html5弹出页面的提交事件
 	$("#submitVisitorForm").click(saveVisitorForm);
 	$(".delete_item").click(deleteItem);
@@ -223,7 +223,7 @@ $(document).ready(function(){
 
 		$.colorbox.close();
 	}
-	
+
 	//test
 	$(".test_btn").click(function(){
 		var visitor = getDymiTableData(".visitors", visitorParams);
@@ -440,13 +440,13 @@ $(document).ready(function(){
 			'fileType' : 'image/*',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onError: function(errorType, file) {
 				var msgText = "上传失败\n";
 				switch (errorType) {
 						case 'FILE_SIZE_LIMIT_EXCEEDED':
-								msgText += "文件大小超过限制(5MB)";
+								msgText += "文件大小超过限制(2MB)";
 								break;
 						default:
 								msgText += "错误代码：" + errorType + "\n" + errorMsg;
@@ -474,7 +474,7 @@ $(document).ready(function(){
 			'fileType' : 'image/*',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "上传失败\n";
@@ -513,8 +513,8 @@ $(document).ready(function(){
 		});
 	},10);
 
-	
-	
+
+
 	setTimeout(function(){
 		$("#uploadify_logo").uploadifive({
 			/*'queueID'          : 'queue',*/
@@ -524,13 +524,13 @@ $(document).ready(function(){
 			'fileType' : 'image/*',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onError: function(errorType, file) {
         var msgText = "上传失败\n";
 				switch (errorType) {
 						case 'FILE_SIZE_LIMIT_EXCEEDED':
-								msgText += "文件大小超过限制(5MB)";
+								msgText += "文件大小超过限制(2MB)";
 								break;
 						default:
 								msgText += "错误代码：" + errorType + "\n" + errorMsg;
@@ -559,7 +559,7 @@ setTimeout(function(){
 		'fileType' :  'image/*',
 		'multi' : false,
 		'queueSizeLimit' : 1,
-		'fileSizeLimit' : '5MB',
+		'fileSizeLimit' : '2MB',
 
 		onSelectError: function(file, errorCode, errorMsg) {
     var msgText = "上传失败\n";
@@ -598,13 +598,13 @@ setTimeout(function(){
 setTimeout(function(){
 	$("#uploadify_idback").uploadifive({
 		/*'queueID'          : 'queue',*/
-		
+
 		'uploadScript' : 'imageUpload?topicId=' + 'NEWID',
 		'fileDesc' : 'Image Files',
 		'fileType' : 'image/*',
 		'multi' : false,
 		'queueSizeLimit' : 1,
-		'fileSizeLimit' : '5MB',
+		'fileSizeLimit' : '2MB',
 
 		onSelectError: function(file, errorCode, errorMsg) {
     var msgText = "上传失败\n";
@@ -639,4 +639,3 @@ setTimeout(function(){
 		}
 	});
 },10);
-

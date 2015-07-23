@@ -107,7 +107,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "Upload Failed\n";
@@ -175,7 +175,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "Upload Failed\n";
@@ -220,7 +220,7 @@ $(document).ready(function(){
 			'fileExt' : '*.jpg;*.jpeg;*.png;*.gif',
 			'multi' : false,
 			'queueSizeLimit' : 1,
-			'fileSizeLimit' : '5MB',
+			'fileSizeLimit' : '2MB',
 
 			onSelectError: function(file, errorCode, errorMsg) {
         var msgText = "Upload Failed\n";
