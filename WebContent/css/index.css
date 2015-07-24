@@ -51,8 +51,8 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 	top: 200px; z-index: 10;background-image: url("../images/TimeDown-wall.png");}
 /* .djs{ width:1060px; height:209px; margin:0 auto; padding-top:1px} */
 .date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:white; display:block; margin:10px auto 0 auto; text-align:center}
-.zhm{font-size:12px; font-family:SimSun; color:white; display:block; margin:0 auto; text-align:center; margin-top:5px}
-.time{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; margin:0 auto; text-align:center; margin-top:0px; height:20px; /* background:url(../images/time_bg.jpg) */}
+.zhm{font-size:14px; font-family:SimSun; color:white; display:block; margin:0 auto; text-align:center; margin-top:5px}
+.time{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; margin:0 auto; text-align:center; margin-top:0px; height:26px; /* background:url(../images/time_bg.jpg) */}
 .zhxq{ width:100%; height:20px; margin:0 auto 0 auto}
 .zhsj{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhjs.jpg) left no-repeat; */}
 .zhdd{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhdd.jpg) left no-repeat; */}
