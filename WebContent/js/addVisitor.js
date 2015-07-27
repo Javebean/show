@@ -17,6 +17,20 @@ $(document).ready(function(){
 	//event binder
 	$("#submitForm").click(saveForm);
 	$("#chuyang").click(chuyang);
+	
+	//如果观众已经登录，预设部分表单信息
+	if(getCookie("type")==2){
+		var userName = getCookie("user");
+		var func = function(data){
+			data=JSON.parse(data);
+			$("input[name='name']").val(data.name);
+			$("input[name='sex']").val(data.sex);
+			$("input[name='position']").val(data.position);
+			$("input[name='email']").val(data.email);
+		};
+		
+		Audience.getAudienceByUserName(userName,func);
+	}
 
 	//test
 	$(".test_btn").click(function(){

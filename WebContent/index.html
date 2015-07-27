@@ -98,7 +98,7 @@
 
 							 var timePar = timeStr.split(' ');
 							 var timeDate = timePar[0].split('-');
-							 var mTime = parseInt(timeDate[1])+ 1;
+							 var mTime = parseInt(timeDate[1]);
 
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
@@ -110,7 +110,7 @@
 					}
 					$('.dtwz').html(html);
 				}
-				Zlzx.getShortZlzxForPage(0,5,func);
+				Zlzx.getShortZlzxForPage(0,3,func);
 			}
 			Date.prototype.diff = function(date){
 
@@ -131,8 +131,12 @@
 
 
 		function show_num(n){
+<<<<<<< HEAD
 			/* 由于删除倒计时图片改用js,下面代码注掉 by javebean */
 			/* var it = $(".t_num i");
+=======
+			/*var it = $(".t_num i");
+>>>>>>> refs/remotes/origin/master
 			var len = String(n).length;
 			for(var i=0;i<len;i++){
 				if(it.length<=i){
@@ -145,7 +149,11 @@
 					backgroundPosition :'-10px '+String(y)+'px'
 				}, 1400,'swing',function(){}
 				);
+<<<<<<< HEAD
 			} */
+=======
+			}*/
+>>>>>>> refs/remotes/origin/master
 			$("#day").text(n);
 		}
 
@@ -215,7 +223,7 @@
 		  font-size:20px;
 		  font-family:"宋体";
 		  z-index: 5000;
-		  width: 200px;
+		  width: 250px;
 		  position:relative;
 		  top:45px;
 		  left:200px;
@@ -237,6 +245,7 @@
 		
 	
 	</style>
+<<<<<<< HEAD
 <!-- ********随窗口滚动的二维码。其实就是小广告  by javebean******** -->
 <script type="text/javascript">
 	$(function(){
@@ -247,6 +256,18 @@
 	})
 </script>
 	
+=======
+	
+	<script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			$("#QRCode").css("top",$(window).scrollTop()+"px"); 
+			
+		});
+	})
+</script>
+
+>>>>>>> refs/remotes/origin/master
 </head>
 
 <body>
@@ -302,19 +323,44 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 
 	
+=======
+	
+	<div class = "leftbutton left">	
+	<div class="leftbuttonbt">快速入口</div>
+			<div class="button2 left">
+				<a class="dtimg2" href="in_exhibit_register.html"><img src="images/apply.jpg"/></a>
+				<a class="dtimg2" href="in_exhibit.html?detail=zs/wssb.html"><img src="images/badge.jpg" /></a>
+				<a class="dtimg2" href="in_exhibit.html?detail=zs/xzzx.html"><img src="images/downloadcenter.jpg" /></a>
+				<a class="dtimg2" href="in_about.html?detail=gy/zhgk.html"><img src="images/intro.jpg" /></a>
+		<div class="app_login">
+		<div class="login right">
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
+			<div class="button">
+				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
+				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
+			</div>
+		</div>
+	</div>
+		</div>
+	</div>
+		
+		
+>>>>>>> refs/remotes/origin/master
 	<div class="news">
-		<div class="zhdt left">
-			<div class="zhdtbt">展会动态</div>
+		<div class="zhdt">
+			<div class="zhdtbt">展会咨询</div>
 			<div class="zhdtnb">
 				<a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a>
 				<div class="dtwz left">
 				</div>
 			</div>
 		</div>
-		<div class="tzgg right">
-			<div class="tzggbt">重大活动</div>
+		<div class="tzgg">
+			<div class="tzggbt">通知公告</div>
 			<div class="tzggnb">
 				<ul>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
@@ -345,57 +391,136 @@
 			</div>
 		</div>
 		
-			<div class="button2 left">
-				<a class="dtimg2" href="in_exhibit_register.html"><img src="images/apply.jpg"/></a>
-				<a class="dtimg3" href="in_exhibit.html?detail=zs/wssb.html"><img src="images/badge.jpg" /></a>
+		<table style="margin-top:30px; margin-left:570px; font-size:12px; color:#757575">
+                    <tr >
+                        <td align="center" valign="top">
+                            <table width="208" border="0" cellspacing="0" cellpadding="1">
+                                <tr style="height: 30px">
+                                    <td align="left" style="height: 30px">
+                                        <div class="zbdwbt">主办单位</div></td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        中国国际商会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="left">
+                                        <div class="xbdwbt">承办单位</div></td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      中国国际商会会展部</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        中国贸促会推广交流中心</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                         中国外运长航集团</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省对外友好交流促进会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省货代协会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                         连云港市人民政府</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      江苏省商务厅</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省外办</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      江苏省经信委</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                       江苏省贸促会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省交通厅 </td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                
+        <div class="review left">
+		<div class="reviewbt">热点关注</div>
+			<div class="review left">
+				  <div class="reviewimg left"><a href="techlbh.html"><img src="images/review1.jpg"/></a></div>
+				  <div class="reviewimg2 left"><a href="review.html"><img src="images/review2.jpg"/></a></div>
+			</div>
+		</div>
 		</div>
 	
-	
-	<div class="review left">
-	<div class="reviewbt">热点关注</div>
-		<div class="review left">
-			<div class="review_left left">
-			  <div class="reviewimg left"><a href="techlbh.html"><img src="images/review1.jpg"/></a></div>
-			</div>
-			<div class="review_right left">
-				<div class="reviewimg2 left"><a href="review.html"><img src="images/review2.jpg"/></a></div>
-			</div>
-			<span class="button3 left">
-			<a class="dtimg4" href="in_exhibit.html?detail=zs/xzzx.html"><img src="images/downloadcenter.jpg" /></a>
-			<a class="dtimg5" href="in_about.html?detail=gy/zhgk.html"><img src="images/intro.jpg" /></a>
-			</span>
-		</div>
-	</div>
-    </div>
-		
-	
-	
-	<div class="app_login">
-		<div class="app left">
-			<div class="app_left left">
-				<div class="appimg left"><img src="images/appimg1.jpg" /></div>
-				<div class="appwz right">
-					<span class="appwz1">连博会手机客户端</span>
-					<a class="chakan" href="phonedownload.html">查看详情 ></a>
-				</div>
-			</div>
-			<div class="app_right left">
-				<div class="appimg2 left"><img src="images/appewm.jpg" /></div>
-				<div class="appwz_2 right">
-					<span class="appwz1">连博会官方微信</span>
-					<p class="chakan" href="#">扫一扫关注</p>
-				</div>
-			</div>
-		</div>
-		<div class="login right">
-			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
-			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
-			<div class="button">
-				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
-				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
-			</div>
-		</div>
-	</div>
 	<div class="hzfb">
 			<div class="zlhb_top">合作媒体</div>
 			
@@ -413,15 +538,6 @@
 				
 			</div></br>
 			<hr style="height:1px;border:none;border-top:1px solid #555555;" />
-	</div>
-	
-
-	<div class="dw">
-	
-		<div class="zbdw"><strong>主办单位</strong>:<a href="#">中国国际商会</a> </div>
-		<div class="cbdw"><strong>承办单位</strong>:<a href="#">中国国际商会会展部</a> | <a href="#">中国贸促会推广交流中心</a> | <a href="#">中国外运长航集团</a> | <a href="#">江苏省对外友好交流促进会</a> | <a href="#">江苏省货代协会</a> | <a href="#">连云港市人民政府</a> | <a href="#">江苏省商务厅</a> | <a href="#">江苏省外办</a> </div>
-		<div class="cbdw"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;江苏省经信委</a> | <a href="#">江苏省贸促会</a> | <a href="#">江苏省交通厅</a> |</div>
-		<div class="cbdw"><strong>职能机构</strong>:<a href="#">连博会领导机构</a> | <a href="#">连博会筹备协调机构</a> | <a href="#">连博会现场指挥机构</a></div>
 	</div>
 	<div class="footer">
 	</div>
