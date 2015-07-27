@@ -98,7 +98,7 @@
 
 							 var timePar = timeStr.split(' ');
 							 var timeDate = timePar[0].split('-');
-							 var mTime = parseInt(timeDate[1])+ 1;
+							 var mTime = parseInt(timeDate[1]);
 
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
@@ -110,7 +110,7 @@
 					}
 					$('.dtwz').html(html);
 				}
-				Zlzx.getShortZlzxForPage(0,5,func);
+				Zlzx.getShortZlzxForPage(0,3,func);
 			}
 			Date.prototype.diff = function(date){
 
@@ -131,7 +131,7 @@
 
 
 		function show_num(n){
-			var it = $(".t_num i");
+			/*var it = $(".t_num i");
 			var len = String(n).length;
 			for(var i=0;i<len;i++){
 				if(it.length<=i){
@@ -144,7 +144,8 @@
 					backgroundPosition :'-10px '+String(y)+'px'
 				}, 1400,'swing',function(){}
 				);
-			}
+			}*/
+			$("#day").text(n);
 		}
 
 		function show_today(n){
@@ -233,6 +234,15 @@
 		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
 		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */
 	</style>
+	
+	<script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			$("#QRCode").css("top",$(window).scrollTop()+"px"); 
+			
+		});
+	})
+</script>
 
 </head>
 
@@ -244,6 +254,31 @@
 	</div>
 
 	<div class="banner">
+		<div id="QRCode">
+				<a href="phonedownload.html">
+					<img src="images/appAd.jpg" alt="phone" />
+					<span style="display:block; font-size:10px;text-align:center;width: 100px;height: 50px;">
+							客户端下载
+					</span>
+				</a>
+				<div>
+					<img src="images/an.jpg" alt="QRCode" />
+					<div style="width: 100px;height: 30px;font-size: 10px;">
+						手机扫描直接下载
+					</div>
+				</div>
+		</div>
+		<div id="new_djs">
+				<span class="date">2015年04月10日</span>
+				<span class="zhm">距离<span style="color: #E74E3E">中国(连云港)丝绸之路国际物流博览会</span>开幕</span>
+				<!-- <div class="time">还有 <span class="t_num"></span> 天</div> -->
+				<div class="time">还有 <span id="day" style="font-size: 20px;color: #E74E3E">00</span> 天</div>
+				<div class="zhxq">
+					<span class="zhsj">展会时间：2015年9月22日-9月24日</span>
+					<span class="zhdd">展会地点: 江苏省连云港市工业展览中心</span>
+				</div>
+		</div>
+		
 		<div id="show">
 			<div id="kinMaxShow">
 				<div>
@@ -274,8 +309,8 @@
 				<a class="dtimg2" href="in_about.html?detail=gy/zhgk.html"><img src="images/intro.jpg" /></a>
 		<div class="app_login">
 		<div class="login right">
-			<input style=" display:block; width:230px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
-			<input style=" display:block; width:230px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
 			<div class="button">
 				<input style="background:url(images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
 				<input style="background:url(images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
@@ -288,7 +323,7 @@
 		
 	<div class="news">
 		<div class="zhdt">
-			<div class="zhdtbt">展会动态</div>
+			<div class="zhdtbt">展会咨询</div>
 			<div class="zhdtnb">
 				<a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a>
 				<div class="dtwz left">
@@ -327,13 +362,13 @@
 			</div>
 		</div>
 		
-		<table style="margin-top:30px; margin-left:560px; font-size:12px; color:#757575">
+		<table style="margin-top:30px; margin-left:570px; font-size:12px; color:#757575">
                     <tr >
                         <td align="center" valign="top">
                             <table width="208" border="0" cellspacing="0" cellpadding="1">
                                 <tr style="height: 30px">
                                     <td align="left" style="height: 30px">
-                                        <div class="hyltbt">主办单位</div></td>
+                                        <div class="zbdwbt">主办单位</div></td>
                                 </tr>
                                 <tr>
                                     <td height="16">
@@ -349,7 +384,7 @@
                                 </tr>
                                 <tr>
                                     <td height="30" align="left">
-                                        <div class="hyltbt">承办单位</div></td>
+                                        <div class="xbdwbt">承办单位</div></td>
                                 </tr>
                                 <tr>
                                     <td height="16">
@@ -456,14 +491,6 @@
 			</div>
 		</div>
 		</div>
-	
-	
-	
-	
-    
-		
-	
-	
 	
 	<div class="hzfb">
 			<div class="zlhb_top">合作媒体</div>
