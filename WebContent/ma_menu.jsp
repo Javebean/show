@@ -18,7 +18,7 @@ $(document).ready(function(){
 	  <li elevel="0"><a href="ma_zlzx.jsp">展览资讯</a></li>
       <li elevel="1" class="hide"><a href="">图片新闻（测试）</a></li>
 
-      <li elevel="2"><a href="ma_zytz.jsp">重要通知</a></li>
+      <li elevel="2"><a href="ma_zytz.jsp">行业资讯</a></li>
       <li elevel="3"><a href="ma_tjbb.jsp">统计报表</a></li>
     </ul>
     <ul class="nav nav-sidebar">

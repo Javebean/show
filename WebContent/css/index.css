@@ -46,22 +46,7 @@ input,textarea,select,button {outline:none;}
 
 .banner{ width:1060px; height:320px; position:relative;  margin:-4px auto 0 auto; border-bottom:5px solid #007FCA}
 
-/* 调整倒计时的位置为kinMaxShow左下角 */
-div#new_djs{ width:310px; height: 120px; position: absolute; 
-	top: 200px; z-index: 10;background-image: url("../images/TimeDown-wall.png");}
-/* .djs{ width:1060px; height:209px; margin:0 auto; padding-top:1px} */
-.date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:white; display:block; margin:10px auto 0 auto; text-align:center}
-.zhm{font-size:14px; font-family:SimSun; color:white; display:block; margin:0 auto; text-align:center; margin-top:5px}
-.time{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; margin:0 auto; text-align:center; margin-top:0px; height:26px; /* background:url(../images/time_bg.jpg) */}
-.zhxq{ width:100%; height:20px; margin:0 auto 0 auto}
-.zhsj{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhjs.jpg) left no-repeat; */}
-.zhdd{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhdd.jpg) left no-repeat; */}
 
-<<<<<<< HEAD
-/* 增加了侧边的二维码 */
-#QRCode{
-	height: 300px;width: 100px;border: solid 1px;position: relative;float: right;right: -120px;
-=======
 div#new_djs{ width:310px; height: 120px; position: absolute; 
 	top: 200px; z-index: 10;background-image: url("../images/TimeDown-wall.png");}
 .date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:white; display:block; margin:10px auto 0 auto; text-align:center}
@@ -72,9 +57,10 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .zhdd{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhdd.jpg) left no-repeat; */}
 
 #QRCode{
-	height: 300px;width: 100px;position: relative;float: right;right: -140px;
->>>>>>> refs/remotes/origin/master
+	height: 300px;width: 95px;position: relative;float: right;right: -140px;background-color: #F3F7FA;
 }
+
+.QR{align:center}
 
 .djsnb{ font-size:45px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; color:#ffa800; float:left; position:relative}
 .djsnb_fb{ position:absolute; top:-2px; left:-2px; color:#ff7200; font-weight:bold}
@@ -83,16 +69,16 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 
 .news{ width:900px; height:757px; margin:0 0 0 400px}
-.zhdt{ width:430px; height:278px; margin-top:31px}
+.zhdt{ width:520px; height:278px; margin-top:31px}
 
-.zhdtbt{ width:250px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px}
+.zhdtbt{ width:250px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px;position:relative;top:-13px;}
 .zhdtnb{ width:250px; height:241px;}
 .dtimg{ display:block; width:200px; height:152px; margin-top:22px}
-.dtimg2{ display:block; width:163px; height:120px; margin:0 0 0 150px}
+.dtimg2{ display:block; width:163px; height:80px;position: relative;left: 150px;}
 
 .dtwz{ width:270px; height:218px;margin-top:22px; margin:-150px 0 0 230px}
-.wzbt{ display:block; width:260px; height:20px; line-height:20px;font-size:18px; font-family:Microsoft YaHei; color:#3b3b3b}
-.wznr{ display:block; width:260px; height:60px; line-height:20px; color:#757575; font-size:13px; margin-top:26px}
+.wzbt{ display:block; width:260px; height:20px; line-height:20px;font-size:15px; font-family:Microsoft YaHei; color:#3b3b3b; margin-top:30px;margin-left:20px;}
+.wznr{ display:block; width:260px; height:60px; line-height:20px; color:#757575; font-size:13px; margin-top:26px; margin-left:20px;}
 .wznr:hover{ color:#09C}
 .dtwz ul{width:260px; margin-top:15px}
 .dtwz ul li{font-size:12px; color:#999999; height:30px; background:url(../images/dian.jpg) left no-repeat; padding-left:10px; margin-top:10px}
@@ -101,7 +87,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 
 .tzgg{ width:280px; height:278px; margin:-280px 0 0 570px }
-.tzggbt{width:150px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px}
+.tzggbt{width:150px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;position:relative;top:-8px;}
 .tzggnb{ width:250px; height:241px}
 .gg_date{ display:block;font-size:12px; font-family:Microsoft YaHei; color:#727272; margin-bottom:4px; margin-top:23px}
 
@@ -110,11 +96,11 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .tzggnb ul li a{ font-size:13px; color:#686868}
 .tzggnb ul li a:hover{color:#09C}
 
-.hylt{ width:500px; height:158px; margin-top:31px}
+.hylt{ width:520px; height:158px; margin-top:31px}
 .hyltbt{width:150px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hylt_bg.jpg) left no-repeat; padding-left:28px}
 .hyltnb{ width:270px; height:0px}
 
-.hyltnb ul{}
+/* .hyltnb ul{} */
 .hyltnb ul li{line-height:32px; background:url(../images/narrow.png) 3px 15px no-repeat;}
 .hyltnb ul li a{padding-left:15px; font-size:13px; color:#686868}
 .hyltnb ul li a:hover{color:#09C}
@@ -125,15 +111,15 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .button2{ width:200px; height:500px; margin:30px 0 0 0}
 
 .leftbutton{width:300px; }
-.leftbuttonbt{width:100px; height:26px; line-height:28px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/rukou.jpg) left no-repeat; padding-left:28px; margin:40px 0 0 140px}
+.leftbuttonbt{width:150px; height:26px; line-height:28px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/rukou.jpg) left no-repeat; position: relative;left: 150px;text-indent: 26px;top:20px;}
 
-.app_login{ width:250px; height:169px; margin:20px 0 0 110px}
+.app_login{ width:250px; height:169px; position: relative;left: 105px;top: 31px;}
 .app{ width:250px; height:169px; background:url(../images/app_bg.jpg)}
 
-.review{width:200px; margin-top:-300px}
-.reviewbt{width:200px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/review_bg.jpg) left no-repeat; padding-left:28px;margin-top:20px}
-.reviewimg{ width:250px; margin-top:310px}
-.reviewimg2{ width:250px; margin:-93px 0 0 260px}
+.review{width:200px; height:50px;position: relative;top:-120px;}
+.reviewbt{width:200px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/review_bg.jpg) left no-repeat; padding-left:28px;position: relative;top: -201px;}
+.reviewimg{ width:250px; position: relative;top: -50px;}
+.reviewimg2{ width:250px; position: relative;top:-140px;left: 277px;}
 
 
 .login{ width:245px; height:166px; background:url(../images/login_bg.jpg)}
@@ -161,8 +147,11 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
 
 .hzfb { width:1060px; margin:0 auto; overflow:hidden; zoom:1; }
-.zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hzmt_bg.jpg) left no-repeat; padding-left:28px;margin-top:70px}
+.zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hzmt_bg.jpg) left no-repeat; padding-left:28px;}
 .zlhb_bot { width:205px; padding-left:35px; height:38px; padding-bottom:16px; border-right:1px solid #909090; }
 .zlhb_bot td { padding-right:15px; line-height:38px; }
 
-
+#flash{
+	width: 235px;height: 210px;border: solid 1px;position: relative;left:111px;
+	
+}
