@@ -76,7 +76,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .dtimg{ display:block; width:200px; height:152px; margin-top:22px}
 .dtimg2{ display:block; width:163px; height:80px;position: relative;left: 150px;}
 
-.dtwz{ width:270px; height:218px;margin-top:22px; margin:-150px 0 0 230px}
+.dtwz{ width:270px; height:218px;margin-top:22px; margin:-210px 0 0 255px}
 .wzbt{ display:block; width:260px; height:20px; line-height:20px;font-size:15px; font-family:Microsoft YaHei; color:#3b3b3b; margin-top:30px;margin-left:20px;}
 .wznr{ display:block; width:260px; height:60px; line-height:20px; color:#757575; font-size:13px; margin-top:26px; margin-left:20px;}
 .wznr:hover{ color:#09C}
@@ -98,7 +98,8 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 .hylt{ width:520px; height:158px; margin-top:31px}
 .hyltbt{width:150px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hylt_bg.jpg) left no-repeat; padding-left:28px}
-.hyltnb{ width:270px; height:0px}
+/* 调整行业资讯的宽度，如果嫌日期太靠右 */
+.hyltnb{ width:510px; height:0px}
 
 /* .hyltnb ul{} */
 .hyltnb ul li{line-height:32px; background:url(../images/narrow.png) 3px 15px no-repeat;}

@@ -40,8 +40,8 @@
 		});
 		//...................
 		$("#kinMaxShow2").kinMaxShow({
-			height:120,
-			width:120,
+			height:192,
+			width:231,
 			button:{
 				showIndex:false,
 				normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
@@ -63,7 +63,7 @@
 
 				/* var html = ""; */
 				for(var i=0;i<data.length;i++){
-					if(i>7){
+					if(i>5){
 						return;
 					}
 					
@@ -82,10 +82,11 @@
 					var values = topic.title;
 					
 					$('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15));
+					$("#adate0"+(i+1)).text(topic.publishTime).css("float","right");
 					
 				}
 			}
-			Zytz.getShortZytzForPage(0,3,func);
+			Zytz.getShortZytzForPage(0,6,func);
 		}
 
 		function showZlzxList(){
@@ -350,19 +351,19 @@
 			<div class="zhdtnb">
 				<div id="kinMaxShow2">
 				<div>
-					<a href="#"><img src="images/dtimg.jpg"  /></a>
+					<a href="#"><img src="images/dtimg.png"  /></a>
 				</div>
 
 				<div>
-					<a href="#"><img src="images/dtimg.jpg"  /></a>
+					<a href="#"><img src="images/dtimg.png"  /></a>
 				</div>
 
 				<div>
-					<a href="#"><img src="images/dtimg.jpg"   /></a>
+					<a href="#"><img src="images/dtimg.png"   /></a>
 				</div>
 
 				<div>
-					<a href="#"><img src="images/banner4.jpg"   /></a>
+					<a href="#"><img src="images/dtimg.png"   /></a>
 				</div>
 			</div>
 				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
@@ -385,20 +386,15 @@
 			<div class="hyltnb left">
 			
 				<ul>
-					<li><a href="#" class="hyltbt01"></a></li>
-					<li><a href="#" class="hyltbt02"></a></li>
-					<li><a href="#" class="hyltbt03"></a></li>
-					<li><a href="#" class="hyltbt04"></a></li>
+					<li><a href="#" class="hyltbt01"></a><span id="adate01"></span></li>
+					<li><a href="#" class="hyltbt02"></a><span id="adate02"></span></li>
+					<li><a href="#" class="hyltbt03"></a><span id="adate03"></span></li>
+					<li><a href="#" class="hyltbt04"></a><span id="adate04"></span></li>
+					<li><a href="#" class="hyltbt05"></a><span id="adate05"></span></li>
+					<li><a href="#" class="hyltbt06"></a><span id="adate06"></span></li>
 
 				</ul>
 			</div>
-			<div class="hyltnb right">
-				<ul>
-					<li><a href="#" class="hyltbt05">fff</a></li>
-					<li><a href="#" class="hyltbt06"></a></li>
-					<li><a href="#" class="hyltbt07"></a></li>
-					<li><a href="#" class="hyltbt08"></a></li>
-				</ul>
 				<!-- 
 					修改为动态内容，注掉静态内容
 				<ul>
@@ -416,7 +412,6 @@
 					<li><a href="in_newscenter.html?detail=xw/hylt_new02.html">扬子江国际论坛2015峰会-“一带一路”战略及交汇点高层论坛</a></li>
 					<li><a href="in_newscenter.html?detail=xw/hylt_new08.html">“一带一路”（连云港）经贸合作推介会</a></li>
 				</ul> -->
-			</div>
 		</div>
 		
 		<table style="margin-top:30px; margin-left:570px; font-size:12px; color:#757575">
