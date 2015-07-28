@@ -61,6 +61,9 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 #QRCode{
 	height: 300px;width: 95px;position: relative;float: right;right: -140px;background-color: #F3F7FA;
 }
+#QRCode_weixin{
+	height: 300px;width: 95px;position: relative;float: left;left:-142px;background-color: #F3F7FA;
+}
 
 .QR{align:center}
 

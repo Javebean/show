@@ -297,6 +297,7 @@
 	$(function(){
 		$(window).scroll(function(){
 			$("#QRCode").css("top",$(window).scrollTop()+"px");
+			$("#QRCode_weixin").css("top",$(window).scrollTop()+"px");
 
 		});
 	})
@@ -323,6 +324,17 @@
 					<img src="images/an.jpg" alt="QRCode"/>
 					<div style="width: 100px;height: 30px;font-size: 10px;">
 						手机扫描直接下载
+					</div>
+				</div>
+		</div>
+		<div id="QRCode_weixin">
+					<span style="display:block; font-size:14px;text-align:center;width: 100px;height: 50px;margin:38px 0  83px 0;">
+							展商注册和证件办理须在本网站申请！
+					</span>
+				<div>
+					<img src="images/an.jpg" alt="QRCode"/>
+					<div style="width: 100px;height: 30px;font-size: 10px;">
+						微信扫描关注连博会官方微信平台
 					</div>
 				</div>
 		</div>
