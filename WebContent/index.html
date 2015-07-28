@@ -81,7 +81,7 @@
 					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>'; */
 					var values = topic.title;
 					
-					$('.hyltbt0'+(i+1)).attr("href","#").text(values.substring(0,15));
+					$('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15));
 					
 				}
 			}
