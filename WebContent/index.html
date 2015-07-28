@@ -81,8 +81,8 @@
 					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>'; */
 					var values = topic.title;
 					
-					$('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15));
-					$("#adate0"+(i+1)).text(topic.publishTime).css("float","right");
+					$('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
+					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"});
 					
 				}
 			}
