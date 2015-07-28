@@ -116,10 +116,12 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .app_login{ width:250px; height:169px; position: relative;left: 105px;top: 31px;}
 .app{ width:250px; height:169px; background:url(../images/app_bg.jpg)}
 
-.review{width:200px; height:50px;position: relative;top:-120px;}
+
+.review{width:200px; height:50px;position: relative;margin-top:0px;}
 .reviewbt{width:200px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/review_bg.jpg) left no-repeat; padding-left:28px;position: relative;top: -201px;}
-.reviewimg{ width:250px; position: relative;top: -50px;}
-.reviewimg2{ width:250px; position: relative;top:-140px;left: 277px;}
+.reviewimg{ width:250px; position: relative;margin-top: -150px;}
+.reviewimg2{ width:250px; position: relative;margin-top:-150px;margin-left: 280px;}
+
 
 
 .login{ width:245px; height:166px; background:url(../images/login_bg.jpg)}
