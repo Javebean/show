@@ -18,6 +18,9 @@
 		<create javascript="Zytz" creator="spring">
 			<param name="beanName" value="zytz_dwr"></param>
 		</create>
+		<create javascript="Hyzx" creator="spring">
+			<param name="beanName" value="hyzx_dwr"></param>
+		</create>
 		<create javascript="Zlzx" creator="spring">
 			<param name="beanName" value="zlzx_dwr"></param>
 		</create>
