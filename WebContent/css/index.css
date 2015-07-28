@@ -149,10 +149,12 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 .footer2{ width:1130px; height:28px; margin:0 auto; line-height:28px; font-size:12px; color:#9B9B9B}
 
-.hzfb { width:1060px; margin:0 auto; overflow:hidden; zoom:1; }
+.hzfb { width:1060px; position: relative;left: 150px; overflow:hidden; zoom:1; }
 .zlhb_top{width:280px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hzmt_bg.jpg) left no-repeat; padding-left:28px;}
-.zlhb_bot { width:205px; padding-left:35px; height:38px; padding-bottom:16px; border-right:1px solid #909090; }
+.zlhb_bot { width:205px; padding-left:1px; height:38px; padding-bottom:16px; }
 .zlhb_bot td { padding-right:15px; line-height:38px; }
+
+.yqljbt{width:200px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;position: relative;top: -201px;}
 
 #flash{
 	width: 235px;height: 210px;border: solid 1px;position: relative;left:111px;
