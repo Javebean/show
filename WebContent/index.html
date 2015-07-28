@@ -51,7 +51,7 @@
 		});
 
 		showZlzxList();
-		
+
 		//行业资讯的动态更新
 		showHyzxList();
 		function showHyzxList(){
@@ -66,31 +66,31 @@
 
 				var html = '<ul>';
 				for(var i=0;i<data.length;i++){
-					
+
 					var topic = data[i];
 
 					var timeStr = topic.publishTime;
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1])+ 1;
+					var mTime = parseInt(timeDate[1]);
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
 					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="right" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
 					var values = topic.title;
-					
+
 					/* $('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
 					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"}); */
-					
+
 				}
 				html+='</ul>';
 				$('.hyltnb').html(html);
 			}
 			Hyzx.getShortHyzxForPage(0,8,func);
 		}
-		
+
 		//修改通知公告为动态
 		showTzggList();
 		function showTzggList(){
@@ -104,30 +104,31 @@
 				data = data.data;
 
 				var html = '<ul>';
-				for(var i=0;i<(data.length>7?7:data.length);i++){
-					
-					
+				var datanum = data.length>7?7:data.length;
+				for(var i=0;i<datanum;i++){
+
+
 					var topic = data[i];
 
 					var timeStr = topic.publishTime;
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1])+ 1;
+					var mTime = parseInt(timeDate[1]);
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					 html +=
 					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date right">'+topic.publishTime+'</span></li><br>';
 					var values = topic.title;
-					
+
 				}
 				html += '</ul>';
 				$('.tzggnb').html(html);
 			}
 			Zytz.getShortZytzForPage(0,8,func);
 		}
-		
+
 		function showZlzxList(){
 			var func = function(data){
 				data = JSON.parse(data);
@@ -170,8 +171,8 @@
 				}
 				Zlzx.getShortZlzxForPage(0,5,func);
 			}
-		
-		
+
+
 			Date.prototype.diff = function(date){
 
 				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
@@ -294,12 +295,12 @@
 		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
 		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */
 	</style>
-	
+
 	<script type="text/javascript">
 	$(function(){
 		$(window).scroll(function(){
-			$("#QRCode").css("top",$(window).scrollTop()+"px"); 
-			
+			$("#QRCode").css("top",$(window).scrollTop()+"px");
+
 		});
 	})
 </script>
@@ -338,7 +339,7 @@
 					<span class="zhdd">展会地点: 江苏省连云港市工业展览中心</span>
 				</div>
 		</div>
-		
+
 		<div id="show">
 			<div id="kinMaxShow">
 				<div>
@@ -359,21 +360,21 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class = "leftbutton left">	
+
+	<div class = "leftbutton left">
 	<div class="leftbuttonbt">快速入口</div>
 			<div class="button2 left">
 				<a class="dtimg2" href="in_exhibit_register.html"><img src="images/apply.jpg"/></a>
 				<a class="dtimg2" href="in_exhibit.html?detail=zs/wssb.html"><img src="images/badge.jpg" /></a>
 				<a class="dtimg2" href="in_exhibit.html?detail=zs/xzzx.html"><img src="images/downloadcenter.jpg" /></a>
 				<a class="dtimg2" href="in_about.html?detail=gy/zhgk.html"><img src="images/intro.jpg" /></a>
-				
-		
+
+
 		<div id="flash">
 			<a href="testlbh/index.html">
 				<img src="images/flash.png" alt="flash" />
 			</a>
-		</div>	
+		</div>
 		<div class="app_login">
 		<div class="login right">
 			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
@@ -386,8 +387,8 @@
 	</div>
 		</div>
 	</div>
-		
-		
+
+
 	<div class="news">
 		<div class="zhdt">
 			<div class="zhdtbt">展会资讯</div>
@@ -418,7 +419,7 @@
 			<div class="tzggbt">通知公告</div>
 			<div class="tzggnb">
 				<ul>
-					
+
 					<!-- <li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new02.html">丝路投资合作交流会</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new03.html">物流企业授牌大会</a></li> -->
@@ -430,7 +431,7 @@
 			<div class="hyltbt">行业资讯</div>
 			<div class="hyltnb left">
 			</div>
-				<!-- 
+				<!--
 					修改为动态内容，注掉静态内容
 				<ul>
 					<li><a href="in_newscenter.html?detail=xw/hylt_new01.html">“一带一路”国际物流与发展论坛</a></li>
@@ -448,9 +449,9 @@
 					<li><a href="in_newscenter.html?detail=xw/hylt_new08.html">“一带一路”（连云港）经贸合作推介会</a></li>
 				</ul> -->
 		</div>
-		
+
 		<table style="margin-top:30px; margin-left:570px; font-size:12px; color:#757575">
-                    <tr >	
+                    <tr >
                         <td align="center" valign="top">
                             <table width="208" border="0" cellspacing="0" cellpadding="1">
                                 <tr style="height: 30px">
@@ -569,7 +570,7 @@
                         </td>
                     </tr>
                 </table>
-                
+
         <div class="review left">
 		<div class="reviewbt">热点关注</div>
 			<div class="review left">
@@ -578,10 +579,10 @@
 			</div>
 		</div>
 		</div>
-	
+
 	<div class="hzfb">
 			<div class="zlhb_top">合作媒体</div>
-			
+
 			<div class="zlhb_bot">
 				<table width="0" border="0" cellspacing="0" cellpadding="0">
 					<tr>
@@ -595,29 +596,29 @@
 						<td><img src="images/meiti8.jpg" /></td>
 						<td><img src="images/meiti9.jpg" /></td>
 
-						
+
 					</tr>
 				</table>
-				
+
 			</div></br>
 			<hr style="height:1px;border:none;border-top:1px solid #555555;" />
 			<!-- 添加友情链接 -->
 			<div class="zlhb_top">友情链接</div>
 			<div>
 				 &nbsp;&nbsp;&nbsp;<a href="http://www.ccpit.org/bumenzhandian/xinxibu/" target="_blank">中国贸促会经济信息部</a>&nbsp;|
-	                    
+
 	             &nbsp;<a href="http://www.ccpit.org/shiyedanwei/maoyituiguangjiaoliuzhongxin/" target="_blank">中国贸促会贸易推广交流中心</a>&nbsp;&nbsp;|
-	         
+
 	             &nbsp;<a href="http://www.sinotrans-csc.com/" target="_blank">中国外运长航集团</a>&nbsp;|
-	         
+
 	             &nbsp;<a href="http://www.ccpit.org/" target="_blank">中国国际贸易促进委员会 </a>&nbsp;|
-	         
+
 	             &nbsp;<a href="http://www.jsdoftec.gov.cn/" target="_blank">江苏省商务厅</a>&nbsp;|
-	         
+
 	             &nbsp;<a href="http://www.lyg.gov.cn/" target="_blank">连云港市人民政府</a>&nbsp;|
 			</div>
 	</div></br></br>
-	
+
 	<div class="footer">
 	</div>
 </body>
