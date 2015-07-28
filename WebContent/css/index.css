@@ -77,7 +77,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .dtimg2{ display:block; width:163px; height:80px;position: relative;left: 150px;}
 
 .dtwz{ width:270px; height:218px;margin-top:22px; margin:-210px 0 0 255px}
-.wzbt{ display:block; width:260px; height:20px; line-height:20px;font-size:15px; font-family:Microsoft YaHei; color:#3b3b3b; margin-top:30px;margin-left:20px;}
+.wzbt{ display:block; width:260px; height:20px; line-height:20px;font-size:15px; font-family:Microsoft YaHei; color:#3b3b3b; margin-top:73px;margin-left:20px;}
 .wznr{ display:block; width:260px; height:60px; line-height:20px; color:#757575; font-size:13px; margin-top:26px; margin-left:20px;}
 .wznr:hover{ color:#09C}
 .dtwz ul{width:260px; margin-top:15px}
@@ -88,8 +88,8 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 .tzgg{ width:280px; height:278px; margin:-280px 0 0 570px }
 .tzggbt{width:150px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;position:relative;top:-8px;}
-.tzggnb{ width:250px; height:241px}
-.gg_date{ display:block;font-size:12px; font-family:Microsoft YaHei; color:#727272; margin-bottom:4px; margin-top:23px}
+.tzggnb{ width:250px; height:241px;margin-left: -7px;}
+.gg_date{ display:block;font-size:12px; font-family:Microsoft YaHei; color:#727272;}
 
 .tzggnb ul{}
 .tzggnb ul li{}

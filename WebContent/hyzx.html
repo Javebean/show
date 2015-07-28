@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/interface/Hyzx.js'></script>
+
+<script>
+var ROWS_PER_PAGE = 10;
+$(document).ready(function(){
+	showHyzxList(1);
+
+	function showHyzxList(page){
+		var func = function(data){
+			
+			data = JSON.parse(data);
+			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+			if(data.error!=null){
+				data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+			} 
+			rowCount = data.size;
+			initPager(".fy",page,rowCount,ROWS_PER_PAGE,showHyzxList);
+			//initPaging(page,rowCount); alter by javebean
+			data = data.data;
+			$('.zlzx_box').empty();
+			var html = "";
+			for(var i=0;i<data.length;i++){
+				var topic = data[i];
+
+				var timeStr = topic.publishTime;
+				topic.publishTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+
+				html +=
+					'<a class="newsnr" eurl="hyzxDetail.jsp?topicId='+topic.id+'"><div class="news_wz2"><div class="news_wzbt2"><span class="news_wzbt_nr left">'+
+					topic.title+
+					'</span><span class="new_wzbt_day right">'+topic.publishTime+'</span></div>'+
+      				'<div class="new_wznr2">'+topic.abs+'</div><span class="readmore">READ MORE+</span></div></a>';
+			}
+			$('.zlzx_box').append(html.replace(/undefined/g,""));
+			$('.newsnr').click(loadDetail);
+			$('.return_btn').click(function(){
+				$(".tz_detail").addClass("hide");
+				$(".tz_list").removeClass("hide");
+			});
+		}
+		Hyzx.getShortHyzxForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
+	}
+
+	function loadDetail(){
+		var url = $(this).attr("eurl");
+		$(".detail_html").empty();
+		$(".detail_html").load(url);
+		$(".tz_list").addClass("hide");
+		$(".tz_detail").removeClass("hide");
+	}
+
+	
+	//add by javebean
+	var initPager = function(tagetObj, curPage, itemCount, pageSize, pageFunction) {
+		var headhtml = '<ul class="pagination" style="margin:0px;">'+
+		'<li><a class="page_first" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+	    var endhtml = '<li><a class="page_last" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul>';
+		if(itemCount<=pageSize){
+			$(tagetObj).empty();
+		} else {
+			var pageCount = Math.ceil(itemCount/pageSize);
+			var start = 1;
+			var end = 1;
+			if(pageCount<=10) {
+				start = 1;
+				end = pageCount;
+			} else if(curPage<6){
+				start = 1;
+				end = 10;
+			} else if(pageCount - curPage<10) {
+				start = pageCount-9;
+				end = pageCount;
+			} else {
+				start = curPage - 5;
+				end = parseInt(curPage) + 4;
+			}
+
+			var html = "";
+			html += headhtml;
+			for(var index=start;index<=end;index++){
+				if(index==curPage){
+					html+='<li class="active"><a class="page_between" pageIndex="'+index+'">'+index+' <span class="sr-only"></span></a></li>';
+				} else {
+					html+='<li><a class="page_between" pageIndex="'+index+'">'+index+'</a></li>';
+				}
+			}
+			html += endhtml;
+
+			$(tagetObj).html(html);
+			$(tagetObj+" .page_first").click(function(){
+				pageFunction(1);
+			});
+			$(tagetObj+" .page_last").click(function(){
+				pageFunction(pageCount);
+			});
+			$(tagetObj+" .page_between").click(function(){
+				var index = $(this).attr("pageIndex");
+				pageFunction(index);
+			});
+			$(".paging").removeClass("hide");
+		}
+};
+});
+</script>
+
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">新闻中心</a> > <font style=" font-weight:bold; color:#1F9AD6">行业资讯</font></div>
+   <div class="nymainnr">
+   <div class="tz_list">
+   	<div class="zlzx_box">
+
+ 	</div>
+	<div class="paging hide">
+		<div class="fy">
+	    </div>
+	</div>
+	</div>
+
+	<div class="tz_detail hide">
+		<div class="detail_html"></div>
+		<div class="return_btn" style ="margin-top:18px"></div>
+	</div>
+
+	</div>
+
+</html>

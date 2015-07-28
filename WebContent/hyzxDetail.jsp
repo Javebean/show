@@ -10,20 +10,21 @@
     <script type='text/javascript' src='dwr/engine.js'></script>
     <script type="text/javascript" src="jslib/json2.js"></script>
 
-	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	<script type='text/javascript' src='dwr/interface/Hyzx.js'></script>
 </head>
 
 	<%String topicId = (String)request.getParameter("topicId"); %>
 <script>
 var topicId = '<%=topicId%>';
-topicId = topicId.split('?')[0]; 
+topicId = topicId.split('?')[0];
+
 $(document).ready(function(){
 	var func = function(data){
 		var pt = JSON.parse(data);
 		$("#title").html(pt.title);
 		$("#content").html(pt.content);
 	};
-	Zytz.getZytzById(topicId,func);
+	Hyzx.getHyzxById(topicId,func);
 });
 </script>
 <style>

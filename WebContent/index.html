@@ -17,6 +17,7 @@
 	<script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zlzx.js'></script>
 	<script type='text/javascript' src='dwr/interface/Zytz.js'></script>
+	<script type='text/javascript' src='dwr/interface/Hyzx.js'></script>
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
 	<script>
 	</script>
@@ -40,7 +41,7 @@
 		});
 		//...................
 		$("#kinMaxShow2").kinMaxShow({
-			height:192,
+			height:150,
 			width:231,
 			button:{
 				showIndex:false,
@@ -49,9 +50,11 @@
 			}
 		});
 
-		showZlzxList();//以下为行业资讯的动态内容，获取的是重要通知
-		showZytzList();
-		function showZytzList(){
+		showZlzxList();
+		
+		//行业资讯的动态更新
+		showHyzxList();
+		function showHyzxList(){
 			var func = function(data){
 				data = JSON.parse(data);
 				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
@@ -61,11 +64,8 @@
 				rowCount = data.size;
 				data = data.data;
 
-				/* var html = ""; */
+				var html = '<ul>';
 				for(var i=0;i<data.length;i++){
-					if(i>5){
-						return;
-					}
 					
 					var topic = data[i];
 
@@ -77,18 +77,57 @@
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
-					/* html +=
-					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>'; */
+					html +=
+					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="right" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
 					var values = topic.title;
 					
-					$('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
-					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"});
+					/* $('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
+					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"}); */
 					
 				}
+				html+='</ul>';
+				$('.hyltnb').html(html);
 			}
-			Zytz.getShortZytzForPage(0,6,func);
+			Hyzx.getShortHyzxForPage(0,8,func);
 		}
+		
+		//修改通知公告为动态
+		showTzggList();
+		function showTzggList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+				if(data.error!=null){
+					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+				}
+				rowCount = data.size;
+				data = data.data;
 
+				var html = '<ul>';
+				for(var i=0;i<(data.length>7?7:data.length);i++){
+					
+					
+					var topic = data[i];
+
+					var timeStr = topic.publishTime;
+
+					var timePar = timeStr.split(' ');
+					var timeDate = timePar[0].split('-');
+					var mTime = parseInt(timeDate[1])+ 1;
+
+					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
+
+					 html +=
+					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date right">'+topic.publishTime+'</span></li><br>';
+					var values = topic.title;
+					
+				}
+				html += '</ul>';
+				$('.tzggnb').html(html);
+			}
+			Zytz.getShortZytzForPage(0,8,func);
+		}
+		
 		function showZlzxList(){
 			var func = function(data){
 				data = JSON.parse(data);
@@ -102,12 +141,13 @@
 
 
 				var html = "";
+				var html2 = "";
 				var topic = data[0];
 				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
 				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[详细]</a>';
 				if(data.length > 1)
 				{
-					html += '<ul>';
+					html2 += '<ul>';
 						for(var i=1;i<data.length;i++){
 							var topic = data[i];
 
@@ -119,16 +159,19 @@
 
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
-							html +=
-							'<li><a class="left" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
+							html2 +=
+							'<li><a href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li><br>';
 
 						}
-						html += '</ul>';
+						html2 += '</ul>';
 					}
-					$('.dtwz.left').html(html);
+					$('.dtwz').html(html);
+					$('.dtwz2').html(html2);
 				}
-				Zlzx.getShortZlzxForPage(0,3,func);
+				Zlzx.getShortZlzxForPage(0,5,func);
 			}
+		
+		
 			Date.prototype.diff = function(date){
 
 				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
@@ -368,15 +411,17 @@
 			</div>
 				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
 				<div class="dtwz left" style="text-indent: 30px;"></div>
+				<div class="dtwz2" style="width: 520px;height: 20px;border: solid 0px;font-size: 12px;color: #999999;padding-left: 10px;"></div>
 			</div>
 		</div>
 		<div class="tzgg">
 			<div class="tzggbt">通知公告</div>
 			<div class="tzggnb">
 				<ul>
-					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
+					
+					<!-- <li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new02.html">丝路投资合作交流会</a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new03.html">物流企业授牌大会</a></li>
+					<li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new03.html">物流企业授牌大会</a></li> -->
 
 				</ul>
 			</div>
@@ -415,7 +460,7 @@
 		</div>
 		
 		<table style="margin-top:30px; margin-left:570px; font-size:12px; color:#757575">
-                    <tr >
+                    <tr >	
                         <td align="center" valign="top">
                             <table width="208" border="0" cellspacing="0" cellpadding="1">
                                 <tr style="height: 30px">
