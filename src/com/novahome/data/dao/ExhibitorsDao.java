@@ -180,16 +180,16 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1 order by applyTime desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 order by applyTime desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState") ;
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1 and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.orgName like '%" + orgName + "%' order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
@@ -210,16 +210,16 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.recommender like '%" + showName + "%' order by applyTime desc")
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.recommender like '%" + showName + "%' order by applyTime desc")
 				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth from Exhibitors a where a.recommender like '%" + showName + "%' and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.recommender like '%" + showName + "%' and a.orgName like '%" + orgName + "%' order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		query.setFirstResult(start);//设置起始行
 		query.setMaxResults(number);//每页条数	
@@ -243,17 +243,17 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1 and a.state = :state order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 			
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
@@ -275,17 +275,17 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.recommender like '%" + showName + "%' and a.firstState = :state order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.recommender like '%" + showName + "%' and a.firstState = :state order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 			
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.recommender like '%" + showName + "%' and a.firstState = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.recommender like '%" + showName + "%' and a.firstState = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行
@@ -309,17 +309,17 @@ public class ExhibitorsDao {
 		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1  and a.state = :state order by logo desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1  and a.state = :state order by logo desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 			
 		}
 		else
 		{
 			query = sessionFactory.getCurrentSession().createSQLQuery(
-					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' order by logo desc")
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' order by logo desc")
 					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
-					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth") ;
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
 		}
 		query.setParameter("state", state);
 		query.setFirstResult(start);//设置起始行

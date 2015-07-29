@@ -12,7 +12,7 @@ $(document).ready(function(){
 	//event binder
 	$('.update_tp').click(updateTP);
 	$('.reject_tp').click(rejectTP);
-	
+
 	$(".do_search").click(function(){
 		doSearch();
 	});
@@ -55,8 +55,13 @@ $(document).ready(function(){
 
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
-
-				var statestr = status[topic.state];
+				var statestr;
+					if(step == 1){
+						statestr = status[topic.firstState];
+					}
+				else if(step == 2){
+						statestr = status[topic.state];
+				}
 
 				html +=
 					'<tr>' +
@@ -74,7 +79,7 @@ $(document).ready(function(){
 			$('.delete_tp').click(deleteTP);
 			$('.view_tp').click(viewTP);
 		};
-
+		//alert("search_state:" + search_state);
 		if(step == 1){
 			Exhibitor.getExhibitorsForPageByStateFirst((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 		} else if(step == 2) {
