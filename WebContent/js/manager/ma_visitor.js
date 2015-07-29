@@ -188,10 +188,10 @@ $(document).ready(function(){
 			if(data[key]){
 				$(this).text(data[key]);
 			}
-			
+
 			//对idType进行判断。予以友好显示
 			if(key=="idType"){
-				
+
 				switch (data[key]) {
 				case 0:
 					$(this).text("身份证");break;
@@ -239,6 +239,7 @@ $(document).ready(function(){
 				showTopicList(1);
 			}
 		}
+		alert("update");
 		Visitor.updateVisitorState(eid,1,func);
 	}
 

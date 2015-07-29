@@ -256,8 +256,9 @@ public class VisitorService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
 				String picName = BarcodeUtils.createBarcode(id);
-				String nowpath = System.getProperty("user.dir");            
-				String tempdir = nowpath.replace("bin", "webapps");
+				/*String nowpath = System.getProperty("user.dir");            
+				String tempdir = nowpath.replace("bin", "webapps");*/
+				String tempdir = ConfigUtils.getRemote();
 				tempdir+="/"+ ConfigUtils.getPrj();
 				//String basePath = tempdir + "\\resources\\topicimages\\";
 				String imgSrc = tempdir + Constants.BARCODE_MID_STR + picName;
