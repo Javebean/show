@@ -137,14 +137,26 @@ $(document).ready(function(){
 				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
 			}
 
-			if(data.exhibitors.state == 0){
-				$(".audit_box").removeClass("hide");
-				$(".update_tp").attr("eid",data.exhibitors.id);
-				$(".reject_tp").attr("eid",data.exhibitors.id);
-			} else {
-				$(".audit_box").addClass("hide");
+			if(step== 2)
+			{
+				if(data.exhibitors.state == 0){
+					$(".audit_box").removeClass("hide");
+					$(".update_tp").attr("eid",data.exhibitors.id);
+					$(".reject_tp").attr("eid",data.exhibitors.id);
+				} else {
+					$(".audit_box").addClass("hide");
+				}
 			}
-
+			else if(step == 1)
+			{
+				if(data.exhibitors.firstState == 0){
+					$(".audit_box").removeClass("hide");
+					$(".update_tp").attr("eid",data.exhibitors.id);
+					$(".reject_tp").attr("eid",data.exhibitors.id);
+				} else {
+					$(".audit_box").addClass("hide");
+				}
+			}
 			$.colorbox({
 				inline : true,
 				innerWidth:860,
