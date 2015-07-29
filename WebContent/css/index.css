@@ -1,7 +1,7 @@
 /* CSS Document */
 html {overflow-x:hidden;background:url(../images/bg.jpg) center top no-repeat}
 body{ margin:0; padding:0; }
-a{ color:#999999; text-decoration:none; font-size:12px; padding:0; margin:0}
+a{ color:#000000; text-decoration:none; font-size:12px; padding:0; margin:0}
 
 ul{ margin:0; padding:0;list-style:none}
 li{ margin:0; padding:0;vertical-align:bottom;}
@@ -17,7 +17,7 @@ input,textarea,select,button {outline:none;}
 .top{ width:1060px; height:87px;}
 
 .logo{ display:block; width:333px; height:70px; margin-top:10px;}
-.logo2{margin-left:50px;}
+.logo2{width: 520px;height: 65px;margin: 0 0 0 250px;}
 .logo3{font-size:10px; z-index:10; position:relative; top:-25px; left:22px;}
 
 .tel_ban{ width:286px; height:35px; margin-top:-50px}
@@ -51,7 +51,7 @@ input,textarea,select,button {outline:none;}
 
 div#new_djs{ width:310px; height: 120px; position: absolute; 
 	top: 200px; z-index: 10;background-image: url("../images/TimeDown-wall.png");}
-.date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:white; display:block; margin:10px auto 0 auto; text-align:center}
+.date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:#999999; display:block; margin:10px auto 0 auto; text-align:center}
 .zhm{font-size:14px; font-family:SimSun; color:white; display:block; margin:0 auto; text-align:center; margin-top:5px}
 .time{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; margin:0 auto; text-align:center; margin-top:0px; height:26px; /* background:url(../images/time_bg.jpg) */}
 .zhxq{ width:100%; height:20px; margin:0 auto 0 auto}
@@ -91,16 +91,18 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .dtwz ul li{font-size:12px; color:#999999; height:30px; background:url(../images/dian.jpg) left no-repeat; padding-left:10px; margin-top:10px}
 .dtwz ul li a{ font-size:12px; color:#999999}
 .dtwz ul li a:hover{color:#09C}
+.dtwz2 {width: 520px;height: 20px;border: solid 0px;font-size: 12px;color: #999999;padding-left: 10px;}
+.dtwz2 ul li a{ font-size:12px; color:#999999}
 
 
 .tzgg{ width:280px; height:278px; margin:-280px 0 0 570px }
 .tzggbt{width:150px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/tzggbt_bg.jpg) left no-repeat; padding-left:28px;position:relative;top:-8px;}
 .tzggnb{ width:250px; height:241px;margin-left: -7px;}
-.gg_date{ display:block;font-size:12px; font-family:Microsoft YaHei; color:#727272;}
+.gg_date{font-size:12px; color:#999999; position: relative;left: 105px;}
 
 .tzggnb ul{}
 .tzggnb ul li{}
-.tzggnb ul li a{ font-size:13px; color:#686868}
+.tzggnb ul li a{ font-size:12px; color:#686868}
 .tzggnb ul li a:hover{color:#09C}
 
 .hylt{ width:520px; height:158px; margin-top:31px}
