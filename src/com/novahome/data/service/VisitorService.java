@@ -33,6 +33,7 @@ public class VisitorService {
 	private static final Logger logger = Logger.getLogger(VisitorService.class);
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
+	private static final String ROOT_STR = "ROOT";
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场证件申请\"}";
 
 	public String getVisitorTotalCount() 
@@ -59,6 +60,19 @@ public class VisitorService {
 	
 	public String saveVisitor(Visitor visitor, String cutIndex)
 	{
+		JSONObject obj = new JSONObject();
+		String idNo = visitor.getIdNo();
+		Visitor vi = visitorDao.getVisitorWithIdNoRegistered(idNo);
+		if(vi != null)
+		{
+			obj.put("result", false);
+			obj.put("message", "该身份证件号码已注册过");
+			obj.put("name", vi.getName());
+			obj.put("id", vi.getId());
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
 		String[]array;
 		String nowpath = System.getProperty("user.dir");            
 		String tempdir = nowpath.replace("bin", "webapps");
@@ -126,7 +140,7 @@ public class VisitorService {
 		visitor.setApplyTime(new Date());
 		String id = visitorDao.saveVisitor(visitor);
 		logger.info("save Visitor");
-		JSONObject obj = new JSONObject();
+		
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功申请证件！");
@@ -259,7 +273,10 @@ public class VisitorService {
 				/*String nowpath = System.getProperty("user.dir");            
 				String tempdir = nowpath.replace("bin", "webapps");*/
 				String tempdir = ConfigUtils.getRemote();
-				tempdir+="/"+ ConfigUtils.getPrj();
+				String prjName = ConfigUtils.getPrj();
+				prjName = prjName.trim();
+				if(!prjName.equals(ROOT_STR))
+					tempdir+= ConfigUtils.getPrj();
 				//String basePath = tempdir + "\\resources\\topicimages\\";
 				String imgSrc = tempdir + Constants.BARCODE_MID_STR + picName;
 
