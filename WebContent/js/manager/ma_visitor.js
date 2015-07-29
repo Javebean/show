@@ -14,6 +14,9 @@ $(document).ready(function(){
 	showTopicList(1);
 
 	//event binder
+	$('.update_tp').click(updateTP);
+	$('.reject_tp').click(rejectTP);
+	
 	$(".print_tp").click(function(){
 		type = $(this).attr("etype");
 		if(type == 1)
@@ -102,8 +105,6 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
-			$('.update_tp').click(updateTP);
-			$('.reject_tp').click(rejectTP);
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}

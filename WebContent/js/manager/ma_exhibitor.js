@@ -10,6 +10,9 @@ $(document).ready(function(){
 	showTopicList(1);
 
 	//event binder
+	$('.update_tp').click(updateTP);
+	$('.reject_tp').click(rejectTP);
+	
 	$(".do_search").click(function(){
 		doSearch();
 	});
@@ -69,8 +72,6 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
-			$('.update_tp').click(updateTP);
-			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		};
 
