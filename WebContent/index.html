@@ -119,7 +119,7 @@
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					 html +=
-					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date right">'+topic.publishTime+'</span></li><br>';
+					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date">'+topic.publishTime+'</span></li><br>';
 					var values = topic.title;
 
 				}
@@ -306,8 +306,6 @@
 </head>
 
 <body>
-	<!-- 滚动通知
-	<marquee id="rolling_info" onMouseOver="this.stop()" onMouseOut="this.start()"><a class="link_access" href="in_exhibit_register.html">展商注册</a>和<a class="link_access" href="in_exhibit.html?detail=zs/wssb.html">证件办理</a>须在本网站申请！</marquee> -->
 	<a name="toptag"></a>
 	<div class="header">
 	</div>
@@ -321,7 +319,7 @@
 					</span>
 				</a>
 				<div>
-					<img src="images/an.jpg" alt="QRCode"/>
+					<img src="images/an.png" alt="QRCode"/>
 					<div style="width: 100px;height: 30px;font-size: 10px;">
 						手机扫描直接下载
 					</div>
@@ -421,7 +419,7 @@
 			</div>
 				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
 				<div class="dtwz left" style="text-indent: 30px;"></div>
-				<div class="dtwz2" style="width: 520px;height: 20px;border: solid 0px;font-size: 12px;color: #999999;padding-left: 10px;"></div>
+				<div class="dtwz2"></div>
 			</div>
 		</div>
 		<div class="tzgg">
