@@ -11,6 +11,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.novahome.data.pojo.Exhibitors;
 import com.novahome.data.pojo.Transportation;
 import com.novahome.data.pojo.Visitor;
 
@@ -96,6 +97,14 @@ public class VisitorDao {
 				"from Visitor a where a.name=:name");
 				query.setString("name", name);
 				return query.list();
+	}
+	
+	public Visitor getVisitorWithIdNoRegistered(String idNo)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Visitor a where a.idNo=:idNo and (a.state = 1 or a.state = 0)");
+				query.setParameter("idNo", idNo);
+		return (Visitor) query.uniqueResult();
 	}
 	
 	@SuppressWarnings("unchecked")

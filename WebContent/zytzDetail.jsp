@@ -16,6 +16,7 @@
 	<%String topicId = (String)request.getParameter("topicId"); %>
 <script>
 var topicId = '<%=topicId%>';
+topicId = topicId.split('?')[0]; 
 $(document).ready(function(){
 	var func = function(data){
 		var pt = JSON.parse(data);

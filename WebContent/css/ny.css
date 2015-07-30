@@ -16,15 +16,17 @@ input,textarea,select,button {outline:none;}
 
 .top{ width:1060px; height:87px;}
 
-.logo{ display:block; width:333px; height:80px; margin-top:0px;}
+.logo{ display:block; width:333px; height:70px; margin-top:10px;}
+.logo2{margin-left:250px;}
+.logo3{font-size:10px; z-index:10; position:relative; top:-25px; left:22px;}
 
-.tel_ban{ width:286px; height:35px; margin-top:50px}
+.tel_ban{ width:286px; height:35px; margin-top:-50px}
 
-.ban{ width:104px; height:23px; float:right; margin:0 0 0 0}
+.ban{ width:104px; height:23px; float:right; margin:-100px 0 0 0 0}
 .ch{ display:block; width:44px; height:23px; float:left}
 
 .en{ display:block; width:60px; height:23px; float:left}
-.yonghu{ font-size:10px; color:#007DC9;margin:0 0 0 0;  left no-repeat; padding-left:60px}
+.yonghu{ font-size:10px; color:#007DC9;position:relative;margin:0 0 0 0;  left no-repeat; padding-left:60px}
 
 .tel{ width:286px; height:23px; margin-top:4px; float:left}
 
@@ -33,7 +35,7 @@ input,textarea,select,button {outline:none;}
 .navbar{ width:1060px; background:url(../images/navbar_bg.png)}
 .navbar ul{}
 .navbar ul li{ float:left; width:151px; background:url(../images/navx.jpg) left center no-repeat; text-align:center;  height:40px; line-height:40px}
-.navbar ul li a{ display:block; width:151px;height:40px; background:url(../images/navli1.jpg); font-size:15px; font-family:Microsoft YaHei; color:#FFF}
+.navbar ul li a{ display:block; width:151px;height:40px; background:url(../images/navli1.jpg); font-size:18px; font-family:Microsoft YaHei; color:#FFF}
 .navbar ul li a:hover{ background:url(../images/navli2.jpg)}
 .navsy{ width:153px!important;}
 .navsy a{ width:153px!important; background:url(../images/navli1_1.jpg)!important;}
@@ -70,8 +72,8 @@ input,textarea,select,button {outline:none;}
 
 
 
-.nyewm{ width:237px; height:208px; margin-top:14px; position:relative}
-.ewmwz{ display:block; position:absolute; width:237px; height:30px; bottom:0px; left:0; text-align:center; font-size:12px; color:#757575}
+.nyewm{ width:237px; height:208px; margin:14px 0 0 50px; position:relative}
+.ewmwz{ display:block; position:absolute; width:237px; height:30px; bottom:0px; top: 120px; left:-50px; text-align:center; font-size:12px; color:#757575}
 
 
 

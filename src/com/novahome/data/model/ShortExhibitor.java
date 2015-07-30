@@ -23,6 +23,8 @@ public class ShortExhibitor {
 	private String logo;
 	
 	private String booth;
+	
+	private int firstState;
 
 	public String getId() {
 		return id;
@@ -104,5 +106,11 @@ public class ShortExhibitor {
 		this.booth = booth;
 	}
 	
-	
+	public int getFirstState() {
+		return firstState;
+	}
+
+	public void setFirstState(int firstState) {
+		this.firstState = firstState;
+	}
 }

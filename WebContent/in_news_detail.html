@@ -21,10 +21,16 @@ $(document).ready(function(){
 		var url = 'zlzxDetail.jsp?topicId='+topicId+'';
 		$(".detail_html").empty();
 		$(".detail_html").load(url);
-	}else{
-		$(".sub_index").text("重要通知");
-		$(".a_zytz").addClass("menu_active");
+	}else if(detail == "Zytz"){
+		$(".sub_index").text("通知公告");
+		$(".a_tzgg").addClass("menu_active");
 		var url = 'zytzDetail.jsp?topicId='+topicId+'';
+		$(".detail_html").empty();
+		$(".detail_html").load(url);
+	}else if(detail == "Hyzx"){
+		$(".sub_index").text("行业资讯");
+		$(".a_zytz").addClass("menu_active");
+		var url = 'hyzxDetail.jsp?topicId='+topicId+'';
 		$(".detail_html").empty();
 		$(".detail_html").load(url);
 	}
@@ -56,25 +62,25 @@ $(document).ready(function(){
    </div>
     <div id="firstpane" class="menu_list">
 
-    <a eurl="zytz.html" class="menu_head menu_Left a_zytz">重要通知</a>
+    <a eurl="hyzx.html" class="menu_head menu_Left a_zytz">行业资讯</a>
 
 	<a eurl="zlzx.html" class="menu_head menu_Left a_zlzx">展览资讯</a>
 
 	<a eurl="xw/lcap.html" class="menu_head menu_Left">流程安排</a>
 
-	<a eurl="xw/zdhd.html" class="menu_head menu_Left">重大活动</a>
+	<a eurl="zytz.html" class="menu_head menu_Left a_tzgg">通知公告</a>
 
 	<a eurl="xw/hylt.html" class="menu_head menu_Left">会议论坛</a>
 
     </div>
    <div class="nyewm">
-    <img src="images/nyewm.jpg" />
-    <span class="ewmwz">中国交通运输博览会官方微信</span>
-   </div>
-   <a class="app" href="#">
-    <img src="images/app.jpg" />
-    <span class="appwz">中国交通运输博览会<br />手机客户端下载</span>
-   </a>
+        <img src="images/nyewm.jpg" />
+        <span class="ewmwz">连博会官方微信</span>
+      </div>
+      <a class="app" href="phonedownload.html">
+        <img src="images/app.jpg" />
+        <span class="appwz">连博会<br />手机客户端下载</span>
+      </a>
   </div>
   <div class="nymain_right left">
    <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">新闻中心</a> > <font class="sub_index" style=" font-weight:bold; color:#1F9AD6">展览资讯</font></div>

@@ -10,6 +10,9 @@ $(document).ready(function(){
 	showTopicList(1);
 
 	//event binder
+	$('.update_tp').click(updateTP);
+	$('.reject_tp').click(rejectTP);
+
 	$(".do_search").click(function(){
 		doSearch();
 	});
@@ -52,8 +55,13 @@ $(document).ready(function(){
 
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
-
-				var statestr = status[topic.state];
+				var statestr;
+					if(step == 1){
+						statestr = status[topic.firstState];
+					}
+				else if(step == 2){
+						statestr = status[topic.state];
+				}
 
 				html +=
 					'<tr>' +
@@ -69,11 +77,9 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
-			$('.update_tp').click(updateTP);
-			$('.reject_tp').click(rejectTP);
 			$('.view_tp').click(viewTP);
 		};
-
+		//alert("search_state:" + search_state);
 		if(step == 1){
 			Exhibitor.getExhibitorsForPageByStateFirst((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 		} else if(step == 2) {
@@ -131,14 +137,26 @@ $(document).ready(function(){
 				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
 			}
 
-			if(data.exhibitors.state == 0){
-				$(".audit_box").removeClass("hide");
-				$(".update_tp").attr("eid",data.exhibitors.id);
-				$(".reject_tp").attr("eid",data.exhibitors.id);
-			} else {
-				$(".audit_box").addClass("hide");
+			if(step== 2)
+			{
+				if(data.exhibitors.state == 0){
+					$(".audit_box").removeClass("hide");
+					$(".update_tp").attr("eid",data.exhibitors.id);
+					$(".reject_tp").attr("eid",data.exhibitors.id);
+				} else {
+					$(".audit_box").addClass("hide");
+				}
 			}
-
+			else if(step == 1)
+			{
+				if(data.exhibitors.firstState == 0){
+					$(".audit_box").removeClass("hide");
+					$(".update_tp").attr("eid",data.exhibitors.id);
+					$(".reject_tp").attr("eid",data.exhibitors.id);
+				} else {
+					$(".audit_box").addClass("hide");
+				}
+			}
 			$.colorbox({
 				inline : true,
 				innerWidth:860,

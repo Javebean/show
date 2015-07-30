@@ -14,6 +14,9 @@ $(document).ready(function(){
 	showTopicList(1);
 
 	//event binder
+	$('.update_tp').click(updateTP);
+	$('.reject_tp').click(rejectTP);
+
 	$(".print_tp").click(function(){
 		type = $(this).attr("etype");
 		if(type == 1)
@@ -102,8 +105,6 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
-			$('.update_tp').click(updateTP);
-			$('.reject_tp').click(rejectTP);
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}
@@ -188,10 +189,10 @@ $(document).ready(function(){
 			if(data[key]){
 				$(this).text(data[key]);
 			}
-			
+
 			//对idType进行判断。予以友好显示
 			if(key=="idType"){
-				
+
 				switch (data[key]) {
 				case 0:
 					$(this).text("身份证");break;
@@ -239,6 +240,7 @@ $(document).ready(function(){
 				showTopicList(1);
 			}
 		}
+		//alert("update");
 		Visitor.updateVisitorState(eid,1,func);
 	}
 
