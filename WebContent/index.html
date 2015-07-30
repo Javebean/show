@@ -104,8 +104,8 @@
 				data = data.data;
 
 				var html = '<ul>';
-				var datanum = data.length>7?7:data.length;
-				for(var i=0;i<datanum;i++){
+				//var datanum = data.length>7?7:data.length;
+				for(var i=0;i<data.length;i++){
 
 
 					var topic = data[i];
@@ -126,7 +126,7 @@
 				html += '</ul>';
 				$('.tzggnb').html(html);
 			}
-			Zytz.getShortZytzForPage(0,8,func);
+			Zytz.getShortZytzForPage(0,5,func);
 		}
 
 		function showZlzxList(){
@@ -380,7 +380,7 @@
 
 
 		<div id="flash">
-			<a href="testlbh/index.html">
+			<a href="videoplay.html">
 				<img src="images/flash.png" alt="flash" />
 			</a>
 		</div>
