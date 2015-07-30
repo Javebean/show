@@ -36,6 +36,10 @@ public class VisitorService {
 	private static final String ROOT_STR = "ROOT";
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场证件申请\"}";
 
+	private static final String NAME_CHI_STR = "姓名:";
+	private static final String PHONE_CHI_STR = "手机:";
+	private static final String ORG_CHI_STR = "公司:";
+	
 	public String getVisitorTotalCount() 
 	{
 		long count = visitorDao.getVisitorTotalCount(null);
@@ -270,6 +274,10 @@ public class VisitorService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
 				String picName = BarcodeUtils.createBarcode(id);
+				String barcodeContent = NAME_CHI_STR + visitor.getName() + "\n" + ORG_CHI_STR + visitor.getOrg() + "\n"
+						+ PHONE_CHI_STR + visitor.getPhone();
+				String bardcode = BarcodeUtils.createBadgeBarcode(barcodeContent);
+				visitor.setBarcode(bardcode);
 				/*String nowpath = System.getProperty("user.dir");            
 				String tempdir = nowpath.replace("bin", "webapps");*/
 				String tempdir = ConfigUtils.getRemote();
