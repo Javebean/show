@@ -35,6 +35,7 @@ public class Visitor {
 	private String idFont;
 	private String idBack;
 	private int idType;//添加身份证明字段 by javebean
+	private String barcode;
 	
 	@Id
 	@Column(length = 32)
@@ -156,4 +157,13 @@ public class Visitor {
 	public int getIdType() {
 		return idType;
 	}
+	public String getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+	
+	
+	
 }
