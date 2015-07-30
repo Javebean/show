@@ -9,7 +9,9 @@
 	background: url(images/staffcard.jpg);
 
 }
-
+.cp_qrcode{
+width: 70px;height:70px; border:solid 1px;position: relative;top:-243px;left:20px;
+}
 .cp_photo {
 	width: 118px;
 	height: 149px;
@@ -53,6 +55,8 @@ $(document).ready(function(){
 
   <div>
 		<div><img style="width:322px; height:415;" src="images/staffcard.png" /></div>
+		<!-- 添加证件二维码 -->
+		<div class="cp_qrcode"></div>
        <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
        <div class="cp_name"></div>
 			<div class="cp_company"></div>

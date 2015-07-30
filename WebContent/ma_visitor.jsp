@@ -179,7 +179,11 @@
 					
 					<div class="form-group">
 						<div class="cp">
-					       <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
+						<!-- 添加证件二维码 -->
+			       		<div style="width: 70px;height:70px; border:solid 1px;float: left;margin-top: 170px;margin-left: 20px;"></div>
+					       <div class="cp_photo" style="overflow:hidden;">
+					       		<img class="cp_image" style="width:118px;height:149px;" src="" />
+					       </div>
 					       <div class="cp_name"></div>
 								<div class="cp_company"></div>
 					      </div>

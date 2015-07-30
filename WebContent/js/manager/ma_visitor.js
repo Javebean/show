@@ -156,6 +156,7 @@ $(document).ready(function(){
 		$(".print_tp").attr("ename",$(this).attr("ename"));
 		$(".print_tp").attr("ecompany",$(this).attr("ecompany"));
 		$(".print_tp").attr("etype",$(this).attr("etype"));
+		//$(".print_tp").attr("etype",$(this).attr("etype"));
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
@@ -165,10 +166,13 @@ $(document).ready(function(){
 			$(".cp_image_bac").attr("src",PIC_BASE+data.idBack);
 
 			if(data.state == 0){
+				//if state="申请",隐藏打印按钮 by javebean
+				$(".print_tp").hide();
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.id);
 				$(".reject_tp").attr("eid",data.id);
 			} else {
+				$(".print_tp").show();
 				$(".audit_box").addClass("hide");
 			}
 			$.colorbox({
