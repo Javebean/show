@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
 	<link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
 
@@ -16,30 +16,44 @@
 	<script type='text/javascript' src='../dwr/engine.js'></script>
 	<script type='text/javascript' src='../dwr/interface/Zlzx.js'></script>
 	<script type='text/javascript' src='../dwr/interface/Zytz.js'></script>
+	<script type='text/javascript' src='../dwr/interface/Hyzx.js'></script>
 	<script type='text/javascript' src='../dwr/interface/Exhibitor.js'></script>
 	<script>
 	</script>
 	<script type="text/javascript">
 	$(function(){
 		/* $(".header").load("pub_header.html"); */
-		$(".header").load("pub_header.html",function(){
+		 $(".header").load("pub_header.html",function(){
 			$("#myRolling").append($("#rolling_info"));
 		});
 
 		$(".footer").load("pub_footer.html");
 
+
 		$("#kinMaxShow").kinMaxShow({
 			height:320,
 			button:{
 				showIndex:false,
-				normal:{background:'url(../images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
-				focus:{background:'url(../images/dian1.png)',border:'0'}
+				normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
+				focus:{background:'url(images/dian1.png)',border:'0'}
+			}
+		});
+		//...................
+		$("#kinMaxShow2").kinMaxShow({
+			height:150,
+			width:231,
+			button:{
+				showIndex:false,
+				normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
+				focus:{background:'url(images/dian1.png)',border:'0'}
 			}
 		});
 
-	//	showZlzxList();
-	//	showZytzList();
-		function showZytzList(){
+		//showZlzxList();
+
+		//行业资讯的动态更新
+		//showHyzxList();
+		function showHyzxList(){
 			var func = function(data){
 				data = JSON.parse(data);
 				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
@@ -49,24 +63,69 @@
 				rowCount = data.size;
 				data = data.data;
 
-				var html = "";
+				var html = '<ul>';
 				for(var i=0;i<data.length;i++){
+
 					var topic = data[i];
 
 					var timeStr = topic.publishTime;
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1])+ 1;
+					var mTime = parseInt(timeDate[1]);
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
-					'<li><span class="gg_date">'+topic.publishTime+'</span><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title+'</a></li>';
+					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="hylt_date" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
+					var values = topic.title;
+
+					 $('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
+					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"}); 
+
 				}
-				$('.tzggnb ul').html(html);
+				html+='</ul>';
+				$('.hyltnb').html(html);
 			}
-			Zytz.getShortZytzForPage(0,3,func);
+			Hyzx.getShortHyzxForPage(0,7,func);
+		}
+
+		//修改通知公告为动态
+		//showTzggList();
+		function showTzggList(){
+			var func = function(data){
+				data = JSON.parse(data);
+				//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
+				if(data.error!=null){
+					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
+				}
+				rowCount = data.size;
+				data = data.data;
+
+				var html = '<ul>';
+				//var datanum = data.length>7?7:data.length;
+				for(var i=0;i<data.length;i++){
+
+
+					var topic = data[i];
+
+					var timeStr = topic.publishTime;
+
+					var timePar = timeStr.split(' ');
+					var timeDate = timePar[0].split('-');
+					var mTime = parseInt(timeDate[1]);
+
+					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
+
+					 html +=
+					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date">'+topic.publishTime+'</span></li><br>';
+					var values = topic.title;
+
+				}
+				html += '</ul>';
+				$('.tzggnb').html(html);
+			}
+			Zytz.getShortZytzForPage(0,5,func);
 		}
 
 		function showZlzxList(){
@@ -76,37 +135,43 @@
 				if(data.error!=null){
 					data=JSON.parse('{"data":[{"id":0,"title":"","publishTime":"","abs":""}],"size":0}');
 				}
+
 				rowCount = data.size;
 				data = data.data;
 
+
 				var html = "";
+				var html2 = "";
 				var topic = data[0];
 				html += '<a class="wzbt" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.title + '</a>';
-				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[details]</a>';
+				html += 	'<a class="wznr" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">' + topic.abs + '[详细]</a>';
 				if(data.length > 1)
 				{
-					html += '<ul>';
+					html2 += '<ul>';
 						for(var i=1;i<data.length;i++){
 							var topic = data[i];
 
 							var timeStr = topic.publishTime;
 
-							var timePar = timeStr.split(' ');
-							var timeDate = timePar[0].split('-');
-							var mTime = parseInt(timeDate[1])+ 1;
+							 var timePar = timeStr.split(' ');
+							 var timeDate = timePar[0].split('-');
+							 var mTime = parseInt(timeDate[1]);
 
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
-							html +=
-							'<li><a class="left" href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li>';
+							html2 +=
+							'<li><a href="in_news_detail.html?detail=Zlzx&eid='+topic.id+'">'+ topic.title + '</a><span class="right">' + topic.publishTime +'</span></li><br>';
 
 						}
-						html += '</ul>';
+						html2 += '</ul>';
 					}
 					$('.dtwz').html(html);
+					$('.dtwz2').html(html2);
 				}
 				Zlzx.getShortZlzxForPage(0,5,func);
 			}
+
+
 			Date.prototype.diff = function(date){
 
 				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
@@ -116,18 +181,17 @@
 			var date = new Date('2015/09/23 00:00:01');
 			var todaystr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' +  now.getDate() + '日'  ;
 
-
 			var diff = now.diff(date);
 			var daynum =0;
 			if (diff >0)
-			daynum = diff;
+				daynum = diff;
 			show_today(todaystr);
 			show_num(daynum);
 		});
 
 
 		function show_num(n){
-			var it = $(".t_num i");
+			/*var it = $(".t_num i");
 			var len = String(n).length;
 			for(var i=0;i<len;i++){
 				if(it.length<=i){
@@ -140,12 +204,13 @@
 					backgroundPosition :'-10px '+String(y)+'px'
 				}, 1400,'swing',function(){}
 				);
-			}
+			}*/
+			$("#day").text(n);
 		}
 
 		function show_today(n){
 			$(".date").text(n);
-		}
+	}
 
 
 	</script>
@@ -163,17 +228,22 @@
 					var loginType = data.type;
 					//location.reload();
 					location.href ="#toptag";
-					//	alert(usrname+"登陆成功");
-					//	$(".yonghu").removeClass("hide");
-					$(".yonghu").text("welcom，" + usrname);
-				    $(".logout").removeClass("hide");
+				//	alert(usrname+"登陆成功");
+				//	$(".yonghu").removeClass("hide");
+
+					$(".yonghu").text("欢迎," + usrname);
+					$(".logout").removeClass("hide");
 					setCookie("user",usrname);
 					setCookie("type", loginType);
+					//alert(getCookie("type"));
+				}
+				else {
+					alert("登录失败，请检查用户名和密码");
 				}
 
 			}
 			var usrnameValue = document.getElementById('login001').value;
-			//	alert(usrnameValue);
+		//	alert(usrnameValue);
 			var paswordValue = document.getElementById('login002').value;
 			Exhibitor.login(usrnameValue,paswordValue,func);
 			return true;
@@ -185,32 +255,35 @@
 	    exp.setTime(exp.getTime() + 60*60*1000);
 	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 	}
+
+
 	</script>
-	<title>Lianyungang Logistics Expos</title>
+	<title>LBH</title>
 	<style type="">
 		.t_num i {
 			width: 26px;
 			height: 50px;
 			display: inline-block;
-			background: url(../images/number.png) no-repeat;
+			background: url(images/number.png) no-repeat;
 			background-position: -10px -480px;
 			text-indent: -999em;
 			margin-bottom: -6px;
 		}
-		#rolling_info{
+		/* #rolling_info{
 		  color:#FF7100;
-		  font-size:20px;
+		  font-size:13px;
 		  font-family:"宋体";
 		  z-index: 5000;
-		  width: 300px;
-		  position:relative;
-		  top:45px;
-		  left:200px;
+		  width: 1000px;
+		  top:0px;
+		  left:20px;
 	}
+
+
 		#rolling_info a.link_access{
 			color:#FF7100;
-			font-size:20px;
-			text-decoration:none;
+			font-size:13px;
+			text-decoration:none;*/
 		}
 
 		#rolling_info a.link_access:link {color: #FF7100}		/* 未访问的链接 */
@@ -218,19 +291,40 @@
 		#rolling_info a.link_access:hover {color:yellow;text-decoration: underline;}	/* 鼠标移动到链接上 */
 		#rolling_info a.link_access:active {color: #FF7100}	/* 选定的链接 */
 	</style>
+
+	<script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			$("#QRCode").css("top",$(window).scrollTop()+"px");
+			$("#QRCode_weixin").css("top",$(window).scrollTop()+"px");
+
+		});
+	})
+</script>
+
 </head>
 
-<body><!-- 滚动通知 -->
-	<marquee id="rolling_info" onMouseOver="this.stop()" onMouseOut="this.start()"><a class="link_access" href="in_exhibit_register.html">Exhibitor Registration</a>  and  <a class="link_access" href="in_exhibit.html?detail=zs/wssb.html">Badge Apply </a> Must be applied on this site</marquee>
+<body>
 	<a name="toptag"></a>
 	<div class="header">
 	</div>
 
 	<div class="banner">
+		<div id="new_djs">
+		<span class="date">10 April 2015</span>
+		<span class="zhm">To<span style="color: #E74E3E">China Silk Road Int'l Logistics Expo, Lianyungang</span></span>
+		<!-- <div class="time">Remain <span class="t_num"></span> Days</div>-->
+		<div class="time">Remain<span id="day" style="font-size: 20px;color: #E74E3E">00</span> Days</div>
+		<div class="zhxq">
+			<span class="zhsj">Sep 22-24 2015</span>
+			<span class="zhdd">Industrial Exhibition Center，Lianyungang </span>
+		</div>
+	</div>
+
 		<div id="show">
 			<div id="kinMaxShow">
 				<div>
-					<a href="#"><img src="../images/banner1.jpg"   /></a>
+					<a href="#"><img src="../images/banner3.jpg"   /></a>
 				</div>
 
 				<div>
@@ -238,7 +332,7 @@
 				</div>
 
 				<div>
-					<a href="#"><img src="../images/banner3.jpg"   /></a>
+					<a href="#"><img src="../images/banner1.jpg"   /></a>
 				</div>
 
 				<div>
@@ -248,35 +342,69 @@
 		</div>
 	</div>
 
-	<div class="djs">
-		<span class="date">10 April 2015</span>
-		<span class="zhm">To <font color="#E00000">2</font> th <font color="#E00000">China Silk Road Int'l Logistics Expo, Lianyungang</font> </span>
-		<div class="time">Remain <span class="t_num"></span> Days</div>
-		<div class="zhxq">
-			<span class="zhsj left">Sep 22-24 2015</span>
-			<span class="zhdd right">Industrial Exhibition Center，Lianyungang </span>
+	<div class = "testblock">
+	<div class = "leftbutton left">
+	<div class="leftbuttonbt">Fast Channel</div>
+			<div class="button2 left">
+				<a class="dtimg2" href="in_exhibit_register.html"><img src="../images/apply.jpg"/></a>
+				<a class="dtimg2" href="in_exhibit.html?detail=zs/wssb.html"><img src="../images/badge.jpg" /></a>
+				<a class="dtimg2" href="in_exhibit.html?detail=zs/xzzx.html"><img src="../images/downloadcenter.jpg" /></a>
+				<a class="dtimg2" href="in_about.html?detail=gy/zhgk.html"><img src="../images/intro.jpg" /></a>
+
+
+		<div id="flash">
+			<a href="videoplay.html">
+				<img src="../images/flash.png" alt="flash" />
+			</a>
+		</div>
+		<div class="app_login">
+		<div class="login right">
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="username"  name="" id= "login001" type="text" />
+			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="password"  name=""  id= "login002" />
+			<div class="button">
+				<input style="background:url(../images/dlb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
+				<input style="background:url(../images/zcb.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
+			</div>
 		</div>
 	</div>
+		</div>
+	</div>
+
+
 	<div class="news">
 		<div class="zhdt left">
-			<div class="zhdtbt">Exhibition News</div>
+			<div class="zhdtbt" >Exhibition News</div>
 			<div class="zhdtnb">
-				<a class="dtimg left" href="#"><img src="../images/dtimg.jpg" /></a>
-				<div class="dtwz left">
-					<a class="wzbt" href="zlzx_new01.html">Opening of the 2th LBH</a>
-					<a class="wznr" href="zlzx_new01.html">Logistics Park and Logistics Exhibition..[Read more]</a>
-					<ul>
+				 <div class = "zhdtpic left"><div id="kinMaxShow2">
+				<div>
+					<a href="#"><img src="../images/dtimg.jpg"  /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/dtimg2.jpg"  /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/dtimg3.jpg"   /></a>
+				</div>
+
+				<div>
+					<a href="#"><img src="../images/dtimg4.jpg"   /></a>
+				</div>
+			</div></div>
+				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
+				<div class="dtwz"><a class="wzbt" href="zlzx_new01.html">Opening of the 2th LBH</a></div>
+				<div class="dtwz2"><ul>
 						<li><a class="left" href="zlzx_new02.html">Port handling equipment and technology</a><span class="right">03/15</span></li>
 						<li><a class="left" href="zlzx_new03.html">Shelf equipment access</a><span class="right">03/15</span></li>
 						<li><a class="left" href="zlzx_new04.html">Intermodal Container Technology</a><span class="right">03/15</span></li>
 						<li><a class="left" href="zlzx_new05.html">Logistics software solutions</a><span class="right">03/15</span></li>
-					</ul>
-				</div>
+					</ul></div>
 			</div>
 		</div>
-		<div class="tzgg right">
-			<div class="tzggbt">Announcement</div>
-			<div class="tzggnb">
+		<div class="tzgg">
+			<div class="tzggbt left">Announcement</div>
+			<div class="tzggnb left">
 				<ul>
 					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new01.html">Opening of the 2th LBH</a></li>
 					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new02.html">Theme special events </a></li>
@@ -285,35 +413,187 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+		<div class="hylt left">
+			<div class="hyltbt">Industry Information</div>
+			<div class="hyltnb">
+				<ul>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new01.html">“一带一路”国际物流与发展论坛</a></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new07.html">电子商务   + 物流论坛</a></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new03.html">国际警务论坛</a></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new04.html">全国A级物流企业授牌大会</a></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new05.html">国际港航合作发展论坛</a></li>
 
-	<div class="app_login">
-		<div class="app left">
-			<div class="app_left left">
-				<div class="appimg left"><img src="../images/appimg1.jpg" /></div>
-				<div class="appwz right">
-					<span class="appwz1">Mobile App</span>
-					<a class="chakan" href="phonedownload.html">Read more ></a>
-				</div>
-			</div>
-			<div class="app_right left">
-				<div class="appimg2 left"><img src="../images/appewm.jpg" /></div>
-				<div class="appwz_2 right">
-					<span class="appwz1">Wechat</span>
-					<p class="chakan" href="#">Scan</p>
-				</div>
+				</ul>
+		</div></div>
+
+		<table class="table">
+                    <tr >
+                        <td align="center" valign="top">
+                            <table width="208" border="0" cellspacing="0" cellpadding="1">
+                                <tr style="height: 30px">
+                                    <td align="left" style="height: 30px">
+                                        <div class="zbdwbt">Organizer</div></td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        中国国际商会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="left">
+                                        <div class="xbdwbt">Sponsors</div></td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      中国国际商会会展部</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        中国贸促会推广交流中心</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                         中国外运长航集团</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省对外友好交流促进会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省货代协会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                         连云港市人民政府</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      江苏省商务厅</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省外办</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                      江苏省经信委</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                       江苏省贸促会</td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        江苏省交通厅 </td>
+                                </tr>
+                                <tr>
+                                    <td height="16">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+        <div class="review left">
+		<div class="reviewbt">Hot Topics</div>
+			<div class="review left">
+				  <div class="reviewimg left"><a href="techlbh.html"><img src="../images/review1.jpg"/></a></div>
+				  <div class="reviewimg2 left"><a href="review.html"><img src="../images/review2.jpg"/></a></div>
 			</div>
 		</div>
-		<div class="login_en right">
-			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='username'}" onClick="if(this.value=='username')this.value='';" value="username"  name="" id= "login001" type="text" />
-			<input style=" display:block; width:261px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='password'}" onClick="if(this.value=='password')this.value='';" value="password"  name=""  id= "login002" type="text" />
-			<div class="button">
-				<input style="background:url(../images/login_index.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:4px" name="" type="button" onclick="checklogin();"/>
-				<input  style="background:url(../images/register_index.jpg); cursor:pointer; width:67px; height:25px; display:block; float:left; border:0; margin-left:6px" name="" type="button"  onclick="location='in_exhibit_register.html'"/>
-			</div>
 		</div>
-	</div>
 
+    
+	<div class="hzfb">
+			<div class="zlhb_top">Press</div>
+
+			<div class="zlhb_bot">
+				<table width="0" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td><a href="http://www.chinalenglian.com.cn/"><img src="../images/meiti1.jpg" /></a></td>
+						<td><a href="http://www.logisticstech.com/index.asp?mNum=0"><img src="../images/meiti3.jpg" /></a></td>
+						<td><a href="http://cn.made-in-china.com/"><img src="../images/meiti4.jpg" /></a></td>
+						<td><a href="http://mh.vogel.com.cn/s_index.html"><img src="../images/meiti5.jpg" /></a></td>
+						<td><a href="http://www.zwhz.com/"><img src="../images/meiti6.jpg" /></a></td>
+						<td><a href="http://www.wedohome.com/"><img src="../images/meiti7.jpg" /></a></td>
+						<td><a href="http://www.qd56.cn/"><img src="../images/meiti8.jpg" /></a></td>
+						<td><a href="http://www.56products.com/"><img src="../images/meiti9.jpg" /></a></td>
+
+
+					</tr>
+				</table>
+
+			</div></br>
+			<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+			<!-- 添加友情链接 -->
+			<div class="yqljbt">Link</div>
+			<div>
+				 &nbsp;&nbsp;&nbsp;<a href="http://www.ccpit.org/bumenzhandian/xinxibu/" target="_blank">中国贸促会经济信息部</a>&nbsp;|
+
+	             &nbsp;<a href="http://www.ccpit.org/shiyedanwei/maoyituiguangjiaoliuzhongxin/" target="_blank">中国贸促会贸易推广交流中心</a>&nbsp;&nbsp;|
+
+	             &nbsp;<a href="http://www.sinotrans-csc.com/" target="_blank">中国外运长航集团</a>&nbsp;|
+
+	             &nbsp;<a href="http://www.ccpit.org/" target="_blank">中国国际贸易促进委员会 </a>&nbsp;|
+
+	             &nbsp;<a href="http://www.jsdoftec.gov.cn/" target="_blank">江苏省商务厅</a>&nbsp;|
+
+	             &nbsp;<a href="http://www.lyg.gov.cn/" target="_blank">连云港市人民政府</a>&nbsp;|
+			</div>
+	</div></div></br></br>
 
 	<div class="footer">
 	</div>
