@@ -135,7 +135,6 @@ $(document).ready(function(){
 				return false;
 			},
 			onUploadSuccess : function(file, data, response) {
-				console.log(file);
 				pic_scare = "";
 				picFlag = true;
 				setTimeout(function(){
