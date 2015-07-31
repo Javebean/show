@@ -78,7 +78,7 @@
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
-					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="right" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
+					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="hylt_date" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
 					var values = topic.title;
 
 					/* $('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
@@ -326,7 +326,7 @@
 				</div>
 		</div>
 		<div id="QRCode_weixin">
-					<span style="display:block; font-size:14px;text-align:center;width: 100px;height: 50px;margin:38px 0  83px 0;">
+					<span style="display:block; font-size:14px; color:red; text-align:center;width: 75px;height: 50px;margin:38px 0  83px 10px;">
 							展商注册和证件办理须在本网站申请！
 					</span>
 				<div>
@@ -350,7 +350,7 @@
 		<div id="show">
 			<div id="kinMaxShow">
 				<div>
-					<a href="#"><img src="images/banner1.jpg"   /></a>
+					<a href="#"><img src="images/banner3.jpg"   /></a>
 				</div>
 
 				<div>
@@ -358,7 +358,7 @@
 				</div>
 
 				<div>
-					<a href="#"><img src="images/banner3.jpg"   /></a>
+					<a href="#"><img src="images/banner1.jpg"   /></a>
 				</div>
 
 				<div>
@@ -368,6 +368,7 @@
 		</div>
 	</div>
 
+	<div class = "testblock">
 	<div class = "leftbutton left">
 	<div class="leftbuttonbt">快速入口</div>
 			<div class="button2 left">
@@ -397,10 +398,10 @@
 
 
 	<div class="news">
-		<div class="zhdt">
-			<div class="zhdtbt">展会资讯</div>
+		<div class="zhdt left">
+			<div class="zhdtbt" >展会资讯</div>
 			<div class="zhdtnb">
-				<div id="kinMaxShow2">
+				 <div class =  "zhdtpic left"><div id="kinMaxShow2">
 				<div>
 					<a href="#"><img src="images/dtimg.jpg"  /></a>
 				</div>
@@ -416,15 +417,15 @@
 				<div>
 					<a href="#"><img src="images/dtimg4.jpg"   /></a>
 				</div>
-			</div>
+			</div></div>
 				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
-				<div class="dtwz left" style="text-indent: 30px;"></div>
+				<div class="dtwz"></div>
 				<div class="dtwz2"></div>
 			</div>
 		</div>
 		<div class="tzgg">
-			<div class="tzggbt">通知公告</div>
-			<div class="tzggnb">
+			<div class="tzggbt left">通知公告</div>
+			<div class="tzggnb left">
 				<ul>
 
 					<!-- <li><span class="gg_date">2015-04-15</span><a href="in_newscenter.html?detail=xw/zdhd_new01.html">会见境内外嘉宾</a></li>
@@ -457,7 +458,7 @@
 				</ul> -->
 		</div>
 
-		<table style="margin-top:-40px; margin-left:570px; font-size:12px; color:#757575">
+		<table class="table">
                     <tr >
                         <td align="center" valign="top">
                             <table width="208" border="0" cellspacing="0" cellpadding="1">
@@ -587,6 +588,7 @@
 		</div>
 		</div>
 
+    
 	<div class="hzfb">
 			<div class="zlhb_top">合作媒体</div>
 
@@ -594,7 +596,6 @@
 				<table width="0" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td><a href="http://www.chinalenglian.com.cn/"><img src="images/meiti1.jpg" /></a></td>
-						<td><img src="images/meiti2.jpg" /></td>
 						<td><a href="http://www.logisticstech.com/index.asp?mNum=0"><img src="images/meiti3.jpg" /></a></td>
 						<td><a href="http://cn.made-in-china.com/"><img src="images/meiti4.jpg" /></a></td>
 						<td><a href="http://mh.vogel.com.cn/s_index.html"><img src="images/meiti5.jpg" /></a></td>
@@ -624,9 +625,10 @@
 
 	             &nbsp;<a href="http://www.lyg.gov.cn/" target="_blank">连云港市人民政府</a>&nbsp;|
 			</div>
-	</div></br></br>
+	</div></div></br></br>
 
 	<div class="footer">
 	</div>
 </body>
 </html>
+
