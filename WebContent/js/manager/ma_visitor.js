@@ -1,4 +1,5 @@
 var PIC_BASE = 'resources/topicimages/';
+var BARCODE_BASE = 'resources/barcodeimages/'
 var IMAGE_NOT_FOUND = "";
 var search_state = -1;
 var search_name = "";
@@ -19,20 +20,21 @@ $(document).ready(function(){
 
 	$(".print_tp").click(function(){
 		type = $(this).attr("etype");
+		barcode = $(this).attr("barcode");
 		if(type == 1)
 		{
-			window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+			window.open("ma_printvisitor.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
 		}
 		else if(type == 4)
 		{
-			window.open("ma_printstaff.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+			window.open("ma_printstaff.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
 		}
 		else if(type == 3)
 		{
-			window.open("ma_printpress.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+			window.open("ma_printpress.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
 		}
 		else {
-			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage"),'证件打印');
+			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
 		}
 
 	});
@@ -151,12 +153,9 @@ $(document).ready(function(){
 			$(".cp_image").attr("src",IMAGE_NOT_FOUND);
 			$(".print_tp").attr("eimage",IMAGE_NOT_FOUND);
 		}
-		$(".cp_name").text($(this).attr("ename"));
-		$(".cp_company").text($(this).attr("ecompany"));
-		$(".print_tp").attr("ename",$(this).attr("ename"));
-		$(".print_tp").attr("ecompany",$(this).attr("ecompany"));
-		$(".print_tp").attr("etype",$(this).attr("etype"));
-		//$(".print_tp").attr("etype",$(this).attr("etype"));
+	//	$(".cp_name").text($(this).attr("ename"));
+	//	$(".cp_company").text($(this).attr("ecompany"));
+		
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
@@ -174,7 +173,16 @@ $(document).ready(function(){
 			} else {
 				$(".print_tp").show();
 				$(".audit_box").addClass("hide");
+				//if state="已批准"，为print_tp 绑定属性，只能通过data.xx获取。。。找了好久。。by javebean
+				$(".print_tp").attr("ename",data.name);
+				$(".print_tp").attr("ecompany",data.org);
+				$(".print_tp").attr("etype",data.type);
+				$(".print_tp").attr("barcode",data.barcode);
+				
 			}
+			
+			$(".cp_name").text(data.name);
+			$(".cp_company").text(data.org);
 			$.colorbox({
 				inline : true,
 				innerWidth:800,

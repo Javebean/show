@@ -35,15 +35,18 @@ width: 70px;height:70px; border:solid 1px;position: relative;top:-243px;left:20p
 </style>
 <script>
 var PIC_BASE = 'resources/topicimages/';
+var BARCODE_BASE = 'resources/barcodeimages/';
+
 $(document).ready(function(){
 	var url = location.href;
 	var name = decodeURI(url.substring(url.indexOf("name=")+5,url.indexOf("&org=")));
 	var org = decodeURI(url.substring(url.indexOf("&org=")+5,url.indexOf("&pic=")));
-	var pic = url.substring(url.indexOf("&pic=")+5,url.length);
-
+	var pic = url.substring(url.indexOf("&pic=")+5,url.indexOf("&barcode="));
+	var barcodeurl = url.substring(url.indexOf("&barcode=")+9);
 	$(".cp_image").attr("src",PIC_BASE+pic);
 	$(".cp_name").text(name);
 	$(".cp_company").text(org);
+	$(".cp_qrcode img").attr("src",BARCODE_BASE+barcodeurl);
 	if(!pic){
 		$(".cp_image").hide();
 	}
@@ -56,7 +59,9 @@ $(document).ready(function(){
   <div>
 		<div><img style="width:322px; height:415;" src="images/guestcard.png" /></div>
 		<!-- 添加证件二维码 -->
-		<div class="cp_qrcode"></div>
+		<div class="cp_qrcode">
+			<img src="" alt="cp_barcode" />
+		</div>
        <div class="cp_photo" style="overflow:hidden;"><img class="cp_image" style="width:118px;height:149px;" src="" /></div>
        <div class="cp_name"></div>
 			<div class="cp_company"></div>
