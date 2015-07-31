@@ -115,7 +115,13 @@ $(document).ready(function(){
 		var recommender_sel_html = "";
 		for(var i=0; i< CON_REC_SEL.length; i++){
 			var item = CON_REC_SEL[i];
-			recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+			if (item == undefined){
+
+				}
+					else {
+						recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+					}
+
 		}
 		$("#recommender_dropbox").html(recommender_sel_html);
 

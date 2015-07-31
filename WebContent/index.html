@@ -251,11 +251,32 @@
 		}
 
 		function setCookie(name,value)
-	{
-	    var exp = new Date();
-	    exp.setTime(exp.getTime() + 60*60*1000);
-	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
-	}
+		{
+		    var exp = new Date();
+		    exp.setTime(exp.getTime() + 60*60*1000);
+		    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+		}
+
+		//读取cookies
+		function getCookie(name)
+		{
+		    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+		    if(arr=document.cookie.match(reg))
+
+		        return unescape(arr[2]);
+		    else
+		        return null;
+		}
+
+		function delCookie(name)
+		{
+		    var exp = new Date();
+		    exp.setTime(exp.getTime() - 1);
+		    var cval=getCookie(name);
+		    if(cval!=null)
+		        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+		}
 
 
 	</script>
@@ -384,7 +405,7 @@
 			</a>
 		</div>
 		<div class="app_login">
-		<div class="login right">
+		<div class="login left">
 			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:55px auto 0 auto; padding-left:5px; padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value='用户名'}" onClick="if(this.value=='用户名')this.value='';" value="用户名"  name="" id= "login001" type="text" />
 			<input style=" display:block; width:200px; height:23px; border:1px solid #E1E2E4; margin:4px auto 0 auto; padding-left:5px;padding-top:5px; font-size:13px; color:#AFB0B2" onBlur="if (value ==''){value=''}" onClick="if(this.value=='密码')this.value='';" type="password" value="密码"  name=""  id= "login002" />
 			<div class="button">

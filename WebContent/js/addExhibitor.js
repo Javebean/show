@@ -18,7 +18,7 @@ var img_selection;
 
 var scene_type_html = "";
 var trans_type_html = "";
-var reg_num = /^[1-9]\d*$/;
+var reg_num = /^[0-9]*$/;
 var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
 	var itemParams = ["name","version","number","length","width","height","weight"];
@@ -127,7 +127,13 @@ $(document).ready(function(){
 		var recommender_sel_html = "";
 		for(var i=0; i< CON_REC_SEL.length; i++){
 			var item = CON_REC_SEL[i];
-			recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+			if (item == undefined){
+
+				}
+					else {
+						recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+					}
+
 		}
 		$("#recommender_dropbox").html(recommender_sel_html);
 		$("#recommender_dropbox").trigger("change");
@@ -347,7 +353,9 @@ $(document).ready(function(){
 			return;
 		}
 
-		if(isNaN(parseInt(btsl))){
+		// if(isNaN(parseInt(btsl))){
+			if(!reg_num.test(btsl) && btsl!="")
+			{
 			$(window).scrollTop(1300);
 			jAlert("标摊数量请输入整数", "信息");
 			return;

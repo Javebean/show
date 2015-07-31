@@ -79,7 +79,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .news{ width:810px; height:857px; position:relative; margin:0 0 0 250px; }
 .zhdt{ width:540px; height:360px; }
 
-.zhdtbt{ width:150px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px;position:relative; top:10px;}
+.zhdtbt{ width:350px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px;position:relative; top:10px;}
 .zhdtnb{ width:530px; height:300px; margin-top:30px;}
 .dtimg{ display:block; width:200px; height:152px; margin-top:22px}
 .dtimg2{ display:block; width:163px; height:80px;position: relative;left: 20px;}
