@@ -54,19 +54,22 @@ JloadRewrite();
 
 function loadContent(){
 	JloadRewrite();
-	
+	  $(".menu_Left").removeClass("menu_active");
+	    $(this).addClass("menu_active");
+	    var url = $(this).attr("eurl");
+	    $(".nymain_right").load(url);
+	    
+	/*
+	 由于点击太快造成循环没结束再次运行该函数，导致不可预知的异常。注掉目前没发现问题 by javebean
+	 */
 	var uploadifyList = ['#uploadify','#uploadify_logo','#uploadify_vheader','#uploadify_idfront','#uploadify_idback'];
 	for(var i in uploadifyList){
 		var key = uploadifyList[i];
-		if ($(key).length > 0) {
+		console.log($(key).height());
+		if ($(key).length > 0 && $(key).height()==30) {
 			$(key).uploadify('destroy');
 		}
 	}
-	
-    $(".menu_Left").removeClass("menu_active");
-    $(this).addClass("menu_active");
-    var url = $(this).attr("eurl");
-    $(".nymain_right").load(url);
 }
 
 function getUrlParam(name) {
