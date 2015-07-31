@@ -29,7 +29,7 @@ li {
 	vertical-align: bottom;
 }
 
-.left {
+. {
 	float: left
 }
 
@@ -313,7 +313,6 @@ input, textarea, select, button {
 	margin-top: 20px
 }
 
-/*�ֻ�ͻ��?*/
 .nyweizhi2 {
 	height: 41px;
 	border-bottom: 1px solid #E5E5E5;
@@ -496,7 +495,8 @@ input, textarea, select, button {
 .zlxq {
 	height: 26px;
 	line-height: 26px;
-	margin-left: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .zlxq2 {
@@ -512,8 +512,8 @@ input, textarea, select, button {
 	font-size: 13px;
 	font-family: Microsoft YaHei;
 	line-height: 26px;
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .zhengjian {
@@ -546,8 +546,8 @@ input, textarea, select, button {
 	border-bottom: 1px dotted #D2D2D2;
 	padding-bottom: 40px;
 	margin-bottom: 40px;
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .zhuzhi1_bt {
@@ -572,7 +572,6 @@ input, textarea, select, button {
 	margin-left: 50px;
 }
 
-/*ְ�ܻ�*/
 .zhineng1 {
 	height: auto;
 	overflow: hidden;
@@ -583,8 +582,8 @@ input, textarea, select, button {
 	border-bottom: 1px dotted #D2D2D2;
 	padding-bottom: 40px;
 	margin-bottom: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .zhinengmod {
@@ -632,7 +631,6 @@ input, textarea, select, button {
 	margin-top: 10px;
 }
 
-/*չ����Ϣ*/
 .zhanshang_top {
 	height: 280px;
 	border-bottom: 1px dotted #C0C0C0
@@ -725,7 +723,6 @@ input, textarea, select, button {
 	margin-top: 10px
 }
 
-/*չ������*/
 .zwsq {
 	height: 60px;
 	background: #EDF2F5;
@@ -789,7 +786,6 @@ input, textarea, select, button {
 	margin-left: 10px
 }
 
-/*�����걨*/
 .wssbbt {
 	color: #323232;
 	font-size: 18px;
@@ -821,7 +817,6 @@ input, textarea, select, button {
 	margin: 73px 0 0 20px
 }
 
-/*��������?*/
 .gzsq_tj {
 	color: #575757;
 	font-size: 14px;
@@ -874,7 +869,6 @@ input, textarea, select, button {
 	font-weight: bold
 }
 
-/*������*/
 .table3 {
 	height: 38px;
 	border: 1px solid #CCCCCC;
@@ -996,7 +990,6 @@ table.gridtable td {
 	font-family: Microsoft YaHei;
 }
 
-/*�Ƽ�������·������&�Ƽ�����*/
 .jdimg {
 	display: block;
 	height: 252px;
@@ -1043,7 +1036,6 @@ table.gridtable td {
 	margin: 0 0 40px 22px
 }
 
-/*������?*/
 .productnrlh {
 	height: 610px;
 	border: 1px solid #DFDFDF
@@ -1240,7 +1232,6 @@ table.gridtable td {
 	margin-bottom: 5px
 }
 
-/*�ɻ�Ʊ��ƱԤ��*/
 .dp_top {
 	height: 82px;
 	background: #EDF2F5;
@@ -1379,7 +1370,6 @@ table.gridtable td {
 	margin-top: 5px
 }
 
-/*�������뺯*/
 .yqh_bt {
 	height: 30px;
 	line-height: 30px;
@@ -1404,7 +1394,6 @@ table.gridtable td {
 	text-indent: 30px;
 }
 
-/*�����걨*/
 .photo1 {
 	height: 294px;
 	border-bottom: 1px dashed #DBDBDB;
@@ -1482,7 +1471,6 @@ table.gridtable td {
 	margin-top: 19px
 }
 
-/*��������*/
 .xz_top {
 	height: 40px;
 	background: #ECF1F4;
@@ -1496,7 +1484,7 @@ table.gridtable td {
 .xzul {
 	height: auto;
 	overflow: hidden;
-	margin-top: 23px;
+	/* margin-top: 23px; */
 }
 
 .xzul li {
@@ -1513,6 +1501,7 @@ table.gridtable td {
 	color: #323232;
 	font-family: Microsoft YaHei;
 	margin-left: 10px;
+	background:url(../images/xz1.jpg) right ro-repeat;
 }
 
 .ny_date {
@@ -1699,7 +1688,7 @@ table.gridtable td {
 
 .pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
 	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
+	border-bottom--radius: 3px;
 }
 
 .pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
@@ -1708,7 +1697,7 @@ table.gridtable td {
 }
 
 .picture {
-	margin: 70px 10px 10px 10px;
+	margin: 100px 5% 10px 5%;
 }
 
 .picture_hg {
@@ -1718,6 +1707,6 @@ table.gridtable td {
 	text-indent:30px;
 }
 .jianju{
-	margin-right:20px;
-	margin-left:20px;
+	margin-right:5%;
+	margin-left:5%;
 }
