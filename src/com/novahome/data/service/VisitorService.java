@@ -3,9 +3,9 @@ package com.novahome.data.service;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
-
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -78,7 +78,7 @@ public class VisitorService {
 			return ret;
 		}
 		String[]array;
-		String nowpath = System.getProperty("user.dir");            
+		String nowpath = System.getProperty("user.dir");
 		String tempdir = nowpath.replace("bin", "webapps");
 		tempdir+="\\"+ ConfigUtils.getPrj();
 		String basePath = tempdir + "\\resources\\topicimages\\";
@@ -276,6 +276,7 @@ public class VisitorService {
 				String picName = BarcodeUtils.createBarcode(id);
 				String barcodeContent = NAME_CHI_STR + visitor.getName() + "\n" + ORG_CHI_STR + visitor.getOrg() + "\n"
 						+ PHONE_CHI_STR + visitor.getPhone();
+				
 				String bardcode = BarcodeUtils.createBadgeBarcode(barcodeContent);
 				visitor.setBarcode(bardcode);
 				/*String nowpath = System.getProperty("user.dir");            
