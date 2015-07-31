@@ -1,10 +1,12 @@
 package com.novahome.utils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.novahome.commonservice.Constants;
@@ -51,7 +53,10 @@ public class BarcodeUtils {
 			String basePath = tempdir + Constants.BARCODE_MID_STR;
 			picName = UUID.randomUUID() + ".png";
 			String fullPath = basePath + picName;
-			BitMatrix bitMatrix = new MultiFormatWriter().encode(content,BarcodeFormat.QR_CODE,width,height);
+			HashMap hints = new HashMap();
+			// ������ʹ�ñ���
+			hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(content,BarcodeFormat.QR_CODE,width,height,hints);
 			
 			File outputFile = new File(fullPath);
 			logger.info("barcode filename:" + fullPath);
