@@ -50,7 +50,7 @@ input,textarea,select,button {outline:none;}
 .banner{ width:1060px; height:320px; position:relative;  margin:-4px auto 0 auto; border-bottom:5px solid #007FCA}
 
 
-div#new_djs{ width:310px; height: 120px; position: absolute; 
+div#new_djs{ width:310px; height: 120px; position: absolute;
 	top: 200px; z-index: 10;background-image: url("../images/TimeDown-wall.png");}
 .date{font-size:10px; font-weight:bold; font-family:Microsoft YaHei; color:#999999; display:block; margin:10px auto 0 auto; text-align:center}
 .zhm{font-size:14px; font-family:SimSun; color:white; display:block; margin:0 auto; text-align:center; margin-top:5px}
@@ -59,13 +59,19 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .zhsj{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhjs.jpg) left no-repeat; */}
 .zhdd{font-size:10px; font-family:Microsoft YaHei; color:#ffffff; display:block; margin:0 ; text-align:center; /* background:url(../images/zhdd.jpg) left no-repeat; */}
 
-#QRCode{
-	height: 300px;width: 95px;position: relative;float: right;right: -100px;background-color: #F3F7FA;
+/*#QRCode{
+	height: 300px;width: 95px;position: relative;float: right;right: -180px;background-color: #F3F7FA;
 }
 #QRCode_weixin{
-	height: 300px;width: 95px;position: relative;float: left;left:-122px;background-color: #F3F7FA;
-}
+	height: 300px;width: 95px;position: relative;float: left;left:-182px;background-color: #F3F7FA;
+}*/
 
+#QRCode{
+	position:fixed;height: 300px;width: 80px;top:40%;right:0px;background-color: #F3F7FA;
+}
+#QRCode_weixin{
+	position:fixed;height: 300px;width: 80px;top:40%;background-color: #F3F7FA;
+}
 .QR{align:center}
 
 
@@ -110,7 +116,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 .hylt{ width:520px; height:300px; }
 .hyltbt{width:350px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/hylt_bg.jpg) left no-repeat; padding-left:28px}
-/* µ÷ÕûÐÐÒµ×ÊÑ¶µÄ¿í¶È£¬Èç¹ûÏÓÈÕÆÚÌ«¿¿ÓÒ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ñ¶ï¿½Ä¿ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½ */
 .hyltnb{ width:510px; height:0px}
 .hylt_date{position:absolute; left:470px;}
 
@@ -127,7 +133,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 .leftbutton{width:200px; }
 .leftbuttonbt{width:150px; height:26px; line-height:28px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/rukou.jpg) left no-repeat; position: relative; top:15px; left: 20px;text-indent: 26px;}
 
-.app_login{ width:250px; height:169px; position: relative;left: -30px;top: 31px;}
+.app_login{ width:250px; height:169px; position: relative;left: -20px;top: 31px;}
 .app{ width:250px; height:169px; background:url(../images/app_bg.jpg)}
 
 
@@ -171,7 +177,7 @@ div#new_djs{ width:310px; height: 120px; position: absolute;
 
 #flash{
 	width: 235px;height: 210px;border: solid 1px;position: relative; left:-20px;
-	
+
 }
 
 .table{position:absolute; left:570px; font-size:12px; color:#757575}

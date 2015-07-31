@@ -315,13 +315,13 @@
 	</style>
 
 	<script type="text/javascript">
-	$(function(){
-		$(window).scroll(function(){
-			$("#QRCode").css("top",$(window).scrollTop()+"px");
-			$("#QRCode_weixin").css("top",$(window).scrollTop()+"px");
-
-		});
-	})
+	// $(function(){
+	// 	$(window).scroll(function(){
+	// 		$("#QRCode").css("top",$(window).scrollTop()+"px");
+	// 		$("#QRCode_weixin").css("top",$(window).scrollTop()+"px");
+	//
+	// 	});
+	// })
 </script>
 
 </head>
@@ -331,36 +331,38 @@
 	<div class="header">
 	</div>
 
+	<div id="QRCode">
+			<a href="phonedownload.html">
+				<img src="images/appAd.jpg" alt="phone" />
+				<span style="display:block; font-size:10px;text-align:center;width: 80px;height: 50px;">
+						客户端下载
+				</span>
+			</a>
+			<div>
+				<img src="images/anright.png" alt="QRCode"/>
+				<div style="width: 78px;height: 30px;font-size: 10px;">
+					手机扫描直接下载
+				</div>
+			</div>
+	</div>
+
+	<div id="QRCode_weixin">
+				<span style="display:block; font-size:14px; color:red; text-align:center;width: 75px;height: 50px;margin:38px 0  83px 2px;">
+						展商注册和证件办理须在本网站申请！
+				</span>
+			<div>
+				<img src="images/anleft.png" alt="QRCode"/>
+				<div style="width: 78px;height: 30px;font-size: 10px;">
+					微信扫描关注连博会官方微信平台
+				</div>
+			</div>
+	</div>
 	<div class="banner">
-		<div id="QRCode">
-				<a href="phonedownload.html">
-					<img src="images/appAd.jpg" alt="phone" />
-					<span style="display:block; font-size:10px;text-align:center;width: 100px;height: 50px;">
-							客户端下载
-					</span>
-				</a>
-				<div>
-					<img src="images/an.png" alt="QRCode"/>
-					<div style="width: 100px;height: 30px;font-size: 10px;">
-						手机扫描直接下载
-					</div>
-				</div>
-		</div>
-		<div id="QRCode_weixin">
-					<span style="display:block; font-size:14px; color:red; text-align:center;width: 75px;height: 50px;margin:38px 0  83px 10px;">
-							展商注册和证件办理须在本网站申请！
-					</span>
-				<div>
-					<img src="images/an.jpg" alt="QRCode"/>
-					<div style="width: 100px;height: 30px;font-size: 10px;">
-						微信扫描关注连博会官方微信平台
-					</div>
-				</div>
-		</div>
+
+
 		<div id="new_djs">
 				<span class="date">2015年04月10日</span>
 				<span class="zhm">距离<span style="color: #E74E3E">中国(连云港)丝绸之路国际物流博览会</span>开幕</span>
-				<!-- <div class="time">还有 <span class="t_num"></span> 天</div> -->
 				<div class="time">还有 <span id="day" style="font-size: 20px;color: #E74E3E">00</span> 天</div>
 				<div class="zhxq">
 					<span class="zhsj">展会时间：2015年9月22日-9月24日</span>
@@ -609,7 +611,7 @@
 		</div>
 		</div>
 
-    
+
 	<div class="hzfb">
 			<div class="zlhb_top">合作媒体</div>
 
@@ -652,4 +654,3 @@
 	</div>
 </body>
 </html>
-
