@@ -19,7 +19,7 @@ $(document).ready(function()
 
 });
 
-var APP_VERSION = "1.0.0";
+var APP_VERSION = "1.0.5";
 function JloadRewrite(){
 	if(!$.prototype.loadFlag){
 		$.prototype.loadFlag = "Y";
@@ -60,13 +60,13 @@ function loadContent(){
 	    $(".nymain_right").load(url);
 	    
 	/*
-	 由于点击太快造成循环没结束再次运行该函数，导致不可预知的异常。注掉目前没发现问题 by javebean
+	// 由于点击太快造成循环没结束再次运行该函数，导致不可预知的异常。注掉目前没发现问题 by javebean
+	已修改uploadify源码，没有加载好的元素不会销毁by XY
 	 */
 	var uploadifyList = ['#uploadify','#uploadify_logo','#uploadify_vheader','#uploadify_idfront','#uploadify_idback'];
 	for(var i in uploadifyList){
 		var key = uploadifyList[i];
-		console.log($(key).height());
-		if ($(key).length > 0 && $(key).height()==30) {
+		if ($(key).length > 0) {
 			$(key).uploadify('destroy');
 		}
 	}
@@ -76,4 +76,32 @@ function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg);  //匹配目标参数
     if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
+function setCookie(name,value)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+//读取cookies
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+function delCookie(name)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
