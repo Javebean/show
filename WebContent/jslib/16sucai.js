@@ -138,3 +138,38 @@ function checkFlash(){
 		jAlert('未安装FLASH插件，请安装后刷新页面重试！<a style="color:blue;text-decoration:underline;" href="http://dlsw.baidu.com/sw-search-sp/soft/34/17153/flashplayer_18_ax_debug_V18.0.0.209.1437017012.exe">FLASH下载</a>', "信息");
 	}
 }
+
+//自定义弹出框组件，目前只支持一个页面有一个这个框
+function popBox(action){
+	var shadow = $(".popBox_shadow");
+	var frame = $(".popBox_frame");
+	if(shadow.length!=1 || frame.length!=1){
+		return;
+	}
+	if(action=="CLOSE"){
+		shadow.hide();
+		frame.hide();
+	}
+	if(action=="OPEN"){
+		shadow.show();
+		var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+		frame.css("top",scrollTop);
+		var winWidth = $(window).width();
+		if(winWidth>frame.width()){
+			var left = (winWidth-frame.width())/2;
+			frame.css("left",left);
+		}else{
+			frame.css("left",0);
+		}
+		frame.show();
+		
+		$("#popBoxClose").unbind();
+		$("#popBoxClose").bind("click",function(){
+			popBox("CLOSE");
+		});
+		shadow.unbind();
+		shadow.bind("click",function(){
+			popBox("CLOSE");
+		});
+	}
+}

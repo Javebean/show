@@ -168,7 +168,10 @@ $(document).ready(function(){
 		pic_icheader_ID = "";
 		pic_icfro_ID = "";
 		pic_icbac_ID = "";
-		$.colorbox({
+		
+		//IE8下colorbox 和 uploadify 不兼容，修改成固定弹出框。
+		popBox("OPEN");
+		/*$.colorbox({
 			inline : true,
 			innerWidth:750,
 			speed: 0,
@@ -177,7 +180,7 @@ $(document).ready(function(){
 			onClosed : function(){
 
 			}
-		});
+		});*/
 	}
 
 	function saveVisitorForm(){

@@ -749,3 +749,39 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 	padding: 0;
 	margin-top: 10px;
 }
+
+.popBox_shadow {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	overflow: hidden;
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+	cursor: pointer;
+	visibility: visible;
+	display:none;
+}
+
+.popBox_frame{
+	display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 10000;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding-bottom: 40px;
+}
+
+#popBoxClose{
+	position: absolute;
+    display: block;
+    color: #444;
+    bottom: 30px;
+    right: 30px;
+    cursor:pointer;
+}
