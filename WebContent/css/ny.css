@@ -46,7 +46,7 @@ input,textarea,select,button {outline:none;}
 
 .banner{ width:1060px; height:194px; position:relative;  margin:-4px auto 0 auto}
 
-.nymain{ width:1060px; height:auto; overflow:hidden; margin:36px auto 0 auto; padding-bottom:66px;}
+.nymain{ width:1060px; height:auto; overflow:hidden; margin:36px auto 0 auto; padding-bottom:66px;background:url("../images/giot/bg-team-3034aa66.jpg") repeat}
 .nymian_left{ width:237px; height:auto; overflow:hidden}
 .cdhbt{ width:233px; height:66px; background:url(../images/cdhbt_bg.jpg); padding:3px 0 0 4px}
 .cdhbtch{font-size:24px; font-family:Microsoft YaHei; font-weight:bold; color:#1f9bd5; display:block}
@@ -92,7 +92,7 @@ input,textarea,select,button {outline:none;}
 .nyweizhi{ width:732px; height:41px; border-bottom:1px solid #E5E5E5; line-height:41px; font-size:12px; color:#8c8c8c; background:url(../images/weizhi_bg.jpg) left no-repeat; padding-left:21px}
 .nyweizhi a{font-size:12px; color:#8c8c8c}
 .nyweizhi a:hover{ color:#09C}
-.nymainnr{ width:753px; height:auto; overflow:hidden; margin-top:29px}
+.nymainnr{ width:753px; height:auto; overflow:hidden; margin-top:29px; }
 
 
 /*�ֻ�ͻ����?*/
