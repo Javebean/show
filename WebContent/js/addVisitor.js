@@ -18,6 +18,9 @@ $(document).ready(function(){
 	$("#submitForm").click(saveForm);
 	$("#chuyang").click(chuyang);
 	
+	//检查用户是否安装FLASH
+	checkFlash();
+	
 	//如果观众已经登录，预设部分表单信息
 	if(getCookie("type")==2){
 		var userName = getCookie("user");

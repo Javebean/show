@@ -19,7 +19,7 @@ $(document).ready(function()
 
 });
 
-var APP_VERSION = "1.0.5";
+var APP_VERSION = "1.0.6";
 function JloadRewrite(){
 	if(!$.prototype.loadFlag){
 		$.prototype.loadFlag = "Y";
@@ -104,4 +104,37 @@ function delCookie(name)
     var cval=getCookie(name);
     if(cval!=null)
         document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+
+var browser={};
+browser.mozilla = /firefox/.test(navigator.userAgent.toLowerCase());
+browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+//检查用户有没有安装FLASH
+function checkFlash(){
+	var flash = true;
+	
+	if(browser.msie){
+	    try{
+	        var swf1 = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+	    }
+	    catch(e){
+	    	flash = false;
+	    }
+	} else {
+	    try{
+	        var swf2 = navigator.plugins['Shockwave Flash'];
+	        if(swf2 == undefined){
+	        	flash = false;
+	        }
+	    }
+	    catch(e){
+	    	flash = false;
+	    }
+	}
+	
+	if(!flash){
+		jAlert('未安装FLASH插件，请安装后刷新页面重试！<a style="color:blue;text-decoration:underline;" href="http://dlsw.baidu.com/sw-search-sp/soft/34/17153/flashplayer_18_ax_debug_V18.0.0.209.1437017012.exe">FLASH下载</a>', "信息");
+	}
 }

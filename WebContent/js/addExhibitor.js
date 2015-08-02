@@ -26,6 +26,9 @@ $(document).ready(function(){
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];
 
+	//检查用户是否安装FLASH
+	checkFlash();
+	
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
