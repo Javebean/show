@@ -56,10 +56,10 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 
 .date{font-size:14px; font-weight:bold; font-family:Microsoft YaHei; color:#999999; display:block; margin:10px auto 0 auto; text-align:center}
 .zhm{font-size:14px; font-family:SimSun; color:#999999; display:block; margin:0 auto; text-align:center; margin-top:5px}
-.time{font-size:10px; font-family:Microsoft YaHei; color:#999999; margin:0 auto; text-align:center; margin-top:0px; height:26px; /* background:url(../images/time_bg.jpg) */}
+.time{font-size:10px; font-family:Microsoft YaHei; color:#999999; margin:10px auto; text-align:center; margin-top:0px; height:26px; /* background:url(../images/time_bg.jpg) */}
 .zhxq{ width:100%; height:20px; margin:0 auto 0 auto}
 .zhsj{font-size:10px; font-family:Microsoft YaHei; color:#999999; display:block; margin:0 ; text-align:center; /* background:url(../images/zhjs.jpg) left no-repeat; */}
-.zhdd{font-size:10px; font-family:Microsoft YaHei; color:#999999; display:block; margin:0 ; text-align:center;  background:url(../images/zhdd.jpg) left no-repeat; }
+.zhdd{font-size:10px; font-family:Microsoft YaHei; color:#999999; display:block; margin:18px 0 0 18px ; text-align:center;  background:url(../images/zhdd.jpg) left no-repeat; }
 
 #QRCode{
 	position:fixed;height: 300px;width: 80px;top:40%;right:0px;background-color: #F3F7FA;
