@@ -34,6 +34,14 @@ $(document).ready(function(){
 		})){
 			return;
 		}
+		var emailvalue = $("input[name=email]").val().trim();
+		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+		
+		if(!emailreg.test(emailvalue))
+		{
+			jAlert("请输入有效的电子邮箱", "信息");
+			return;
+		}
 		formData = getFormdata("regForm");
 		formData.sex= $("input[name='sex']:checked").val();
 		formData.buyer= $("input[name='buyer']:checked").val();

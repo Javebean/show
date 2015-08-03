@@ -1,4 +1,7 @@
 var JS_DIRECTORY = "plugins/areaselect/";
+
+//初始化删除缓存数据 -- xy
+$("body").removeData("CitysAll allProvinces allCountys");
 (function() {
 	$(".proCitySelAll").focus(function(){
 		$(".proCitySelAll").trigger("click");
