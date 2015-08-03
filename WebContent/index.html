@@ -73,8 +73,8 @@
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1]);
-
+					//var mTime = parseInt(timeDate[1]);
+					var mTime = timeDate[1];
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
@@ -111,11 +111,11 @@
 					var topic = data[i];
 
 					var timeStr = topic.publishTime;
-
 					var timePar = timeStr.split(' ');
+					
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1]);
-
+					//var mTime = parseInt(timeDate[1]);
+					var mTime = timeDate[1];
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					 html +=
@@ -156,8 +156,8 @@
 
 							 var timePar = timeStr.split(' ');
 							 var timeDate = timePar[0].split('-');
-							 var mTime = parseInt(timeDate[1]);
-
+							// var mTime = parseInt(timeDate[1]);
+ 							var mTime = timeDate[1];
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 							html2 +=
