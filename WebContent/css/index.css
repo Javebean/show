@@ -140,7 +140,7 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 
 
 
-.login{ width:245px; height:166px; background:url(../images/login_bg.jpg)}
+.login{ width:240px; height:166px; position: relative; left:-15px; background:url(../images/login_bg.jpg)}
 .button{ width:248px; height:25px; margin:13px auto 0 auto}
 
 .dw{ width:1132px; height:118px; margin:28px auto 0 auto; padding-top:30px}
