@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />-->
 	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
 	<link href="../plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
 
@@ -44,8 +45,8 @@
 			width:231,
 			button:{
 				showIndex:false,
-				normal:{background:'url(images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
-				focus:{background:'url(images/dian1.png)',border:'0'}
+				normal:{background:'url(../images/dian2.png)',marginRight:'8px', width:"8px", height:"8px",border:'0',right:'46%',bottom:'15px'},
+				focus:{background:'url(../images/dian1.png)',border:'0'}
 			}
 		});
 
@@ -72,17 +73,14 @@
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1]);
+					//var mTime = parseInt(timeDate[1]);
+					var mTime = timeDate[1];
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
 					html +=
 					'<li><a href="in_news_detail.html?detail=Hyzx&eid='+topic.id+'">'+topic.title+'</a><span class="hylt_date" style="font-size:12px;color:#999999">'+topic.publishTime+'</span></li>';
 					var values = topic.title;
-
-					 $('.hyltbt0'+(i+1)).attr("href","in_news_detail.html?detail=Zytz&eid="+topic.id).text(values.substring(0,15)).css({"font-size":"12px","color":"#999999"});
-					$("#adate0"+(i+1)).text(topic.publishTime).css({"float":"right","font-size":"12px","color":"#999999"}); 
-
 				}
 				html+='</ul>';
 				$('.hyltnb').html(html);
@@ -113,7 +111,8 @@
 
 					var timePar = timeStr.split(' ');
 					var timeDate = timePar[0].split('-');
-					var mTime = parseInt(timeDate[1]);
+					//var mTime = parseInt(timeDate[1]);
+					var mTime = timeDate[1];
 
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
@@ -155,7 +154,8 @@
 
 							 var timePar = timeStr.split(' ');
 							 var timeDate = timePar[0].split('-');
-							 var mTime = parseInt(timeDate[1]);
+							 //var mTime = parseInt(timeDate[1]);
+							 var mTime = timeDate[1];
 
 							topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
 
@@ -310,16 +310,7 @@
 	</div>
 
 	<div class="banner">
-		<div id="new_djs">
-		<span class="date">10 April 2015</span>
-		<span class="zhm">To<span style="color: #E74E3E">China Silk Road Int'l Logistics Expo, Lianyungang</span></span>
-		<!-- <div class="time">Remain <span class="t_num"></span> Days</div>-->
-		<div class="time">Remain<span id="day" style="font-size: 20px;color: #E74E3E">00</span> Days</div>
-		<div class="zhxq">
-			<span class="zhsj">Sep 22-24 2015</span>
-			<span class="zhdd">Industrial Exhibition Center，Lianyungang </span>
-		</div>
-	</div>
+		
 
 		<div id="show">
 			<div id="kinMaxShow">
@@ -395,10 +386,10 @@
 				<!-- <a class="dtimg left" href="#"><img src="images/dtimg.jpg" /></a> -->
 				<div class="dtwz"><a class="wzbt" href="zlzx_new01.html">Opening of the 2th LBH</a></div>
 				<div class="dtwz2"><ul>
-						<li><a class="left" href="zlzx_new02.html">Port handling equipment and technology</a><span class="right">03/15</span></li>
-						<li><a class="left" href="zlzx_new03.html">Shelf equipment access</a><span class="right">03/15</span></li>
-						<li><a class="left" href="zlzx_new04.html">Intermodal Container Technology</a><span class="right">03/15</span></li>
-						<li><a class="left" href="zlzx_new05.html">Logistics software solutions</a><span class="right">03/15</span></li>
+						<li><a class="left" href="zlzx_new02.html">Port handling equipment and technology</a><span class="gg_date">03/15</span></li></br></br>
+						<li><a class="left" href="zlzx_new03.html">Shelf equipment access</a><span class="gg_date">03/15</span></li></br></br>
+						<li><a class="left" href="zlzx_new04.html">Intermodal Container Technology</a><span class="gg_date">03/15</span></li></br></br>
+						<li><a class="left" href="zlzx_new05.html">Logistics software solutions</a><span class="gg_date">03/15</span></li>
 					</ul></div>
 			</div>
 		</div>
@@ -406,22 +397,33 @@
 			<div class="tzggbt left">Announcement</div>
 			<div class="tzggnb left">
 				<ul>
-					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new01.html">Opening of the 2th LBH</a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new02.html">Theme special events </a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new03.html">High-level think tank forum </a></li>
-					<li><span class="gg_date">2015-04-15</span><a href="tzgg_new04.html">2015 Incoming international cooperation </a></li>
+					<li><a href="tzgg_new01.html">Opening of the 2th LBH</a><span class="gg_date">2015-04-15</span></li>
+					<li><a href="tzgg_new02.html">Theme special events </a><span class="gg_date">2015-04-15</span></li>
+					<li><a href="tzgg_new03.html">High-level think tank forum </a><span class="gg_date">2015-04-15</span></li>
+					<li><a href="tzgg_new04.html">2015 Incoming international cooperation </a><span class="gg_date">2015-04-15</span></li>
 				</ul>
 			</div>
 		</div>
+		
+		<div id="new_djs">
+		<span class="date">10 April 2015</span>
+		<span class="zhm"><span style="color: #E74E3E">China Silk Road Int'l Logistics Expo, Lianyungang</span></span>
+		<!-- <div class="time">Remain <span class="t_num"></span> Days</div>-->
+		<div class="time">Remain<span id="day" style="font-size: 20px;color: #E74E3E">00</span> Days</div>
+		<div class="zhxq" style="margin-top:-10px;">
+			<span class="zhdd">Industrial Exhibition Center</span>
+		</div>
+	</div>
+	
 		<div class="hylt left">
 			<div class="hyltbt">Industry Information</div>
 			<div class="hyltnb">
 				<ul>
-					<li><a href="in_newscenter.html?detail=xw/hylt_new01.html">“一带一路”国际物流与发展论坛</a></li>
-					<li><a href="in_newscenter.html?detail=xw/hylt_new07.html">电子商务   + 物流论坛</a></li>
-					<li><a href="in_newscenter.html?detail=xw/hylt_new03.html">国际警务论坛</a></li>
-					<li><a href="in_newscenter.html?detail=xw/hylt_new04.html">全国A级物流企业授牌大会</a></li>
-					<li><a href="in_newscenter.html?detail=xw/hylt_new05.html">国际港航合作发展论坛</a></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new01.html">International Logistics and Development Forum</a><span class="gg_date">07/15</span></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new07.html">E-Commerce + Logistics Forum</a><span class="gg_date">07/15</span></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new03.html">International Policing Forum</a><span class="gg_date">07/15</span></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new04.html">National A-class logistics enterprises awarding Assembly</a><span class="gg_date">07/15</span></li>
+					<li><a href="in_newscenter.html?detail=xw/hylt_new05.html">Incoming international cooperation and development forum</a><span class="gg_date">07/15</span></li>
 
 				</ul>
 		</div></div>
