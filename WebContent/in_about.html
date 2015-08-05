@@ -19,6 +19,13 @@ $(document).ready(function(){
   $(".nymain_right").load("gy/zhgk.html");
   $(".menu_Left").click(loadContent);
 
+  var detail = getUrlParam("detail");
+  if(detail){
+    $(".nymain_right").load(detail);
+    $(".menu_Left").removeClass("menu_active");
+  } else {
+    $(".nymain_right").load("gy/zhgk.html");
+  }
   function loadContent(){
     $(".menu_Left").removeClass("menu_active");
     $(this).addClass("menu_active");
@@ -51,7 +58,10 @@ $(document).ready(function(){
 
         <a eurl="gy/wjhg.html" class="menu_head menu_Left">往届回顾</a>
 
+        <a eurl="gy/jbdys.html" class="menu_head menu_Left">举办地优势</a>
+
         <a eurl="gy/hzdw.html" class="menu_head menu_Left">联系我们</a>
+
 
       </div>
 
