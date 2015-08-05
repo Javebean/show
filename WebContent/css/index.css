@@ -15,10 +15,10 @@ input,textarea,select,button {outline:none;}
 
 .header{ width:1060px; height:131px; margin:0 auto; position:relative; z-index:999}
 
-.top{ width:1060px; height:87px;}
-
+.top{ width:1060px; height:87px;background:url(../images/bg1.jpg);}
+/*background:url(../images/bg1.jpg);*/
 .logo{ display:block; width:533px; height:70px; margin-top:10px;}
-.logo2{width: 1060px;height: 85px;margin: 0; background:url(../images/bg1.jpg);}
+.logo2{width: 1060px;height: 85px;margin: 0; }
 .logo3{font-size:10px; z-index:10; position:relative; top:-25px; left:22px;}
 
 .tel_ban{ width:286px; height:35px; margin-top:-50px}
@@ -140,7 +140,7 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 
 
 
-.login{ width:245px; height:166px; background:url(../images/login_bg.jpg)}
+.login{ width:240px; height:166px; position: relative; left:-15px; background:url(../images/login_bg.jpg)}
 .button{ width:248px; height:25px; margin:13px auto 0 auto}
 
 .dw{ width:1132px; height:118px; margin:28px auto 0 auto; padding-top:30px}

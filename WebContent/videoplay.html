@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/index.css"/>
   <link rel="stylesheet" type="text/css" href="css/ny.css"/>
   <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="jslib/json2.js"></script>
@@ -10,6 +11,12 @@
    <script type="text/javascript" src="jslib/sohuflash_1.js"></script>
   <title>连博会</title>
 
+<style>
+#flashbg
+{
+ background-image: url(images/flashbg.jpg);
+}
+</style>
 </head>
 <script>
 $(document).ready(function(){
@@ -29,9 +36,11 @@ $(document).ready(function(){
   <div class="nymain">
 
     <div class="nyweizhi2">当前位置： <a href="index.html">首页</a> > <font style=" font-weight:bold; color:#1F9AD6">连博会宣传片</font></div>
-    <div class="nymainnr2">
+   
+    <div class="nymainnr2"  id="flashbg">
+    
       <div class="apps_top">连博会官方宣传片</div>
-      <div class="apps_main">
+      <div class="apps_main" >
         <table width="100%" align="center">
   <tr><td colspan="2">&nbsp;</td></tr>
   <tr><td width="100px"></td><td>
@@ -77,6 +86,32 @@ $(document).ready(function(){
     </div>
 
   </div>
+  
+	<div id="QRCode">
+			<a href="phonedownload.html">
+				<img src="images/appAd.jpg" alt="phone" />
+				<span style="display:block; font-size:10px;text-align:center;width: 80px;height: 50px;">
+						客户端下载
+				</span>
+			</a>
+			<div>
+				<img src="images/anright.png" alt="QRCode"/>
+				<div style="width: 78px;height: 30px;font-size: 10px;">
+					手机扫描直接下载
+				</div>
+			</div>
+</div>
+   <div id="QRCode_weixin">
+				<span style="display:block; font-size:14px; color:red; text-align:center;width: 75px;height: 50px;margin:38px 0  83px 2px;">
+						展商注册和证件办理须在本网站申请！
+				</span>
+			<div>
+				<img src="images/anleft.png" alt="QRCode"/>
+				<div style="width: 78px;height: 30px;font-size: 10px;">
+					微信扫描关注连博会官方微信平台
+				</div>
+			</div>
+	</div>
   <div class="footer">
   </div>
 </body>

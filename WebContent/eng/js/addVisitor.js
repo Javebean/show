@@ -55,10 +55,10 @@ $(document).ready(function(){
 			jAlert("Check your input", "Message");
 			return;
 		}
-		if(!picFlag || !picFlagFro || !picFlagBac){
-			jAlert("Upload your ID，Front of your ID，Back of your ID。", "Message");
-			return;
-		}
+		// if(!picFlag || !picFlagFro || !picFlagBac){
+		// 	jAlert("Upload your ID，Front of your ID，Back of your ID。", "Message");
+		// 	return;
+		// }
 		var formData = getFormdata("regForm");
 		if(picFlag){
 			formData.photo = topicId + ".jpg";
@@ -76,6 +76,7 @@ $(document).ready(function(){
 				jAlert(data.message, "Message");
 			}
 		};
+		formData.idType = 1;
 		Visitor.saveVisitor(formData,pic_scare,func);
 	}
 
