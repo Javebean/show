@@ -83,7 +83,7 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 .zhdtbt{ width:350px; height:30px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0; border-bottom:1px solid #DDDDDD; background:url(../images/zhdtbt_bg.jpg) left no-repeat; padding-left:22px;position:relative; top:10px;}
 .zhdtnb{ width:530px; height:300px; margin-top:30px;}
 .dtimg{ display:block; width:200px; height:152px; margin-top:22px}
-.dtimg2{ display:block; width:163px; height:80px;position: relative;left: 20px;}
+.dtimg2{ display:block; width:163px; height:60px;position: relative;left: 30px;}
 
 .zhdtpic{ width:230px;height:150px; }
 
@@ -135,8 +135,9 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 
 .review{width:540px; height:180px; margin:0 auto}
 .reviewbt{width:200px; height:36px; line-height:38px;font-size:20px; font-family:Microsoft YaHei; color:#2e93d0;  border-bottom:1px solid #DDDDDD; background:url(../images/review_bg.jpg) left no-repeat; padding-left:28px;}
-.reviewimg{ width:250px; position: relative;margin-top: 20px;}
-.reviewimg2{ width:250px; position: relative;margin-top:-113px;margin-left: 280px;}
+.reviewimg{ width:170px; position: relative;margin-top: 20px;}
+.reviewimg2{ width:170px; position: relative;margin-top:20px;margin-left: 10px;}
+.reviewimg3{ width:170px; position: relative;margin-top: 20px; margin-left: 360px;}
 
 
 
