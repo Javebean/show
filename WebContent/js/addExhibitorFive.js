@@ -199,8 +199,8 @@ $(document).ready(function(){
 		//台胞证
 		if($("select[name=idType]").val()==3){
 			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || value.length!=9){
-				jAlert("请输入有效的9位台胞证号码", "信息");
+			if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
+				jAlert("请输入有效的8或9位台胞证号码", "信息");
 				return;
 			}
 		}
