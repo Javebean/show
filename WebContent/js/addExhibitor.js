@@ -28,7 +28,7 @@ $(document).ready(function(){
 
 	//检查用户是否安装FLASH
 	checkFlash();
-	
+
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
@@ -168,7 +168,7 @@ $(document).ready(function(){
 		pic_icheader_ID = "";
 		pic_icfro_ID = "";
 		pic_icbac_ID = "";
-		
+
 		//IE8下colorbox 和 uploadify 不兼容，修改成固定弹出框。
 		popBox("OPEN");
 		/*$.colorbox({
@@ -215,13 +215,13 @@ $(document).ready(function(){
 			}
 		}
 		//台胞证
-		if($("select[name=idType]").val()==3){
-			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
-				jAlert("请输入有效的8或9位台胞证号码", "信息");
-				return;
-			}
-		}
+		// if($("select[name=idType]").val()==3){
+		// 	var value = $("input[name=idNo]").val().trim();
+		// 	if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
+		// 		jAlert("请输入有效的8或9位台胞证号码", "信息");
+		// 		return;
+		// 	}
+		// }
 
 
 		/*证件照，身份证正面照，身份证背面照改为非必填*/

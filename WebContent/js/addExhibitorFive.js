@@ -197,13 +197,13 @@ $(document).ready(function(){
 			}
 		}
 		//台胞证
-		if($("select[name=idType]").val()==3){
-			var value = $("input[name=idNo]").val().trim();
-			if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
-				jAlert("请输入有效的8或9位台胞证号码", "信息");
-				return;
-			}
-		}
+		// if($("select[name=idType]").val()==3){
+		// 	var value = $("input[name=idNo]").val().trim();
+		// 	if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
+		// 		jAlert("请输入有效的8或9位台胞证号码", "信息");
+		// 		return;
+		// 	}
+		// }
 		/*证件照，身份证正面照，身份证背面照改为非必填*/
 		/*if(!pic_icheader_ID || !pic_icfro_ID || !pic_icbac_ID){
 			jAlert("请上传证件照，身份证正面照，身份证背面照。", "信息");
