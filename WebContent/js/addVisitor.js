@@ -17,10 +17,10 @@ $(document).ready(function(){
 	//event binder
 	$("#submitForm").click(saveForm);
 	$("#chuyang").click(chuyang);
-	
+
 	//检查用户是否安装FLASH
 	checkFlash();
-	
+
 	//如果观众已经登录，预设部分表单信息
 	if(getCookie("type")==2){
 		var userName = getCookie("user");
@@ -31,7 +31,7 @@ $(document).ready(function(){
 			$("input[name='position']").val(data.position);
 			$("input[name='email']").val(data.email);
 		};
-		
+
 		Audience.getAudienceByUserName(userName,func);
 	}
 

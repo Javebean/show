@@ -28,7 +28,7 @@ $(document).ready(function(){
 
 	//检查用户是否安装FLASH
 	checkFlash();
-	
+
 	//event binder
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
@@ -168,7 +168,7 @@ $(document).ready(function(){
 		pic_icheader_ID = "";
 		pic_icfro_ID = "";
 		pic_icbac_ID = "";
-		
+
 		//IE8下colorbox 和 uploadify 不兼容，修改成固定弹出框。
 		popBox("OPEN");
 		/*$.colorbox({
