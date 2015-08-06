@@ -191,7 +191,8 @@ $(document).ready(function(){
 		//针对证件类型号码的判断
 		//身份证
 		if($("select[name=idType]").val()==0){
-			var value = $("input[name=idNo]").val().trim();
+			var value = $("input[name=idNo]").val();
+			value=$.trim(value);
 			var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 			if(!reg.test( value ) || value.length!=18){
 				jAlert("请输入有效的18位身份证号码", "信息");
@@ -200,28 +201,29 @@ $(document).ready(function(){
 		}
 		//护照
 		if($("select[name=idType]").val()==1){
-			var value = $("input[name=idNo]").val().trim();
+			var value = $("input[name=idNo]").val();
+			value=$.trim(value);
 			if(!$.isNumeric( value ) || value.length!=11){
 				jAlert("请输入有效的11位护照号码", "信息");
 				return;
 			}
 		}
-		//港澳台通行证
-		if($("select[name=idType]").val()==2){
+		//港澳台通行证  2015-8-6.暂时对港澳台和台胞证不做限定
+		/*if($("select[name=idType]").val()==2){
 			var value = $("input[name=idNo]").val().trim();
 			if(!$.isNumeric( value ) || value.length!=11){
 				jAlert("请输入有效的11位港澳台通行证号码", "信息");
 				return;
 			}
-		}
+		}*/
 		//台胞证
-		if($("select[name=idType]").val()==3){
+		/*if($("select[name=idType]").val()==3){
 			var value = $("input[name=idNo]").val().trim();
 			if(!$.isNumeric( value ) || (value.length!=9 && value.length!=8)){
 				jAlert("请输入有效的8或9位台胞证号码", "信息");
 				return;
 			}
-		}
+		}*/
 
 
 		/*证件照，身份证正面照，身份证背面照改为非必填*/
@@ -379,7 +381,8 @@ $(document).ready(function(){
 			visitor.push($(this).data("newvisitor"));
 		});
 
-		var emailvalue = $("input[name=email]").val().trim();
+		var emailvalue = $("input[name=email]").val();
+			emailvalue = $.trim(emailvalue);
 		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
 	//	alert(emailvalue);
 		if(!emailreg.test(emailvalue))
@@ -396,10 +399,10 @@ $(document).ready(function(){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");
 				return;
-			} else if((!reg_float.test(item.length) && item.length!="")
-					||(!reg_float.test(item.width) && item.width!="")
-					||(!reg_float.test(item.height) && item.height!="")
-					||(!reg_float.test(item.weight) && item.weight!="")){
+			} else if((!$.isNumeric(item.length) && $.trim(item.length)!="")
+					||(!$.isNumeric(item.width) && $.trim(item.width)!="")
+					||(!$.isNumeric(item.height) && $.trim(item.height)!="")
+					||(!$.isNumeric(item.weight) && $.trim(item.weight)!="")){
 				$(window).scrollTop(1500);
 				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
 				return;
