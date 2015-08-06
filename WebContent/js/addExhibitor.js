@@ -249,7 +249,8 @@ $(document).ready(function(){
 		$(".delete_item").click(deleteItem);
 		$(".visitors .item_row").last().data("newvisitor",formData);
 
-		$.colorbox.close();
+		//$.colorbox.close();
+		popBox("CLOSE");
 	}
 
 	//test
@@ -452,6 +453,7 @@ $(document).ready(function(){
 			}
 		};
 		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
+
 	}
 
 	function getFormdata(formName){
