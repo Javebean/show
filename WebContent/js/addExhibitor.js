@@ -41,7 +41,6 @@ $(document).ready(function(){
 	});
 	$("#chuyang").click(chuyang);
 	$("#submitVisitorForm").click(saveVisitorForm);
-
 	$(".addSceneBtn").click(showSceneBox);
 
 	function showSceneBox(){

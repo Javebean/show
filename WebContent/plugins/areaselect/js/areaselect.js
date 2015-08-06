@@ -10,6 +10,7 @@ $("body").removeData("CitysAll allProvinces allCountys");
 		if ($("body").data("CitysAll") == null) {
 			sendAllCitiesAjax();
 		}
+		
 		$(this).select();
 		$(".provinceCity").hide();
 		$(".provinceCityAll").hide();
@@ -22,6 +23,8 @@ $("body").removeData("CitysAll allProvinces allCountys");
 		$(".provinceCityAll").click(function(event) {
 			event.stopPropagation();
 		});
+		
+		
 		event.stopPropagation();
 		$("html").click(function() {
 			$(".provinceCityAll").hide();
