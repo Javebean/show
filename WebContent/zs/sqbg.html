@@ -129,8 +129,8 @@ label.error {
 	<form class="form-horizontal" name="regForm" id="form">
 
      <div class="wssbbt">1.参展单位基本信息</div>
-     <div class="table3"><span class="table3_left left required_label">单位名称</span>
-     	<input class="exib_input required" name="orgName" type="text" />
+     <div class="table3"><span class="table3_left left required_label">单位全称</span>
+     	<input class="exib_input required" name="orgName" type="text" onBlur="if (value ==''){value='必须填写单位全称'}" onClick="if(this.value=='必须填写单位全称')this.value='';" value="必须填写单位全称"/>
 	</div>
 	<div class="table3"><span class="table3_left left">英文名称</span>
      	<input class="exib_input" name="orgEng" type="text" />
@@ -219,7 +219,7 @@ label.error {
      <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" id="introtextarea" name="orgIntro" cols="" rows="" onKeyDown="textdown(event)" onKeyUp="textup()"></textarea>
 
      <div class="wssbbt" style=" margin-top:10px;font-size: 17px;">企业logo上传</div>
-     <div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg(RGB模式), jpeg, png, gif格式的图片</div>
+     <div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
      <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
 
 	     <div class="picUpload">
@@ -320,7 +320,7 @@ label.error {
 		</div>
 		<div>上传施工图片<input type="file" name="uploadify" id="uploadify" /></div>
      </div>
-     <div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg(RGB模式), jpeg, png, gif格式的图片</div>
+     <div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
 
      <div class="tjxx_button">
       <input id="submitForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
@@ -405,7 +405,7 @@ label.error {
 			<div class="picUpload" style="">
 				<div style="float: left;">
 					上传照片:
-					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg(RGB模式), jpeg, png, gif格式的图片</div>
+					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
 					<div>
 						<img id="topic_image_vheader" width="118" height="149" src=""/>
 					</div>
@@ -429,7 +429,7 @@ label.error {
 			<div class="picUpload">
 				<div>
 					上传身份证正面:
-					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg(RGB模式), jpeg, png, gif格式的图片</div>
+					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
 					<div>
 						<img id="topic_image_idfront" width="270" height="180" src=""
 							style="border: 1px solid #aba8a8;" />
@@ -446,7 +446,7 @@ label.error {
 			<div class="picUpload">
 				<div>
 					上传身份证背面:
-					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg(RGB模式), jpeg, png, gif格式的图片</div>
+					<div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
 					<div>
 						<img id="topic_image_idback" width="270" height="180" src=""
 							style="border: 1px solid #aba8a8;" />
@@ -480,7 +480,7 @@ label.error {
 					name="" type="button" />
 			</div>
 		</div>
-
+		
 		<span id="popBoxClose">关闭</button>
 </div>
 
