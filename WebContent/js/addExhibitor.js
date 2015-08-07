@@ -362,7 +362,8 @@ $(document).ready(function(){
 		}
 
 		// if(isNaN(parseInt(btsl))){
-			if(!reg_num.test(btsl) && btsl!="")
+			//if(!reg_num.test(btsl) && btsl!="")
+			if(!$.isNumeric(btsl) || parseInt(btsl)>1000)
 			{
 			$(window).scrollTop(1300);
 			jAlert("标摊数量请输入整数", "信息");
@@ -399,10 +400,10 @@ $(document).ready(function(){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");
 				return;
-			} else if((!$.isNumeric(item.length) && $.trim(item.length)!="")
-					||(!$.isNumeric(item.width) && $.trim(item.width)!="")
-					||(!$.isNumeric(item.height) && $.trim(item.height)!="")
-					||(!$.isNumeric(item.weight) && $.trim(item.weight)!="")){
+			} else if((!$.isNumeric(item.length) || $.trim(item.length)==""||parseInt(item.length)<=0)
+					||(!$.isNumeric(item.width) || $.trim(item.width)==""||parseInt(item.width)<=0)
+					||(!$.isNumeric(item.height) || $.trim(item.height)==""||parseInt(item.height)<=0)
+					||(!$.isNumeric(item.weight) || $.trim(item.weight)==""||parseInt(item.weight)<=0)){
 				$(window).scrollTop(1500);
 				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
 				return;
