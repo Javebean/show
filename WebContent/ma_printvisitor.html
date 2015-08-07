@@ -29,7 +29,7 @@ width: 70px;height:70px; border:solid 0px;position: relative;top:-243px;left:20p
 	top: 340px;
 	left: 160px;
 }
-.cp_company{ color:#2c2c2c; font-size:20px; 	position: absolute;
+.cp_company{ color:#2c2c2c; font-size:14px; 	position: absolute;
 	top: 380px;
 	left: 160px;;font-weight:bold;}
 </style>
@@ -42,12 +42,12 @@ $(document).ready(function(){
 	var org = decodeURI(url.substring(url.indexOf("&org=")+5,url.indexOf("&pic=")));
 	var pic = url.substring(url.indexOf("&pic=")+5,url.indexOf("&barcode="));
 	var barcodeurl = url.substring(url.indexOf("&barcode=")+9);
-	
+
 	$(".cp_image").attr("src",PIC_BASE+pic);
 	$(".cp_name").text(name);
 	$(".cp_company").text(org);
 	$(".cp_qrcode img").attr("src",BARCODE_BASE+barcodeurl);
-	
+
 	if(!pic){
 		$(".cp_image").hide();
 	}
