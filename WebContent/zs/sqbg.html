@@ -129,8 +129,8 @@ label.error {
 	<form class="form-horizontal" name="regForm" id="form">
 
      <div class="wssbbt">1.参展单位基本信息</div>
-     <div class="table3"><span class="table3_left left required_label">单位名称</span>
-     	<input class="exib_input required" name="orgName" type="text" />
+     <div class="table3"><span class="table3_left left required_label">单位全称</span>
+     	<input class="exib_input required" name="orgName" type="text" onBlur="if (value ==''){value='必须填写单位全称'}" onClick="if(this.value=='必须填写单位全称')this.value='';" value="必须填写单位全称"/>
 	</div>
 	<div class="table3"><span class="table3_left left">英文名称</span>
      	<input class="exib_input" name="orgEng" type="text" />
