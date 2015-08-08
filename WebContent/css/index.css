@@ -107,7 +107,7 @@ div#new_djs{ width:250px; height: 120px; position: absolute;
 
 .tzggnb ul{}
 .tzggnb ul li{}
-.tzggnb ul li a{ font-size:12px; color:#999999}
+.tzggnb ul li a{ font-size:12px; color:black}
 .tzggnb ul li a:hover{color:#09C}
 
 .hylt{ width:520px; height:300px; }
