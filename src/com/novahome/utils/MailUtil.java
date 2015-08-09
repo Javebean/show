@@ -81,6 +81,7 @@ public class MailUtil {
 				}
 			}
 		}
+		logger.debug("title:" + subject + "; content:" + content + " ; to :" + to );
 		exec.execute(new SendThread(subject, content, to, smtpServer, queue));	
 	}
 	

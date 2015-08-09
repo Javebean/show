@@ -57,6 +57,7 @@ public class ExhibitorsService {
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
+	private static final String ERROR_STR_STATE= "{\"error\":\"抱歉，您的申请已通过一级审批，暂时无法编辑\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
 
 	public String getExhibitorsTotalCount()
@@ -91,13 +92,20 @@ public class ExhibitorsService {
 		return ret;
 	}
 	
-	public String getTotalExhibitInfoByUserName(String username)
+	public String getExhibitorByUserName(String username)
 	{
-		JSONObject obj = processTotalExhibitInfoByUsername(username);
-		String error = (String) obj.get("error");
-		if(error != null && !error.isEmpty())
-			return obj.toString();
-		
+		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
+		if(exhibitor == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;	
+		}
+		if(exhibitor.getFirstState() == 1 || exhibitor.getState() == 1)
+		{
+			logger.warn(ERROR_STR_STATE);
+			return ERROR_STR_STATE;
+		}
+		JSONObject obj = new JSONObject(exhibitor);
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
@@ -146,13 +154,6 @@ public class ExhibitorsService {
 	private JSONObject processTotalExhibitInfoByUsername(String username)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
-		String id = exhibitor.getId();
-		List<Construction>construction = constructionDao.getConstructionByEid(id);
-		List<Transportation>transportation = transportationDao.getTransportationByEid(id);
-		List<SceneServ>sceneServ = sceneServDao.getSceneServByEid(id);
-		List<Visitor>visitor = visitorDao.getVisitorByEid(id);
-		List<DisplayItem>displayItem = displayItemDao.getDisplayItemByEid(id);
-		TotalExhibitInfo info = new TotalExhibitInfo();
 		if(exhibitor == null)
 		{
 			logger.warn(ERROR_STR);
@@ -163,6 +164,24 @@ public class ExhibitorsService {
 				e.printStackTrace();
 			}
 		}
+		if(exhibitor.getFirstState() == 1 || exhibitor.getState() == 1)
+		{
+			logger.warn(ERROR_STR_STATE);
+			try {
+				return new JSONObject(ERROR_STR_STATE);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		String id = exhibitor.getId();
+		List<Construction>construction = constructionDao.getConstructionByEid(id);
+		List<Transportation>transportation = transportationDao.getTransportationByEid(id);
+		List<SceneServ>sceneServ = sceneServDao.getSceneServByEid(id);
+		List<Visitor>visitor = visitorDao.getVisitorByEid(id);
+		List<DisplayItem>displayItem = displayItemDao.getDisplayItemByEid(id);
+		TotalExhibitInfo info = new TotalExhibitInfo();
+		
 		info.setConstruction(construction);
 		info.setDisplayItem(displayItem);
 		info.setExhibitors(exhibitor);
