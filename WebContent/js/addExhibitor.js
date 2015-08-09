@@ -156,13 +156,13 @@ $(document).ready(function(){
 		}
 		$(".trans_select_box").html(trans_type_html);
 	}
-	
+
 	//展商预览
 	function viewExibitor(){
 		var exbData = wrapExbData();
 		if(!exbData) return;
 		var data = exbData;
-		
+
 		$("#exb_review_pop span").empty();
 		$("#exb_review_pop input").val("");
 		setViewTable("#exb_review_pop .exb_detail",data.exhibitors);
@@ -204,7 +204,7 @@ $(document).ready(function(){
 		} else {
 			$("#exb_review_pop #cons_image").attr("src",IMAGE_NOT_FOUND);
 		}
-		
+
 		$.colorbox({
 			inline : true,
 			innerWidth:860,
@@ -363,7 +363,7 @@ $(document).ready(function(){
 		});
 		return itemList;
 	}
-	
+
 	//公共方法
 	function setViewTable(tableID,data){
 		$(tableID+" .fview_value").each(function(){
@@ -373,7 +373,7 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
 	function setDymTable(tableID, params, data){
 		var html = '';
 		for(var i=0;i<data.length;i++){
@@ -412,7 +412,7 @@ $(document).ready(function(){
 	function saveForm(){
 		var exbData = wrapExbData();
 		if(!exbData) return;
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
 
@@ -430,7 +430,7 @@ $(document).ready(function(){
 		Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
 
 	}
-	
+
 	function wrapExbData(){
 		if(!$("#form").valid({
 			 rules: {
@@ -493,13 +493,22 @@ $(document).ready(function(){
 
 		var emailvalue = $("input[name=email]").val();
 			emailvalue = $.trim(emailvalue);
-		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	//	var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	var emailreg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
 	//	alert(emailvalue);
 		if(!emailreg.test(emailvalue))
 		{
 			jAlert("请输入有效的电子邮箱", "信息");
 			return false;
 		}
+
+		var seemailvalue = $("input[name=seemail]").val();
+			seemailvalue = $.trim(seemailvalue);
+			if(!emailreg.test(seemailvalue))
+			{
+				jAlert("请输入有效的电子邮箱", "信息");
+				return false;
+			}
 
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight"];
@@ -546,7 +555,7 @@ $(document).ready(function(){
 			cdata.picture = topicId + ".jpg";
 			construction.push(cdata);
 		}
-		
+
 		var exbData = {};
 		exbData.exhibitors = formData;
 		exbData.construction = construction;
@@ -554,7 +563,7 @@ $(document).ready(function(){
 		exbData.sceneServ = sceneServ;
 		exbData.visitor = visitor;
 		exbData.displayItem = displayItem;
-		
+
 		return exbData;
 	}
 

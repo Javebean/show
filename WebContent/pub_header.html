@@ -29,7 +29,7 @@ $(document).ready(function(){
   username = getCookie("user");
   if(username)
   {
-    $(".yonghu").text("欢迎," + username);
+    $(".yonghu").text("欢迎" + username);
     $(".logout").removeClass("hide");
   }
 
@@ -93,7 +93,9 @@ function delCookie(name)
   	<div class="logout hide"><img src="images/logout.png" /></div>
     	<div class="ban"><a class="ch" href="index.html"><img src="images/ch.jpg" /></a><a class="en" href="eng/index.html"><img src="images/en.jpg" /></a></div>
 
+      <!-- <span class="yonghu"></span>
 
+     <div class="logout hide"><img src="images/logout.png" /></div> -->
 
    </div>
     </div>
