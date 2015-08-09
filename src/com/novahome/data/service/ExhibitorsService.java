@@ -90,6 +90,18 @@ public class ExhibitorsService {
 		logger.debug(ret);
 		return ret;
 	}
+	
+	public String getTotalExhibitInfoByUserName(String username)
+	{
+		JSONObject obj = processTotalExhibitInfoByUsername(username);
+		String error = (String) obj.get("error");
+		if(error != null && !error.isEmpty())
+			return obj.toString();
+		
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
 
 	public String getTotalExhibitInfoByIdWithServlet(String id)
 	{
@@ -130,6 +142,37 @@ public class ExhibitorsService {
 		JSONObject obj = new JSONObject(info);
 		return obj;
 	}
+	
+	private JSONObject processTotalExhibitInfoByUsername(String username)
+	{
+		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
+		String id = exhibitor.getId();
+		List<Construction>construction = constructionDao.getConstructionByEid(id);
+		List<Transportation>transportation = transportationDao.getTransportationByEid(id);
+		List<SceneServ>sceneServ = sceneServDao.getSceneServByEid(id);
+		List<Visitor>visitor = visitorDao.getVisitorByEid(id);
+		List<DisplayItem>displayItem = displayItemDao.getDisplayItemByEid(id);
+		TotalExhibitInfo info = new TotalExhibitInfo();
+		if(exhibitor == null)
+		{
+			logger.warn(ERROR_STR);
+			try {
+				return new JSONObject(ERROR_STR);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		info.setConstruction(construction);
+		info.setDisplayItem(displayItem);
+		info.setExhibitors(exhibitor);
+		info.setSceneServ(sceneServ);
+		info.setTransportation(transportation);
+		info.setVisitor(visitor);
+		JSONObject obj = new JSONObject(info);
+		return obj;
+	}
+	
 
 	public String getExhibitorById(String id)
 	{
@@ -396,6 +439,14 @@ public class ExhibitorsService {
 			logger.debug("content:" + content);
 			MailUtil.sendMail(email, Constants.EXT_SUBJECT_REGISTER, content);
 		}
+		String presentEmail = exhibitor.getSeemail();
+		if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
+		{
+			logger.info("发送展商注册邮件...");
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, userName,pwd);
+			logger.debug("content:" + content);
+			MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_REGISTER, content);
+		}
 		logger.info(ret);
 
 		return ret;
@@ -525,6 +576,14 @@ public class ExhibitorsService {
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
+			String presentEmail = ex.getSeemail();
+			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
+			{
+				logger.info("发送展商驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				logger.debug("content:" + content);
+				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
+			}
 		}
 		else
 			ex.setReason("");
@@ -544,6 +603,14 @@ public class ExhibitorsService {
 				String content = Constants.EXT_APPROVED;
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_APPROVED, content);
+			}
+			String presentEmail = ex.getSeemail();
+			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
+			{
+				logger.info("发送展商申请通过邮件...");
+				String content = Constants.EXT_APPROVED;
+				logger.debug("content:" + content);
+				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_APPROVED, content);
 			}
 		}
 		else if(state == 2)
@@ -568,6 +635,14 @@ public class ExhibitorsService {
 				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
+			}
+			String presentEmail = ex.getSeemail();
+			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
+			{
+				logger.info("发送展商驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				logger.debug("content:" + content);
+				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
 		}
 		else

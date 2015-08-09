@@ -70,6 +70,17 @@ public class ExhibitorsDwr {
 	}
 	
 	/**
+	 * 通过展商username获取展商相关所有信息，包括参会人员、展览产品、申请的运输、现场、施工服务
+	 * @param username
+	 * @return
+	 */
+	@RemoteMethod
+	public String getTotalExhibitInfoByUserName(String username)
+	{
+		return exhibitorsService.getTotalExhibitInfoByUserName(username);
+	}
+	
+	/**
 	 * 分页查询展商简略信息id, orgName,industryType, region, phone, username, applyTime;
 	 * @param start
 	 * @param number

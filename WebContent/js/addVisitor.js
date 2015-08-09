@@ -84,7 +84,8 @@ $(document).ready(function(){
 		}
 		var emailvalue = $("input[name=email]").val();
 		emailvalue = $.trim(emailvalue);
-		var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	//	var emailreg = /^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i ;
+	 var emailreg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
 	//	alert(emailvalue);
 		if(!emailreg.test(emailvalue))
 		{
