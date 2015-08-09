@@ -555,7 +555,6 @@ $(document).ready(function(){
 		exbData.visitor = visitor;
 		exbData.displayItem = displayItem;
 		
-		console.log(exbData);
 		return exbData;
 	}
 
