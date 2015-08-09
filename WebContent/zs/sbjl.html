@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="plugins/uploadify/uploadify.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="plugins/areaselect/css/cityLayout.css" >
+
+    <script type="text/javascript" language="javascript" src="jslib/jquery-1.11.1.min.js"></script>
+  	<script type="text/javascript" src="jslib/json2.js"></script>
+ 	 <script type="text/javascript" src="jslib/uuid.js"></script>
+		<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
+ 	 <script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
+
+ 	 <script type='text/javascript' src='dwr/engine.js'></script>
+  	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
+  	<script type="text/javascript" src="js/constants.js"></script>
+    <script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+
+    <script type="text/javascript" src="js/updateExhibitor.js"></script>
+<style>
+.exib_input {
+	display: block;
+	float: left;
+	width: 566px;
+	height: 38px;
+	padding: 0 0 0 8px;
+	border: 0;
+	color: #aba8a8;
+	font-size: 12px;
+}
+
+.exib_input2 {
+	display: block;
+	float: left;
+	width: 233px;
+	height: 38px;
+	padding: 0 0 0 8px;
+	border: 0;
+	color: #aba8a8;
+	font-size: 12px;
+}
+/* 增加对性别下拉框的样式 by javebean*/
+select {
+	display: block;
+	float: left;
+	width: 233px;
+	height: 38px;
+	padding: 0 0 0 8px;
+	border: 0;
+	color: #aba8a8;
+	font-size: 12px;
+}
+.showitems .item_row .cell {
+	display: block;
+	width: 65px;
+	height: 22px;
+	padding: 0 0 0 4px;
+	border: 0;
+}
+
+.visitors .item_row .cell {
+	display: block;
+	width: 120px;
+	height: 22px;
+	padding: 0 0 0 4px;
+	border: 0;
+}
+
+.sceneserv .item_row .cell,.transserv .item_row .cell {
+	display: block;
+	width: 65px;
+	height: 22px;
+	padding: 0 0 0 4px;
+	border: 0;
+}
+
+.sceneserv .item_row select,.transserv .item_row select {
+	width: 300px;
+}
+
+.btn_delrow {
+	display: block;
+	width: 87px;
+	height: 27px;
+	background: url(images/shanchu.jpg);
+	border: 0;
+	float: left;
+	margin-left: 7px;
+	cursor: pointer;
+}
+
+label.error {
+	margin-left: 28px;
+	width: auto;
+	color: red;
+	font-family: "微软雅黑", "宋体";
+	font-size: 12px;
+	display: block;
+}
+
+#addVisitorBox .photo11 {
+	font-size: 14px;
+}
+
+#addVisitorBox .photo3 {
+	width: 700px;
+	border-bottom: 1px dashed #DBDBDB;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.photo11 {
+	width: 700px;
+	border-bottom: 1px dashed #DBDBDB;
+	margin-top: 39px;
+	margin-left: 20px;
+}
+</style>
+
+   <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">参展商</a> > <a href="#">参展申报</a> > <font style=" font-weight:bold; color:#1F9AD6">申请表格</font></div>
+   <div class="nymainnr">
+
+   <div class="userForm" style="display:none;">
+	<form class="form-horizontal" name="regForm" id="form">
+
+    <div class="wssbbt">1.参展单位基本信息</div>
+     <div class="table3"><span class="table3_left left required_label">单位全称</span>
+     	<input class="exib_input required fview_value" name="orgName" type="text" onBlur="if (value ==''){value='必须填写单位全称'}" onClick="if(this.value=='必须填写单位全称')this.value='';" value="必须填写单位全称"/>
+	</div>
+	<div class="table3"><span class="table3_left left">英文名称</span>
+     	<input class="exib_input fview_value" name="orgEng" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left">法定代表人</span>
+     	<input class="exib_input fview_value" name="president" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left required_label">招展引荐单位</span>
+		<select class="select required fview_value" name="recommender" id="recommender_dropbox" style="width:574px;">
+
+		</select>
+	</div>
+
+	<div class="table3"><span class="table3_left left required_label">地&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+     	<input class="exib_input required fview_value" name="address" type="text" />
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">网&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+      <input class="exib_input2 fview_value" name="site" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">邮&nbsp;&nbsp;&nbsp;&nbsp;编</span>
+      <input class="exib_input2 fview_value" name="zipcode" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">国家地区</span>
+      <input name="region" id="start1" autocomplete="off" type="text" class="fview_value exib_input2 required city_input  inputFocus proCityQueryAll proCitySelAll" ov="请选择/输入城市名称">
+     <!--  <input class="exib_input2 required" name="region" type="text" /> -->
+      </div>
+      <div class="table4 right"><span class="table3_left left required_label">企业性质</span>
+	        <select class="select required fview_value" name="orgType" id="">
+	        	<option value="国有企业">国有企业</option>
+	        	<option value="外资企业">外资企业</option>
+	        	<option value="民营企业">民营企业</option>
+				<option value="合资企业">合资企业</option>
+	        </select>
+	</div>
+	</div>
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">行业类别</span>
+      <input class="exib_input2 required fview_value" name="industryType" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">行业规模</span>
+      <input class="exib_input2 fview_value" name="scale" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">公司联系人</span>
+      <input class="exib_input2 required fview_value" name="contact" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
+      <input class="exib_input2 required fview_value" name="contactPosition" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">手机号码</span>
+      <input class="exib_input2 required fview_value" name="phone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">电子邮箱</span>
+      <input class="exib_input2 required fview_value" name="email" type="text" /></div>
+     </div>
+     <!-- 现场联系人 -->
+	<div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">现场联系人</span>
+      <input class="exib_input2 required fview_value" name="secontact" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">职&nbsp;&nbsp;&nbsp;&nbsp;务</span>
+      <input class="exib_input2 required fview_value" name="secontactPosition" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left required_label">手机号码</span>
+      <input class="exib_input2 required fview_value" name="sephone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left required_label">电子邮箱</span>
+      <input class="exib_input2 required fview_value" name="seemail" type="text" /></div>
+     </div>
+     <div class="tablezh">
+      <div class="table4 left"><span class="table3_left left">固定电话</span>
+      <input class="exib_input2 fview_value" name="telephone" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left">传&nbsp;&nbsp;&nbsp;&nbsp;真</span>
+      <input class="exib_input2 fview_value" name="fax" type="text" /></div>
+     </div>
+     <div class="wssbbt required_label" style=" margin-top:60px;background-position: 250px 0px;  background-repeat: no-repeat;">2.参展单位及产品简介(请在400字以内)</div>
+     <textarea class="required fview_value" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" id="introtextarea" name="orgIntro" cols="" rows="" onKeyDown="textdown(event)" onKeyUp="textup()"></textarea>
+
+	 <!-- Logo 上传 -->
+     <div class="wssbbt" style=" margin-top:10px;font-size: 17px;">企业logo上传</div>
+     <div class="wssbbt" style=" margin-top:10px;font-size: 10px;">请上传不大于2MB的jpg, jpeg, png, gif格式的图片</div>
+     <div class="sggl_box" style="padding-left: 20px;font-size:14px;">
+
+	     <div class="picUpload">
+			<div style="margin-bottom:10px;"><img id="topic_image_logo" class="thumbnail" width="75" height="75" src=""/></div>
+			<div id="queue"></div>
+		</div>
+		<div><input type="file" name="uploadify_logo" id="uploadify_logo" /></div>
+     </div>
+
+	 <!-- 摊位申请 -->
+     <div class="wssbbt" style=" margin-top:60px">3.摊位申请</div>
+     <div class="table5"><span class="table5_left left" style="background-position:70px 0px;background-repeat: no-repeat;">申请标摊数量<b style="color:red">*</b></span><input class="fview_value" style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " onBlur="if (value ==''){value='标摊每个3m X 3m'}" onClick="if(this.value=='标摊每个3m X 3m')this.value='';" value="标摊每个3m X 3m"  name="btsl" type="text" /></div>
+     <div class="table2" style="padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否申请统一特展</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="tytzzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="tytzzs" type="radio" value="0" checked/><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+     <div class="table2" style="margin-top:0; padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">是否室外展示</span><span class="table2_right left">
+     <input style=" display:block; float:left;margin:12px 0 0 0; padding:0" name="swzs" type="radio" value="1" /><span style=" display:block; float:left; margin:0 0 0 4px">是</span>
+     <input style=" display:block; float:left;margin:12px 0 0 20px;padding:0" name="swzs" type="radio" value="0" checked/><span style=" display:block; float:left; margin:0 0 0 4px">否</span></span></div>
+	 <div class="table5"><span class="table5_left left" style="background-position:70px 0px;background-repeat: no-repeat;">特装服务内容</span>
+	 <input style=" display:block; float:left; width:469px; height:38px; padding:0 0 0 8px; border:0; color:#aba8a8;font-size:12px; " class="fview_value" name="tzfw" type="text" /></div>
+
+	<!-- 提交按钮 -->
+     <div class="tjxx_button">
+      <input id="submitForm" style="width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+     </div>
+    </div>
+    
+     <!-- 返回信息 -->
+     <div class="resultMsg" style="display:none;color:#f40000">
+	   		<h3></h3>
+	   </div>
+
+
+
+<!--弹出省省市-->
+<div class="provinceCityAll">
+
+	<div class="tabs clearfix">
+		<ul>
+			<li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+			<li><a href="javascript:" tb="provinceAll">省份</a></li>
+			<li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+
+		</ul>
+	</div>
+
+	<div class="con">
+		<div class="hotCityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="provinceAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="cityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+$(".sel_wrap").on("change", function() {
+var o;
+var opt = $(this).find('option');
+opt.each(function(i) {
+if (opt[i].selected == true) {
+o = opt[i].innerHTML;
+}
+})
+$(this).find('label').html(o);
+}).trigger('change');
+</script>
+
+
+<SCRIPT type="text/javascript">
+function textdown(e) {
+    textevent = e;
+    if (textevent.keyCode == 8) {
+        return;
+    }
+    if (document.getElementById('introtextarea').value.length >= 400) {
+			jAlert("对不起，此处限字400")
+        if (!document.all) {
+            textevent.preventDefault();
+        } else {
+            textevent.returnValue = false;
+        }
+    }
+}
+function textup() {
+    var s = document.getElementById('introtextarea').value;
+    //判断ID为text的文本区域字数是否超过100个
+    if (s.length > 400) {
+        document.getElementById('introtextarea').value = s.substring(0, 400);
+    }
+}
+</SCRIPT>
+
+<script type="text/javascript" src="plugins/areaselect/js/areaselect.js"></script>
+</html>
