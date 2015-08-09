@@ -482,13 +482,13 @@ public class ExhibitorsService {
 			logger.debug(obj.toString());
 			return obj.toString();
 		}
-		else if(exhibitor.getState() != 1)
+		/*else if(exhibitor.getState() != 1)
 		{
 			obj.put("result", false);
 			obj.put("message", "该用户尚未审批通过");
 			logger.debug(obj.toString());
 			return obj.toString();
-		}
+		}*/
 		if (MD5.compute(password).equals(exhibitor.getPassword())) {
 			session.setAttribute(Constants.SESSION_SHOW_ID, exhibitor.getId());
 			session.setAttribute(Constants.SESSION_SHOW_NAME, exhibitor.getUsername());
