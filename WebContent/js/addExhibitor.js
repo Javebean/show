@@ -3,6 +3,7 @@ var formData = {};
 var picFlag = false;
 var picFlag_logo = false;
 var PIC_BASE = 'resources/topicimages/';
+var IMAGE_NOT_FOUND = "";
 if(location.href.indexOf("/eng/")!=-1){
 	PIC_BASE = '../resources/topicimages/';
 }
@@ -42,6 +43,7 @@ $(document).ready(function(){
 	$("#chuyang").click(chuyang);
 	$("#submitVisitorForm").click(saveVisitorForm);
 	$(".addSceneBtn").click(showSceneBox);
+	$("#view_exb").click(viewExibitor);
 
 	function showSceneBox(){
 		$.colorbox({
@@ -153,6 +155,62 @@ $(document).ready(function(){
 	        '<span class="hyspan">'+item.info[2]+'</span></div></div>';
 		}
 		$(".trans_select_box").html(trans_type_html);
+	}
+	
+	//展商预览
+	function viewExibitor(){
+		var exbData = wrapExbData();
+		if(!exbData) return;
+		var data = exbData;
+		
+		$("#exb_review_pop span").empty();
+		$("#exb_review_pop input").val("");
+		setViewTable("#exb_review_pop .exb_detail",data.exhibitors);
+		data.exhibitors.tytzzs=data.exhibitors.tytzzs?"是":"否";
+		data.exhibitors.swzs=data.exhibitors.swzs?"是":"否";
+		setViewTable("#exb_review_pop .areaapply",data.exhibitors);
+		setDymTable("#exb_review_pop .v_showitems", itemParams, data.displayItem);
+		setDymTable("#exb_review_pop .v_visitors", visitorParams, data.visitor);
+
+		if(data.exhibitors.logo){
+			$("#exb_review_pop #logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
+		} else {
+			$("#exb_review_pop #logo_image").attr("src",IMAGE_NOT_FOUND);
+		}
+
+		$("#exb_review_pop .dym_row").remove();
+		if(data.sceneServ.length>0){
+			var html="";
+			for(var i=0;i<data.sceneServ.length;i++){
+				var sdata = data.sceneServ[i];
+				html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
+			          '<td colspan="2"><span>'+sdata.content+'</span></td></tr>';
+			}
+			$("#exb_review_pop .scene_header").after(html);
+		}
+		if(data.transportation.length>0){
+			var html="";
+			for(var i=0;i<data.transportation.length;i++){
+				var sdata = data.transportation[i];
+				html+='<tr class="dym_row"><td><span>'+sdata.type+'</span></td>'+
+			          '<td><span>'+sdata.content+'</span></td>'+
+			          '<td><span>'+sdata.time+'</span></td></tr>';
+			}
+			$("#exb_review_pop .trans_header").after(html);
+		}
+		if(data.construction.length>0){
+			var sdata = data.construction[0];
+			$("#exb_review_pop #cons_image").attr("src",PIC_BASE+sdata.picture+"?"+Math.random());
+		} else {
+			$("#exb_review_pop #cons_image").attr("src",IMAGE_NOT_FOUND);
+		}
+		
+		$.colorbox({
+			inline : true,
+			innerWidth:860,
+			href : "#exb_review_pop",
+			close : "关闭"
+		});
 	}
 
 	function addVisitorLine(){
@@ -305,6 +363,35 @@ $(document).ready(function(){
 		});
 		return itemList;
 	}
+	
+	//公共方法
+	function setViewTable(tableID,data){
+		$(tableID+" .fview_value").each(function(){
+			var key = $(this).attr("ename");
+			if(data[key]){
+				$(this).text(data[key]);
+			}
+		});
+	}
+	
+	function setDymTable(tableID, params, data){
+		var html = '';
+		for(var i=0;i<data.length;i++){
+			html += '<tr class="item_row">';
+			var row = data[i];
+			for(var j=0;j<params.length;j++){
+				if(row[params[j]]){
+					html += '<td>'+ row[params[j]] +'</td>';
+				} else {
+					html += '<td></td>';
+				}
+			}
+			html += '</tr>';
+		}
+
+		$(tableID+" .item_row").remove();
+		$(tableID).append(html.replace(/undefined/g,""));
+	}
 
 	function getDymiTableDataTrans(){
 		var itemList = [];
@@ -323,6 +410,28 @@ $(document).ready(function(){
 	}
 
 	function saveForm(){
+		var exbData = wrapExbData();
+		if(!exbData) return;
+		
+		var func = function(data){
+			data = JSON.parse(data);
+
+			if(data.result == true){
+				//location.href="ma_zlzx.jsp?menu=1";
+				$(".userForm").hide();
+				$("#login_id").text(data.username);
+				$("#login_pass").text(data.password);
+				$(".resultMsg").show();
+
+			}else{
+				jAlert(data.message, "信息");
+			}
+		};
+		Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
+
+	}
+	
+	function wrapExbData(){
 		if(!$("#form").valid({
 			 rules: {
 				sex: "required"
@@ -349,7 +458,7 @@ $(document).ready(function(){
 		})){
 			$(window).scrollTop(400);
 			jAlert("请检查输入内容", "信息");
-			return;
+			return false;
 		}
 		var formData = getFormdata("regForm");
 		formData.tytzzs= $("input[name='tytzzs']:checked").val();
@@ -358,7 +467,7 @@ $(document).ready(function(){
 		if(btsl == "标摊每个3m X 3m"){
 			$(window).scrollTop(1300);
 			jAlert("请输入标摊数量", "信息");
-			return;
+			return false;
 		}
 
 		// if(isNaN(parseInt(btsl))){
@@ -367,7 +476,7 @@ $(document).ready(function(){
 			{
 			$(window).scrollTop(1300);
 			jAlert("标摊数量请输入整数", "信息");
-			return;
+			return false;
 		} else {
 			formData.btsl = parseInt(btsl);
 		}
@@ -389,7 +498,7 @@ $(document).ready(function(){
 		if(!emailreg.test(emailvalue))
 		{
 			jAlert("请输入有效的电子邮箱", "信息");
-			return;
+			return false;
 		}
 
 		var displayItem = getDymiTableData(".showitems", itemParams);
@@ -399,14 +508,14 @@ $(document).ready(function(){
 			if(!reg_num.test(item.number) && item.number!=""){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");
-				return;
+				return false;
 			} else if((!$.isNumeric(item.length) || $.trim(item.length)==""||parseInt(item.length)<=0)
 					||(!$.isNumeric(item.width) || $.trim(item.width)==""||parseInt(item.width)<=0)
 					||(!$.isNumeric(item.height) || $.trim(item.height)==""||parseInt(item.height)<=0)
 					||(!$.isNumeric(item.weight) || $.trim(item.weight)==""||parseInt(item.weight)<=0)){
 				$(window).scrollTop(1500);
 				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
-				return;
+				return false;
 			}
 		}
 
@@ -417,7 +526,7 @@ $(document).ready(function(){
 			if(!reg_num.test(item.content) && item.content!=""){
 				$(window).scrollTop(2200);
 				jAlert("现场服务数量请输入整数", "信息");
-				return;
+				return false;
 			}
 		}
 
@@ -427,7 +536,7 @@ $(document).ready(function(){
 			if(!reg_num.test(item.content) || item.content=="" || !reg_num.test(item.time) || item.time==""){
 				$(window).scrollTop(2400);
 				jAlert("货运物流数量，时间请输入整数", "信息");
-				return;
+				return false;
 			}
 		}
 
@@ -437,23 +546,17 @@ $(document).ready(function(){
 			cdata.picture = topicId + ".jpg";
 			construction.push(cdata);
 		}
-
-		var func = function(data){
-			data = JSON.parse(data);
-
-			if(data.result == true){
-				//location.href="ma_zlzx.jsp?menu=1";
-				$(".userForm").hide();
-				$("#login_id").text(data.username);
-				$("#login_pass").text(data.password);
-				$(".resultMsg").show();
-
-			}else{
-				jAlert(data.message, "信息");
-			}
-		};
-		Exhibitor.saveTotalExhibitInfo(formData,construction,transportation,sceneServ,visitor,displayItem,func);
-
+		
+		var exbData = {};
+		exbData.exhibitors = formData;
+		exbData.construction = construction;
+		exbData.transportation = transportation;
+		exbData.sceneServ = sceneServ;
+		exbData.visitor = visitor;
+		exbData.displayItem = displayItem;
+		
+		console.log(exbData);
+		return exbData;
 	}
 
 	function getFormdata(formName){
