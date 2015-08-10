@@ -13,13 +13,30 @@
 </head>
 <script>
 $(document).ready(function(){
-  $(".nymain_right").load("gy/zhgk.html");
+
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
+  //$(".nymain_right").load("gy/zhgk.html");
   $(".menu_Left").click(loadContent);
 
-  function loadContent(){
+  var detail = getUrlParam("detail");
+  if(detail=="gy/wjhg.html"){
+    $(".nymain_right").load(detail);
     $(".menu_Left").removeClass("menu_active");
+    $(".a_wjhg").addClass("menu_active");
+  } 
+  else if(detail=="gy/zhgk.html"){
+	  $(".nymain_right").load("gy/zhgk.html");
+  }
+  else if(detail=="gy/jbdys.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_jbdys").addClass("menu_active");
+  }else {
+    $(".nymain_right").load("gy/zhgk.html");
+  }
+  function loadContent(){
+ 	$(".menu_Left").removeClass("menu_active");
     $(this).addClass("menu_active");
     var url = $(this).attr("eurl");
     $(".nymain_right").load(url);
@@ -47,7 +64,9 @@ $(document).ready(function(){
 
         <a eurl="gy/zhnr.html" class="menu_head menu_Left">Contents</a>
 
-        <a eurl="gy/wjhg.html" class="menu_head menu_Left">Past Review</a>
+        <a eurl="gy/wjhg.html" class="menu_head menu_Left a_wjhg">Past Review</a>
+        
+        <a eurl="gy/jbdys.html" class="menu_head menu_Left a_jbdys">Advantage</a>
 
         <a eurl="gy/hzdw.html" class="menu_head menu_Left">Partnership</a>
 
