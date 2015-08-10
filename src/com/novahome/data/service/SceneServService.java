@@ -78,6 +78,27 @@ public class SceneServService {
 		return ret;
 	}
 	
+	public String getSceneServByUsername(String username)
+	{
+
+		List<SceneServ> ls = sceneServDao.getSceneServByUsername(username);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(SceneServ sceneServ : ls )
+		{
+			array.put(new JSONObject(sceneServ));
+		}
+		obj.put("data", array);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
 	public String getSceneServById(String id)
 	{
 		SceneServ sceneServ = sceneServDao.getSceneServById(id);

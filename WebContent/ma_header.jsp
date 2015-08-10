@@ -26,7 +26,7 @@ if(accountid==null){
 
 	<!-- Bootstrap core CSS -->
     <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
+    
     <!-- Custom styles for this template -->
     <link href="css/manager.css" rel="stylesheet">
     <link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
