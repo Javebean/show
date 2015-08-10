@@ -26,9 +26,16 @@ $(document).ready(function(){
   $(".menu_Left").click(loadContent);
   
   var detail = getUrlParam("detail");
-  if(detail){
+  if(detail=="zs/wssb.html"){
 	  $(".nymain_right").load(detail);
 	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_wssb").addClass("menu_active");
+	  
+  }
+  else if(detail=="zs/xzzx.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_xzzx").addClass("menu_active");
   } else {
 	  $(".nymain_right").load("zs/zgqk.html");
   }
@@ -67,15 +74,15 @@ $(document).ready(function(){
 
         <a eurl="zs/hywl.html" class="menu_head menu_Left">货运物流</a>
 
-        <a class="menu_head">证件办理</a>
+        <a class="menu_head a_wssb">证件办理</a>
         <div class="menu_body">
           <ul>
             <li><a eurl="zs/zjfw.html" class="menu_Left">证件服务</a></li>
-            <li><a eurl="zs/wssb.html" class="menu_Left">网上申报</a></li>
+            <li><a eurl="zs/wssb.html" class="menu_Left ">网上申报</a></li>
           </ul>
         </div>
 
-        <a eurl="zs/xzzx.html" class="menu_head menu_Left">下载中心</a>
+        <a eurl="zs/xzzx.html" class="menu_head menu_Left a_xzzx">下载中心</a>
 
       </div>
 
