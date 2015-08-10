@@ -19,10 +19,21 @@ $(document).ready(function(){
 	$(".footer").load("pub_footer.html");
 	$(".menu_Left").click(loadContent);
 	var detail = getUrlParam("detail");
-  if(detail){
+  if(detail == "in_newscenter.html"){
+	  $(".nymain_right").load("hyzx.html");
+
+  } 
+  else if(detail =="zytz.html"){
 	  $(".nymain_right").load(detail);
 	  $(".menu_Left").removeClass("menu_active");
-  } else {
+	  $(".a_zytz").addClass("menu_active"); 
+  }
+  else if(detail =="zlzx.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_zlzx").addClass("menu_active");
+	  
+  }else {
 	  $(".nymain_right").load("hyzx.html");
   }
 });
@@ -44,11 +55,11 @@ $(document).ready(function(){
 
     <a eurl="hyzx.html" class="menu_head menu_Left menu_active">行业资讯</a>
 
-	<a eurl="zlzx.html" class="menu_head menu_Left">展会资讯</a>
+	<a eurl="zlzx.html" class="menu_head menu_Left a_zlzx">展会资讯</a>
 
 	<a eurl="xw/lcap.html" class="menu_head menu_Left ">展区分布</a>
 
-	<a eurl="zytz.html" class="menu_head menu_Left">通知公告</a>
+	<a eurl="zytz.html" class="menu_head menu_Left a_zytz">通知公告</a>
 
 	<a eurl="xw/hylt.html" class="menu_head menu_Left">会议论坛</a>
 

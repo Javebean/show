@@ -257,14 +257,14 @@ $(document).ready(function(){
 			}
 		}
 		//护照
-		// if($("select[name=idType]").val()==1){
-		// 	var value = $("input[name=idNo]").val();
-		// 	value=$.trim(value);
-		// 	if(!$.isNumeric( value ) || value.length!=11){
-		// 		jAlert("请输入有效的11位护照号码", "信息");
-		// 		return;
-		// 	}
-		// }
+		/*if($("select[name=idType]").val()==1){
+			var value = $("input[name=idNo]").val();
+			value=$.trim(value);
+			if(!$.isNumeric( value ) || value.length!=11){
+				jAlert("请输入有效的11位护照号码", "信息");
+				return;
+			}
+		}*/
 		//港澳台通行证  2015-8-6.暂时对港澳台和台胞证不做限定
 		/*if($("select[name=idType]").val()==2){
 			var value = $("input[name=idNo]").val().trim();
@@ -518,10 +518,10 @@ $(document).ready(function(){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");
 				return false;
-			} else if((!$.isNumeric(item.length) || $.trim(item.length)==""||parseInt(item.length)<=0)
-					||(!$.isNumeric(item.width) || $.trim(item.width)==""||parseInt(item.width)<=0)
-					||(!$.isNumeric(item.height) || $.trim(item.height)==""||parseInt(item.height)<=0)
-					||(!$.isNumeric(item.weight) || $.trim(item.weight)==""||parseInt(item.weight)<=0)){
+			} else if((!$.isNumeric(item.length) || $.trim(item.length)==""||parseInt(item.length)<0)
+					||(!$.isNumeric(item.width) || $.trim(item.width)==""||parseInt(item.width)<0)
+					||(!$.isNumeric(item.height) || $.trim(item.height)==""||parseInt(item.height)<0)
+					||(!$.isNumeric(item.weight) || $.trim(item.weight)==""||parseInt(item.weight)<0)){
 				$(window).scrollTop(1500);
 				jAlert("展品长度，宽度，高度，重量请输入数字或小数", "信息");
 				return false;
