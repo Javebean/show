@@ -106,7 +106,15 @@ $(document).ready(function(){
                 '</tr>';
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
-			$('.delete_tp').click(deleteTP);
+			/*$('.delete_tp').click(deleteTP);*/
+			$('.delete_tp').click(function(){
+				 if (!confirm("确认要删除？")) {
+					 	return false;
+			        }else{
+			        	deleteTP($(this).attr("eid"));
+			        }
+			});
+			
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}
@@ -236,8 +244,8 @@ $(document).ready(function(){
 	}
 
 
-	function deleteTP(){
-		var eid = $(this).attr("eid");
+	function deleteTP(eid){
+		//var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) showTopicList(1);
 		}
