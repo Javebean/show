@@ -78,13 +78,14 @@ $(document).ready(function(){
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			/*$('.delete_tp').click(deleteTP);*/
 			$('.delete_tp').click(function(){
-				 if (!confirm("确认要删除？")) {
-					 	return false;
-			        }else{
-			        	deleteTP($(this).attr("eid"));
-			        }
+				deleteTP($(this).attr("eid"));
+				//  if (!confirm("确认要删除？")) {
+				// 	 	return false;
+			  //       }else{
+			  //
+			  //       }
 			});
-			
+
 			$('.view_tp').click(viewTP);
 		};
 		//alert("search_state:" + search_state);
