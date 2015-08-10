@@ -5,17 +5,16 @@ $(document).ready(function(){
 	//init page
 	initTopic();
 
-	CKEDITOR.replace( 'content',{
-		height: '700px',
-		width: '753px'
-		//allowedContent: true
-	});
-
 	function initTopic(){
 		var func = function(data){
 			var pt = JSON.parse(data);
 			$("#title").val(pt.title);
 			$("#content").val(pt.content);
+			
+			CKEDITOR.replace( 'content',{
+				height: '700px',
+				width: '753px'
+			});
 		};
 		Hyzx.getHyzxById(topicId,func);
 	}

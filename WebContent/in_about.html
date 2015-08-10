@@ -27,6 +27,11 @@ $(document).ready(function(){
   } 
   else if(detail=="gy/zhgk.html"){
 	  $(".nymain_right").load("gy/zhgk.html");
+  }
+  else if(detail=="gy/jbdys.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_jbdys").addClass("menu_active");
   }else {
     $(".nymain_right").load("gy/zhgk.html");
   }
@@ -62,7 +67,7 @@ $(document).ready(function(){
 
         <a eurl="gy/wjhg.html" class="menu_head menu_Left a_wjhg">往届回顾</a>
 
-        <a eurl="gy/jbdys.html" class="menu_head menu_Left">举办地优势</a>
+        <a eurl="gy/jbdys.html" class="menu_head menu_Left a_jbdys">举办地优势</a>
 
         <a eurl="gy/hzdw.html" class="menu_head menu_Left">联系我们</a>
 

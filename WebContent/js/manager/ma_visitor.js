@@ -106,14 +106,7 @@ $(document).ready(function(){
                 '</tr>';
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
-			/*$('.delete_tp').click(deleteTP);*/
-			$('.delete_tp').click(function(){
-				 if (!confirm("确认要删除？")) {
-					 	return false;
-			        }else{
-			        	deleteTP($(this).attr("eid"));
-			        }
-			});
+			$('.delete_tp').click(deleteTP);
 			
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
@@ -244,12 +237,16 @@ $(document).ready(function(){
 	}
 
 
-	function deleteTP(eid){
-		//var eid = $(this).attr("eid");
+	function deleteTP(){
+		var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) showTopicList(1);
-		}
-		Visitor.deleteVisitorById(eid,func);
+		};
+		
+		jConfirm("确认删除证件？","信息",function(result){
+			if(result)	Visitor.deleteVisitorById(eid,func);
+		});
+		
 	}
 
 	function updateTP(){

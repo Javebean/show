@@ -76,7 +76,15 @@ $(document).ready(function(){
 	                '</tr>';
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
-			$('.delete_tp').click(deleteTP);
+			/*$('.delete_tp').click(deleteTP);*/
+			$('.delete_tp').click(function(){
+				 if (!confirm("确认要删除？")) {
+					 	return false;
+			        }else{
+			        	deleteTP($(this).attr("eid"));
+			        }
+			});
+			
 			$('.view_tp').click(viewTP);
 		};
 		//alert("search_state:" + search_state);
@@ -196,12 +204,14 @@ $(document).ready(function(){
 		$(tableID).append(html.replace(/undefined/g,""));
 	}
 
-	function deleteTP(){
-		var eid = $(this).attr("eid");
+	function deleteTP(eid){
+		//var eid = $(this).attr("eid");
 		var func = function(data){
 			if(data==true) showTopicList(1);
 		};
-		Exhibitor.deleteExhibitorById(eid,func);
+		jConfirm("确认删除展商？","信息",function(result){
+			if(result)	Exhibitor.deleteExhibitorById(eid,func);
+		});
 	}
 
 	function updateTP(){
@@ -213,7 +223,7 @@ $(document).ready(function(){
 			}
 		};
 		if(step == 1){
-			Exhibitor.updateExhibitorFirstState(eid,1,func)
+			Exhibitor.updateExhibitorFirstState(eid,1,func);
 		} else if(step == 2) {
 			Exhibitor.updateExhibitorState(eid,1,func);
 		}

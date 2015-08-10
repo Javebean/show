@@ -17,7 +17,7 @@ if(accountid==null){
   <head>
     <base href="<%=basePath%>">
 
-    <title>nova team</title>
+    <title>连博会</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,9 +26,10 @@ if(accountid==null){
 
 	<!-- Bootstrap core CSS -->
     <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
+    
     <!-- Custom styles for this template -->
     <link href="css/manager.css" rel="stylesheet">
+    <link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>
 
 	<script type='text/javascript' src="jslib/jquery-1.11.1.min.js"></script>
 	<script type='text/javascript' src='dwr/engine.js'></script>
@@ -36,6 +37,7 @@ if(accountid==null){
     <script type='text/javascript' src='dwr/engine.js'></script>
 	<script type='text/javascript' src='dwr/interface/Account.js'></script>
 	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
 
     <style>
     #add_topic{
