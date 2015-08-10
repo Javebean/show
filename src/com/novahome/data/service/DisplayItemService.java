@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.novahome.data.dao.DisplayItemDao;
 import com.novahome.data.dao.ExhibitorsDao;
 import com.novahome.data.pojo.DisplayItem;
-import com.novahome.data.pojo.SceneServ;
+
 
 @Service("displayItemService")
 @Transactional(readOnly = false)
@@ -27,6 +27,7 @@ public class DisplayItemService {
 	private ExhibitorsDao exhibitorsDao;
 	
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展品\"}";
+	private static final String ERROR_STR_STATE= "{\"error\":\"抱歉，您的申请已通过审批，暂时无法编辑\"}";
 
 	
 	public String getDisplayItemTotalCount() 
@@ -83,11 +84,18 @@ public class DisplayItemService {
 	
 	public String getDisplayItemByUsername(String username)
 	{
+		int state = exhibitorsDao.getStateByUsername(username);
+		if(state== 1 )
+		{
+			logger.warn(ERROR_STR_STATE);
+			return ERROR_STR_STATE;
+		}
+		
 		List<DisplayItem> ls = displayItemDao.getDisplayItemByUsername(username);
 		if(ls == null || ls.isEmpty())
 		{
 			logger.warn(ERROR_STR);
-			return ERROR_STR;
+			return null;
 		}
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();

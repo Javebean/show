@@ -74,7 +74,7 @@ sList = [sceneServ01,sceneServ02];
     }
     
     function getbyusername_onclick(){
-    SceneServ.getSceneServByUsername("a23252");
+    SceneServ.getSceneServByUsername("e71396");
     }
     
     function updatebyusername_onclick()

@@ -355,4 +355,11 @@ public class ExhibitorsDao {
 				"select id from Exhibitors where username = '" + username  + "'");
 		return query.uniqueResult().toString();	
 	}
+	
+	public int getStateByUsername(String username)
+	{
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select state from Exhibitors where username = '" + username  + "'");
+		return (Integer) query.uniqueResult();	
+	}
 }
