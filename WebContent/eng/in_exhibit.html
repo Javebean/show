@@ -20,10 +20,25 @@
 </head>
 <script>
 $(document).ready(function(){
-  $(".nymain_right").load("zs/zgqk.html");
+
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
   $(".menu_Left").click(loadContent);
+  
+  var detail = getUrlParam("detail");
+  if(detail=="zs/wssb.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_wssb").addClass("menu_active");
+	  
+  }
+  else if(detail=="zs/xzzx.html"){
+	  $(".nymain_right").load(detail);
+	  $(".menu_Left").removeClass("menu_active");
+	  $(".a_xzzx").addClass("menu_active");
+  } else {
+	  $(".nymain_right").load("zs/zgqk.html");
+  }
 });
 </script>
 <body>
@@ -54,15 +69,15 @@ $(document).ready(function(){
 
         <a eurl="zs/hywl.html" class="menu_head menu_Left">Logistics</a>
 
-        <a class="menu_head">Badge</a>
-        <div class="menu_body">
+        <a class="menu_head a_wssb">Badge</a>
+        <div class="menu_body ">
           <ul>
             <li><a eurl="zs/zjfw.html" class="menu_Left">Badge Service</a></li>
             <li><a eurl="zs/wssb.html" class="menu_Left">Apply Online</a></li>
           </ul>
         </div>
 
-        <a eurl="zs/xzzx.html" class="menu_head menu_Left">Downloads</a>
+        <a eurl="zs/xzzx.html" class="menu_head menu_Left a_xzzx">Downloads</a>
 
       </div>
 

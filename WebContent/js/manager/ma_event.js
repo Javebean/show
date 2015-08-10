@@ -44,7 +44,14 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.view_tp').click(viewTP);
-			$('.delete_tp').click(deleteTP);
+			/*$('.delete_tp').click(deleteTP);*/
+			$('.delete_tp').click(function(){
+				 if (!confirm("确认要删除？")) {
+					 	return false;
+			        }else{
+			        	deleteTP($(this).attr("eid"));
+			        }
+			});
 		}
 		Event.getEventForPage((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,func);
 	}
@@ -81,8 +88,8 @@ $(document).ready(function(){
 		});
 	}
 
-	function deleteTP(){
-		var eid = $(this).attr("eid");
+	function deleteTP(eid){
+		//var eid = $(this).attr("eid");
 		var func = function(data){
 
 			if(data==true) location.reload();
