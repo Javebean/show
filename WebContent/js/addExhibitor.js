@@ -257,14 +257,14 @@ $(document).ready(function(){
 			}
 		}
 		//护照
-		if($("select[name=idType]").val()==1){
-			var value = $("input[name=idNo]").val();
-			value=$.trim(value);
-			if(!$.isNumeric( value ) || value.length!=11){
-				jAlert("请输入有效的11位护照号码", "信息");
-				return;
-			}
-		}
+		// if($("select[name=idType]").val()==1){
+		// 	var value = $("input[name=idNo]").val();
+		// 	value=$.trim(value);
+		// 	if(!$.isNumeric( value ) || value.length!=11){
+		// 		jAlert("请输入有效的11位护照号码", "信息");
+		// 		return;
+		// 	}
+		// }
 		//港澳台通行证  2015-8-6.暂时对港澳台和台胞证不做限定
 		/*if($("select[name=idType]").val()==2){
 			var value = $("input[name=idNo]").val().trim();
