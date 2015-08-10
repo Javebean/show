@@ -116,7 +116,9 @@ $(document).ready(function(){
 		var func = function(data){
 
 			if(data==true) location.reload();
-		}
-		Audience.deleteAudienceById(eid,func);
+		};
+		jConfirm("确认删除观众？","信息",function(result){
+			if(result)	Audience.deleteAudienceById(eid,func);
+		});
 	}
 });

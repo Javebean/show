@@ -201,7 +201,9 @@ $(document).ready(function(){
 		var func = function(data){
 			if(data==true) showTopicList(1);
 		};
-		Exhibitor.deleteExhibitorById(eid,func);
+		jConfirm("确认删除展商？","信息",function(result){
+			if(result)	Exhibitor.deleteExhibitorById(eid,func);
+		});
 	}
 
 	function updateTP(){
@@ -213,7 +215,7 @@ $(document).ready(function(){
 			}
 		};
 		if(step == 1){
-			Exhibitor.updateExhibitorFirstState(eid,1,func)
+			Exhibitor.updateExhibitorFirstState(eid,1,func);
 		} else if(step == 2) {
 			Exhibitor.updateExhibitorState(eid,1,func);
 		}
