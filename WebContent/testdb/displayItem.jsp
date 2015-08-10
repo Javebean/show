@@ -27,6 +27,22 @@ displayItemdata.width = 2;
 displayItemdata.weight = 2;
 displayItemdata.eid = "4028b8814cb190bb014cb196cd350003";
 
+
+var dp01 = {};
+dp01.name="展品";
+dp01.length = 2;
+dp01.width = 2;
+dp01.weight = 2;
+dp01.number = 2;
+
+var dp02 = {};
+dp02.name="产品";
+dp02.length = 0.2;
+dp02.width = 0.2;
+dp02.weight = 0.2;
+dp02.number = 5;
+
+sList = [dp01,dp02];
 	function save_onclick(){
     	 DisplayItem.saveDisplayItem(displayItemdata);
     }
@@ -65,6 +81,17 @@ displayItemdata.eid = "4028b8814cb190bb014cb196cd350003";
     function delete_onclick(){
     	DisplayItem.deleteDisplayItemById("4028b8814cb34178014cb341b4580002");
     }
+    
+    
+     function getbyusername_onclick(){
+    	DisplayItem.getDisplayItemByUsername("b76840");
+    }
+    
+    function updatebyusername_onclick()
+    {
+    	
+    	DisplayItem.updateDisplayItemList("b76840",sList);
+    }
 </script>
 
 <body>
@@ -76,6 +103,7 @@ displayItemdata.eid = "4028b8814cb190bb014cb196cd350003";
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
-	
+	<input type="button" value="根据ex的username查询"  onclick="javascript:getbyusername_onclick();" />
+	<input type="button" value="根据ex的username更新displayitem"  onclick="javascript:updatebyusername_onclick();" />
 </body>
 </html>

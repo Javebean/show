@@ -1,5 +1,7 @@
 package com.novahome.dwr;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.directwebremoting.annotations.Param;
@@ -74,6 +76,16 @@ public class SceneServDwr {
 		return sceneServService.getSceneServByUsername(username);
 	}
 	
+	/**
+	 * 通过sceneservlist,删除原先的list
+	 * @param eid
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateSceneServList(String username, List<SceneServ>sceneServ)
+	{
+		return sceneServService.updateSceneServList(username, sceneServ);
+	}
 	/**
 	 * 通过id获取现场服务申请
 	 * @param id

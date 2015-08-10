@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.novahome.data.dao.ExhibitorsDao;
 import com.novahome.data.dao.SceneServDao;
 import com.novahome.data.pojo.SceneServ;
 
@@ -25,6 +26,9 @@ public class SceneServService {
 	private static final Logger logger = Logger.getLogger(SceneServService.class);
 	@Resource(name = "sceneServDao")
 	private SceneServDao sceneServDao;
+	
+	@Resource(name = "exhibitorsDao")
+	private ExhibitorsDao exhibitorsDao;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场服务申请\"}";
 
 	public String getSceneServTotalCount() 
@@ -80,7 +84,6 @@ public class SceneServService {
 	
 	public String getSceneServByUsername(String username)
 	{
-
 		List<SceneServ> ls = sceneServDao.getSceneServByUsername(username);
 		if(ls == null || ls.isEmpty())
 		{
@@ -97,6 +100,24 @@ public class SceneServService {
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
+	}
+	
+	public boolean updateSceneServList(String username, List<SceneServ>list)
+	{
+		logger.debug("update sceneservlist:" + username);
+		String eid = exhibitorsDao.getIdByUsername(username);
+		logger.debug("eid:" + eid);
+		sceneServDao.deleteSceneServByEid(eid);
+		if(list == null || list.isEmpty())
+			return true;
+		
+		for(SceneServ serv : list)
+		{
+			serv.setEid(eid);
+			logger.debug(serv);
+			sceneServDao.saveSceneServ(serv);
+		}
+		return true;
 	}
 	
 	public String getSceneServById(String id)

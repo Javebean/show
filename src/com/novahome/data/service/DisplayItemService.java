@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.novahome.data.dao.DisplayItemDao;
+import com.novahome.data.dao.ExhibitorsDao;
 import com.novahome.data.pojo.DisplayItem;
+import com.novahome.data.pojo.SceneServ;
 
 @Service("displayItemService")
 @Transactional(readOnly = false)
@@ -21,6 +23,9 @@ public class DisplayItemService {
 	private static final Logger logger = Logger.getLogger(DisplayItemService.class);
 	@Resource(name = "displayItemDao")
 	private DisplayItemDao displayItemDao;
+	@Resource(name = "exhibitorsDao")
+	private ExhibitorsDao exhibitorsDao;
+	
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展品\"}";
 
 	
@@ -73,6 +78,44 @@ public class DisplayItemService {
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
+	}
+	
+	
+	public String getDisplayItemByUsername(String username)
+	{
+		List<DisplayItem> ls = displayItemDao.getDisplayItemByUsername(username);
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		for(DisplayItem displayItem : ls )
+		{
+			array.put(new JSONObject(displayItem));
+		}
+		obj.put("data", array);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
+	public boolean updateDisplayItemList(String username, List<DisplayItem>list)
+	{
+		logger.debug("update displayitemlist : " + username);
+		String eid = exhibitorsDao.getIdByUsername(username);
+		displayItemDao.deleteDisplayItemByEid(eid);
+		if(list == null || list.isEmpty())
+			return true;
+		
+		for(DisplayItem item : list)
+		{
+			item.setEid(eid);
+			logger.debug(item);
+			displayItemDao.saveDisplayItem(item);
+		}
+		return true;
 	}
 	
 	public String getDisplayItemById(String id)

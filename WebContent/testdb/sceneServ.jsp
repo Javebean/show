@@ -25,6 +25,16 @@ sceneServdata.type="建设内容";
 sceneServdata.content ="制度建设方面广交会出口展展品质量>";
 sceneServdata.eid = "4028b8814cb190bb014cb196cd350003";
 
+var sceneServ01 = {};
+sceneServ01.type = "服务";
+sceneServ01.content =2;
+
+var sceneServ02 = {};
+sceneServ02.type = "产品";
+sceneServ02.content =2;
+
+sList = [sceneServ01,sceneServ02];
+
 	function save_onclick(){
     	 SceneServ.saveSceneServ(sceneServdata);
     }
@@ -66,6 +76,12 @@ sceneServdata.eid = "4028b8814cb190bb014cb196cd350003";
     function getbyusername_onclick(){
     SceneServ.getSceneServByUsername("a23252");
     }
+    
+    function updatebyusername_onclick()
+    {
+    	
+    	SceneServ.updateSceneServList("e71396",sList);
+    }
 </script>
 
 <body>
@@ -78,5 +94,6 @@ sceneServdata.eid = "4028b8814cb190bb014cb196cd350003";
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
 	<input type="button" value="根据ex的username查询"  onclick="javascript:getbyusername_onclick();" />
+	<input type="button" value="根据ex的username更新scecne"  onclick="javascript:updatebyusername_onclick();" />
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.novahome.dwr;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.directwebremoting.annotations.Param;
@@ -48,6 +50,28 @@ public class DisplayItemDwr {
 	public String saveDisplayItem(DisplayItem displayItem)
 	{
 		return displayItemService.saveDisplayItem(displayItem);
+	}
+	
+	/**
+	 * 通过公司username查找展品
+	 * @param username
+	 * @return
+	 */
+	@RemoteMethod
+	public String getDisplayItemByUsername(String username)
+	{
+		return displayItemService.getDisplayItemByUsername(username);
+	}
+	
+	/**
+	 * 更新公司展品通过username
+	 * @param username
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateDisplayItemList(String username, List<DisplayItem>list)
+	{
+		return displayItemService.updateDisplayItemList(username, list);
 	}
 	
 	/**

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.novahome.data.pojo.DisplayItem;
+import com.novahome.data.pojo.SceneServ;
 
 
 @Component("displayItemDao")
@@ -64,6 +65,21 @@ public class DisplayItemDao {
 				"from DisplayItem a where a.eid = :eid");
 		query.setString("eid", eid);
 		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DisplayItem>getDisplayItemByUsername(String username)
+	{
+		return  sessionFactory.getCurrentSession().createSQLQuery(
+				"select * from DisplayItem d where d.eid in (select id from exhibitors e where e.username = '" + username + "')")
+				.addEntity( "DisplayItem" , DisplayItem.class ).list();		
+	}
+	
+	public long deleteDisplayItemByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from DisplayItem where eid = :eid");
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
 	}
 	
 	public long deleteDisplayItemById (String id) {

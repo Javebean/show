@@ -349,5 +349,10 @@ public class ExhibitorsDao {
 		return true;
 	}
 	
-	
+	public String getIdByUsername(String username)
+	{
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
+				"select id from Exhibitors where username = '" + username  + "'");
+		return query.uniqueResult().toString();	
+	}
 }

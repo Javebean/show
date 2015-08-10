@@ -63,7 +63,7 @@ public class SceneServDao {
 	{
 		return  sessionFactory.getCurrentSession().createSQLQuery(
 				"select * from SceneServ s where s.eid in (select id from exhibitors e where e.username = '" + username + "')")
-				.addEntity( "SceneServ" , SceneServ. class ).list();		
+				.addEntity( "SceneServ" , SceneServ.class ).list();		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -82,6 +82,13 @@ public class SceneServDao {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 		"delete from SceneServ where id = :id");
 		query.setParameter("id", id);
+		return query.executeUpdate();
+	}
+	
+	public long deleteSceneServByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from SceneServ where eid = :eid");
+		query.setParameter("eid", eid);
 		return query.executeUpdate();
 	}
 	
