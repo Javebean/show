@@ -538,6 +538,14 @@ $(document).ready(function(){
 				return false;
 			}
 		}
+		
+		var otherServs = $(".scene_other").val();
+		if(otherServs != ""){
+			var serv = {};
+			serv.type = otherServs;
+			serv.content = 1;
+			sceneServ.push(serv);
+		}
 
 		var transportation = getDymiTableDataTrans();
 		for(var i=0;i<transportation.length;i++){
