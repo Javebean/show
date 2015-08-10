@@ -24,13 +24,13 @@ $(document).ready(function(){
   $(".header").load("pub_header.html");
   $(".footer").load("pub_footer.html");
   $(".menu_Left").click(loadContent);
-  
+
   var detail = getUrlParam("detail");
   if(detail=="zs/wssb.html"){
 	  $(".nymain_right").load(detail);
 	  $(".menu_Left").removeClass("menu_active");
 	  $(".a_wssb").addClass("menu_active");
-	  
+
   }
   else if(detail=="zs/xzzx.html"){
 	  $(".nymain_right").load(detail);
@@ -65,12 +65,12 @@ $(document).ready(function(){
         <a eurl="zs/czxz.html" class="menu_head menu_Left">参展须知</a>
 
         <a eurl="zs/czsb.html" class="menu_head menu_Left">参展申报</a>
-        
+
         <a eurl="zs/sbjl.html" class="menu_head menu_Left">申报记录</a>
 
         <a eurl="zs/xcfw.html" class="menu_head menu_Left">现场服务</a>
-        
-        <a eurl="zs/xcfwsbjl.html" class="menu_head menu_Left">现场服务申报记录</a>
+
+        <a eurl="zs/xcfwsbjl.html" class="menu_head menu_Left">服务申报记录</a>
 
         <a eurl="zs/sggl.html" class="menu_head menu_Left">施工管理</a>
 
