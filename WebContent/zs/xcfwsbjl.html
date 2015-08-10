@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
+<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="jslib/json2.js"></script>
+<script type="text/javascript" src="jslib/uuid.js"></script>
+<script type="text/javascript" src="plugins/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
+
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/interface/SceneServ.js'></script>
+<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/updateSenceService.js"></script>
+<script type="text/javascript" src="js/addExhibitor.js"></script>
+</head>
+<body>
+	<div class="nyweizhi">当前位置:<a href="#">首页</a> > <a href="#">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">现场服务申报记录</font></div>
+  		<!-- 返回信息 -->
+    <div class="resultMsg" style="display:none;color:#f40000">
+   		<h3></h3>
+ 	</div>
+	<div class="showAll hide">
+	 <div class="wssbbt" style=" margin-top:10px;padding-left:50px;font-size: 17px;">现场服务</div>
+     <a class="videoimg addSceneBtn">
+    	 点此预订您的现场服务 >>
+     </a>
+     <div class="scene_item_selected">
+     	<!-- 已选的物品 -->
+     </div>
+     <a class="update_scene_item" style="display:none;"> 继续选择更多现场服务</a>
+     <div style="color: #666666;font-size: 16px;padding-left:20px;margin-top:10px;">其它现场服务：<input class="scene_other" type="text"/></div>
+	
+	<!-- 提交按钮 -->
+   <div class="tjxx_button">
+    	<input id="submitForm_senceSer" style="width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+   </div>
+  </div> 
+	<div style="display:none;">
+	  <div id="sceneSelectBox">
+	  	  <div class="title_info">点击图片选取物品</div>
+	  	  <div class="sceneItemBox">
+		  <!-- 现场服务物品选择 -->
+		  </div>
+
+		  <div class="clear"></div>
+		  <input class="scene_ok_btn" name="" type="button">
+	</div>
+</div>
+
+	
+
+</body>
+</html>

@@ -67,13 +67,13 @@ $(document).ready(function(){
 		checkFlash();
 
 	};
-
+	
+	
+	
 	Exhibitor.getExhibitorByUserName(name, loadExhibitor);
-
 
 	//event binder
 	$("#submitForm").click(saveForm);
-
 	pageInit();
 
 	//初始化现场服务和货运物流
