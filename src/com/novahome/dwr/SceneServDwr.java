@@ -62,6 +62,18 @@ public class SceneServDwr {
 		return sceneServService.getSceneServByEid(eid);
 	}
 	
+	
+	/**
+	 * 通过公司id查找现场服务申请
+	 * @param eid
+	 * @return
+	 */
+	@RemoteMethod
+	public String getSceneServByUsername(String username)
+	{
+		return sceneServService.getSceneServByUsername(username);
+	}
+	
 	/**
 	 * 通过id获取现场服务申请
 	 * @param id

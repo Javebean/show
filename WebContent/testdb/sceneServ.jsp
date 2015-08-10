@@ -62,6 +62,10 @@ sceneServdata.eid = "4028b8814cb190bb014cb196cd350003";
     function delete_onclick(){
     	SceneServ.deleteSceneServById("4028b8814cb320a5014cb327133c0006");
     }
+    
+    function getbyusername_onclick(){
+    SceneServ.getSceneServByUsername("a23252");
+    }
 </script>
 
 <body>
@@ -73,6 +77,6 @@ sceneServdata.eid = "4028b8814cb190bb014cb196cd350003";
 	<input type="button" value="page查询"  onclick="javascript:queryPage_onclick();" />
 	<input type="button" value="删除"  onclick="javascript:delete_onclick();" />
 	<input type="button" value="更新"  onclick="javascript:update_onclick();" />
-	
+	<input type="button" value="根据ex的username查询"  onclick="javascript:getbyusername_onclick();" />
 </body>
 </html>

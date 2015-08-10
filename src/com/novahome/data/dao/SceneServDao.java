@@ -59,6 +59,14 @@ public class SceneServDao {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<SceneServ>getSceneServByUsername(String username)
+	{
+		return  sessionFactory.getCurrentSession().createSQLQuery(
+				"select * from SceneServ s where s.eid in (select id from exhibitors e where e.username = '" + username + "')")
+				.addEntity( "SceneServ" , SceneServ. class ).list();		
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<SceneServ>getSceneServForPage(int start, int number)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(

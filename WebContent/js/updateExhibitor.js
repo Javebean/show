@@ -26,26 +26,26 @@ $(document).ready(function(){
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];
-	
+
 	if(getCookie("type")!=1){
 		$(".resultMsg h3").text("请先进行展商登录。");
 		$(".resultMsg").show();
-		
+
 		return;
 	}
-	
+
 	var name = getCookie("user");
 	var loadExhibitor = function(data){
 		data = JSON.parse(data);
 		if(data.error){
 			$(".resultMsg h3").text(data.error);
 			$(".resultMsg").show();
-			
+
 			return;
 		}
-			
+
 		formData = data;
-		
+
 		//预设表单信息
 		setViewForm(".userForm" ,formData);
 		if(formData.logo){
@@ -53,21 +53,21 @@ $(document).ready(function(){
 		} else {
 			$("#topic_image_logo").attr("src",IMAGE_NOT_FOUND);
 		}
-		
+
 		if(formData.tytzzs==1){
 			$("input[name='tytzzs'][value=1]").attr("checked",'checked');
 		}
 		if(formData.swzs==1){
 			$("input[name='swzs'][value=1]").attr("checked",'checked');
 		}
-		
+
 		$(".userForm").show();
-		
+
 		//检查用户是否安装FLASH
 		checkFlash();
-		
+
 	};
-	
+
 	Exhibitor.getExhibitorByUserName(name, loadExhibitor);
 
 
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		$("#recommender_dropbox").trigger("change");
 
 	}
-	
+
 	//公共方法
 	function setViewForm(tableID,data){
 		$(tableID+" .fview_value").each(function(){
@@ -104,13 +104,13 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
 	function saveForm(){
 		var exbData = wrapExbData();
 		if(!exbData) return;
-		
+
 		exbData.applyTime = "";
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
 
@@ -123,11 +123,11 @@ $(document).ready(function(){
 				jAlert(data.message, "信息");
 			}
 		};
-		
+
 		Exhibitor.updateExhibitor(exbData,func);
 
 	}
-	
+
 	function wrapExbData(){
 		if(!$("#form").valid({
 			 rules: {
