@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link href="plugins/uploadify/uploadify.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="plugins/colorbox/colorbox.css">
+	<link rel="stylesheet" href="plugins/areaselect/css/cityLayout.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
+	<link href="css/bootstrap-part.css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="jslib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jslib/json2.js"></script>
+	<script type="text/javascript" src="jslib/uuid.js"></script>
+	<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
+	<script type="text/javascript" src="plugins/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
+	
+	<script type='text/javascript' src='dwr/engine.js'></script>
+	<script type='text/javascript' src='dwr/interface/DisplayItem.js'></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.cn.js"></script>
+	
+	<script type="text/javascript" src="js/updateDisplayItem.js"></script>
+<style type="text/css">
+	.showitems .item_row .cell {
+		display: block;
+		width: 65px;
+		height: 22px;
+		padding: 0 0 0 4px;
+		border: 0;
+	}
+	
+	.visitors .item_row .cell {
+		display: block;
+		width: 120px;
+		height: 22px;
+		padding: 0 0 0 4px;
+		border: 0;
+	}
+	
+	.sceneserv .item_row .cell,.transserv .item_row .cell {
+		display: block;
+		width: 65px;
+		height: 22px;
+		padding: 0 0 0 4px;
+		border: 0;
+	}
+	
+	.sceneserv .item_row select,.transserv .item_row select {
+		width: 300px;
+	}
+	
+	.btn_delrow {
+		display: block;
+		width: 87px;
+		height: 27px;
+		background: url(images/shanchu.jpg);
+		border: 0;
+		float: left;
+		margin-left: 7px;
+		cursor: pointer;
+	}
+	
+	label.error {
+		margin-left: 28px;
+		width: auto;
+		color: red;
+		font-family: "微软雅黑", "宋体";
+		font-size: 12px;
+		display: block;
+	}
+	
+</style>
+   
+</head>
+<body>
+	<div class="nyweizhi">当前位置:<a href="#">首页</a> > <a href="#">参展商</a> > <font style=" font-weight:bold; color:#1F9AD6">展品申报记录</font></div>
+  		<!-- 返回信息 -->
+    <div class="resultMsg" style="display:none;color:#f40000">
+   		<h3></h3>
+ 	</div>
+ 	<div class="showAll hide">
+	<table class="gridtable showitems" style="width:662px;">
+		<tr>
+		  <td><div align="center">展品名称</div></td>
+		  <td><div align="center">展品型号</div></td>
+		  <td><div align="center">展品数量</div></td>
+		  <td><div align="center">长度（米）</div></td>
+		  <td><div align="center">宽度（米）</div></td>
+		  <td><div align="center">高度（米）</div></td>
+		  <td><div align="center">重量（千克）</div></td>
+		  <td></td>
+		</tr>
+		<tr class="item_row">
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="cell"/></div></td>
+		  <td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>
+		</tr>
+	</table>
+    <div class="button3">
+      <input class="add_item" style=" display:block; width:87px; height:27px; background:url(images/tianjia.jpg); border:0; float:left; cursor:pointer" name="" type="button" />
+    </div>
+    
+    <!-- 提交按钮 -->
+   <div class="tjxx_button">
+    	<input id="submitForm" style="width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
+   </div>
+   
+  </div><!-- showAllend -->
+</body>
+</html>
