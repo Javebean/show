@@ -1,15 +1,11 @@
 //global data
 var formData = {};
-
 var scene_type_html = "";
-var trans_type_html = "";
-var reg_num = /^[0-9]*$/;
-var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
-$(document).ready(function(){
 
+$(document).ready(function(){
 	var sceneParams = ["type","content"];
-//$(".showAll").addClass("hide");
 	var name = getCookie("user");
+	
 	if(name==null || getCookie("type")!=1|| name==""){
 		$(".resultMsg h3").text("展商未登录，请登录后再来！");
 		$(".resultMsg").show();
@@ -180,6 +176,37 @@ $(document).ready(function(){
 
 	/*现场服务更新*/
 	function saveForm_senceSer(){
+		
+		var tt = ".5";
+		
+		var index = tt.indexOf(".")
+		
+		
+		var flag = false;
+		//对数量进行判断
+		$(".fwnr").each(function(index){
+			var num = $(this).find("input.item_count").val();
+			
+			if(!$.isNumeric(num)){
+				jAlert("数量应该是整数","信息");
+				flag = true;
+				return;
+			}else if(num<0){
+				jAlert("数量不能小于0","信息");
+				flag = true;
+				return;
+			}else if(num.indexOf(".")>=0){
+				jAlert("数量不能是小数","信息");
+				flag = true;
+				return;
+			}
+			
+		});
+		
+		if(flag){
+			return;
+		}
+		
 		var func = function(data){
 			data = JSON.parse(data);
 			if(data == true){

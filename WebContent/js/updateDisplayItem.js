@@ -1,33 +1,7 @@
 //global data
-var formData = {};
-var picFlag = false;
-var picFlag_logo = false;
-var PIC_BASE = 'resources/topicimages/';
-var IMAGE_NOT_FOUND = "";
-if(location.href.indexOf("/eng/")!=-1){
-	PIC_BASE = '../resources/topicimages/';
-}
-
-var topicId = Math.uuid();
-var topicId_logo = Math.uuid();
-
-var pic_icheader_ID = "";
-var pic_icfro_ID = "";
-var pic_icbac_ID = "";
-var pic_scare = "";
-var img_selection;
-
-var scene_type_html = "";
-var trans_type_html = "";
-var reg_num = /^[0-9]*$/;
-var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
 	var itemParams = ["name","version","number","length","width","height","weight"];
-	var visitorParams = ["name","sex","position","phone"];
-	var sceneParams = ["type","content"];
-	var transParams = ["type","content","time"];
 	var name = getCookie("user");
-	
 	if(name==null || getCookie("type")!=1|| name==""){
 		$(".resultMsg h3").text("展商未登录，请登录后再来！");
 		$(".resultMsg").show();
@@ -44,31 +18,22 @@ $(document).ready(function(){
 		if(data.error){
 			$(".resultMsg h3").text(data.error);
 			$(".resultMsg").show();
-
+			$(".showAll").addClass("hide");
 			return;
 		}
 		tableData = data.data;
 		var input = $(".item_row input.cell");
-		$(input[0]).val(tableData[0].name);
-		$(input[1]).val(tableData[0].version);
-		$(input[2]).val(tableData[0].number);
-		$(input[3]).val(tableData[0].length);
-		$(input[4]).val(tableData[0].width);
-		$(input[5]).val(tableData[0].height);
-		$(input[6]).val(tableData[0].weight);
-		
+		for(var i=0;i<input.length;i++){
+		/*	console.log(tableData[0][itemParams[i]]);*/
+			$(input[i]).val(tableData[0][itemParams[i]]);
+		}
 		for(var i=1;i<tableData.length;i++){
 			var html = '<tr class="item_row">';
-			html+= '<td><div align="center"><input class="cell" value="'+tableData[i].name+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].version+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].number+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].length+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].width+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].height+'"/></div></td>';
-			html+='<td><div align="center"><input class="cell" value="'+tableData[i].weight+'"/></div></td>';
+			for(var j=0;j<itemParams.length;j++){
+				html+= '<td><div align="center"><input class="cell" value="'+tableData[i][itemParams[j]]+'"/></div></td>';
+			}
 			html += '<td><div align="center"><input class="btn_delrow delete_item" type="button" /></div></td>';
 			$(".gridtable.showitems").append(html);
-			
 			$(".delete_item").last().click(deleteItem);
 		}
 
@@ -79,26 +44,6 @@ $(document).ready(function(){
 
 	//event binder
 	$("#submitForm").click(saveForm);
-	pageInit();
-
-	//初始化现场服务和货运物流
-	function pageInit(){
-		//初始化招商引荐单位
-		var recommender_sel_html = "";
-		for(var i=0; i< CON_REC_SEL.length; i++){
-			var item = CON_REC_SEL[i];
-			if (item == undefined){
-
-				}
-					else {
-						recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
-					}
-
-		}
-		$("#recommender_dropbox").html(recommender_sel_html);
-		$("#recommender_dropbox").trigger("change");
-
-	}
 
 	$(".add_item").click(function(){
 		addItem(this,7);
@@ -120,18 +65,45 @@ $(document).ready(function(){
 		$(this).parent().parent().parent().remove();
 	}
 
-	//公共方法
-	function setViewForm(tableID,data){
-		$(tableID+" .fview_value").each(function(){
-			var key = $(this).attr("name");
-			if(data[key]){
-				$(this).val(data[key]);
-			}
-		});
-	}
 
 	function saveForm(){
-
+		var flag = false;
+		$(".item_row").each(function(){
+			var inputVal = $(this).find(":input");
+			var item_name = $(inputVal[0]).val();
+			var item_num = $(inputVal[2]).val();
+			var item_length = $(inputVal[3]).val();
+			var item_width = $(inputVal[4]).val();
+			var item_height =  $(inputVal[5]).val();
+			var item_weight= $(inputVal[6]).val();
+			
+			if($.trim(item_name)==""){
+				jAlert("展品名称不能为空！", "信息");
+				flag = true;
+				return ;
+			}
+			
+			if((!$.trim(item_num)==""&&!$.isNumeric(item_num))||(!$.trim(item_length)==""&&!$.isNumeric(item_length))||(!$.trim(item_width)==""&&!$.isNumeric(item_width))||(!$.trim(item_height)==""&&!$.isNumeric(item_height))
+					||(!$.trim(item_weight)==""&&!$.isNumeric(item_weight))){
+				jAlert("请输入合法的数字！", "信息");
+				flag = true;
+				return ;
+			}else if((!$.trim(item_num)==""&&item_num<0)||(!$.trim(item_length)==""&&item_length<0)||(!$.trim(item_width)==""&&item_width<0)||(!$.trim(item_height)==""&&item_height<0)||(!$.trim(item_weight)==""&&item_weight<0)){
+				jAlert("数字不能小于0！", "信息");
+				flag = true;
+				return ;
+			}else if((!$.trim(item_num)==""&&item_num.indexOf(".")>=0)){
+				jAlert("数量必须为整数！", "信息");
+				flag = true;
+				return ;
+			}
+			
+		});
+		
+		if(flag){
+			return;
+		}
+		
 		var func = function(data){
 			data = JSON.parse(data);
 
@@ -149,20 +121,14 @@ $(document).ready(function(){
 		$(".item_row").each(function(){
 			var inputVal = $(this).find(":input");
 			var item = {};
-			item.name = $(inputVal[0]).val();
-			item.version = $(inputVal[1]).val();
-			item.number = $(inputVal[2]).val();
-			item.length = $(inputVal[3]).val();
-			item.width = $(inputVal[4]).val();
-			item.height= $(inputVal[5]).val();
-			item.weight = $(inputVal[6]).val();
-			
+			for(var i=0;i<inputVal.length;i++){
+				item[itemParams[i]] = $(inputVal[i]).val();
+			}
 			displayItemList.push(item);
 			
 		});
 		
 		DisplayItem.updateDisplayItemList(name, displayItemList,func);
-
 	}
 
 });
