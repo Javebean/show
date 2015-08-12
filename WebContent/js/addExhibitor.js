@@ -22,7 +22,7 @@ var trans_type_html = "";
 var reg_num = /^[0-9]*$/;
 var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","version","number","length","width","height","weight","showType"];
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];
@@ -34,8 +34,11 @@ $(document).ready(function(){
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
 	$(".add_item").click(function(){
-		addItem(this,7);
+		addItem(this,8);
 	});
+	//初始有一行可以填
+	addItem(".add_item",8);
+	
 	$(".add_visitor").click(function(){
 		addVisitorLine();
 		//addItem(this,4);
@@ -511,9 +514,20 @@ $(document).ready(function(){
 			}
 
 		var displayItem = getDymiTableData(".showitems", itemParams);
-		//var itemParams = ["name","version","number","length","width","height","weight"];
+		//var itemParams = ["name","version","number","length","width","height","weight","showType"];
+		
+		if(displayItem.length == 0){
+			$(window).scrollTop(1500);
+			jAlert("请录入展品信息", "信息");
+			return false;
+		}
 		for(var i=0;i<displayItem.length;i++){
 			var item = displayItem[i];
+			if(item.showType == ""){
+				$(window).scrollTop(1500);
+				jAlert("请输入展示形式", "信息");
+				return false;
+			}
 			if(!reg_num.test(item.number) && item.number!=""){
 				$(window).scrollTop(1500);
 				jAlert("展品数量请输入整数", "信息");

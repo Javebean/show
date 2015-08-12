@@ -1,6 +1,6 @@
 //global data
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","version","number","length","width","height","weight","showType"];
 	var name = getCookie("user");
 	if(name==null || getCookie("type")!=1|| name==""){
 		$(".resultMsg h3").text("展商未登录，请登录后再来！");
@@ -46,8 +46,9 @@ $(document).ready(function(){
 	$("#submitForm").click(saveForm);
 
 	$(".add_item").click(function(){
-		addItem(this,7);
+		addItem(this,8);
 	});
+	addItem(".add_item",8);
 	$(".delete_item").click(deleteItem);
 	
 	function addItem(obj, count){
@@ -75,12 +76,19 @@ $(document).ready(function(){
 			var item_length = $(inputVal[3]).val();
 			var item_width = $(inputVal[4]).val();
 			var item_height =  $(inputVal[5]).val();
-			var item_weight= $(inputVal[6]).val();
+			var item_weight = $(inputVal[6]).val();
+			var item_showtype = $(inputVal[7]).val();
 			
 			if($.trim(item_name)==""){
 				jAlert("展品名称不能为空！", "信息");
 				flag = true;
 				return ;
+			}
+			
+			if(item_showtype == ""){
+				jAlert("请输入展示形式", "信息");
+				flag = true;
+				return;
 			}
 			
 			if((!$.trim(item_num)==""&&!$.isNumeric(item_num))||(!$.trim(item_length)==""&&!$.isNumeric(item_length))||(!$.trim(item_width)==""&&!$.isNumeric(item_width))||(!$.trim(item_height)==""&&!$.isNumeric(item_height))
