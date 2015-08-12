@@ -14,7 +14,7 @@ var initPager = function(tagetObj, curPage, itemCount, pageSize, pageFunction) {
 			} else if(curPage<6){
 				start = 1;
 				end = 10;
-			} else if(pageCount - curPage<10) {
+			} else if(pageCount - curPage<5) {
 				start = pageCount-9;
 				end = pageCount;
 			} else {
