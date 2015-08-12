@@ -68,19 +68,19 @@ public class Constants {
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;网址：www.lygexpo.com</p>";
 
 	public static final String VISITOR_APPROVED = "<p>您好，</p>"
-			+ "<p>您的连博会现场证件申请已通过审核，感谢您参加9月22日在连云港举办的第二届中国(连云港)丝绸之路国际物流博览会。</p>"
+			+ "<p>您的连博会现场证件申请( [arg0] 的现场证件申请)已通过审核，感谢您参加9月22日在连云港举办的第二届中国(连云港)丝绸之路国际物流博览会。</p>"
 			+ "<p>现场证件用于展会期间进出展馆使用，您可以打印下方二维码至展会以方便现场办理证件。</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>这封邮件为连博会官方通知确认邮件，请勿回复该邮件。</p>"
-			+ "<p><img src='[arg0]'/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>"
+			+ "<p><img src='[arg1]'/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;中国(连云港)丝绸之路国际物流博览会</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;电话： 86 518 85865601</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;网址：www.lygexpo.com</p>";
 
 	public static final String VISITOR_REFUSE = "<p>您好，</p>"
-			+ "<p>对不起，很遗憾地告诉您，您的连博会现场证件申请由于以下原因：</p>"
-			+ "<p><strong>[arg0]</strong></p>"
+			+ "<p>对不起，很遗憾地告诉您，您的连博会现场证件申请( [arg0] 的现场证件申请)由于以下原因：</p>"
+			+ "<p><strong>[arg1]</strong></p>"
 			+ "<p>未能通过审核。</p>"
 			+ "<p>您可以再次访问www.lygexpo.com 或通过手机客户端进行申请。为保障您能顺利完成申请流程,请留意驳回原因以确保申请成功。</p>"
 			+ "<p>&nbsp;</p>"

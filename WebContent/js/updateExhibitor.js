@@ -67,9 +67,9 @@ $(document).ready(function(){
 		checkFlash();
 
 	};
-	
-	
-	
+
+
+
 	Exhibitor.getExhibitorByUserName(name, loadExhibitor);
 
 	//event binder
@@ -114,7 +114,7 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 
-			if(data == true){
+			if(data.result == true){
 				$(".userForm").hide();
 				$(".resultMsg h3").text("修改成功！");
 				$(".resultMsg").show();

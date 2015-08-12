@@ -193,7 +193,7 @@ public class ExhibitorsDwr {
 	 * @return
 	 */
 	@RemoteMethod
-	public boolean updateExhibitor(Exhibitors exhibitor)
+	public String updateExhibitor(Exhibitors exhibitor)
 	{
 		return exhibitorsService.updateExhibitor(exhibitor);
 	}

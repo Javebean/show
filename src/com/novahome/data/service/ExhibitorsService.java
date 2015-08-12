@@ -544,8 +544,27 @@ public class ExhibitorsService {
 		}
 	}
 
-	public boolean updateExhibitor(Exhibitors exhibitor)
+	public String updateExhibitor(Exhibitors exhibitor)
 	{
+		JSONObject obj = new JSONObject();
+		String orgName = exhibitor.getOrgName();
+		//{firststate, state}
+		//{1,0}, {1,1}无法进入
+		//在驳回状态的公司检查是否有同名公司在申请或者批准通过状态，如果有，则无法重新申请
+		if(exhibitor.getFirstState() == 2)
+		{
+			Exhibitors ex = exhibitorsDao.getExhibitorByOrgNameWithRegistered(orgName);
+			if(ex != null)
+			{
+				obj.put("result", false);
+				obj.put("message", "已有相同公司名称的公司在申请中或者已通过批准，无法重新申请，如有疑问请致电！");
+				obj.put("username", ex.getUsername());
+				obj.put("id", ex.getId());
+				String ret = obj.toString();
+				logger.info(ret);
+				return ret;
+			}
+		}
 		exhibitor.setApplyTime(new Date());
 		//设定展商初审申请重新进入申请状态；
 		exhibitor.setFirstState(0);
@@ -560,7 +579,12 @@ public class ExhibitorsService {
 			if(visitor.getState() != 1)
 				visitor.setState(0);
 		}
-		return exhibitorsDao.updateExhibitor(exhibitor);
+		exhibitorsDao.updateExhibitor(exhibitor);
+		obj.put("result", true);
+		obj.put("message", "成功重新申请");
+		String ret = obj.toString();
+		logger.info(ret);
+		return ret;
 	}
 
 	/**

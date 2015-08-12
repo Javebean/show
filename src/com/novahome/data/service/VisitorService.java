@@ -137,10 +137,23 @@ public class VisitorService {
 		
 		if(visitor.getType() == 1)
 		{
-			if(visitor.getOrg() == null  || visitor.getOrg().isEmpty())
+			String eid = visitor.getEid();
+			if(eid != null && !eid.isEmpty())
 			{
 				Exhibitors exhibit = exhibitorsDao.getExhibitorById(visitor.getEid());
-				visitor.setOrg(exhibit.getOrgName());
+				//展商处于驳回状态时，无法申请现场证件
+				if(exhibit.getFirstState() == 2)
+				{
+					obj.put("result", false);
+					obj.put("message", "当前展商申请已被驳回，无法申请现场证件，需等待展商申请重新提交！");
+					String ret = obj.toString();
+					logger.info(ret);
+					return ret;
+				}
+				if(visitor.getOrg() == null  || visitor.getOrg().isEmpty())
+				{
+					visitor.setOrg(exhibit.getOrgName());
+				}
 			}
 		}
 		
@@ -346,7 +359,7 @@ public class VisitorService {
 
 				//String imgSrc = ConfigUtils.getRemote() + ConfigUtils.getPrj() + Constants.BARCODE_MID_STR + picName;
 				logger.info("发送现场证件申请通过邮件...");
-				String content = MailUtil.replaceVariable(Constants.VISITOR_APPROVED, imgSrc);
+				String content = MailUtil.replaceVariable(Constants.VISITOR_APPROVED, visitor.getName(),imgSrc);
 				
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_APPROVED, content);
@@ -366,7 +379,7 @@ public class VisitorService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))  
 			{
 				logger.info("发送现场证件申请驳回邮件...");
-				String content = MailUtil.replaceVariable(Constants.VISITOR_REFUSE, reason);
+				String content = MailUtil.replaceVariable(Constants.VISITOR_REFUSE, visitor.getName(),reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_OBJECTION, content);
 			}

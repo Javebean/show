@@ -8,7 +8,7 @@ $(document).ready(function(){
 	var rowCount = 0;
 
 	var status = ["申请","已批准","已驳回"];
-	var types = ["","展商","观众","媒体","工作人员"];
+	var types = ["","展商","专业观众","媒体","工作人员"];
 	var shifou = ["否","是"];
 
 	//init page
@@ -107,7 +107,7 @@ $(document).ready(function(){
 			}
 			$('.pt_cen_box').append(html.replace(/undefined/g,""));
 			$('.delete_tp').click(deleteTP);
-			
+
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}
@@ -156,7 +156,7 @@ $(document).ready(function(){
 		}
 	//	$(".cp_name").text($(this).attr("ename"));
 	//	$(".cp_company").text($(this).attr("ecompany"));
-		
+
 		var eid = $(this).attr("eid");
 		var func = function(data){
 			data = JSON.parse(data);
@@ -179,9 +179,9 @@ $(document).ready(function(){
 				$(".print_tp").attr("ecompany",data.org);
 				$(".print_tp").attr("etype",data.type);
 				$(".print_tp").attr("barcode",data.barcode);
-				
+
 			}
-			
+
 			$(".cp_name").text(data.name);
 			$(".cp_company").text(data.org);
 			$.colorbox({
@@ -242,11 +242,11 @@ $(document).ready(function(){
 		var func = function(data){
 			if(data==true) showTopicList(1);
 		};
-		
+
 		jConfirm("确认删除证件？","信息",function(result){
 			if(result)	Visitor.deleteVisitorById(eid,func);
 		});
-		
+
 	}
 
 	function updateTP(){
