@@ -7,13 +7,13 @@ $(document).ready(function(){
 		$(".resultMsg").show();
 		return;
 	}
-	
+
 	var loadDisplayItem = function(data){
 		$(".showAll").removeClass("hide");
 		if(data==null){
 			return;
 		}
-		
+
 		data = JSON.parse(data);
 		if(data.error){
 			$(".resultMsg h3").text(data.error);
@@ -38,8 +38,8 @@ $(document).ready(function(){
 		}
 
 	};
-	
-	
+
+
 	DisplayItem.getDisplayItemByUsername(name,loadDisplayItem);
 
 	//event binder
@@ -50,7 +50,7 @@ $(document).ready(function(){
 	});
 	addItem(".add_item",8);
 	$(".delete_item").click(deleteItem);
-	
+
 	function addItem(obj, count){
 		var html = '<tr class="item_row">';
 		var cell = '<td><div align="center"><input class="cell"/></div></td>';
@@ -78,19 +78,19 @@ $(document).ready(function(){
 			var item_height =  $(inputVal[5]).val();
 			var item_weight = $(inputVal[6]).val();
 			var item_showtype = $(inputVal[7]).val();
-			
+
 			if($.trim(item_name)==""){
 				jAlert("展品名称不能为空！", "信息");
 				flag = true;
 				return ;
 			}
-			
+
 			if(item_showtype == ""){
 				jAlert("请输入展示形式", "信息");
 				flag = true;
 				return;
 			}
-			
+
 			if((!$.trim(item_num)==""&&!$.isNumeric(item_num))||(!$.trim(item_length)==""&&!$.isNumeric(item_length))||(!$.trim(item_width)==""&&!$.isNumeric(item_width))||(!$.trim(item_height)==""&&!$.isNumeric(item_height))
 					||(!$.trim(item_weight)==""&&!$.isNumeric(item_weight))){
 				jAlert("请输入合法的数字！", "信息");
@@ -105,13 +105,13 @@ $(document).ready(function(){
 				flag = true;
 				return ;
 			}
-			
+
 		});
-		
+
 		if(flag){
 			return;
 		}
-		
+
 		var func = function(data){
 			data = JSON.parse(data);
 
@@ -124,7 +124,7 @@ $(document).ready(function(){
 				jAlert(data.message, "信息");
 			}
 		};
-		
+
 		var displayItemList =[];
 		$(".item_row").each(function(){
 			var inputVal = $(this).find(":input");
@@ -133,9 +133,13 @@ $(document).ready(function(){
 				item[itemParams[i]] = $(inputVal[i]).val();
 			}
 			displayItemList.push(item);
-			
+
 		});
-		
+		if(displayItemList.length == 0){
+			//$(window).scrollTop(1500);
+			jAlert("请录入展品信息", "信息");
+			return ;
+		}
 		DisplayItem.updateDisplayItemList(name, displayItemList,func);
 	}
 
