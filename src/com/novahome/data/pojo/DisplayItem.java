@@ -23,6 +23,7 @@ public class DisplayItem {
 	private double weight;	 //展品重量
 	private int number;	//展品数量
 	private String version;	//展品型号
+	private String showType; //展示形式，2015/08/12 新会展王璞要求
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -80,6 +81,12 @@ public class DisplayItem {
 	}
 	public void setVersion(String version) {
 		this.version = version;
+	}
+	public String getShowType() {
+		return showType;
+	}
+	public void setShowType(String showType) {
+		this.showType = showType;
 	}
 	
 	
