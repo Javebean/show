@@ -496,6 +496,7 @@ public class ExhibitorsService {
 			obj.put("result", true);
 			obj.put("message", "成功登录");
 			obj.put("username", exhibitor.getUsername());
+			obj.put("exid", exhibitor.getId());
 			obj.put("type", 1);
 			//obj.put("cookie", MD5.compute(audience.getId()+":"+audience.getPassword()));
 			String ret = obj.toString();
@@ -546,6 +547,19 @@ public class ExhibitorsService {
 	public boolean updateExhibitor(Exhibitors exhibitor)
 	{
 		exhibitor.setApplyTime(new Date());
+		//设定展商初审申请重新进入申请状态；
+		exhibitor.setFirstState(0);
+		//设定展商终审申请重新进入申请状态；
+		exhibitor.setState(0);
+		String eid = exhibitor.getId();
+		List<Visitor>visitorLs = visitorDao.getVisitorByEid(eid);
+		//设定相关证件进入申请状态；
+		
+		for(Visitor visitor : visitorLs)
+		{
+			if(visitor.getState() != 1)
+				visitor.setState(0);
+		}
 		return exhibitorsDao.updateExhibitor(exhibitor);
 	}
 
@@ -603,6 +617,10 @@ public class ExhibitorsService {
 				logger.debug("content:" + content);
 				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
+			String eid = ex.getId();
+			List<Visitor>visitorLs = visitorDao.getVisitorByEid(eid);
+			for(Visitor visitor : visitorLs)
+				visitor.setState(2);
 		}
 		else
 			ex.setReason("");
@@ -615,6 +633,7 @@ public class ExhibitorsService {
 		ex.setState(state);
 		if(state == 1)
 		{
+			ex.setFirstState(1);//终审通过后，初审状态也必须为1
 			String email = ex.getEmail();
 			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
@@ -663,6 +682,10 @@ public class ExhibitorsService {
 				logger.debug("content:" + content);
 				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
+			String eid = ex.getId();
+			List<Visitor>visitorLs = visitorDao.getVisitorByEid(eid);
+			for(Visitor visitor : visitorLs)
+				visitor.setState(2);
 		}
 		else
 			ex.setReason("");

@@ -32,10 +32,9 @@ $(document).ready(function(){
 					'<td>' + (i+1) + '</td>' +
 	                '<td>' + topic.organizer + '</td>' +
 	                '<td>' + topic.eventName + '</td>' +
-	                '<td>' + topic.period + '</td>' +
 	                '<td>' + topic.type + '</td>' +
-	                '<td>' + topic.invitee + '</td>' +
-	                '<td>' + topic.note + '</td>' +
+									'<td>' + topic.invitee + '</td>' +
+
 	                '<td>' + topic.applyTime + '</td>' +
 	              //  '<td>' + status[topic.state] + '</td>' +
 	                '<td><button type="button" class="btn btn-sm btn-primary view_tp" eid="'+topic.id+'">查看</button>'+

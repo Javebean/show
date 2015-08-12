@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.novahome.data.dao.DisplayItemDao;
 import com.novahome.data.dao.ExhibitorsDao;
+import com.novahome.data.dao.VisitorDao;
 import com.novahome.data.pojo.DisplayItem;
+import com.novahome.data.pojo.Exhibitors;
+import com.novahome.data.pojo.Visitor;
 
 
 @Service("displayItemService")
@@ -25,6 +28,8 @@ public class DisplayItemService {
 	private DisplayItemDao displayItemDao;
 	@Resource(name = "exhibitorsDao")
 	private ExhibitorsDao exhibitorsDao;
+	@Resource(name = "visitorDao")
+	private VisitorDao visitorDao;
 	
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展品\"}";
 	private static final String ERROR_STR_STATE= "{\"error\":\"抱歉，您的申请已通过审批，暂时无法编辑\"}";
@@ -112,7 +117,9 @@ public class DisplayItemService {
 	public boolean updateDisplayItemList(String username, List<DisplayItem>list)
 	{
 		logger.debug("update displayitemlist : " + username);
-		String eid = exhibitorsDao.getIdByUsername(username);
+		//String eid = exhibitorsDao.getIdByUsername(username);
+		Exhibitors exhibit = exhibitorsDao.getExhibitorsByUserName(username);
+		String eid = exhibit.getId();
 		displayItemDao.deleteDisplayItemByEid(eid);
 		if(list == null || list.isEmpty())
 			return true;
@@ -122,6 +129,21 @@ public class DisplayItemService {
 			item.setEid(eid);
 			logger.debug(item);
 			displayItemDao.saveDisplayItem(item);
+		}
+		//展品重新申请，需要调整exhibitor展商的状态和证件的状态
+		//判断展商的第一次申请状态和终审状态，如果审批尚未通过或者被驳回状态（不是申请通过状态），则重新调整
+		if(exhibit.getFirstState() == 2)
+		{
+			//如果被驳回状态，需要调整展商状态为申请状态;
+			exhibit.setFirstState(0);
+			exhibit.setState(0);
+			List<Visitor>visitorLs = visitorDao.getVisitorByEid(eid);
+			//如果展商是驳回状态，也需要设定相关证件进入申请状态；
+			for(Visitor visitor : visitorLs)
+			{
+				if(visitor.getState() != 1)
+					visitor.setState(0);
+			}
 		}
 		return true;
 	}

@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.novahome.commonservice.Constants;
+import com.novahome.data.dao.ExhibitorsDao;
 import com.novahome.data.dao.VisitorDao;
+import com.novahome.data.pojo.Exhibitors;
 import com.novahome.data.pojo.Visitor;
 import com.novahome.utils.BarcodeUtils;
 import com.novahome.utils.ConfigUtils;
@@ -33,6 +35,8 @@ public class VisitorService {
 	private static final Logger logger = Logger.getLogger(VisitorService.class);
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
+	@Resource(name = "exhibitorsDao")
+	private ExhibitorsDao exhibitorsDao;
 	private static final String ROOT_STR = "ROOT";
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的现场证件申请\"}";
 
@@ -66,17 +70,7 @@ public class VisitorService {
 	{
 		JSONObject obj = new JSONObject();
 		String idNo = visitor.getIdNo();
-		Visitor vi = visitorDao.getVisitorWithIdNoRegistered(idNo);
-		if(vi != null)
-		{
-			obj.put("result", false);
-			obj.put("message", "该身份证件号码已注册过");
-			obj.put("name", vi.getName());
-			obj.put("id", vi.getId());
-			String ret = obj.toString();
-			logger.info(ret);
-			return ret;
-		}
+		System.out.println(new JSONObject(visitor));
 		String[]array;
 		String nowpath = System.getProperty("user.dir");
 		String tempdir = nowpath.replace("bin", "webapps");
@@ -140,8 +134,69 @@ public class VisitorService {
 				}
 			}	
 		}
-			
+		
+		if(visitor.getType() == 1)
+		{
+			if(visitor.getOrg() == null  || visitor.getOrg().isEmpty())
+			{
+				Exhibitors exhibit = exhibitorsDao.getExhibitorById(visitor.getEid());
+				visitor.setOrg(exhibit.getOrgName());
+			}
+		}
+		
+		Visitor vi = visitorDao.getVisitorWithIdNoRegistered(idNo);
+		if(vi != null )
+		{
+			//	审批已经通过的无法重新申请
+			if(vi.getState() == 1)
+			{
+				obj.put("result", false);
+				obj.put("message", "该身份证件号码已注册审批通过，无法重新申请");
+				obj.put("name", vi.getName());
+				obj.put("id", vi.getId());
+				String ret = obj.toString();
+				logger.info(ret);
+				return ret;
+			}
+			else
+			{
+				//除去id,applytime, reason, state, firststate,barcode, idNo, idType
+				vi.setName(visitor.getName());
+				vi.setSex(visitor.getSex());
+				vi.setOrg(visitor.getOrg());
+				vi.setPosition(visitor.getPosition());
+				vi.setPhone(visitor.getPhone());
+				vi.setEmail(visitor.getEmail());
+				vi.setType(visitor.getType());
+				
+				vi.setBuyer(visitor.getBuyer());
+				vi.setEid(visitor.getEid());
+
+				String idBackStr = visitor.getIdBack();
+				if(idBackStr != null &&  !idBackStr.isEmpty())
+					vi.setIdBack(idBackStr);
+				String idFontStr = visitor.getIdFont();
+				if(idFontStr != null &&  !idFontStr.isEmpty())
+					vi.setIdFont(idFontStr);
+				String idPhotoStr = visitor.getPhoto();
+				if(idPhotoStr != null &&  !idPhotoStr.isEmpty())
+					vi.setPhoto(idPhotoStr);
+				vi.setApplyTime(new Date());
+				vi.setState(0);
+				logger.info("resave Visitor");
+				obj.put("result", true);
+				obj.put("message", "您已成功修改证件！");
+				obj.put("name", vi.getName());
+				obj.put("photo", vi.getPhoto());
+				obj.put("id", vi.getId());
+				String ret = obj.toString();
+				logger.info(ret);
+				return ret; 
+			}
+		}
+		
 		visitor.setApplyTime(new Date());
+		visitor.setState(0); //设定证件状态为申请状态
 		String id = visitorDao.saveVisitor(visitor);
 		logger.info("save Visitor");
 		

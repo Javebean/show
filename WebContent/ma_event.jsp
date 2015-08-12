@@ -3,7 +3,7 @@
 	<script type="text/javascript" src="plugins/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="plugins/colorbox/colorbox.css" >
 
-	
+
 	<script type='text/javascript' src='dwr/interface/Event.js'></script>
     <script type="text/javascript" src="js/manager/ma_event.js"></script>
 	<script>
@@ -22,12 +22,10 @@
               <thead>
                 <tr>
                   <th>序号</th>
-                  <th>组织者</th>
-                  <th>活动名称</th>
-                  <th>活动时长</th>
-                  <th>活动类型</th>
-                  <th>邀请对象</th>
-                  <th>备注说明</th>
+                  <th>姓名</th>
+                  <th>论坛名称</th>
+										<th>单位</th>
+                  <th>手机号码</th>
                   <th>申请时间</th>
                 </tr>
               </thead>
@@ -46,7 +44,7 @@
 					<h2 class="sub-header">专题活动信息</h2>
 					<table class="table table-bordered table-striped fview_table event_detail">
 				        <tr>
-				          <th class="text-nowrap" width="14%">组织者</th>
+				          <th class="text-nowrap" width="14%">姓名</th>
 				          <td colspan="3"><span ename="organizer" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
@@ -54,15 +52,15 @@
 				          <td colspan="3"><span ename="eventName" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">邀请对象</th>
-				          <td colspan="3"><span ename="invitee" class="fview_value"></span></td>
-				        </tr>
-				        <tr>
-				          <th class="text-nowrap" width="14%">活动类型</th>
+				          <th class="text-nowrap" width="14%">单位</th>
 				          <td colspan="3"><span ename="type" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">活动时长</th>
+				          <th class="text-nowrap" width="14%">手机号码</th>
+				          <td colspan="3"><span ename="invitee" class="fview_value"></span></td>
+				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">邮箱</th>
 				          <td colspan="3"><span ename="period" class="fview_value"></span></td>
 				        </tr>
 				        <tr>

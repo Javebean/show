@@ -19,6 +19,7 @@ function checklogin()
 		{
 			var usrname = data.username;
 			var loginType = data.type;
+			var exid = data.exid;
 			jAlert("登陆成功","信息");
 			//location.reload();
 		//	location.href ="#toptag";
@@ -28,6 +29,7 @@ function checklogin()
 			$(".logout").removeClass("hide");
 			setCookie("user",usrname);
 			setCookie("type", loginType);
+			setCookie("exid",exid);
 			document.getElementById('logintextfield001').value = "";
 			document.getElementById('logintextfield002').value = "";
 		}

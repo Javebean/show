@@ -145,10 +145,17 @@ $(document).ready(function(){
 		var formData = getFormdata("regForm");
 		if(picFlag){
 			formData.photo = topicId + ".jpg";
+		}
+		if(picFlagFro){
 			formData.idFont = pic_icfro_ID + ".jpg";
+		}
+		if(picFlagBac){
 			formData.idBack = pic_icbac_ID + ".jpg";
 		}
-
+		if(getCookie("type")==1){
+			var exid = getCookie("exid");
+			formData.eid = exid;
+		}
 		var func = function(data){
 			data = JSON.parse(data);
 			if(data.result == true){
@@ -286,6 +293,7 @@ $(document).ready(function(){
 			},
 			onUploadSuccess : function(file, data, response) {
 				picFlagFro = true;
+
 				setTimeout(function(){
 					$("#topic_image_idfront").attr("src",PIC_BASE+pic_icfro_ID+".jpg?"+Math.random());
 				},300);

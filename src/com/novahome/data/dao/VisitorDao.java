@@ -102,7 +102,7 @@ public class VisitorDao {
 	public Visitor getVisitorWithIdNoRegistered(String idNo)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Visitor a where a.idNo=:idNo and (a.state = 1 or a.state = 0)");
+				"from Visitor a where a.idNo=:idNo");
 				query.setParameter("idNo", idNo);
 		return (Visitor) query.uniqueResult();
 	}

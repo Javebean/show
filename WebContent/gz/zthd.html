@@ -32,19 +32,46 @@ label.error {
    <div class="userForm">
    	<form class="form-horizontal" name="regForm" id="eventform">
         <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left required_label">组&nbsp;织&nbsp;人&nbsp;</span>
-      <input name="organizer" type="text" class="required"/></div>
-      <div class="table4 right"><span class="table3_left left" style=" background:none">活动名称&nbsp;&nbsp;</span>
-      <input  name="eventName" type="text" /></div>
-     </div>
-     <div class="tablezh">
-      <div class="table4 left"><span class="table3_left left" style=" background:none">活动类型&nbsp;&nbsp;</span>
+      <!-- <div class="table4 left"><span class="table3_left left required_label">姓&nbsp;&nbsp;名&nbsp;</span> -->
+      <!-- <input name="organizer" type="text" class="required"/></div> -->
+			<div class="table4 left"><span class="table3_left left required_label">姓&nbsp;&nbsp;名&nbsp;</span>
+			<input name="organizer" type="text" class="required"/></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">单位&nbsp;&nbsp;</span>
       <input  name="type" type="text" /></div>
-      <div class="table4 right"><span class="table3_left left" style=" background:none">邀请对象&nbsp;&nbsp;</span>
-      <input  name="invitee" type="text" /></div>
      </div>
      <div class="tablezh">
-      <div class="table4 left" style="width:654px" ><span class="table3_left left" style=" background:none">备注说明&nbsp;&nbsp;</span>
+      <div class="table4 left"><span class="table3_left left" style=" background:none">手机号码&nbsp;&nbsp;</span>
+      <input  name="invitee" type="text" /></div>
+      <div class="table4 right"><span class="table3_left left" style=" background:none">邮箱&nbsp;&nbsp;</span>
+      <input  name="period" type="text" /></div>
+     </div>
+
+		 <div class="tablezh">
+      <div class="table4 left" style="width:654px" ><span class="table3_left left" style=" background:none">备注信息&nbsp;&nbsp;</span>
+      <input  name="note" type="text" /></div>
+
+     </div>
+
+		 <div class="table3">
+      <span class="table3_left left" style=" background:none">论坛名称</span>
+      <span class="table3_right left">
+        <div class="sel_wrap left" style=" width:574px">
+        <label></label>
+        <select class="select required" name="eventName" id="c_period">
+        <option value="“一带一路”国际物流与发展论坛" selected="selected">“一带一路”国际物流与发展论坛</option>
+        <option value="扬子江国际论坛2015峰会-“一带一路”战略及交汇点高层论坛" >扬子江国际论坛2015峰会-“一带一路”战略及交汇点高层论坛</option>
+        <option value="国际警务论坛">国际警务论坛</option>
+				<option value="全国A级物流企业授牌大会">全国A级物流企业授牌大会</option>
+				<option value="国际港航合作发展论坛">国际港航合作发展论坛</option>
+				<option value="电子商务 + 物流论坛">电子商务 + 物流论坛</option>
+				<option value="“一带一路”（连云港）经贸合作推介会">“一带一路”（连云港）经贸合作推介会</option>
+
+        </select>
+       </div>
+      </span>
+     </div>
+     <!-- <div class="tablezh">
+      <div class="table4 left" style="width:654px" ><span class="table3_left left" style=" background:none">邮箱&nbsp;&nbsp;</span>
       <input  name="note" type="text" /></div>
 
      </div>
@@ -61,7 +88,7 @@ label.error {
         </select>
        </div>
       </span>
-     </div>
+     </div> -->
      <div class="tjxx_button">
       <input id="submitEventForm" style=" display:block; width:209px; height:37px; background:url(images/tj.jpg); border:0; padding:0; margin:12px 0 0 0; cursor:pointer;" name="" type="button" />
      </div>
