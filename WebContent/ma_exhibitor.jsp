@@ -181,7 +181,7 @@
 					<table class="table table-bordered fview_table areaapply">
 						<tr>
 							<th width="15%">申请标摊数量</th>
-							<th width="17%">是否申请统一特展</th>
+							<th width="17%">是否特装展示</th>
 							<th width="15%">是否室外展示</th>
 							<th width="53%">特装服务类容</th>
 						</tr>

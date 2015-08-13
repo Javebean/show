@@ -167,8 +167,9 @@ public class ImageUploadServlet extends HttpServlet {
 				}
 			}
 		}
-
+		
 		BufferedImage src = ImageIO.read(tmpFile); // 读入文件
+		
 		int width = src.getWidth(); // 得到源图宽
 		int height = src.getHeight(); // 得到源图长
 

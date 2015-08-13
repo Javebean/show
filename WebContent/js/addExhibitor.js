@@ -642,7 +642,11 @@ $(document).ready(function(){
         alert(msgText);
     },
 
-			onUploadError : function(event, queueID, fileObj, errorObj) {
+			// onUploadError : function(event, queueID, fileObj, errorObj) {
+			// 	return false;
+			// },
+			onUploadError : function(file, errorCode, errorMsg, errorString) {
+				alert('图片格式不支持,CMYK模式的JPG图片可能导致此错误，请将图片保存为PNG格式或RGB模式的JPG图片' );
 				return false;
 			},
 			onUploadSuccess : function(file, data, response) {
@@ -686,7 +690,12 @@ $(document).ready(function(){
         alert(msgText);
     },
 
-			onUploadError : function(event, queueID, fileObj, errorObj) {
+			// onUploadError : function(event, queueID, fileObj, errorObj) {
+			// 	return false;
+			// },
+
+			onUploadError : function(file, errorCode, errorMsg, errorString) {
+				alert('图片格式不支持,CMYK模式的JPG图片可能导致此错误，请将图片保存为PNG格式或RGB模式的JPG图片' );
 				return false;
 			},
 			onUploadSuccess : function(file, data, response) {
