@@ -162,6 +162,10 @@
 				          <th class="text-nowrap" width="14%">传真</th>
 				          <td><span ename="fax" class="fview_value"></span></td>
 				        </tr>
+				        <tr>
+				          <th class="text-nowrap" width="14%">展示形式</th>
+				          <td colspan="3"><span ename="showType" class="fview_value"></span></td>
+				        </tr>
 				         <tr>
 				          <th class="text-nowrap" colspan="4">参展单位及产品简介</th>
 				        </tr>

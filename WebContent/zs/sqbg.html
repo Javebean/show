@@ -226,6 +226,12 @@ label.error {
       <div class="table4 right"><span class="table3_left left">传&nbsp;&nbsp;&nbsp;&nbsp;真</span>
       <input class="exib_input2" name="fax" type="text" /></div>
      </div>
+     
+     <div class="table3"><span class="table3_left left required_label">展示形式</span>
+     	<input class="exib_input required" name="showType" type="text" />
+	</div>
+     <div class="wssbbt" style="font-size:14px;font-weight:normal;">展示形式请填写：图文展示，实物展品，模型，多媒体。 如有多种形式请用逗号隔开。</div>
+     
      <div class="wssbbt required_label" style=" margin-top:60px;background-position: 250px 0px;  background-repeat: no-repeat;">2.参展单位及产品简介(请在400字以内)</div>
      <textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" id="introtextarea" name="orgIntro" cols="" rows="" onKeyDown="textdown(event)" onKeyUp="textup()"></textarea>
 
@@ -423,6 +429,10 @@ label.error {
 	          <td><span ename="fax" class="fview_value"></span></td>
 	        </tr>
 	         <tr>
+	          <th class="text-nowrap" width="14%">展示形式</th>
+	          <td colspan="3"><span ename="showType" class="fview_value"></span></td>
+	        </tr>
+	         <tr>
 	          <th class="text-nowrap" colspan="4">参展单位及产品简介</th>
 	        </tr>
 	        <tr>
@@ -459,7 +469,6 @@ label.error {
 				<th>宽度（米）</th>
 				<th>高度（米）</th>
 				<th>重量（千克）</th>
-				<th>展示形式</th>
 			</tr>
 		</table>
 
