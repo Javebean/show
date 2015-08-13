@@ -38,7 +38,7 @@ $(document).ready(function(){
 	});
 	//初始有一行可以填
 	addItem(".add_item",8);
-	
+
 	$(".add_visitor").click(function(){
 		addVisitorLine();
 		//addItem(this,4);
@@ -430,8 +430,12 @@ $(document).ready(function(){
 				jAlert(data.message, "信息");
 			}
 		};
-		Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
-
+		//Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
+		jConfirm("确认申请？","信息",function(result){
+			if(result)
+			//Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
+				Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
+		});
 	}
 
 	function wrapExbData(){
@@ -515,7 +519,7 @@ $(document).ready(function(){
 
 		var displayItem = getDymiTableData(".showitems", itemParams);
 		//var itemParams = ["name","version","number","length","width","height","weight","showType"];
-		
+
 		if(displayItem.length == 0){
 			$(window).scrollTop(1500);
 			jAlert("请录入展品信息", "信息");
@@ -552,7 +556,7 @@ $(document).ready(function(){
 				return false;
 			}
 		}
-		
+
 		var otherServs = $(".scene_other").val();
 		if(otherServs != ""){
 			var serv = {};

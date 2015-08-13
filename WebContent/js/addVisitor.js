@@ -166,7 +166,13 @@ $(document).ready(function(){
 				jAlert(data.message, "信息");
 			}
 		};
-		Visitor.saveVisitor(formData,pic_scare,func);
+		jConfirm("确认申请？","信息",function(result){
+			if(result)
+			//Exhibitor.saveTotalExhibitInfo(exbData.exhibitors,exbData.construction,exbData.transportation,exbData.sceneServ,exbData.visitor,exbData.displayItem,func);
+			Visitor.saveVisitor(formData,pic_scare,func);
+
+		});
+	//	Visitor.saveVisitor(formData,pic_scare,func);
 	}
 
 	function getFormdata(formName){
