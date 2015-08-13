@@ -454,7 +454,7 @@ public class ExhibitorsService {
 		if(email != null && email.matches(Constants.EMAIL_REGEX))
 		{
 			logger.info("发送展商注册邮件...");
-			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, userName,pwd);
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), userName,pwd);
 			logger.debug("content:" + content);
 			MailUtil.sendMail(email, Constants.EXT_SUBJECT_REGISTER, content);
 		}
@@ -462,7 +462,7 @@ public class ExhibitorsService {
 		if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
 		{
 			logger.info("发送展商注册邮件...");
-			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, userName,pwd);
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), userName,pwd);
 			logger.debug("content:" + content);
 			MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_REGISTER, content);
 		}
@@ -629,7 +629,7 @@ public class ExhibitorsService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
-				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, ex.getOrgName(),reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
@@ -637,7 +637,7 @@ public class ExhibitorsService {
 			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
-				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, ex.getOrgName(), reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
@@ -662,7 +662,7 @@ public class ExhibitorsService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商申请通过邮件...");
-				String content = Constants.EXT_APPROVED;
+				String content = MailUtil.replaceVariable(Constants.EXT_APPROVED, ex.getOrgName());
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_APPROVED, content);
 			}
@@ -670,7 +670,7 @@ public class ExhibitorsService {
 			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商申请通过邮件...");
-				String content = Constants.EXT_APPROVED;
+				String content = MailUtil.replaceVariable(Constants.EXT_APPROVED, ex.getOrgName());
 				logger.debug("content:" + content);
 				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_APPROVED, content);
 			}
@@ -694,7 +694,7 @@ public class ExhibitorsService {
 			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
-				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, ex.getOrgName(),reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(email, Constants.EXT_SUBJECT_OBJECTION, content);
 			}
@@ -702,7 +702,7 @@ public class ExhibitorsService {
 			if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
-				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, reason);
+				String content = MailUtil.replaceVariable(Constants.EXT_REFUSE, ex.getOrgName(),reason);
 				logger.debug("content:" + content);
 				MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_OBJECTION, content);
 			}

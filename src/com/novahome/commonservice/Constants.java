@@ -23,9 +23,9 @@ public class Constants {
 	public static final String AUDIENCE_REGISTER =
 			"<p>您好，</p>"
 			+ "<p>感谢您申请参观第二届中国(连云港)丝绸之路国际物流博览会。</p>"
-			+ "<p>请记住您的观众登陆信息，</p>"
-			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;用户名： <strong>[arg0]</strong></p>"
-			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;密码 ：&nbsp;<strong>[arg1]</strong></p>"
+			+ "<p>请记住您的观众（ [arg0] ）登陆信息，</p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;用户名： <strong>[arg1]</strong></p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;密码 ：&nbsp;<strong>[arg2]</strong></p>"
 			+ "<p>中国(连云港)丝绸之路国际物流博览会恭候您的光临。</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;中国(连云港)丝绸之路国际物流博览会</p>"
@@ -35,9 +35,9 @@ public class Constants {
 	public static final String EXT_REGISTER =
 			"<p>您好，</p>"
 			+ "<p>感谢您申请参加第二届中国(连云港)丝绸之路国际物流博览会，您的申请已受理，请等待审核。</p>"
-			+ "<p>请记住您的展商登陆信息，</p>"
-			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;用户名： <strong>[arg0]</strong></p>"
-			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;密码 ：&nbsp;<strong>[arg1]</strong></p>"
+			+ "<p>请记住您的展商 （[arg0]） 登陆信息，</p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;用户名： <strong>[arg1]</strong></p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp;密码 ：&nbsp;<strong>[arg2]</strong></p>"
 			+ "<p>中国(连云港)丝绸之路国际物流博览会恭候您的光临。</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;中国(连云港)丝绸之路国际物流博览会</p>"
@@ -46,7 +46,7 @@ public class Constants {
 
 	public static final String EXT_APPROVED =
 			"<p>您好，</p>"
-			+ "<p>您的参展申请已通过审核，感谢您参加9月22日在连云港举办的第二届中国(连云港)丝绸之路国际物流博览会。</p>"
+			+ "<p>您的参展申请（[arg0]）已通过审核，感谢您参加9月22日在连云港举办的第二届中国(连云港)丝绸之路国际物流博览会。</p>"
 			+ "<p>届时恭候您的光临！</p>"
 			+ "<p>&nbsp;</p>"
 			+ "<p>这封邮件为连博会官方通知确认邮件，请不要回复该邮件。</p>"
@@ -57,8 +57,8 @@ public class Constants {
 
 
 	public static final String EXT_REFUSE = "<p>您好，</p>"
-			+ "<p>对不起，很遗憾地告诉您，您的参展申请（中国丝绸之路国际物流博览会），由于以下原因：</p>"
-			+ "<p><strong>[arg0]</strong></p>"
+			+ "<p>对不起，很遗憾地告诉您，您的中国丝绸之路国际物流博览会参展申请（[arg0]），由于以下原因：</p>"
+			+ "<p><strong>[arg1]</strong></p>"
 			+ "<p>未能通过审核。</p>"
 			+ "<p>您可以再次访问www.lygexpo.com 进行申请。为保障您能顺利完成申请流程,请留意驳回原因以确保申请成功。</p>"
 			+ "<p>&nbsp;</p>"

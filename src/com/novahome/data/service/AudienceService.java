@@ -70,7 +70,7 @@ public class AudienceService {
 		if(email != null && email.matches(Constants.EMAIL_REGEX))  
 		{
 			logger.info("发送观众注册邮件...");
-			String content = MailUtil.replaceVariable(Constants.AUDIENCE_REGISTER, userName,pwd);
+			String content = MailUtil.replaceVariable(Constants.AUDIENCE_REGISTER, audience.getName(),userName,pwd);
 			logger.debug("content:" + content);
 			MailUtil.sendMail(email, Constants.AUDIENCE_SUBJECT_REGISTER, content);
 		}
