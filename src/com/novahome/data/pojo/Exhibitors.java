@@ -60,6 +60,7 @@ public class Exhibitors {
 	
 	private int firstState; //默认正常状态，state=0 申请；1 =批准； 2=驳回
 	
+	private String showType; //根据新会展王璞8月13日意见，添加
 	@Id
 	@Column(length = 64)
 	@GeneratedValue(generator = "system-uuid")
@@ -288,6 +289,12 @@ public class Exhibitors {
 	}
 	public void setSeemail(String seemail) {
 		this.seemail = seemail;
+	}
+	public String getShowType() {
+		return showType;
+	}
+	public void setShowType(String showType) {
+		this.showType = showType;
 	}
 	
 	
