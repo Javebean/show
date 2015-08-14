@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Bootstrap core CSS -->
@@ -37,23 +37,23 @@
 var ROWS_PER_PAGE = 10;
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
-var itemParams = ["name","version","number","length","width"];
+var itemParams = ["name","number","length","width","height","weight"];
 var visitorParams = ["name","sex","position","phone"];
 $(document).ready(function(){
 	showZlzxList(1);
-
 	function showZlzxList(page){
 		var func = function(data){
 			data = JSON.parse(data);
-			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
-			if(data.error!=null){
-				data=JSON.parse('{"data":[{"id":0,"orgName":"","region":"","phone":"","username":"","state":"","industryType":"","applyTime":"","logo":"","booth":""}],"size":0}');
-			}
 			rowCount = data.size;
+
+			if(!rowCount || rowCount==0) {
+				$('.zlzx_box').empty();
+				$('.zlzx_box').html('<td colspan="99" style="text-align:center;">暂无记录</td>');
+				return;
+			}
 			initPager(".fy",page,rowCount,ROWS_PER_PAGE,showZlzxList);
 			//initPaging(page,rowCount);
 			data = data.data;
-
 			$('.zlzx_box').empty();
 			var html = "";
 			for(var i=0;i<data.length;i++){
@@ -67,7 +67,6 @@ $(document).ready(function(){
 				{
 					regiontext = topic.region;
 				}
-
       			html +=
       				'<div class="product"><div class="exb_logo">' + logohtml + '</div>' +
     				'<div class="exb_info" eid="'+topic.id+'">'+
@@ -85,7 +84,6 @@ $(document).ready(function(){
 		}
 		Exhibitor.getExhibitorsForPageByStateLogoOrder((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,1,"",func);
 	}
-
 	function loadDetail(){
 		$(".tz_list").addClass("hide");
 		$(".tz_detail").removeClass("hide");
@@ -119,11 +117,6 @@ $(document).ready(function(){
 		$("#popup_box span").empty();
 		var func = function(data){
 			data = JSON.parse(data);
-			//连博会网站中 新闻、展商、证件为空时，页面报错问题解决
-			if(data.error!=null){
-				return;
-			}
-
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
 			$("#orgName_text").text(data.exhibitors.orgName);
@@ -144,33 +137,28 @@ $(document).ready(function(){
 				$(".mustlogin").removeClass("hide");
 				if(getCookie('user')!= null)
 				{
-					delCookie('user');
+					delCookie("user");
+					delCookie("type");
+					delCookie("exid");
 					$(".yonghu").text("");
 					$(".logout").addClass("hide");
 				}
 			}
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
-
 	}
-
 	function viewTP(eid){
 		$("#popup_box span").empty();
 		var func = function(data){
 			data = JSON.parse(data);
-
 			setViewTable(".exb_detail",data.exhibitors);
 			setDymTable(".showitems", itemParams, data.displayItem);
-
-
 			if(data.exhibitors.logo){
 				var sdata = data.construction[0];
 				$("#logo_image").attr("src",PIC_BASE+ data.exhibitors.logo +"?"+Math.random());
 			} else {
 				$("#logo_image").attr("src",IMAGE_NOT_FOUND);
 			}
-
-
 			if(data.exhibitors.state == 0){
 				$(".audit_box").removeClass("hide");
 				$(".update_tp").attr("eid",data.exhibitors.id);
@@ -178,11 +166,9 @@ $(document).ready(function(){
 			} else {
 				$(".audit_box").addClass("hide");
 			}
-
 		}
 		Exhibitor.getTotalExhibitInfoById(eid,func);
 	}
-
 	function setViewTable(tableID,data){
 		$(tableID+" .fview_value").each(function(){
 			var key = $(this).attr("ename");
@@ -191,10 +177,7 @@ $(document).ready(function(){
 			}
 		});
 	}
-
 	function setDymTable(tableID, params, data){
-		if(data==undefined)
-			data=new Array();
 		var html = '';
 		for(var i=0;i<data.length;i++){
 			html += '<tr class="item_row">';
@@ -208,11 +191,9 @@ $(document).ready(function(){
 			}
 			html += '</tr>';
 		}
-
 		$(tableID+" .item_row").remove();
 		$(tableID).append(html.replace(/undefined/g,""));
 	}
-
 	// function initPaging(pageActive, rowCount){
 	// 	var pageCount = Math.ceil(rowCount/ROWS_PER_PAGE);
 	// 	if(pageCount>1){
@@ -228,7 +209,6 @@ $(document).ready(function(){
 	// 		$(".fy").html(html);
 	// 		$(".paging").removeClass("hide");
 	// 	}
-	//
 	// 	//bind events
 	// 	$(".paging li").click(function(){
 	// 		var pageTo = $(this).children().attr("page");
@@ -241,13 +221,12 @@ $(document).ready(function(){
 	// 		}
 	// 		showZlzxList(pageTo);
 	// 	});
-	//
 	// }
 
 	var initPager = function(tagetObj, curPage, itemCount, pageSize, pageFunction) {
 			var headhtml = '<ul class="pagination" style="margin:0px;">'+
 			'<li><a class="page_first" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
-				var endhtml = '<li><a class="page_last" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul>';
+		    var endhtml = '<li><a class="page_last" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li></ul>';
 			if(itemCount<=pageSize){
 				$(tagetObj).empty();
 			} else {
@@ -330,7 +309,7 @@ $(document).ready(function(){
 				电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、化工产品、五金及工具、机械、建材、能源、电子及家电、照明、车辆及配件、 化工产品、五金及工具、机械、建材、能源
 			</div>
 		</div>
-		<div class="zhanshang_top" style="margin-top:25px">
+		<div class="zhanshang_top" style="margin-top:45px">
 			<div class="gsqkbt">联系方式</div>
 			<div class="gsqknr">
 				<div class="gsqkwz">
@@ -343,8 +322,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-		<!-- <div style="margin-top:25px"class="ts">请 <a style="color:#f40000" href=#>登录</a> 后查看企业联系方式</div> -->
-		<div class="mustlogin" style="margin-top:25px"class="ts">请 <a style="color:#f40000" href="in_exhibit_login.html">登录</a> 后查看企业联系方式</div>
+		<div cstyle="margin-top:25px"class="ts">请 <a style="color:#f40000" href="in_exhibit_login.html">登录</a> 后查看企业联系方式</div>
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 
@@ -355,10 +333,12 @@ $(document).ready(function(){
 					<table class="table table-bordered fview_table showitems"  style="margin-top:35px">
 						<tr>
 							<th>展品名称</th>
-							<th>展品型号</th>
+
 							<th>展品数量</th>
-							<th>长度（米）</th>
-							<th>宽度（米）</th>
+							<th>长度（m）</th>
+							<th>宽度（m）</th>
+							<th>高度（m）</th>
+							<th>重量（kg）</th>
 						</tr>
 					</table>
 

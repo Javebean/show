@@ -37,7 +37,7 @@
 var ROWS_PER_PAGE = 10;
 var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
-var itemParams = ["name","version","number","length","width","height","weight"];
+var itemParams = ["name","number","length","width","height","weight"];
 var visitorParams = ["name","sex","position","phone"];
 $(document).ready(function(){
 	showZlzxList(1);
@@ -137,7 +137,9 @@ $(document).ready(function(){
 				$(".mustlogin").removeClass("hide");
 				if(getCookie('user')!= null)
 				{
-					delCookie('user');
+					delCookie("user");
+					delCookie("type");
+					delCookie("exid");
 					$(".yonghu").text("");
 					$(".logout").addClass("hide");
 				}
@@ -331,7 +333,7 @@ $(document).ready(function(){
 					<table class="table table-bordered fview_table showitems"  style="margin-top:35px">
 						<tr>
 							<th>展品名称</th>
-							<th>展品型号</th>
+
 							<th>展品数量</th>
 							<th>长度（m）</th>
 							<th>宽度（m）</th>
