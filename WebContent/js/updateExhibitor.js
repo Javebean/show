@@ -22,7 +22,7 @@ var trans_type_html = "";
 var reg_num = /^[0-9]*$/;
 var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","number","length","width","height","weight"];
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];

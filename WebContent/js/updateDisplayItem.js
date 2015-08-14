@@ -1,6 +1,8 @@
 //global data
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+	// var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","number","length","width","height","weight"];
+
 	var name = getCookie("user");
 	if(name==null || getCookie("type")!=1|| name==""){
 		$(".resultMsg h3").text("展商未登录，请登录后再来！");
@@ -46,9 +48,9 @@ $(document).ready(function(){
 	$("#submitForm").click(saveForm);
 
 	$(".add_item").click(function(){
-		addItem(this,7);
+		addItem(this,6);
 	});
-	addItem(".add_item",7);
+	addItem(".add_item",6);
 	$(".delete_item").click(deleteItem);
 
 	function addItem(obj, count){

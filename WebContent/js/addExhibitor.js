@@ -22,7 +22,8 @@ var trans_type_html = "";
 var reg_num = /^[0-9]*$/;
 var reg_float = /^[1-9]\d*\.?\d*|0\.\d*[1-9]\d*$/;
 $(document).ready(function(){
-	var itemParams = ["name","version","number","length","width","height","weight"];
+//	var itemParams = ["name","version","number","length","width","height","weight"];
+	var itemParams = ["name","number","length","width","height","weight"];
 	var visitorParams = ["name","sex","position","phone"];
 	var sceneParams = ["type","content"];
 	var transParams = ["type","content","time"];
@@ -34,10 +35,10 @@ $(document).ready(function(){
 	$("#submitForm").click(saveForm);
 	$(".delete_item").click(deleteItem);
 	$(".add_item").click(function(){
-		addItem(this,7);
+		addItem(this,6);
 	});
 	//初始有一行可以填
-	addItem(".add_item",7);
+	addItem(".add_item",6);
 
 	$(".add_visitor").click(function(){
 		addVisitorLine();
@@ -169,8 +170,21 @@ $(document).ready(function(){
 		$("#exb_review_pop span").empty();
 		$("#exb_review_pop input").val("");
 		setViewTable("#exb_review_pop .exb_detail",data.exhibitors);
-		data.exhibitors.tytzzs=data.exhibitors.tytzzs?"是":"否";
-		data.exhibitors.swzs=data.exhibitors.swzs?"是":"否";
+		if(data.exhibitors.tytzzs == 1)
+				data.exhibitors.tytzzs = '是';
+				else {
+						data.exhibitors.tytzzs = '否';
+				}
+
+		if(data.exhibitors.swzs == 1)
+				data.exhibitors.swzs = '是';
+				else {
+						data.exhibitors.swzs = '否';
+				}
+		// data.exhibitors.tytzzs=data.exhibitors.tytzzs?"是":"否";
+		// alert("预览2" + data.exhibitors.tytzzs);
+		// data.exhibitors.swzs=data.exhibitors.swzs?"是":"否";
+
 		setViewTable("#exb_review_pop .areaapply",data.exhibitors);
 		setDymTable("#exb_review_pop .v_showitems", itemParams, data.displayItem);
 		setDymTable("#exb_review_pop .v_visitors", visitorParams, data.visitor);
@@ -470,6 +484,7 @@ $(document).ready(function(){
 		var formData = getFormdata("regForm");
 		formData.tytzzs= $("input[name='tytzzs']:checked").val();
 		formData.swzs= $("input[name='swzs']:checked").val();
+		//alert("tytzzs:" + formData.tytzzs);
 		var btsl = formData.btsl;
 		if(btsl == "标摊每个3m X 3m"){
 			$(window).scrollTop(1300);
@@ -584,7 +599,7 @@ $(document).ready(function(){
 		exbData.sceneServ = sceneServ;
 		exbData.visitor = visitor;
 		exbData.displayItem = displayItem;
-
+		//alert("tytzzs return :" + exbData.exhibitors.tytzzs);
 		return exbData;
 	}
 

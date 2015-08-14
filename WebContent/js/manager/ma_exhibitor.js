@@ -96,7 +96,9 @@ $(document).ready(function(){
 		}
 	}
 
-	var itemParams = ["name","version","number","length","width"];
+	// var itemParams = ["name","version","number","length","width"];
+	 var itemParams = ["name","number","length","width","height"];
+
 	var visitorParams = ["name","sex","position","phone"];
 	function viewTP(){
 		$("#popup_box span").empty();
