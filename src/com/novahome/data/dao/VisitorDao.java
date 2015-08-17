@@ -99,11 +99,12 @@ public class VisitorDao {
 				return query.list();
 	}
 	
-	public Visitor getVisitorWithIdNoRegistered(String idNo)
+	public Visitor getVisitorWithIdNoRegistered(String idNo, int idType)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Visitor a where a.idNo=:idNo");
+				"from Visitor a where a.idNo=:idNo and a.idType = :idType");
 				query.setParameter("idNo", idNo);
+				query.setParameter("idType", idType);
 		return (Visitor) query.uniqueResult();
 	}
 	

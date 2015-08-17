@@ -1,6 +1,7 @@
 package com.novahome.servlet.phone;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class VisitorServlet extends HttpServlet{
 private static final long serialVersionUID = 1L;
 
 	private VisitorService visitorService;
-	private static final String[] METHOD_NAMES = {"apply","details","getbyorgid","getbyorgname","getbyid"};
+	private static final String[] METHOD_NAMES = {"apply","details","getbyorgid","getbyorgname","getbyid","applyByIos"};
 	private static final Logger logger = Logger.getLogger(VisitorServlet.class);
 	@Override
 	public void init()
@@ -48,6 +49,8 @@ private static final long serialVersionUID = 1L;
 		int subStart = uri.lastIndexOf("/");
 		int subEnd = uri.lastIndexOf(".");
 		String path = "";
+		//java.net.URLDecoder.decode("http://120.26.207.77:8080/show/phone/visitor/apply.do?name=%E5%BC%A0%E5%AE%89&org=%E5%85%AC%E5%8F%B8&phone=09923&position=&email=poo@163.com&idNo=2209&sex=%E7%94%B7&type=2&photo=&idFont=&idBack=&idType=3","UTF-8");
+
 		if(subStart < subEnd)
 		{
 			path = uri.substring(subStart+1,subEnd);
@@ -101,6 +104,11 @@ private static final long serialVersionUID = 1L;
 			}
 			response.getWriter().write(visitorService.getVisitorById(id));
 		}
+		else if(path.equals(METHOD_NAMES[5]))
+		{
+			Visitor visitor = processVisitorParamsByIos(request);
+			response.getWriter().write(visitorService.saveVisitor(visitor,null));
+		}
 		else
 		{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
@@ -129,6 +137,18 @@ private static final long serialVersionUID = 1L;
 				try {
 				//	String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
 					String value = str[0];
+					//System.out.println("before transfer:" + value);
+
+		            try {  
+		            	value = new String(value.getBytes("UTF-8"),  "utf-8");
+						//System.out.println("after transfer:" + value);
+
+		            } catch (UnsupportedEncodingException e) {  
+		                e.printStackTrace();  
+		                  
+		                value = "decode error";  
+		            }  
+ 
 					method.invoke(visitor, value);
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -189,6 +209,73 @@ private static final long serialVersionUID = 1L;
 	}
 
 
+	private Visitor processVisitorParamsByIos(HttpServletRequest request)
+	{
+		Visitor visitor = new Visitor();
+		Map<String, String[]>map = request.getParameterMap();
+		Iterator<Entry<String, String[]>> it = map.entrySet().iterator();
+		while(it.hasNext())
+		{
+			Entry<String,String[]>entry = (Entry<String, String[]>) it.next();
+			String key = entry.getKey();
+			String[]str = entry.getValue();
+			if(key.equals("buyer") || key.equals("type")|| key.equals("idType"))
+			{
+				continue;
+			}
+			Method method = getMehthods(Visitor.class, key);
+			if(method != null)
+			{
+				try {
+					
+					String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
+					
+					method.invoke(visitor, value);
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} /*catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/ catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		String buyerStr = request.getParameter("buyer");
+		int buyer ;
+		if(buyerStr == null || buyerStr.isEmpty())
+			buyer = 0;
+		else
+			buyer = Integer.parseInt(buyerStr);
+		visitor.setBuyer(buyer);
+
+		String typeStr = request.getParameter("type");
+		int type ;
+		if(typeStr == null || typeStr.isEmpty())
+			type = 2;
+		else
+			type = Integer.parseInt(typeStr);
+		visitor.setType(type);
+
+		String idTypeStr = request.getParameter("idType");
+		int idType ;
+		if(idTypeStr == null || idTypeStr.isEmpty())
+			idType = 0;
+		else
+			idType = Integer.parseInt(idTypeStr);
+		visitor.setIdType(idType);
+
+		return visitor;
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

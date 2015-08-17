@@ -70,6 +70,7 @@ public class VisitorService {
 	{
 		JSONObject obj = new JSONObject();
 		String idNo = visitor.getIdNo();
+		int idType = visitor.getIdType();
 		System.out.println(new JSONObject(visitor));
 		String[]array;
 		String nowpath = System.getProperty("user.dir");
@@ -157,7 +158,7 @@ public class VisitorService {
 			}
 		}
 		
-		Visitor vi = visitorDao.getVisitorWithIdNoRegistered(idNo);
+		Visitor vi = visitorDao.getVisitorWithIdNoRegistered(idNo, idType);
 		if(vi != null )
 		{
 			//	审批已经通过的无法重新申请

@@ -34,7 +34,7 @@ public class AudienceServlet extends HttpServlet{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String[] METHOD_NAMES = {"login","logout","register"};
+	private static final String[] METHOD_NAMES = {"login","logout","register","registerByIos"};
 	private AudienceService audienceService;
 	private static final Logger logger = Logger.getLogger(AudienceServlet.class);
 	@Override
@@ -102,6 +102,12 @@ public class AudienceServlet extends HttpServlet{
 			Audience audience = processAudienceParams(request);
 			response.getWriter().write(audienceService.saveAudience(audience));
 		}
+		else if(path.equals(METHOD_NAMES[3]))
+		{
+			Audience audience = processAudienceParamsByIos(request);
+			response.getWriter().write(audienceService.saveAudience(audience));
+		}
+
 		else
 		{
 			response.getWriter().write(HtmlParser.NO_FOUND_MSG);
@@ -128,6 +134,17 @@ public class AudienceServlet extends HttpServlet{
 			{
 				try {
 					String value = str[0];
+					//System.out.println("before transfer:" + value);
+					try {  
+		            	value = new String(value.getBytes("UTF-8"),  "utf-8");
+						//System.out.println("after transfer:" + value);
+
+		            } catch (UnsupportedEncodingException e) {  
+		                e.printStackTrace();  
+		                  
+		                value = "decode error";  
+		            }  
+					
 					method.invoke(au, value);
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -168,6 +185,52 @@ public class AudienceServlet extends HttpServlet{
 	}
 
 
+	private Audience processAudienceParamsByIos(HttpServletRequest request)
+	{
+		Audience au = new Audience();
+		Map<String, String[]>map = request.getParameterMap();
+		Iterator<Entry<String, String[]>> it = map.entrySet().iterator();
+		while(it.hasNext())
+		{
+			Entry<String,String[]>entry = (Entry<String, String[]>) it.next();
+			String key = entry.getKey();
+			String[]str = entry.getValue();
+			if(key.equals("buyer"))
+			{
+				continue;
+			}
+			Method method = getMehthods(Audience.class, key);
+			if(method != null)
+			{
+				try {
+					String value = new String(str[0].getBytes("ISO-8859-1"),"utf-8");
+					
+					method.invoke(au, value);
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		String buyerStr = request.getParameter("buyer");
+		int buyer ;
+		if(buyerStr == null || buyerStr.isEmpty())
+			buyer = 0;
+		else
+			buyer = Integer.parseInt(buyerStr);
+		au.setBuyer(buyer);
+		return au;
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
