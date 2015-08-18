@@ -167,6 +167,7 @@ public class VisitorService {
 				obj.put("result", false);
 				obj.put("message", "该身份证件号码已注册审批通过，无法重新申请");
 				obj.put("name", vi.getName());
+				obj.put("idNo", vi.getIdNo());
 				obj.put("id", vi.getId());
 				String ret = obj.toString();
 				logger.info(ret);

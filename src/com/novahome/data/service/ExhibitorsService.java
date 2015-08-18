@@ -395,6 +395,7 @@ public class ExhibitorsService {
 			obj.put("result", false);
 			obj.put("message", "该公司已注册过，如有疑问请致电！");
 			obj.put("username", ex.getUsername());
+			obj.put("ogrName", orgName);
 			obj.put("id", ex.getId());
 			String ret = obj.toString();
 			logger.info(ret);
@@ -559,6 +560,7 @@ public class ExhibitorsService {
 				obj.put("result", false);
 				obj.put("message", "已有相同公司名称的公司在申请中或者已通过批准，无法重新申请，如有疑问请致电！");
 				obj.put("username", ex.getUsername());
+				obj.put("orgname", orgName);
 				obj.put("id", ex.getId());
 				String ret = obj.toString();
 				logger.info(ret);
