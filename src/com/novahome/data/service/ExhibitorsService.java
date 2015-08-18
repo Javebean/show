@@ -690,9 +690,12 @@ public class ExhibitorsService {
 		ex.setState(state);
 		if(state == 2)
 		{
-			ex.setFirstState(2);
+			/*//根据2015/08/18终极审批驳回到一级审批的需求进行修改，并且不发驳回邮件
+			//原先为驳回到展商申请状态
+*/			ex.setFirstState(2);
 			ex.setReason(reason);
 			String email = ex.getEmail();
+			
 			if(email != null && email.matches(Constants.EMAIL_REGEX))
 			{
 				logger.info("发送展商驳回邮件...");
