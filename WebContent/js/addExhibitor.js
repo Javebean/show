@@ -482,6 +482,15 @@ $(document).ready(function(){
 			return false;
 		}
 		var formData = getFormdata("regForm");
+
+		// var orgintrotext = formData.orgIntro;
+		// alert(orgintrotext.length);
+		// if(orgintrotext.length > 400)
+		// {
+		// 	$(window).scrollTop(800);
+		// 	jAlert("公司介绍文字不能超过400字", "信息");
+		// 	return false;
+		// }
 		formData.tytzzs= $("input[name='tytzzs']:checked").val();
 		formData.swzs= $("input[name='swzs']:checked").val();
 		//alert("tytzzs:" + formData.tytzzs);

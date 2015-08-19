@@ -124,7 +124,13 @@ $(document).ready(function(){
 			$("#orgType_text").text(data.exhibitors.orgType);
 			$("#scale_text").text(data.exhibitors.scale);
 			$("#industryType_text").text(data.exhibitors.industryType);
-			$("#orgIntro_text").text(data.exhibitors.orgIntro);
+			//$("#orgIntro_text").text(data.exhibitors.orgIntro);
+			var introtext = data.exhibitors.orgIntro;
+			if(introtext.length > 400)
+					introtext = introtext.substring(0,399);
+			introtext = introtext + '......';
+			$("#orgIntro_text").text(introtext);
+			
 			if(data.exhibitors.phone != 'unauthorized')
 			{
 				if(getCookie("user") != null)
