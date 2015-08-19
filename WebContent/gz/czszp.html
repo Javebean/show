@@ -127,10 +127,14 @@ $(document).ready(function(){
 			$("#orgIntro_text").text(data.exhibitors.orgIntro);
 			if(data.exhibitors.phone != 'unauthorized')
 			{
-				$("#phone_text").text(data.exhibitors.phone);
-				$("#telephone_text").text(data.exhibitors.telephone);
-				$("#address_text").text(data.exhibitors.address);
-				$(".mustlogin").addClass("hide");
+				if(getCookie("user") != null)
+				{
+						$("#phone_text").text(data.exhibitors.phone);
+						$("#telephone_text").text(data.exhibitors.telephone);
+						$("#address_text").text(data.exhibitors.address);
+						$(".mustlogin").addClass("hide");
+						$("#logincheck").addClass("hide");
+				}
 			}
 			else
 			{
@@ -322,7 +326,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-		<div cstyle="margin-top:25px"class="ts">请 <a style="color:#f40000" href="in_exhibit_login.html">登录</a> 后查看企业联系方式</div>
+		<div cstyle="margin-top:25px" id = "logincheck" class="ts">请 <a style="color:#f40000" href="in_exhibit_login.html">登录</a> 后查看企业联系方式</div>
 
 			<div id='popup_box' style='background: #fff;font-size: 14px;width: 720px; margin-top:35px'>
 

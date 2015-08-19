@@ -80,13 +80,13 @@ public class ExhibitorsService {
 		String error = (String) obj.get("error");
 		if(error != null && !error.isEmpty())
 			return obj.toString();
-		HttpSession session=  WebContextFactory.get().getSession();
+		/*HttpSession session=  WebContextFactory.get().getSession();
 		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
 
 		if(userName == null || userName.isEmpty())
 			userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
-			((JSONObject) obj.get("exhibitors")).put("phone", NOTIFY_LOGIN_STR);
+			((JSONObject) obj.get("exhibitors")).put("phone", NOTIFY_LOGIN_STR);*/
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
