@@ -32,7 +32,10 @@ input,textarea,select,button {outline:none;}
 
 .tel{ width:286px; height:23px; margin-top:4px; float:left}
 
+#flash{
+	width: 235px;height: 210px;border: solid 1px;position: relative; left:220px;
 
+}
 
 .navbar{ width:1060px; background:url(../images/navbar_bg.png)}
 .navbar ul{}
@@ -349,6 +352,11 @@ color:#545454;font-size:14px; font-family:Microsoft YaHei;
 .dp_main_left{}
 .dp_map_bt{font-size:16px; font-family:Microsoft YaHei; color:#474747; font-weight:bold; display:block; margin-bottom:8px}
 .dp_main_right{ width:451px; height:447px}
+
+.dp2_main{ width:753px; height:auto; overflow:hidden; margin-top:520px; font-size:12px; color:#858585; line-height:20px}
+.dp2_main_left{}
+.dp2_map_bt{font-size:16px; font-family:Microsoft YaHei; color:#474747; font-weight:bold; display:block; margin-bottom:8px}
+.dp2_main_right{ width:451px; height:447px}
 
 
 
