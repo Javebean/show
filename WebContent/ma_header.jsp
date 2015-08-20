@@ -38,6 +38,7 @@ if(accountid==null){
 	<script type='text/javascript' src='dwr/interface/Account.js'></script>
 	<script type="text/javascript" src="js/util.js"></script>
 	<script type="text/javascript" src="plugins/jquery.alert/jquery.alerts.js"></script>
+	<script type="text/javascript" src="plugins/bootstrap/respond.min.js"></script>
 
     <style>
     #add_topic{
