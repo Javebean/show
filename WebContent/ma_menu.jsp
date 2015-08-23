@@ -28,6 +28,7 @@ $(document).ready(function(){
       <li elevel="8"><a href="ma_exhibitor.jsp?step=2">展商管理(终极审批)</a></li>
       <li elevel="6"><a href="ma_visitor.jsp">证件管理</a></li>
       <li elevel="7"><a href="ma_event.jsp">专题活动管理</a></li>
+			<li elevel="10"><a href="ma_exhibitor_approved.jsp">已通过终审的展商查看</a></li>
     </ul>
     <ul class="nav nav-sidebar">
     </ul>
