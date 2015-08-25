@@ -178,15 +178,17 @@
 				    <strong>摊位申请</strong>
 					<table class="table table-bordered fview_table areaapply">
 						<tr>
-							<th width="33%">申请标摊数量</th>
-							<th width="34%">是否特装展示</th>
-							<th width="33%">是否室外展示</th>
+							<th width="30%">申请标摊数量</th>
+							<th width="20%">是否特装展示</th>
+							<th width="20%">是否室外展示</th>
+							<th width="20%">室外展示面积(平方米)</th>
 							<%-- <th width="53%">特装服务类容</th> --%>
 						</tr>
 						<tr>
 							<td><span ename="btsl" class="fview_value"></span></td>
 							<td><span ename="tytzzs" class="fview_value"></span></td>
 							<td><span ename="swzs" class="fview_value"></span></td>
+							<td><span ename="outdoorArea" class="fview_value"></span></td>
 							<%-- <td><span ename="tzfw" class="fview_value"></span></td> --%>
 						</tr>
 					</table>

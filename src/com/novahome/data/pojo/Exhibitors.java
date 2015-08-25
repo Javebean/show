@@ -61,6 +61,8 @@ public class Exhibitors {
 	private int firstState; //默认正常状态，state=0 申请；1 =批准； 2=驳回
 	
 	private String showType; //根据新会展王璞8月13日意见，添加
+	
+	private String outdoorArea; //根据穆东成8月25日意见，添加
 	@Id
 	@Column(length = 64)
 	@GeneratedValue(generator = "system-uuid")
@@ -295,6 +297,12 @@ public class Exhibitors {
 	}
 	public void setShowType(String showType) {
 		this.showType = showType;
+	}
+	public String getOutdoorArea() {
+		return outdoorArea;
+	}
+	public void setOutdoorArea(String outdoorArea) {
+		this.outdoorArea = outdoorArea;
 	}
 	
 	
