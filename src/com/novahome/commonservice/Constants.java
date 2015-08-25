@@ -1,5 +1,8 @@
 package com.novahome.commonservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Constants {
 
@@ -99,5 +102,21 @@ public class Constants {
 	public static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 
 
+	//穆东成提出意见，8月25日晚
+	public static final List<String> JS_CITIES = new ArrayList<String>(){{ add("南京");add("徐州");add("苏州");add("常州");add("淮安");add("南通");add("宿迁");add("泰州");add("无锡");add("盐城");add("扬州");add("镇江");add("江苏");}};
 
+	public static final List<String> OTHER_CONTRIES = new ArrayList<String>(){{add("日本");add("英国");add("美国");add("德国");add("法国");add("韩国");add("台湾");add("香港");add("巴西");add("阿根廷");add("墨西哥");add("巴基斯坦");add("印度");add("土库曼斯坦");add("吉尔吉斯斯坦");add("塔吉克斯坦");
+		add("哈萨克斯坦");add("西班牙");add("瑞典");add("澳大利亚");add("加拿大");add("意大利");add("瑞士");add("新加坡");add("乌兹别克斯坦");add("泰国");add("马来西亚");add("新西兰");add("俄罗斯");add("荷兰");add("巴勒斯坦");add("阿拉伯");add("挪威");add("澳门");}};
+		
+	public static final String LIANYUNGANG_KEYWORDS_STR ="连云港";
+	
+	public static final String LIANYUNGANG_STR ="连云港市内企业";
+	
+	public static final String JIANGSU_STR = "江苏省内（除连云港市）企业";
+	
+	public static final String CHINA_STR = "中国境内（除江苏省）企业";
+	
+	public static final String BORDER_STR = "境外企业";
+	
+	
 }

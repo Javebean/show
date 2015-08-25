@@ -805,4 +805,66 @@ public class ExhibitorsService {
 		return ret;
 
 	}
+	
+	
+	public String getRegionStatByGroup()
+	{
+		int lygInt = 0, jsInt=0, chinaInt=0, borderInt = 0;
+		List<String>ls = exhibitorsDao.getDistinctRegion();
+		String regNameTol ="";
+		String numTol = "";
+		if(ls == null || ls.isEmpty())
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;
+		}
+		for(String rec : ls)
+		{
+			if(rec== null || rec.isEmpty())
+				continue;
+			long num = exhibitorsDao.getExhibitorsCountByRegion(rec);
+			if(rec.contains(Constants.LIANYUNGANG_KEYWORDS_STR))
+			{
+				lygInt += num;
+			}
+			else
+			{
+				boolean jsFlag = false;
+				boolean borderFlag = false;
+				for(String city :Constants.JS_CITIES )
+				{
+					if(rec.contains(city))
+					{
+						jsInt += num;
+						jsFlag = true;
+						break;
+					}
+				}
+				if(!jsFlag)
+				{
+					for(String country :Constants.OTHER_CONTRIES)
+					{
+						if(rec.contains(country))
+						{
+							borderInt += num;
+							borderFlag = true;
+							break;
+						}
+					}
+					if(!borderFlag)
+						chinaInt += num;
+				}
+			}
+		}
+		regNameTol = Constants.LIANYUNGANG_STR + "," + Constants.JIANGSU_STR + "," + 
+		Constants.CHINA_STR + "," + Constants.BORDER_STR;
+		numTol = lygInt + "," + jsInt + "," + chinaInt + "," + borderInt;
+		JSONObject obj = new JSONObject();
+		obj.put("name", regNameTol);
+		obj.put("num", numTol);
+		String ret = obj.toString();
+		logger.debug("regionByGroup:" + ret);
+		return ret;
+
+	}
 }

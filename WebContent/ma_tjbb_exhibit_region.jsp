@@ -41,7 +41,8 @@
 							}
 					});
 	   			};
-					Exhibitor.getRegionStat(func);
+				//	Exhibitor.getRegionStat(func);
+				Exhibitor.getRegionStatByGroup(func);
 	    	});
 	    </script>
 
