@@ -60,6 +60,72 @@ public class ExhibitorsDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	/**
+	 * 修改后，查看经过初次审批的count
+	 * 增加recommender字段过滤
+	 * @param orgName
+	 * @return
+	 */
+	public long getExhibitorsTotalCountFinalAuditMutipleCon(String orgName, String recommender)
+	{
+		Query query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Exhibitors a where a.firstState = " + 1);
+			else
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Exhibitors a where a.firstState = " + 1 + " and a.recommender like '%" + recommender + "%'");
+
+				
+		}
+		else
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Exhibitors a where a.orgName like '%" + orgName +"%' and a.firstState = " + 1 );
+			else
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Exhibitors a where a.orgName like '%" + orgName + "%' and a.firstState = " + 1 + " and a.recommender like '%" + recommender + "%'");
+
+		}
+		return (Long) query.uniqueResult();
+	}
+	
+	public long getExhibitorsCountByStateFinalAuditMutipleCon(int state, String orgName, String recommender)
+	{
+		Query query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Exhibitors a where a.state = :state and a.firstState = 1");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Exhibitors a where a.state = :state and a.firstState = 1 and a.recommender like '%" + recommender + "%'");
+			}
+		}
+		else
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+					"select count(*) from Exhibitors a where a.state = :state and a.orgName like '%" + orgName +"%' and a.firstState = 1");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Exhibitors a where a.state = :state and a.orgName like '%" + orgName +"%' and a.firstState = 1 and a.recommender like '%" + recommender + "%'");
+			}
+		}
+		query.setParameter("state", state);
+		return (Long) query.uniqueResult();
+	}
+	
+	
+	
+	
 	public long getExhibitorsTotalCountFirst(String orgName, String showName)
 	{
 		Query query;
@@ -222,6 +288,58 @@ public class ExhibitorsDao {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ShortExhibitor>getShortExhibitorForPageFinalAuditMutipleCon(int start, int number, String orgName, String recommender)
+	{
+		SQLQuery query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+				"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 order by applyTime desc")
+				 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+				  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState") ;
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+						"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.recommender like '%" + recommender + "%' order by applyTime desc")
+						 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+						  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState") ;
+			}
+		}
+		else
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+						"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.orgName like '%" + orgName + "%' and a.recommender like '%" + recommender + "%' order by applyTime desc")
+						 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+						  .addScalar("username").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+		}
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		Class cls = null;
+		try {
+			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
+		return list;
+	}
+	
+	
 	public List<ShortExhibitor> getShortExhibitorForPageFirst(int start, int number, String orgName, String showName)
 	{
 		SQLQuery query;
@@ -286,6 +404,70 @@ public class ExhibitorsDao {
 		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
 		return list;
 	}
+	
+	/**
+	 * 增加recommender
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param orgName
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ShortExhibitor>getShortExhibitorForPageByStateFinalAuditMutipleCon(int start, int number, int state, String orgName, String recommender)
+	{
+		//sql  ="(select * from exhibitors where logo is not null order by applyTime desc  limit 999999) union (select * from exhibitors where logo is null order by applyTime desc  limit 999999)";
+		
+		SQLQuery query;
+		if(orgName == null || orgName.isEmpty() || orgName.trim().isEmpty())
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state order by applyTime desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+						"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state and a.recommender like '%" + recommender + "%' order by applyTime desc")
+						 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+						  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+			
+		}
+		else
+		{
+			if(recommender== null  ||   recommender.isEmpty() || recommender.trim().isEmpty() ||recommender.equals("-1"))
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+					"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' order by applyTime desc")
+					 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+					  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createSQLQuery(
+						"Select a.id, a.orgName, a.region,a.phone,a.logo,a.username,a.industryType,a.applyTime,a.state,a.booth,a.firstState from Exhibitors a where a.firstState = 1 and a.state = :state and a.orgName like '%" + orgName + "%' and a.recommender like '%" + recommender + "%' order by applyTime desc")
+						 .addScalar("id").addScalar("orgName").addScalar("region").addScalar("phone").addScalar("logo")
+						  .addScalar("username").addScalar("industryType").addScalar("applyTime").addScalar("state").addScalar("booth").addScalar("firstState")  ;
+			}
+		}
+		query.setParameter("state", state);
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		Class cls = null;
+		try {
+			cls = Class.forName("com.novahome.data.model.ShortExhibitor");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List list = query.setResultTransformer(Transformers.aliasToBean(cls)).list();
+		return list;
+	}
+	
 	
 	public List<ShortExhibitor>getShortExhibitorForPageByStateFirst(int start, int number, int state, String orgName, String showName)
 	{

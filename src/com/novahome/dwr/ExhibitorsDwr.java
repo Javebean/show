@@ -108,6 +108,27 @@ public class ExhibitorsDwr {
 		return exhibitorsService.getShortExhibitorForPageByStateFinalAudit(start, number,state, orgName);
 	}
 	
+	
+	/**
+	 * 分页查询已通过初次审核的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
+	 * 如果state 为 负数，查看所有已通过初次审核的展商
+	 * 
+	 * 
+	 * 2015.8.26新增(根据穆东成2015年8月26日早上电话需要增加）
+	 * 在原来过滤添加 展商状态state、公司名称orgName基础上增加新的过滤条件
+	 * 招展引荐单位:recommender
+	 * 
+	 * 后续如果继续增加添加，改变此接口，string改为 string...
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorsForPageByStateMutipleCon(int start, int number, int state, String orgName,String recommender)
+	{
+		return exhibitorsService.getShortExhibitorForPageByStateFinalAuditMutipleCon(start, number,state, orgName,recommender);
+	}
+	
 	/**
 	 * 分页查询刚刚申请的展商简略信息id, industryType,orgName, region, phone, username, applyTime;
 	 * 

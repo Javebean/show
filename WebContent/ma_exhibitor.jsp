@@ -5,6 +5,7 @@
 
 	<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
     <script type="text/javascript" src="js/manager/ma_exhibitor.js"></script>
+		<script type="text/javascript" src="js/constants.js"></script>
     <script>
     	var menu = 5;
     	var step = <%= request.getParameter("step")%>;
@@ -55,6 +56,16 @@
 
 								</select>
 							</div>
+
+							<div class="form-group recommender_search_label" style="margin-left: 5px;">
+								<span>招展单位:</span>
+							</div>
+							<div class="form-group recommender_search_label">
+								<select class="form-control search_ele recommender_search" id="recommender_search_dropbox">
+
+								</select>
+							</div>
+
 							<div class="form-group" style="margin-left: 10px;">
 								<span>展商名称:</span>
 							</div>

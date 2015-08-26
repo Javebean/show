@@ -274,6 +274,13 @@ public class ExhibitorsService {
 		return procssListRet(ls,size);
 	}
 
+	public String getShortExhibitorsForPageFinalAuditMutipleCon(int start, int number, String orgName,String recommender)
+	{
+		long size = exhibitorsDao.getExhibitorsTotalCountFinalAuditMutipleCon(orgName, recommender);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageFinalAuditMutipleCon(start, number, orgName, recommender);
+		return procssListRet(ls,size);
+	}
+	
 	public String getShortExhibitorsForPageFirst(int start, int number, String orgName, String showName)
 	{
 		long size = exhibitorsDao.getExhibitorsTotalCountFirst(orgName, showName);
@@ -300,6 +307,30 @@ public class ExhibitorsService {
 		return procssListRet(ls,size);
 	}
 
+	/**
+	 * 后台界面所用，用于最终审核,
+	 * 2015.8.26新增(根据穆东成2015年8月26日早上电话需要增加）
+	 * 在原来过滤添加 展商状态state、公司名称orgName基础上增加新的过滤条件
+	 * 招展引荐单位:recommender
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param orgName
+	 * @param recommender
+	 * @return
+	 */
+	public String getShortExhibitorForPageByStateFinalAuditMutipleCon(int start, int number, int state, String orgName,String recommender)
+	{
+		if(state == -1)
+		{
+			return this.getShortExhibitorsForPageFinalAuditMutipleCon(start, number, orgName, recommender);
+		}
+		long size = exhibitorsDao.getExhibitorsCountByStateFinalAuditMutipleCon(state, orgName, recommender);
+		List<ShortExhibitor>ls = exhibitorsDao.getShortExhibitorForPageByStateFinalAuditMutipleCon(start, number, state, orgName, recommender);
+		return procssListRet(ls,size);
+	}
+
+	
 
 	/**
 	 * 后台界面所用，用于初次审核

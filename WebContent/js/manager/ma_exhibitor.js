@@ -2,13 +2,33 @@ var PIC_BASE = 'resources/topicimages/';
 var IMAGE_NOT_FOUND = "";
 var search_state = -1;
 var search_name = "";
+var search_recommender = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
 
 	//init page
 	showTopicList(1);
+	//初始化招商引荐单位
+	var recommender_sel_html = "";
+	recommender_sel_html = '<option value = "-1">全部</option>'
+	for(var i=0; i< CON_REC_SEL.length; i++){
+		var item = CON_REC_SEL[i];
+		if (item == undefined){
 
+			}
+				else {
+					recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+				}
+
+	}
+
+	$("#recommender_search_dropbox").html(recommender_sel_html);
+	$("#recommender_search_dropbox").trigger("change");
+
+	if(step == 1){
+		$(".recommender_search_label").addClass("hide");
+	}
 	//event binder
 	$('.update_tp').click(updateTP);
 	$('.reject_tp').click(rejectTP);
@@ -26,6 +46,8 @@ $(document).ready(function(){
 	function doSearch(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
+		search_recommender =  $(".recommender_search").val();
+		alert("rec:" + search_recommender);
 		showTopicList(1);
 	}
 
@@ -92,7 +114,9 @@ $(document).ready(function(){
 		if(step == 1){
 			Exhibitor.getExhibitorsForPageByStateFirst((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
 		} else if(step == 2) {
-			Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+		//	Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+			Exhibitor.getExhibitorsForPageByStateMutipleCon((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, search_recommender,func);
+
 		}
 	}
 
