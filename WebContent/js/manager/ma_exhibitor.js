@@ -47,7 +47,7 @@ $(document).ready(function(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
 		search_recommender =  $(".recommender_search").val();
-		alert("rec:" + search_recommender);
+		//alert("rec:" + search_recommender);
 		showTopicList(1);
 	}
 
