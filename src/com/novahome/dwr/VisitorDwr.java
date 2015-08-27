@@ -119,6 +119,21 @@ public class VisitorDwr {
 	}
 	
 	/**
+	 * 根据证件状态分页查询现场证件申请信息
+	 * 增加根据证件类型等添加查询
+	 * 2015年8月27日穆东成提出需求
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorForPageByStateMutipleCon(int start, int number, int state, String name, int type)
+	{
+		return visitorService.getVisitorForPageByStateMutipleCon(start, number, state, name, type);
+	}
+	
+	
+	/**
 	 * 删除现场证件申请通过id
 	 * @param id
 	 * @return

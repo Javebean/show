@@ -39,6 +39,41 @@ public class VisitorDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	public long getVisitorTotalCountMutipleCon(String name, int type)
+	{
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+					"select count(*) from Visitor");
+			}
+			else 
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Visitor a where a.type = :type");
+				query.setParameter("type", type);
+			}
+		}
+		else
+		{
+			if(type == -1 )
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+					"select count(*) from Visitor where name like '%" + name + "%'");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"select count(*) from Visitor a where a.type = :type and a.name like '%" + name + "%'");
+				query.setParameter("type", type);
+			}
+		}
+		return (Long) query.uniqueResult();
+	}
+	
+	
 	public long getVisitorCountByState(int state, String name)
 	{
 		Query query;
@@ -53,6 +88,38 @@ public class VisitorDao {
 		query.setParameter("state", state);
 		return (Long) query.uniqueResult();
 	}
+	
+	public long getVisitorCountByStateMutipleCon(int state, String name, int type)
+	{
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Visitor a where a.state = :state");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Visitor a where a.type = :type and a.state = :state");
+				query.setParameter("type", type);
+			}
+		}
+		else
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Visitor a where a.state = :state and a.name like '%" + name + "%'");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery("select count(*) from Visitor a where a.type = :type and a.state = :state and a.name like '%" + name + "%'");
+				query.setParameter("type", type);
+			}
+		}
+		query.setParameter("state", state);
+		return (Long) query.uniqueResult();
+	}
+	
 	
 	public long getVisitorCountByType(int type)
 	{
@@ -126,6 +193,40 @@ public class VisitorDao {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Visitor>getVisitorForPageMutipleCon(int start, int number, String name, int type)
+	{
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery("from Visitor order by applyTime desc");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery("from Visitor a where a.type = :type order by applyTime desc");
+				query.setParameter("type", type);
+			}
+		}
+		else
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery("from Visitor where name like '%" + name  + "%' order by applyTime desc");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery("from Visitor a where a.type = :type and a.name like '%" + name  + "%' order by applyTime desc");
+				query.setParameter("type", type);
+			}
+		}
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数		
+		return query.list();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	public List<Visitor>getVisitorForPageByState(int start, int number,int state, String name)
 	{
 		Query query;
@@ -145,6 +246,43 @@ public class VisitorDao {
 		return query.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Visitor>getVisitorForPageByStateMutipleCon(int start, int number,int state, String name, int type)
+	{
+		Query query;
+		if(name == null || name.isEmpty() || name.trim().isEmpty())
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"from Visitor a where a.state = :state order by a.applyTime desc");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"from Visitor a where a.state = :state and a.type = :type order by a.applyTime desc");
+				query.setParameter("type", type);
+			}
+		}
+		else
+		{
+			if(type == -1)
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+					"from Visitor a where a.state = :state and a.name like '%" + name + "%' order by a.applyTime desc");
+			}
+			else
+			{
+				query = sessionFactory.getCurrentSession().createQuery(
+						"from Visitor a where a.state = :state and a.type = :type and a.name like '%" + name + "%' order by a.applyTime desc");
+				query.setParameter("type", type);
+			}
+		}
+		query.setParameter("state", state);
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数		
+		return query.list();
+	}
 	
 	public long deleteVisitorById (String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(

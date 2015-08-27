@@ -3,6 +3,7 @@ var BARCODE_BASE = 'resources/barcodeimages/'
 var IMAGE_NOT_FOUND = "";
 var search_state = -1;
 var search_name = "";
+var search_type = -1;
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
@@ -52,6 +53,7 @@ $(document).ready(function(){
 	function doSearch(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
+		search_type = $(".type_search").val();
 		showTopicList(1);
 	}
 
@@ -111,7 +113,8 @@ $(document).ready(function(){
 			// $('.view_tp').click(viewTP);
 			$('.detail_tp').click(detailTP);
 		}
-		Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, func);
+		//Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, func);
+		Visitor.getVisitorForPageByStateMutipleCon((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, search_type,func);
 	}
 
 	// function viewTP(){

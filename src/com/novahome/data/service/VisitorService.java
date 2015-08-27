@@ -290,6 +290,22 @@ public class VisitorService {
 		return procssListRet(ls,size);
 	}
 	
+	/**
+	 * 根据证件上个人名称查询
+	 * 增加按照证件类型等条件
+	 * @param start
+	 * @param number
+	 * @param name
+	 * @return
+	 */
+	public String getVisitorForPageMutipleCon(int start, int number, String name, int type)
+	{
+		long size = visitorDao.getVisitorTotalCountMutipleCon(name, type);
+		List<Visitor>ls = visitorDao.getVisitorForPageMutipleCon(start, number, name, type);
+		return procssListRet(ls,size);
+	}
+	
+	
 	public String getVisitorForPageByState(int start, int number,int state, String name)
 	{
 		if(state == -1)
@@ -300,6 +316,28 @@ public class VisitorService {
 		List<Visitor>ls = visitorDao.getVisitorForPageByState(start, number, state, name);
 		return procssListRet(ls,size);
 	}
+	
+	/**
+	 * 根据状态分页查询证件
+	 * 增加根据证件类型等条件查询
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param name
+	 * @param type
+	 * @return
+	 */
+	public String getVisitorForPageByStateMutipleCon(int start, int number,int state, String name, int type)
+	{
+		if(state == -1)
+		{
+			return this.getVisitorForPageMutipleCon(start, number, name,type);
+		}
+		long size = visitorDao.getVisitorCountByStateMutipleCon(state, name, type);
+		List<Visitor>ls = visitorDao.getVisitorForPageByStateMutipleCon(start, number, state, name, type);
+		return procssListRet(ls,size);
+	}
+	
 	
 	private String procssListRet(List ls, long size)
 	{

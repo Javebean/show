@@ -59,6 +59,20 @@
 									<option value="2">已驳回</option>
 								</select>
 							</div>
+
+							<div class="form-group" style="margin-left: 5px;">
+								<span>证件类型:</span>
+							</div>
+							<div class="form-group">
+								<select class="form-control search_ele type_search">
+									<option value="-1">全部</option>
+									<option value="1">展商</option>
+									<option value="2">专业观众</option>
+									<option value="3">媒体</option>
+									<option value="4">工作人员</option>
+								</select>
+							</div>
+
 							<div class="form-group" style="margin-left: 10px;">
 								<span>现场证件人员姓名:</span>
 							</div>
@@ -168,7 +182,7 @@
 								<td colspan="3"><span ename="state" class="fview_value"></span></td>
 							</tr>
 				         				    </table>
-					
+
 					<h4>身份证正反面：</h4>
 					<div class="form-group">
 						<img class="cp_image_fro" src="" />
@@ -176,7 +190,7 @@
 					<div class="form-group">
 						<img class="cp_image_bac" src="" />
 					</div>
-					
+
 					<div class="form-group">
 						<div class="cp">
 						<!-- 添加证件二维码 -->
@@ -194,7 +208,7 @@
 							<button type="button" class="btn btn-sm btn-success print_tp" eid="">打印</button>
 						</div>
 					</div>
-		
+
 					<div class="audit_box hide">
 						<div class="form-group">
 							<label>驳回原因：（如需驳回请填写此项）</label>
