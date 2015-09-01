@@ -98,7 +98,7 @@
 
                   <th>证件类型</th>
 
-                  <th>所属公司</th>
+                  <th>所属单位</th>
                   <th>申请时间</th>
                   <th>状态</th>
                   <th>操作</th>
@@ -173,7 +173,7 @@
 				          <td colspan="3"><span ename="buyer" class="fview_value"></span></td>
 				        </tr>
 				        <tr>
-				          <th class="text-nowrap" width="14%">公司名称</th>
+				          <th class="text-nowrap" width="14%">单位名称</th>
 				          <td colspan="3"><span ename="org" class="fview_value"></span></td>
 				        </tr>
 
