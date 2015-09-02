@@ -117,9 +117,16 @@
 					//var mTime = parseInt(timeDate[1]);
 					var mTime = timeDate[1];
 					topic.publishTime =timeDate[0]+'/'+ mTime+ '/'+timeDate[2];
-
+					var titleshow ;
+					if(topic.title.length < 12)
+					{
+							titleshow = topic.title;
+					}
+					else {
+						titleshow = topic.title.substring(0,11) + '...';
+					}
 					 html +=
-					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+topic.title.substring(0,10)+'...</a><span class="gg_date">'+topic.publishTime+'</span></li><br>';
+					'<li><a href="in_news_detail.html?detail=Zytz&eid='+topic.id+'">'+ titleshow + '</a><span class="gg_date">'+topic.publishTime+'</span></li><br>';
 					var values = topic.title;
 
 				}
