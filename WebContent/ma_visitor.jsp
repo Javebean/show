@@ -70,6 +70,7 @@
 									<option value="2">专业观众</option>
 									<option value="3">媒体</option>
 									<option value="4">工作人员</option>
+									<option value="5">嘉宾</option>
 								</select>
 							</div>
 

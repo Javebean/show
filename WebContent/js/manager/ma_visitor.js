@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var rowCount = 0;
 
 	var status = ["申请","已批准","已驳回"];
-	var types = ["","展商","专业观众","媒体","工作人员"];
+	var types = ["","展商","专业观众","媒体","工作人员","嘉宾"];
 	var shifou = ["否","是"];
 
 	//init page
@@ -33,6 +33,10 @@ $(document).ready(function(){
 		else if(type == 3)
 		{
 			window.open("ma_printpress.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
+		}
+		else if(type == 5)
+		{
+			window.open("ma_printvip.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
 		}
 		else {
 			window.open("ma_printguest.html?name="+$(this).attr("ename")+"&org="+$(this).attr("ecompany") + "&pic="+$(this).attr("eimage")+ "&barcode="+barcode,'证件打印');
@@ -145,6 +149,8 @@ $(document).ready(function(){
 			$(".cp").css('background','url(images/staffcard.png)');
 		else if(typecard == 3)
 				$(".cp").css('background','url(images/presscard.png)');
+		else if(typecard == 5)
+				$(".cp").css('background','url(images/vipcard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');

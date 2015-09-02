@@ -50,6 +50,8 @@ $(document).ready(function(){
 			$(".cp").css('background','url(images/staffcard.png)');
 		else if(formData.type == 3)
 				$(".cp").css('background','url(images/presscard.png)');
+		else if(formData.type == 5)
+				$(".cp").css('background','url(images/vipcard.png)');
 		else
 		{
 			$(".cp").css('background','url(images/guestcard.png)');
