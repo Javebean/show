@@ -174,7 +174,7 @@ label.error {
      </div>
      <div class="tablezh">
       <div class="table4 left"><span class="table3_left left required_label">国家地区</span>
-      <input name="region" id="start1" autocomplete="off" type="text" class="exib_input2 required city_input  inputFocus proCityQueryAll proCitySelAll" ov="请选择/输入城市名称">
+      <input name="region" id="start1" autocomplete="off" type="text" maxlength="0" class="exib_input2 required city_input  inputFocus proCityQueryAll proCitySelAll" ov="请选择/输入城市名称">
      <!--  <input class="exib_input2 required" name="region" type="text" /> -->
       </div>
       <div class="table4 right"><span class="table3_left left required_label">企业性质</span>
@@ -263,7 +263,8 @@ label.error {
 
 		<!-- <div class="table2" style="margin-top:0; padding-left:10px"><span class="table2_left left" style=" width:150px; text-align:left">特装说明，如无则忽略</span><span class="table2_right left">
 			<textarea class="required" style=" border:1px solid #CCCCCC;  width:660px; height:155px; display:block; margin:16px 0 0 20px; resize:none;color:#999; line-height:20px;overflow:inherit" name="tssm" cols="" rows=""></textarea>
-		</form> -->
+		 -->
+	</form>
 
      <div class="wssbbt" style=" margin-top:60px">4.展品情况</div>
 		<table class="gridtable showitems" width="662">
@@ -536,10 +537,48 @@ label.error {
 	</div>
 </div>
 
+<!--弹出省省市-->
+<div class="provinceCityAll">
+
+	<div class="tabs clearfix">
+		<ul>
+			<li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
+			<li><a href="javascript:" tb="provinceAll">省份</a></li>
+			<li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+
+		</ul>
+	</div>
+
+	<div class="con">
+		<div class="hotCityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="provinceAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+		<div class="cityAll invis">
+			<div class="pre"><a></a></div>
+			<div class="list">
+				<ul></ul>
+			</div>
+			<div class="next"><a class="can"></a></div>
+		</div>
+
+	</div>
+
+</div>
+
 <!-- 添加参展人员弹出框 -->
 <div class="popBox_shadow"></div>
 <div class="popBox_frame" id="addVisitorBox" style="display:none;width:800px;">
-	<form id="test"></form>
 		<form class="form-horizontal" name="addVisitorform" id="addVisitorform">
 			<div class="tablezh">
 				<div class="table4 left">
@@ -675,48 +714,6 @@ label.error {
 
 		<span id="popBoxClose">关闭</button>
 </div>
-
-
-
-<!--弹出省省市-->
-<div class="provinceCityAll">
-
-	<div class="tabs clearfix">
-		<ul>
-			<li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>
-			<li><a href="javascript:" tb="provinceAll">省份</a></li>
-			<li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
-
-		</ul>
-	</div>
-
-	<div class="con">
-		<div class="hotCityAll invis">
-			<div class="pre"><a></a></div>
-			<div class="list">
-				<ul></ul>
-			</div>
-			<div class="next"><a class="can"></a></div>
-		</div>
-		<div class="provinceAll invis">
-			<div class="pre"><a></a></div>
-			<div class="list">
-				<ul></ul>
-			</div>
-			<div class="next"><a class="can"></a></div>
-		</div>
-		<div class="cityAll invis">
-			<div class="pre"><a></a></div>
-			<div class="list">
-				<ul></ul>
-			</div>
-			<div class="next"><a class="can"></a></div>
-		</div>
-
-	</div>
-
-</div>
-
 
 <script type="text/javascript">
 $(".sel_wrap").on("change", function() {

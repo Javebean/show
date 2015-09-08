@@ -19,7 +19,7 @@ $(document).ready(function()
 
 });
 
-var APP_VERSION = "1.0.7";
+var APP_VERSION = "1.0.8";
 function JloadRewrite(){
 	if(!$.prototype.loadFlag){
 		$.prototype.loadFlag = "Y";
