@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String accountid = (String)session.getAttribute(Constants.SESSION_ID);
 String username = (String)session.getAttribute(Constants.SESSION_NAME);
 if(accountid==null){
-	response.sendRedirect("admin.jsp");
+	response.sendRedirect("lygexpo");
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,7 +52,7 @@ if(accountid==null){
     <script>
     function logout(){
     	Account.logout(function(){
-    		window.location.href = "admin.jsp";
+    		window.location.href = "lygexpo";
     	});
     }
     </script>
