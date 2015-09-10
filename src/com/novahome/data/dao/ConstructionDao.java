@@ -73,6 +73,13 @@ public class ConstructionDao {
 		return query.executeUpdate();
 	}
 	
+	public long deleteConstructionByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Construction where eid = :eid");
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
+	
 	public boolean updateConstruction(Construction construction) {
 		Session s = sessionFactory.getCurrentSession();
 		s.update(construction);

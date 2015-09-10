@@ -292,6 +292,13 @@ public class VisitorDao {
 		return query.executeUpdate();
 	}
 	
+	public long deleteVisitorByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Visitor where eid = :eid");
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
+	
 	public boolean updateVisitor(Visitor visitor) {
 		Session s = sessionFactory.getCurrentSession();
 		s.update(visitor);
