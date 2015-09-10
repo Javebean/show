@@ -1,9 +1,11 @@
 package com.novahome.data.service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.directwebremoting.WebContextFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import com.novahome.utils.Ut;
 @Repository
 public class AccountService {
 	
+	private static final Logger logger = Logger.getLogger(AccountService.class);
+
 	@Resource(name = "accountDao")
 	private AccountDao accountDao;
 	
@@ -50,6 +54,9 @@ public class AccountService {
 			j.put("result", true);
 			j.put("message", "成功登录");
 			j.put("cookie", MD5.compute(account.getId()+":"+account.getPassword()));
+			HttpServletRequest request = WebContextFactory.get().getHttpServletRequest();
+			String ip = request.getRemoteAddr();
+			logger.debug("后台管理登录成功:" + username + "; ip:" + ip);
 			return j.toString();
 		} else {
 			j.put("result", false);
@@ -105,6 +112,7 @@ public class AccountService {
 		session.removeAttribute(Constants.SESSION_SHOW_TYPE);
 		session.removeAttribute(Constants.SESSION_OFFICIAL_NAME);
 		session.removeAttribute(Constants.MENU_ACCESS);
+		logger.debug("后台管理退出成功:");
 		return true;
 	}
 

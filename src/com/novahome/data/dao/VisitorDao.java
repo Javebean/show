@@ -168,6 +168,7 @@ public class VisitorDao {
 	
 	public Visitor getVisitorWithIdNoRegistered(String idNo, int idType)
 	{
+		idNo = idNo.trim();
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Visitor a where a.idNo=:idNo and a.idType = :idType");
 				query.setParameter("idNo", idNo);
