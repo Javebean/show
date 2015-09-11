@@ -12,10 +12,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.HyzxDao;
 import com.novahome.data.model.ShortHyzx;
 import com.novahome.data.pojo.Hyzx;
 import com.novahome.utils.HtmlParser;
+import com.novahome.utils.MailUtil;
 import com.novahome.utils.Ut;
 
 @Service("hyzxService")
@@ -48,6 +50,10 @@ public class HyzxService {
 		obj.put("title", hyzx.getTitle());
 		obj.put("id", id);
 		obj.put("publishTime", Ut.newsDf.format(hyzx.getPublishTime()));
+		
+		String content = MailUtil.replaceVariable(Constants.MONITOR_HYZX_CONTENT, hyzx.getTitle());
+		String email = MailUtil.getMonitorAddr();
+		MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -158,6 +164,11 @@ public class HyzxService {
 	public boolean updateHyzx(Hyzx hyzx)
 	{
 		hyzx.setPublishTime(new Date());
+		logger.info("更新行业资讯新闻...");
+		String content = MailUtil.replaceVariable(Constants.MONITOR_HYZX_CONTENT, hyzx.getTitle());
+		String email = MailUtil.getMonitorAddr();
+		logger.debug("content:" + content);
+		MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
 		return hyzxDao.updateHyzx(hyzx);
 	}
 }
