@@ -55,7 +55,10 @@ public class ZytzService {
 		
 		String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
 		String email = MailUtil.getMonitorAddr();
-		MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		}
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -170,7 +173,10 @@ public class ZytzService {
 		String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
 		logger.debug("content:" + content);
 		String email = MailUtil.getMonitorAddr();
-		MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		}
 		return zytzDao.updateZytz(zy);
 	}
 }

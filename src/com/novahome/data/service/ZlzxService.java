@@ -53,7 +53,10 @@ public class ZlzxService {
 		
 		String content = MailUtil.replaceVariable(Constants.MONITOR_ZLZX_CONTENT, zlzx.getTitle());
 		String email = MailUtil.getMonitorAddr();
-		MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		}
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -167,8 +170,11 @@ public class ZlzxService {
 		logger.info("更新展览资讯新闻...");
 		String content = MailUtil.replaceVariable(Constants.MONITOR_ZLZX_CONTENT, zy.getTitle());
 		String email = MailUtil.getMonitorAddr();
-		logger.debug("content:" + content);
-		MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			logger.debug("content:" + content);
+			MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		}
 		return zlzxDao.updateZlzx(zy);
 	}
 }

@@ -53,7 +53,10 @@ public class HyzxService {
 		
 		String content = MailUtil.replaceVariable(Constants.MONITOR_HYZX_CONTENT, hyzx.getTitle());
 		String email = MailUtil.getMonitorAddr();
-		MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
+		}
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -167,8 +170,11 @@ public class HyzxService {
 		logger.info("更新行业资讯新闻...");
 		String content = MailUtil.replaceVariable(Constants.MONITOR_HYZX_CONTENT, hyzx.getTitle());
 		String email = MailUtil.getMonitorAddr();
-		logger.debug("content:" + content);
-		MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
+		if(email != null && !email.isEmpty())
+		{
+			logger.debug("content:" + content);
+			MailUtil.sendMail(email, Constants.MONITOR_HYZX_TITLE, content);
+		}
 		return hyzxDao.updateHyzx(hyzx);
 	}
 }
