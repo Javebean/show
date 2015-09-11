@@ -56,10 +56,13 @@ public class ExhibitorsService {
 	private TransportationDao transportationDao;
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
+	@Resource
+	private VisitorService visitorService;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
 	private static final String ERROR_STR_STATE= "{\"error\":\"抱歉，您的申请已通过一级审批，暂时无法编辑\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
-
+	private static final String DEFAULT_PWD = "999999";
+	
 	public String getExhibitorsTotalCount()
 	{
 		long count = exhibitorsDao.getExhibitorsTotalCountFinalAudit(null);
@@ -80,13 +83,22 @@ public class ExhibitorsService {
 		String error = (String) obj.get("error");
 		if(error != null && !error.isEmpty())
 			return obj.toString();
-		/*HttpSession session=  WebContextFactory.get().getSession();
-		String userName = (String) session.getAttribute(Constants.SESSION_SHOW_NAME);
-
+		HttpSession session=  WebContextFactory.get().getSession();
+		
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
 		if(userName == null || userName.isEmpty())
-			userName = (String) session.getAttribute(Constants.SESSION_NAME);
-		if(userName == null || userName.isEmpty())
-			((JSONObject) obj.get("exhibitors")).put("phone", NOTIFY_LOGIN_STR);*/
+		{
+			JSONArray array = obj.getJSONArray("visitor");
+			if(array != null && array.length() >0)
+			{
+				for(int i =0 ; i< array.length(); i++)
+				{
+					JSONObject child = (JSONObject) array.get(i);
+					child.put("idNo", NOTIFY_LOGIN_STR);
+				}
+			}
+			
+		}
 		String ret = obj.toString();
 		logger.debug(ret);
 		return ret;
@@ -433,13 +445,17 @@ public class ExhibitorsService {
 			return ret;
 		}
 		exhibitor.setApplyTime(new Date());
-		String userName = RandCodeGenerator.generateExhibitUser();
-		String pwd = RandCodeGenerator.generatePwd();
-		String encodePwd = MD5.compute(pwd);
+		//根据9月9日穆东成意见，用户名为组织机构代码证，不需要随机生成
+		exhibitor.setUsername(exhibitor.getOrgCode());
+		//String userName = RandCodeGenerator.generateExhibitUser();
+		//根据9月9日穆东成意见，登录密码为默认值，不需要随机生成
+		//String pwd = RandCodeGenerator.generatePwd();
+		
+		String encodePwd = MD5.compute(DEFAULT_PWD);
 		/**
 		 * set username and password here
 		 */
-		exhibitor.setUsername(userName);
+		//exhibitor.setUsername(userName);
 		exhibitor.setPassword(encodePwd);
 		String id = exhibitorsDao.saveExhibitor(exhibitor);
 		logger.info("save exhibitor");
@@ -448,8 +464,8 @@ public class ExhibitorsService {
 		//return obj.toString();
 		obj.put("result", true);
 		obj.put("message", "您已成功注册,即将跳转！");
-		obj.put("username", userName);
-		obj.put("password", pwd);
+		obj.put("username", exhibitor.getUsername());
+		obj.put("password", DEFAULT_PWD);
 		obj.put("id", id);
 
 		for(Construction c : construction)
@@ -473,7 +489,8 @@ public class ExhibitorsService {
 			v.setEid(id);
 			v.setOrg(exhibitor.getOrgName());
 			v.setType(1);
-			visitorDao.saveVisitor(v);
+			//visitorDao.saveVisitor(v);
+			visitorService.saveVisitor(v,"");
 		}
 		for(DisplayItem d : displayItem)
 		{
@@ -486,7 +503,7 @@ public class ExhibitorsService {
 		if(email != null && email.matches(Constants.EMAIL_REGEX))
 		{
 			logger.info("发送展商注册邮件...");
-			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), userName,pwd);
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), exhibitor.getUsername(),DEFAULT_PWD);
 			logger.debug("content:" + content);
 			MailUtil.sendMail(email, Constants.EXT_SUBJECT_REGISTER, content);
 		}
@@ -494,7 +511,7 @@ public class ExhibitorsService {
 		if(presentEmail != null && presentEmail.matches(Constants.EMAIL_REGEX))
 		{
 			logger.info("发送展商注册邮件...");
-			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), userName,pwd);
+			String content = MailUtil.replaceVariable(Constants.EXT_REGISTER, exhibitor.getOrgName(), exhibitor.getUsername(),DEFAULT_PWD);
 			logger.debug("content:" + content);
 			MailUtil.sendMail(presentEmail, Constants.EXT_SUBJECT_REGISTER, content);
 		}
@@ -606,7 +623,7 @@ public class ExhibitorsService {
 		String eid = exhibitor.getId();
 		List<Visitor>visitorLs = visitorDao.getVisitorByEid(eid);
 		//设定相关证件进入申请状态；
-		
+		exhibitor.setUsername(exhibitor.getOrgCode());
 		for(Visitor visitor : visitorLs)
 		{
 			if(visitor.getState() != 1)
@@ -752,8 +769,28 @@ public class ExhibitorsService {
 		return true;
 	}
 
+	
+	public String updateExhibitorPsw(String id, String psw)
+	{
+		Exhibitors ex = exhibitorsDao.getExhibitorById(id);
+		String encodePwd = MD5.compute(psw);
+		ex.setPassword(encodePwd);
+		JSONObject obj = new JSONObject();
+		obj.put("id", id);
+		obj.put("result", true);
+		obj.put("password", psw);
+		String info = obj.toString();
+		logger.info("修改展商登录密码:" + info);
+		return info;
+	}
+	
 	public long deleteExhibitorById(String id)
 	{
+		visitorDao.deleteVisitorByEid(id);
+		sceneServDao.deleteSceneServByEid(id);
+		displayItemDao.deleteDisplayItemByEid(id);
+		constructionDao.deleteConstructionByEid(id);
+		transportationDao.deleteTransportationByEid(id);
 		return exhibitorsDao.deleteExhibitorById(id);
 	}
 

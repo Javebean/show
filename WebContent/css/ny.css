@@ -194,7 +194,7 @@ input,textarea,select,button {outline:none;}
 .ngs{ font-size:12px; color:#858585; line-height:20px; margin-top:10px}
 
 
-
+.wssb_top{ border-top:1px dashed #DBDBDB;color:#323232; font-size:18px; font-family:Microsoft YaHei; font-weight:bold;}
 /*չ������*/
 .zwsq{ width:734px; height:60px; background:#EDF2F5; padding:17px 0 0 19px}
 .zwsqbt{color:#323232; font-size:18px; font-family:Microsoft YaHei; font-weight:bold}
@@ -204,6 +204,7 @@ input,textarea,select,button {outline:none;}
 .login{width:708px; height:150px; margin:35px auto 0 auto}
 .login_nr{ width:708px; height:33px; line-height:33px;color:#7c7c7c;font-size:16px; font-family:Microsoft YaHei;margin-top:14px}
 .yhm{ text-align:right; width:68px; }
+.yhmpsw{ text-align:right; width:128px; }
 .login_button{ margin:12px 0 0 68px}
 .forget{ color:#1f9bd5; font-size:12px; display:block; width:100px; height:29px; line-height:29px; float:left; margin-left:10px}
 

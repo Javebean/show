@@ -20,7 +20,10 @@ $(document).ready(function(){
 
 	//检查用户是否安装FLASH
 	checkFlash();
-
+	if(getCookie("type")==1)
+	{
+		$("#wssb_exhbit_login").hide();
+	}
 	//如果观众已经登录，预设部分表单信息
 	if(getCookie("type")==2){
 		var userName = getCookie("user");

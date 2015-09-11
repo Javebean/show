@@ -118,6 +118,10 @@
 				          <th class="text-nowrap" width="14%">法定代表人</th>
 				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
 				        </tr>
+								<tr>
+				          <th class="text-nowrap" width="14%">组织机构代码</th>
+				          <td colspan="3"><span ename="orgCode" class="fview_value"></span></td>
+				        </tr>
 				        <tr>
 				          <th class="text-nowrap" width="14%">招展引荐单位</th>
 				          <td colspan="3"><span ename="recommender" class="fview_value"></span></td>
@@ -263,6 +267,12 @@
 				        </tr>
 				    </table>
 
+						<div class="reset_box">
+							<div class="form-group">
+								<button type="button" class="btn btn-sm btn-danger reset_tp" eid="">重置展商密码</button>
+								  </div>
+									  </div>
+
 				    <div class="audit_box hide">
 					    <div class="form-group">
 						    <label>驳回原因：（如需驳回请填写此项）</label>
@@ -273,6 +283,7 @@
 							<div class="col-sm-offset-5 col-sm-5">
 								<button type="button" class="btn btn-sm btn-success update_tp" eid="">批准</button>
 								<button type="button" class="btn btn-sm btn-danger reject_tp" eid="">驳回</button>
+
 							</div>
 						</div>
 					</div>

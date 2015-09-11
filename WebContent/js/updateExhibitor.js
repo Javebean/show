@@ -62,6 +62,7 @@ $(document).ready(function(){
 		}
 
 		$(".userForm").show();
+		$(".resetpswarea").show();
 
 		//检查用户是否安装FLASH
 		checkFlash();
@@ -75,6 +76,9 @@ $(document).ready(function(){
 	//event binder
 	$("#submitForm").click(saveForm);
 	pageInit();
+	$(".resetpswarea").click(enterReset);
+
+	$(".resetbutton").click(resetPsw);
 
 	//初始化现场服务和货运物流
 	function pageInit(){
@@ -101,7 +105,7 @@ $(document).ready(function(){
 			var key = $(this).attr("name");
 			if(data[key]){
 				$(this).val(data[key]);
-				//alert(key + " ; " + data[key])
+				//alert(key + " ; " + data[key]);
 			}
 		});
 	}
@@ -127,6 +131,43 @@ $(document).ready(function(){
 
 		Exhibitor.updateExhibitor(exbData,func);
 
+	}
+
+	function enterReset(){
+		$(".userForm").hide();
+		$(".resetpswarea").hide();
+		$(".resetpswinput").show();
+	}
+
+	function resetPsw(){
+		var ps01 = $("#psw001").val();
+		var ps02 = $("#psw002").val();
+		var func = function(data){
+			data = JSON.parse(data);
+
+			if(data.result == true){
+				jAlert("修改密码成功", "信息");
+				$(".userForm").show();
+				$(".resetpswarea").show();
+				$(".resetpswinput").hide();
+			}else{
+				jAlert("修改密码失败", "信息");
+			}
+		};
+
+		if(ps01.length < 6)
+		{
+			jAlert("请输入大于等于6位的新密码，请重新输入", "信息");
+		}
+		else if(ps01 != ps02)
+		{
+			jAlert("两次输入密码不一致，请重新输入", "信息");
+		}
+		else
+		{
+			var exid = getCookie("exid");
+			Exhibitor.updateExhibitorPsw(exid, ps01,func);
+		}
 	}
 
 	function wrapExbData(){

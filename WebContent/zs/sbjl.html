@@ -120,6 +120,21 @@ label.error {
 
    <div class="nyweizhi">当前位置： <a href="#">首页</a> > <a href="#">参展商</a> > <a href="#">参展申报</a> > <font style=" font-weight:bold; color:#1F9AD6">申请表格</font></div>
    <div class="nymainnr">
+		 <div class = 'resetpswarea' style="display:none;">
+			 <div>
+				 <img src = "images/resetpsw.png"/>
+
+			 </div>
+		   <div style = "margin-bottom:30px; margin-left:10px;font-family:Microsoft YaHei; font-weight:bold;"><span style = "font-size: 16px;color: #2b78e4;">修改展商密码</span></div>
+		 </div>
+
+		 <div class = 'resetpswinput' style="display:none;">
+			 <div class="login_nr"><span class="yhmpsw left">新密码(5位以上)：</span><input id='psw001' style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="password" /></div>
+	     <div class="login_nr"><span class="yhmpsw left">新密码确认(重复)：</span><input id ='psw002' style="  display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="password" /></div>
+			 <div class="login_button">
+				<input class = "resetbutton" style=" width:74px; height:29px; background:url(images/o_button_submit.jpg); float:left; border:0; padding:0; cursor:pointer" />
+	     </div>
+		 </div>
 
    <div class="userForm" style="display:none;">
 	<form class="form-horizontal" name="regForm" id="form">
@@ -133,6 +148,9 @@ label.error {
 	</div>
 	<div class="table3"><span class="table3_left left">法定代表人</span>
      	<input class="exib_input fview_value" name="president" type="text" />
+	</div>
+	<div class="table3"><span class="table3_left left required_label">组织机构代码</span>
+     	<input class="exib_input required fview_value" name="orgCode" type="text" />
 	</div>
 	<div class="table3"><span class="table3_left left required_label">招展引荐单位</span>
 		<select class="select required fview_value" name="recommender" id="recommender_dropbox" style="width:574px;">

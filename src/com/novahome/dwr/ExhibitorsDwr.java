@@ -263,6 +263,18 @@ public class ExhibitorsDwr {
 		return exhibitorsService.updateExhibitorFirstStateReason(id, state, reason);
 	}
 	
+	
+	/**
+	 * 变更展商登录密码
+	 * @param exhibitor
+	 * @return
+	 */
+	@RemoteMethod
+	public String updateExhibitorPsw(String id, String psw)
+	{
+		return exhibitorsService.updateExhibitorPsw(id, psw);
+	}
+	
 	/**
 	 * 展商登陆
 	 * @param userName

@@ -33,6 +33,8 @@ $(document).ready(function(){
 	$('.update_tp').click(updateTP);
 	$('.reject_tp').click(rejectTP);
 
+	$('.reset_tp').click(resetTP);
+
 	$(".do_search").click(function(){
 		doSearch();
 	});
@@ -171,7 +173,7 @@ $(document).ready(function(){
 			} else {
 				$("#cons_image").attr("src",IMAGE_NOT_FOUND);
 			}
-
+			$(".reset_tp").attr("eid",data.exhibitors.id);
 			if(step== 2)
 			{
 				if(data.exhibitors.state == 0){
@@ -261,6 +263,7 @@ $(document).ready(function(){
 		var eid = $(this).attr("eid");
 		var reason = $("#reject_reason").val();
 		var func = function(data){
+
 			if(data==true) {
 				$.colorbox.close();
 				showTopicList(1);
@@ -273,4 +276,19 @@ $(document).ready(function(){
 			}
 
 	}
+
+	function resetTP(){
+		var eid = $(this).attr("eid");
+
+		var func = function(data){
+			data = JSON.parse(data);
+			if(data.result==true) {
+				alert("df");
+				$.colorbox.close();
+				showTopicList(1);
+			}
+		};
+		Exhibitor.updateExhibitorPsw(eid,"999999",func);
+	}
+
 });

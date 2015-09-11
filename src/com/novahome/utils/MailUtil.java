@@ -30,6 +30,8 @@ public class MailUtil {
 
 	private static LinkedBlockingQueue<MailUser> queue = new LinkedBlockingQueue<MailUser>(MAX_NUM) ;
 	
+	private static String MONITOR_MAIL_ADDR = null;
+	
 	public static void init()
 	{
 		Resource resource = new ClassPathResource("/mail.properties");
@@ -44,6 +46,7 @@ public class MailUtil {
 			smtpServer = (String) props.get("mail.smtpServer");
 			String password = (String) props.get("mail.password");
 			String username = (String) props.get("mail.user");
+			MONITOR_MAIL_ADDR = (String) props.get("mail.monitor");
 		/*	
 			String user1 = (String) props.get("mail.user1");
 			String psw1 = (String) props.get("mail.password1");
@@ -58,6 +61,21 @@ public class MailUtil {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static String getMonitorAddr()
+	{
+		if(props == null)
+		{
+			synchronized(MailUtil.class)
+			{
+				if(props == null)
+				{
+					init();
+				}
+			}
+		}
+		return MONITOR_MAIL_ADDR;
 	}
 	
 	public static void main(String[] args)

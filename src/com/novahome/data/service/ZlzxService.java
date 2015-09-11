@@ -11,10 +11,13 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.ZlzxDao;
 import com.novahome.data.model.ShortZlzx;
 import com.novahome.data.pojo.Zlzx;
 import com.novahome.utils.HtmlParser;
+import com.novahome.utils.MailUtil;
 import com.novahome.utils.Ut;
 
 @Service("zlzxService")
@@ -47,6 +50,13 @@ public class ZlzxService {
 		obj.put("title", zlzx.getTitle());
 		obj.put("id", id);
 		obj.put("publishTime", Ut.newsDf.format(zlzx.getPublishTime()));
+		
+		String content = MailUtil.replaceVariable(Constants.MONITOR_ZLZX_CONTENT, zlzx.getTitle());
+		String email = MailUtil.getMonitorAddr();
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		}
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -157,6 +167,14 @@ public class ZlzxService {
 	public boolean updateZlzx(Zlzx zy)
 	{
 		zy.setPublishTime(new Date());
+		logger.info("更新展览资讯新闻...");
+		String content = MailUtil.replaceVariable(Constants.MONITOR_ZLZX_CONTENT, zy.getTitle());
+		String email = MailUtil.getMonitorAddr();
+		if(email != null && !email.isEmpty())
+		{
+			logger.debug("content:" + content);
+			MailUtil.sendMail(email, Constants.MONITOR_ZLZX_TITLE, content);
+		}
 		return zlzxDao.updateZlzx(zy);
 	}
 }

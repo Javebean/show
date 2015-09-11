@@ -65,6 +65,12 @@ public class TransportationDao {
 		return query.list();
 	}
 	
+	public long deleteTransportationByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Transportation where eid = :eid");
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
 	
 	
 	public long deleteTransportationById (String id) {

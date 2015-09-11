@@ -37,6 +37,12 @@ public class Visitor {
 	private int idType;//添加身份证明字段 by javebean
 	private String barcode;
 	
+	private String recommender; //穆东成2015年9月9日提出证件中增加引荐单位
+	
+	private String year;	//穆东成2015年9月9日 哪一年的展会
+	
+	
+	
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -162,6 +168,18 @@ public class Visitor {
 	}
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
+	}
+	public String getRecommender() {
+		return recommender;
+	}
+	public void setRecommender(String recommender) {
+		this.recommender = recommender;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 	
 	

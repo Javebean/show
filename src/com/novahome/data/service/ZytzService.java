@@ -11,11 +11,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.ZytzDao;
 import com.novahome.data.model.ShortZytz;
 import com.novahome.data.pojo.Zlzx;
 import com.novahome.data.pojo.Zytz;
 import com.novahome.utils.HtmlParser;
+import com.novahome.utils.MailUtil;
 import com.novahome.utils.Ut;
 
 @Service("zytzService")
@@ -50,6 +52,13 @@ public class ZytzService {
 		obj.put("title", zy.getTitle());
 		obj.put("id", id);
 		obj.put("publishTime", Ut.newsDf.format(zy.getPublishTime()));
+		
+		String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
+		String email = MailUtil.getMonitorAddr();
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		}
 		
 		String ret = obj.toString();
 		logger.info(ret);
@@ -160,6 +169,14 @@ public class ZytzService {
 	public boolean updateZytz(Zytz zy)
 	{
 		zy.setPublishTime(new Date());
+		logger.info("更新重要通知新闻...");
+		String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
+		logger.debug("content:" + content);
+		String email = MailUtil.getMonitorAddr();
+		if(email != null && !email.isEmpty())
+		{
+			MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+		}
 		return zytzDao.updateZytz(zy);
 	}
 }

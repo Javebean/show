@@ -65,11 +65,18 @@ public class ConstructionDao {
 	}
 	
 	
-	
 	public long deleteConstructionById (String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 		"delete from Construction where id = :id");
 		query.setParameter("id", id);
+		return query.executeUpdate();
+	}
+	
+	
+	public long deleteConstructionByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Construction where eid = :eid");
+		query.setParameter("eid", eid);
 		return query.executeUpdate();
 	}
 	

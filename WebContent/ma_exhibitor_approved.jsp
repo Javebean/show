@@ -104,6 +104,10 @@
 				          <th class="text-nowrap" width="14%">法定代表人</th>
 				          <td colspan="3"><span ename="president" class="fview_value"></span></td>
 				        </tr>
+								<tr>
+				          <th class="text-nowrap" width="14%">组织机构代码</th>
+				          <td colspan="3"><span ename="orgCode" class="fview_value"></span></td>
+				        </tr>
 				        <tr>
 				          <th class="text-nowrap" width="14%">招展引荐单位</th>
 				          <td colspan="3"><span ename="recommender" class="fview_value"></span></td>

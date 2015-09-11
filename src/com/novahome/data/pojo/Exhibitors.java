@@ -40,7 +40,7 @@ public class Exhibitors {
 	
 	private String telephone;	//固定电话
 	private String fax;	//传真
-	private String username;	//展商登陆名（系统生成）
+	private String username;	//展商登陆名（系统生成） //由穆东成9月9日提出设置为组织机构代码证
 	private String password;	//展商登陆密码（系统生成）
 	private int btsl;	//申请标摊数量
 	private int tytzzs;	//是否申请统一特装展示  是=1， 否=0
@@ -63,6 +63,10 @@ public class Exhibitors {
 	private String showType; //根据新会展王璞8月13日意见，添加
 	
 	private String outdoorArea; //根据穆东成8月25日意见，添加
+	
+	private String year ; //根据穆东成9月9日意见，增加年份
+	
+	private String orgCode ; //根据穆东成9月9日意见，增加组织机构代码
 	@Id
 	@Column(length = 64)
 	@GeneratedValue(generator = "system-uuid")
@@ -303,6 +307,18 @@ public class Exhibitors {
 	}
 	public void setOutdoorArea(String outdoorArea) {
 		this.outdoorArea = outdoorArea;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getOrgCode() {
+		return orgCode;
+	}
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
 	}
 	
 	
