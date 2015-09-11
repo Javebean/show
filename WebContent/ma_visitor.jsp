@@ -177,7 +177,10 @@
 				          <th class="text-nowrap" width="14%">单位名称</th>
 				          <td colspan="3"><span ename="org" class="fview_value"></span></td>
 				        </tr>
-
+								<tr>
+									<th class="text-nowrap" width="14%">招展引荐单位</th>
+									<td colspan="3"><span ename="recommender" class="fview_value"></span></td>
+								</tr>
 								<tr>
 								<th class="text-nowrap" width="14%">申请状态</th>
 								<td colspan="3"><span ename="state" class="fview_value"></span></td>

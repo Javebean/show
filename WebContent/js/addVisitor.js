@@ -45,6 +45,20 @@ $(document).ready(function(){
 		getFormdata("regForm");
 	});
 
+	var recommender_sel_html = "";
+	for(var i=0; i< CON_REC_SEL.length; i++){
+		var item = CON_REC_SEL[i];
+		if (item == undefined){
+
+			}
+				else {
+					recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+				}
+
+	}
+	$("#recommender_dropbox").html(recommender_sel_html);
+	$("#recommender_dropbox").trigger("change");
+
 	function chuyang(){
 		var formData = getFormdata("regForm");
 		if(formData.type == 1)
@@ -165,6 +179,7 @@ $(document).ready(function(){
 			data = JSON.parse(data);
 			if(data.result == true){
 				$(".userForm").hide();
+				$("#wssb_exhbit_login").hide();
 				$(".footer").nextAll().hide();
 				$(".resultMsg").show();
 			}else{
