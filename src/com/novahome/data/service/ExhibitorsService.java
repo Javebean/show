@@ -757,12 +757,18 @@ public class ExhibitorsService {
 
 	public long deleteExhibitorById(String id)
 	{
-		visitorDao.deleteVisitorByEid(id);
-		sceneServDao.deleteSceneServByEid(id);
-		displayItemDao.deleteDisplayItemByEid(id);
-		constructionDao.deleteConstructionByEid(id);
-		transportationDao.deleteTransportationByEid(id);
-		return exhibitorsDao.deleteExhibitorById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			visitorDao.deleteVisitorByEid(id);
+			sceneServDao.deleteSceneServByEid(id);
+			displayItemDao.deleteDisplayItemByEid(id);
+			constructionDao.deleteConstructionByEid(id);
+			transportationDao.deleteTransportationByEid(id);
+			return exhibitorsDao.deleteExhibitorById(id);
+		}
+		return 0;
 	}
 
 	public boolean logout() {
