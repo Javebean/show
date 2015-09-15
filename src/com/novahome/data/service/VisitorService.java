@@ -432,7 +432,7 @@ public class VisitorService {
 	}
 	
 	/*打印证件信息*/
-	public List<Visitor> getVisitorForzhengjian(int start,int number,String name){
+	public List<Visitor> getAllVisitors(int start,int number,String name){
 		return visitorDao.getVisitorForPage(start, number, name);
 	}
 }

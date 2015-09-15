@@ -51,7 +51,7 @@ public class DownExcelServlet extends HttpServlet {
 		
 			/*String hql = "select new Visitor(id, name, sex, position, phone, email, org, applyTime,idNo,idType,type,photo,state) from Visitor";
 			List<Visitor> vi = sessionFactory.getCurrentSession().createQuery(hql).list();*/
-			List<Visitor> vi = visitorService.getVisitorForzhengjian(0, Integer.MAX_VALUE, null);
+			List<Visitor> vi = visitorService.getAllVisitors(0, Integer.MAX_VALUE, null);
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("people");
 			  
