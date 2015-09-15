@@ -23,6 +23,7 @@
 			<div class="statistics"><a href="ma_tjbb_people.jsp">招展引荐单位统计表</a></div>
 			<div class="statistics"><a href="ma_tjbb_exhibit_region.jsp">展商地区划分统计表</a></div>
 			<div class="statistics"><a href="ma_tjbb_audience_region.jsp">观众地区划分统计表</a></div>
+			<div class="statistics"><a href="downExcelServlet">现场人员证件导出</a></div>
 		</div>
       </div>
     </div>
