@@ -45,7 +45,7 @@ public class DownExcelServlet extends HttpServlet {
 	@Override  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			String fileName = "中文test";
+			String fileName = "证件信息";
 			//解决中文名乱码问题
 			response.setHeader("content-disposition", "attachment;filename="+URLEncoder.encode(fileName, "utf-8")+".xls");
 		
