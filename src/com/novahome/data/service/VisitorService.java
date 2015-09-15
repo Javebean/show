@@ -9,8 +9,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.directwebremoting.WebContextFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
@@ -363,7 +365,13 @@ public class VisitorService {
 	
 	public long deleteVisitorById(String id)
 	{
-		return visitorDao.deleteVisitorById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			return visitorDao.deleteVisitorById(id);
+		}
+		return 0;
 	}
 	
 	public boolean updateVisitor(Visitor visitor)

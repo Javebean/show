@@ -74,6 +74,13 @@ public class TransportationDao {
 		return query.executeUpdate();
 	}
 	
+	public long deleteTransportationByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Transportation where eid = :eid");
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
+	
 	public boolean updateTransportation(Transportation transportation) {
 		Session s = sessionFactory.getCurrentSession();
 		s.update(transportation);

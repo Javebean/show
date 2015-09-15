@@ -56,6 +56,8 @@ public class ExhibitorsService {
 	private TransportationDao transportationDao;
 	@Resource(name = "visitorDao")
 	private VisitorDao visitorDao;
+	@Resource
+	private VisitorService visitorService;
 	private static final String ERROR_STR= "{\"error\":\"抱歉，没有找到指定的展商\"}";
 	private static final String ERROR_STR_STATE= "{\"error\":\"抱歉，您的申请已通过一级审批，暂时无法编辑\"}";
 	private static final String NOTIFY_LOGIN_STR = "unauthorized";
@@ -473,7 +475,8 @@ public class ExhibitorsService {
 			v.setEid(id);
 			v.setOrg(exhibitor.getOrgName());
 			v.setType(1);
-			visitorDao.saveVisitor(v);
+			//visitorDao.saveVisitor(v);
+			visitorService.saveVisitor(v,"");
 		}
 		for(DisplayItem d : displayItem)
 		{
@@ -754,7 +757,18 @@ public class ExhibitorsService {
 
 	public long deleteExhibitorById(String id)
 	{
-		return exhibitorsDao.deleteExhibitorById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			visitorDao.deleteVisitorByEid(id);
+			sceneServDao.deleteSceneServByEid(id);
+			displayItemDao.deleteDisplayItemByEid(id);
+			constructionDao.deleteConstructionByEid(id);
+			transportationDao.deleteTransportationByEid(id);
+			return exhibitorsDao.deleteExhibitorById(id);
+		}
+		return 0;
 	}
 
 	public boolean logout() {

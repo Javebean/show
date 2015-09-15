@@ -4,18 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.directwebremoting.WebContextFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.novahome.commonservice.Constants;
 import com.novahome.data.dao.ZytzDao;
 import com.novahome.data.model.ShortZytz;
 import com.novahome.data.pojo.Zlzx;
 import com.novahome.data.pojo.Zytz;
 import com.novahome.utils.HtmlParser;
+import com.novahome.utils.MailUtil;
 import com.novahome.utils.Ut;
 
 @Service("zytzService")
@@ -38,22 +43,36 @@ public class ZytzService {
 	
 	public String saveZytz(Zytz zy)
 	{
-		zy.setPublishTime(new Date());
-		String id = zytzDao.saveZytz(zy);
-		logger.debug("save zytz");
-		//zy.setId(id);
-		
-		JSONObject obj = new JSONObject();
-		//return obj.toString();
-		obj.put("result", true);
-		obj.put("message", "您已成功发布新闻！");
-		obj.put("title", zy.getTitle());
-		obj.put("id", id);
-		obj.put("publishTime", Ut.newsDf.format(zy.getPublishTime()));
-		
-		String ret = obj.toString();
-		logger.info(ret);
-		return ret;
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			zy.setPublishTime(new Date());
+			String id = zytzDao.saveZytz(zy);
+			logger.debug("save zytz");
+			//zy.setId(id);
+			
+			JSONObject obj = new JSONObject();
+			//return obj.toString();
+			obj.put("result", true);
+			obj.put("message", "您已成功发布新闻！");
+			obj.put("title", zy.getTitle());
+			obj.put("id", id);
+			obj.put("publishTime", Ut.newsDf.format(zy.getPublishTime()));
+			
+			String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
+			String email = MailUtil.getMonitorAddr();
+			if(email != null && !email.isEmpty())
+			{
+				MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+			}
+			
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
+		return null;
+			
 	}
 	
 	public String getZytzByTitle(String title)
@@ -154,12 +173,32 @@ public class ZytzService {
 	
 	public long deleteZytzById(String id)
 	{
-		return zytzDao.deleteZytzById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			return zytzDao.deleteZytzById(id);
+		}
+		return 0;
 	}
 	
 	public boolean updateZytz(Zytz zy)
 	{
-		zy.setPublishTime(new Date());
-		return zytzDao.updateZytz(zy);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			zy.setPublishTime(new Date());
+			logger.info("更新重要通知新闻...");
+			String content = MailUtil.replaceVariable(Constants.MONITOR_ZYTZ_CONTENT, zy.getTitle());
+			logger.debug("content:" + content);
+			String email = MailUtil.getMonitorAddr();
+			if(email != null && !email.isEmpty())
+			{
+				MailUtil.sendMail(email, Constants.MONITOR_ZYTZ_TITLE, content);
+			}
+			return zytzDao.updateZytz(zy);
+		}
+		return false;
 	}
 }

@@ -168,6 +168,7 @@ public class VisitorDao {
 	
 	public Visitor getVisitorWithIdNoRegistered(String idNo, int idType)
 	{
+		idNo = idNo.trim();
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Visitor a where a.idNo=:idNo and a.idType = :idType");
 				query.setParameter("idNo", idNo);
@@ -288,6 +289,13 @@ public class VisitorDao {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 		"delete from Visitor where id = :id");
 		query.setParameter("id", id);
+		return query.executeUpdate();
+	}
+	
+	public long deleteVisitorByEid (String eid) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		"delete from Visitor where eid = :eid");
+		query.setParameter("eid", eid);
 		return query.executeUpdate();
 	}
 	

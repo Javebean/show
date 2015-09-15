@@ -118,5 +118,21 @@ public class Constants {
 	
 	public static final String BORDER_STR = "境外企业";
 	
+	public static final String MONITOR_ZYTZ_CONTENT = "<p>您好，</p>"
+			+ "<p>连博会网站重要通知新闻更新了一条："
+			+ "<p><strong>[arg0]</strong></p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;中国(连云港)丝绸之路国际物流博览会</p>";
+
 	
+	public static final String MONITOR_HYZX_CONTENT = "<p>您好，</p>"
+			+ "<p>连博会网站行业资讯新闻更新了一条："
+			+ "<p><strong>[arg0]</strong></p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;中国(连云港)丝绸之路国际物流博览会</p>";
+	public static final String MONITOR_ZLZX_CONTENT = "<p>您好，</p>"
+			+ "<p>连博会网站展览资讯新闻更新了一条："
+			+ "<p><strong>[arg0]</strong></p>"
+			+ "<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;中国(连云港)丝绸之路国际物流博览会</p>";
+	public static final String MONITOR_ZLZX_TITLE = "连博会网站展览资讯新闻更新";
+	public static final String MONITOR_HYZX_TITLE = "连博会网站行业资讯新闻更新";
+	public static final String MONITOR_ZYTZ_TITLE = "连博会网站重要通知新闻更新";
 }
