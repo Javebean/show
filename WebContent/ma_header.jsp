@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%
 String accountid = (String)session.getAttribute(Constants.SESSION_ID);
 String username = (String)session.getAttribute(Constants.SESSION_NAME);
+String officialname = (String)session.getAttribute(Constants.SESSION_OFFICIAL_NAME);
 if(accountid==null){
 	response.sendRedirect("lygexpo");
 }
@@ -26,7 +27,7 @@ if(accountid==null){
 
 	<!-- Bootstrap core CSS -->
     <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-    
+
     <!-- Custom styles for this template -->
     <link href="css/manager.css" rel="stylesheet">
     <link href="plugins/jquery.alert/jquery.alerts.css" rel="stylesheet"/>

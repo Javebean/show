@@ -489,6 +489,7 @@ public class ExhibitorsService {
 			v.setEid(id);
 			v.setOrg(exhibitor.getOrgName());
 			v.setType(1);
+			v.setRecommender(ex.getRecommender());
 			//visitorDao.saveVisitor(v);
 			visitorService.saveVisitor(v,"");
 		}
@@ -786,12 +787,18 @@ public class ExhibitorsService {
 	
 	public long deleteExhibitorById(String id)
 	{
-		visitorDao.deleteVisitorByEid(id);
-		sceneServDao.deleteSceneServByEid(id);
-		displayItemDao.deleteDisplayItemByEid(id);
-		constructionDao.deleteConstructionByEid(id);
-		transportationDao.deleteTransportationByEid(id);
-		return exhibitorsDao.deleteExhibitorById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			visitorDao.deleteVisitorByEid(id);
+			sceneServDao.deleteSceneServByEid(id);
+			displayItemDao.deleteDisplayItemByEid(id);
+			constructionDao.deleteConstructionByEid(id);
+			transportationDao.deleteTransportationByEid(id);
+			return exhibitorsDao.deleteExhibitorById(id);
+		}
+		return 0;
 	}
 
 	public boolean logout() {

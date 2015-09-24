@@ -62,6 +62,17 @@
     <url-pattern>/ckeImageUpload</url-pattern>
   </servlet-mapping>
   
+   
+  <!-- 下载现场人员证件信息的servlet -->
+  <servlet>
+    <servlet-name>downExcelServlet</servlet-name>
+    <servlet-class>com.novahome.servlet.DownExcelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downExcelServlet</servlet-name>
+    <url-pattern>/downExcelServlet</url-pattern>
+  </servlet-mapping>
+  
   <!-- 英文版的Mapping -->
   <servlet-mapping>
     <servlet-name>imageUpload</servlet-name>

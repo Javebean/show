@@ -132,6 +132,33 @@ public class VisitorDwr {
 		return visitorService.getVisitorForPageByStateMutipleCon(start, number, state, name, type);
 	}
 	
+	/**
+	 * 根据证件状态分页查询现场证件申请信息,初审证件
+	 * 增加根据证件类型等添加查询
+	 * 2015年9月9日穆东成提出需求
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorForPageByMutipleConFirstAudit(int start, int number, int firstState, int type, String... con)
+	{
+		return visitorService.getVisitorForPageByMutipleConFirstAudit(start, number, firstState, type, con);
+	}
+	
+	/**
+	 * 根据证件状态分页查询现场证件申请信息，终审证件
+	 * 增加根据证件类型等添加查询
+	 * 2015年9月9日穆东成提出需求
+	 * @param start
+	 * @param number
+	 * @return
+	 */
+	@RemoteMethod
+	public String getVisitorForPageByMutipleConFinal(int start, int number, int state, int type, String... con)
+	{
+		return visitorService.getVisitorForPageByMutipleConFinal(start, number, state, type, con);
+	}
 	
 	/**
 	 * 删除现场证件申请通过id
@@ -156,7 +183,7 @@ public class VisitorDwr {
 	}
 	
 	/**
-	 * 更新现场证件申请状态
+	 * 终极审批，更新现场证件申请状态
 	 * @param transportation
 	 * @return
 	 */
@@ -167,7 +194,7 @@ public class VisitorDwr {
 	}
 	
 	/**
-	 * 更新现场证件申请状态和驳回原因
+	 * 终极审批，更新现场证件申请状态和驳回原因
 	 * @param transportation
 	 * @return
 	 */
@@ -176,4 +203,27 @@ public class VisitorDwr {
 	{
 		return visitorService.updateVisitorStateReason(id, state, reason);
 	}
+	
+	/**
+	 * 一级审批，更新现场证件申请状态
+	 * @param transportation
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateVisitorFirstState(String id, int firstState)
+	{
+		return visitorService.updateVisitorFirstState(id, firstState);
+	}
+	
+	/**
+	 * 一级审批，更新现场证件申请状态和驳回原因
+	 * @param transportation
+	 * @return
+	 */
+	@RemoteMethod
+	public boolean updateVisitorFirstStateReason(String id, int firstState, String reason)
+	{
+		return visitorService.updateVisitorFirstStateReason(id, firstState, reason);
+	}
+	
 }

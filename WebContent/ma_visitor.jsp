@@ -5,8 +5,16 @@
 
 	<script type='text/javascript' src='dwr/interface/Visitor.js'></script>
     <script type="text/javascript" src="js/manager/ma_visitor.js"></script>
+			<script type="text/javascript" src="js/constants.js"></script>
     <script>
-    	var menu = 6;
+    	var menu = 11;
+			var step = <%= request.getParameter("step")%>;
+			//var username = '<%= username%>;
+			var official = '<%=officialname%>';
+
+    	if(step==2){
+    		menu = 6;
+    	}
     </script>
 
     <style>
@@ -74,14 +82,23 @@
 								</select>
 							</div>
 
-							<div class="form-group" style="margin-left: 10px;">
-								<span>现场证件人员姓名:</span>
+							<div class="form-group recommender_search_label" style="margin-left: 5px;">
+								<span>引荐单位:</span>
 							</div>
-							<div class="form-group">
-								<input class="name_search" type="text" style="height: 34px;width: 240px;"/>
+							<div class="form-group recommender_search_label">
+								<select class="form-control search_ele recommender_search" id="recommender_search_dropbox">
+
+								</select>
 							</div>
 
-							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 10px;">查询</button>
+							<div class="form-group" style="margin-left: 5px;">
+								<span>人员姓名:</span>
+							</div>
+							<div class="form-group">
+								<input class="name_search" type="text" style="height: 34px;width: 100px;"/>
+							</div>
+
+							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 5px;">查询</button>
 						</div>
 					</div>
 

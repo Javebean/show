@@ -9,8 +9,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.directwebremoting.WebContextFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
@@ -305,6 +307,19 @@ public class VisitorService {
 		return procssListRet(ls,size);
 	}
 	
+	public String getVisitorForPageMutipleConFirstAuditNoState(int start, int number, int type, String...con)
+	{
+		long size = visitorDao.getVisitorCountMutipleConFirstAuditNoState(type, con);
+		List<Visitor>ls = visitorDao.getVisitorForPageMutipleConFirstAuditNoState(start, number, type, con);
+		return procssListRet(ls,size);
+	}
+	
+	public String getVisitorForPageMutipleConFinalNoState(int start, int number, int type, String...con)
+	{
+		long size = visitorDao.getVisitorCountMutipleConFinalNoState(type, con);
+		List<Visitor>ls = visitorDao.getVisitorForPageMutipleConFinalNoState(start, number, type, con);
+		return procssListRet(ls,size);
+	}
 	
 	public String getVisitorForPageByState(int start, int number,int state, String name)
 	{
@@ -338,6 +353,28 @@ public class VisitorService {
 		return procssListRet(ls,size);
 	}
 	
+	public String getVisitorForPageByMutipleConFirstAudit(int start, int number,int firstState, int type, String... con)
+	{
+		if(firstState == -1)
+		{
+			return this.getVisitorForPageMutipleConFirstAuditNoState(start, number, type,con);
+		}
+		long size = visitorDao.getVisitorCountMutipleConFirstAudit(firstState, type, con);
+		List<Visitor>ls = visitorDao.getVisitorForPageMutipleConFirstAudit(start, number, firstState,type, con);
+		return procssListRet(ls,size);
+	}
+	
+	public String getVisitorForPageByMutipleConFinal(int start, int number,int state, int type, String... con)
+	{
+		if(state == -1)
+		{
+			return this.getVisitorForPageMutipleConFinalNoState(start, number, type,con);
+		}
+		long size = visitorDao.getVisitorCountMutipleConFinal(state, type, con);
+		List<Visitor>ls = visitorDao.getVisitorForPageMutipleConFinal(start, number, state,type, con);
+		return procssListRet(ls,size);
+	}
+	
 	
 	private String procssListRet(List ls, long size)
 	{
@@ -363,7 +400,13 @@ public class VisitorService {
 	
 	public long deleteVisitorById(String id)
 	{
-		return visitorDao.deleteVisitorById(id);
+		HttpSession session=  WebContextFactory.get().getSession();
+		String userName = (String) session.getAttribute(Constants.SESSION_NAME);
+		if(userName != null && !userName.isEmpty())
+		{
+			return visitorDao.deleteVisitorById(id);
+		}
+		return 0;
 	}
 	
 	public boolean updateVisitor(Visitor visitor)
@@ -412,7 +455,40 @@ public class VisitorService {
 	{
 		Visitor visitor = visitorDao.getVisitorById(id);
 		visitor.setState(state);
+		
 		if(state == 2)
+		{
+			visitor.setFirstState(2);
+			visitor.setReason(reason);
+			String email = visitor.getEmail();
+			if(email != null && email.matches(Constants.EMAIL_REGEX))  
+			{
+				logger.info("发送现场证件申请驳回邮件...");
+				String content = MailUtil.replaceVariable(Constants.VISITOR_REFUSE, visitor.getName(),reason);
+				logger.debug("content:" + content);
+				MailUtil.sendMail(email, Constants.VISITOR_SUBJECT_OBJECTION, content);
+			}
+		}
+		else
+		{
+			visitor.setReason("");
+		}
+		return true;
+	}
+	
+	public boolean updateVisitorFirstState(String id, int firstState)
+	{
+		Visitor visitor = visitorDao.getVisitorById(id);
+		visitor.setFirstState(firstState);
+		return true;
+	}
+	
+	public boolean updateVisitorFirstStateReason(String id, int firstState, String reason)
+	{
+		Visitor visitor = visitorDao.getVisitorById(id);
+		visitor.setFirstState(firstState);
+		
+		if(firstState == 2)
 		{
 			visitor.setReason(reason);
 			String email = visitor.getEmail();
@@ -430,4 +506,10 @@ public class VisitorService {
 		}
 		return true;
 	}
+	
+	/*打印证件信息*/
+	public List<Visitor> getAllVisitors(int start,int number,String name){
+		return visitorDao.getVisitorForPage(start, number, name);
+	}
+	
 }

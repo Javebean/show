@@ -4,6 +4,7 @@ var IMAGE_NOT_FOUND = "";
 var search_state = -1;
 var search_name = "";
 var search_type = -1;
+var search_recommender = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
@@ -14,6 +15,24 @@ $(document).ready(function(){
 
 	//init page
 	showTopicList(1);
+
+	var recommender_sel_html = "";
+	recommender_sel_html = '<option value = "-1">全部</option>'
+	for(var i=0; i< CON_REC_SEL.length; i++){
+		var item = CON_REC_SEL[i];
+		if (item == undefined){
+
+			}
+				else {
+					recommender_sel_html += '<option value = "' + item.name + '">' + item.name +'</option>';
+				}
+	}
+	$("#recommender_search_dropbox").html(recommender_sel_html);
+	$("#recommender_search_dropbox").trigger("change");
+
+	if(step == 1){
+		$(".recommender_search_label").addClass("hide");
+	}
 
 	//event binder
 	$('.update_tp').click(updateTP);
@@ -58,6 +77,7 @@ $(document).ready(function(){
 		search_state = $(".state_search").val();
 		search_name = $(".name_search").val();
 		search_type = $(".type_search").val();
+		search_recommender =  $(".recommender_search").val();
 		showTopicList(1);
 	}
 
@@ -87,8 +107,14 @@ $(document).ready(function(){
 
 				var timeStr = topic.applyTime;
 				topic.applyTime = timeStr.substring(0,timeStr.lastIndexOf("."));
+				var statestr;
+					if(step == 1){
+						statestr = status[topic.firstState];
+					}
+				else if(step == 2){
+						statestr = status[topic.state];
+				}
 
-				var statestr = status[topic.state];
 				var typestr = types[topic.type];
 				var buyerstr = shifou[topic.buyer];
 
@@ -118,7 +144,17 @@ $(document).ready(function(){
 			$('.detail_tp').click(detailTP);
 		}
 		//Visitor.getVisitorForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, func);
-		Visitor.getVisitorForPageByStateMutipleCon((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, search_type,func);
+//	Visitor.getVisitorForPageByStateMutipleCon((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, search_type,func);
+		if(step == 1){
+			//alert("name:" + official);
+			var params = new Array(search_name, official);
+			Visitor.getVisitorForPageByMutipleConFirstAudit((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_type,params,func);
+		} else if(step == 2) {
+		//	Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
+			var params = new Array(search_name, search_recommender);
+			Visitor.getVisitorForPageByMutipleConFinal((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_type,params,func);
+
+		}
 	}
 
 	// function viewTP(){
@@ -173,23 +209,36 @@ $(document).ready(function(){
 			setViewTable(".visitor_detail",data);
 			$(".cp_image_fro").attr("src",PIC_BASE+data.idFont);
 			$(".cp_image_bac").attr("src",PIC_BASE+data.idBack);
+			if(step== 2)
+			{
+					if(data.state == 0){
+						//if state="申请",隐藏打印按钮 by javebean
+						$(".print_tp").hide();
+						$(".audit_box").removeClass("hide");
+						$(".update_tp").attr("eid",data.id);
+						$(".reject_tp").attr("eid",data.id);
+					} else {
+						$(".print_tp").show();
+						$(".audit_box").addClass("hide");
+						//if state="已批准"，为print_tp 绑定属性，只能通过data.xx获取。。。找了好久。。by javebean
+						$(".print_tp").attr("ename",data.name);
+						$(".print_tp").attr("ecompany",data.org);
+						$(".print_tp").attr("etype",data.type);
+						$(".print_tp").attr("barcode",data.barcode);
 
-			if(data.state == 0){
-				//if state="申请",隐藏打印按钮 by javebean
-				$(".print_tp").hide();
-				$(".audit_box").removeClass("hide");
-				$(".update_tp").attr("eid",data.id);
-				$(".reject_tp").attr("eid",data.id);
-			} else {
-				$(".print_tp").show();
-				$(".audit_box").addClass("hide");
-				//if state="已批准"，为print_tp 绑定属性，只能通过data.xx获取。。。找了好久。。by javebean
-				$(".print_tp").attr("ename",data.name);
-				$(".print_tp").attr("ecompany",data.org);
-				$(".print_tp").attr("etype",data.type);
-				$(".print_tp").attr("barcode",data.barcode);
-
-			}
+					}
+				}
+				else if(step == 1)
+				{
+					if(data.firstState == 0){
+						$(".print_tp").hide();
+						$(".audit_box").removeClass("hide");
+						$(".update_tp").attr("eid",data.id);
+						$(".reject_tp").attr("eid",data.id);
+					} else {
+						$(".audit_box").addClass("hide");
+					}
+				}
 
 			$(".cp_name").text(data.name);
 			$(".cp_company").text(data.org);
@@ -267,7 +316,13 @@ $(document).ready(function(){
 			}
 		}
 		//alert("update");
-		Visitor.updateVisitorState(eid,1,func);
+		if(step == 2)
+		{
+			Visitor.updateVisitorState(eid,1,func);
+		}
+		else if(step == 1){
+			Visitor.updateVisitorFirstState(eid,1,func)
+		}
 	}
 
 	function rejectTP(){
@@ -279,7 +334,13 @@ $(document).ready(function(){
 				showTopicList(1);
 			}
 		}
-		Visitor.updateVisitorStateReason(eid,2,reason, func);
+		if(step == 1){
+			Visitor.updateVisitorFirstStateReason(eid,2,reason,func);
+		} else if(step == 2) {
+			Visitor.updateVisitorStateReason(eid,2,reason, func);
+			}
+
+
 	}
 
 	function initPaging(pageActive, rowCount){

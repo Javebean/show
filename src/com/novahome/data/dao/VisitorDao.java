@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.novahome.data.pojo.Exhibitors;
 import com.novahome.data.pojo.Transportation;
 import com.novahome.data.pojo.Visitor;
+import com.novahome.utils.VisitorQueryCreator;
 
 
 @Component("visitorDao")
@@ -129,6 +130,74 @@ public class VisitorDao {
 		return (Long) query.uniqueResult();
 	}
 	
+	/**
+	 * 9-14,根据穆东成9月9日意见新增
+	 * @param type
+	 * @param con
+	 * @return
+	 */
+	public long getVisitorCountMutipleConFirstAuditNoState(int type, String... con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("select count(*) from Visitor");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,0);		
+		return (Long) query.uniqueResult();
+	}
+	
+	/**
+	 * 9-14,根据穆东成9月9日意见新增
+	 * @param firstState
+	 * @param type
+	 * @param con
+	 * @return
+	 */
+	public long getVisitorCountMutipleConFirstAudit(int firstState, int type, String... con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("select count(*) from Visitor where firstState = :firstState");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,0);		
+		query.setParameter("firstState", firstState);
+		return (Long) query.uniqueResult();
+	}
+	
+	/**
+	 * 9-14,根据穆东成9月9日意见新增
+	 * @param type
+	 * @param con
+	 * @return
+	 */
+	public long getVisitorCountMutipleConFinalNoState(int type, String... con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("select count(*) from Visitor where (firstState = " + 1 + " or state = " + 2 + ")");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,0);				
+		return (Long) query.uniqueResult();
+	}
+	
+	/**
+	 * 9-14,根据穆东成9月9日意见新增
+	 * @param state
+	 * @param type
+	 * @param con
+	 * @return
+	 */
+	public long  getVisitorCountMutipleConFinal(int state, int type, String... con)
+	{
+		StringBuffer basicQueryStr;
+		if(state == 2)
+			basicQueryStr  =  new StringBuffer("select count(*) from Visitor where state = :state");
+		else
+			basicQueryStr  =  new StringBuffer("select count(*) from Visitor where (firstState = 1 and state = :state)");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,0);
+		query.setParameter("state", state);
+		return (Long) query.uniqueResult();
+	}
+	
 	public String saveVisitor(Visitor visitor)
 	{
 		return sessionFactory.getCurrentSession().save(visitor).toString();
@@ -225,6 +294,65 @@ public class VisitorDao {
 		return query.list();
 	}
 	
+	/**
+	 * 根据穆东成9月9日意见新增，为展会后准备 9-14
+	 * 融合多种添加查询
+	 * @param start
+	 * @param number
+	 * @param type
+	 * @param strings
+	 * @return
+	 */
+	public List<Visitor>getVisitorForPageMutipleConFirstAuditNoState(int start, int number, int type, String...con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("from Visitor");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,1);									
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		return query.list();
+	}
+	
+	public List<Visitor>getVisitorForPageMutipleConFirstAudit(int start, int number, int firstState, int type, String...con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("from Visitor where firstState = :firstState");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,1);									
+		query.setParameter("firstState", firstState);
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		return query.list();
+	}
+
+	public List<Visitor>getVisitorForPageMutipleConFinalNoState(int start, int number,int type, String...con)
+	{
+		StringBuffer basicQueryStr  =  new StringBuffer("from Visitor where (firstState = 1 or state = 2 )");
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,1);									
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		return query.list();
+	}
+	
+	public List<Visitor> getVisitorForPageMutipleConFinal(int start, int number, int state, int type, String...con)
+	{
+		StringBuffer basicQueryStr  ;
+		if(state != 2)
+			basicQueryStr =  new StringBuffer("from Visitor where firstState = 1 and state = :state");
+		else
+			basicQueryStr =  new StringBuffer("from Visitor where state = :state");
+
+		VisitorQueryCreator creator = new VisitorQueryCreator(con);
+		String creatorStr = creator.createStatement();
+		Query query = createVisitorQuery(type, basicQueryStr, creatorStr,1);									
+		query.setParameter("state", state);
+		query.setFirstResult(start);//设置起始行
+		query.setMaxResults(number);//每页条数	
+		return query.list();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Visitor>getVisitorForPageByState(int start, int number,int state, String name)
@@ -304,4 +432,41 @@ public class VisitorDao {
 		return true;
 	}
 	
+	private Query createVisitorQuery(int type, StringBuffer basicQueryStr, String creatorStr, int orderByTime)
+	{
+		Query query;
+		String prefix = " and ";
+		if(basicQueryStr.indexOf("where") == -1)
+			prefix = " where ";
+		
+		if(type == -1)
+		{
+			if(creatorStr != null && !creatorStr.isEmpty())
+			{
+				basicQueryStr.append(prefix);
+				basicQueryStr.append(creatorStr);
+			}
+			if(orderByTime > 0 )
+				basicQueryStr.append(" order by applyTime desc");
+			logger.debug(basicQueryStr.toString());
+			query = sessionFactory.getCurrentSession().createQuery(basicQueryStr.toString());
+		}
+		else
+		{
+			basicQueryStr.append(prefix);
+			basicQueryStr.append("type = :type");
+			if(creatorStr != null && !creatorStr.isEmpty())
+			{
+				basicQueryStr.append(" and ");
+				basicQueryStr.append(creatorStr);
+			}
+			if(orderByTime > 0 )
+				basicQueryStr.append(" order by applyTime desc");
+			logger.debug(basicQueryStr.toString());
+			query = sessionFactory.getCurrentSession().createQuery(basicQueryStr.toString());
+			query.setParameter("type", type);
+		}
+		
+		return query;
+	}
 }
