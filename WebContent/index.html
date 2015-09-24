@@ -182,7 +182,7 @@
 
 			Date.prototype.diff = function(date){
 
-				return  parseInt((Math.abs(date.getTime() - this.getTime())/(24 * 60 * 60 * 1000)));
+				return  parseInt((date.getTime() - this.getTime())/(24 * 60 * 60 * 1000));
 			}
 			// 构造两个日期
 			var now = new Date();
