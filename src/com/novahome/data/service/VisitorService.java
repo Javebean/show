@@ -185,7 +185,7 @@ public class VisitorService {
 				vi.setPhone(visitor.getPhone());
 				vi.setEmail(visitor.getEmail());
 				vi.setType(visitor.getType());
-				
+				vi.setRecommender(visitor.getRecommender());
 				vi.setBuyer(visitor.getBuyer());
 				vi.setEid(visitor.getEid());
 
@@ -200,6 +200,7 @@ public class VisitorService {
 					vi.setPhoto(idPhotoStr);
 				vi.setApplyTime(new Date());
 				vi.setState(0);
+				vi.setFirstState(0);
 				logger.info("resave Visitor");
 				obj.put("result", true);
 				obj.put("message", "您已成功修改证件！");
