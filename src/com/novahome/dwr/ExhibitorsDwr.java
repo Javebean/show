@@ -81,6 +81,17 @@ public class ExhibitorsDwr {
 	}
 	
 	/**
+	 * 通过展商username获取展商信息
+	 * @param username
+	 * @return
+	 */
+	@RemoteMethod
+	public String getExhibitorByUserNamePure(String username)
+	{
+		return exhibitorsService.getExhibitorByUserNamePure(username);
+	}
+	
+	/**
 	 * 分页查询展商简略信息id, orgName,industryType, region, phone, username, applyTime;
 	 * @param start
 	 * @param number

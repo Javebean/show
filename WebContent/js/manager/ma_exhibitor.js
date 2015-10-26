@@ -283,7 +283,7 @@ $(document).ready(function(){
 		var func = function(data){
 			data = JSON.parse(data);
 			if(data.result==true) {
-				alert("df");
+				//alert("df");
 				$.colorbox.close();
 				showTopicList(1);
 			}

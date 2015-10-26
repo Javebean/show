@@ -104,6 +104,12 @@ public class ExhibitorsService {
 		return ret;
 	}
 	
+	/**
+	 * 带业务判断
+	 * @param username
+	 * @return
+	 */
+	
 	public String getExhibitorByUserName(String username)
 	{
 		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
@@ -123,6 +129,26 @@ public class ExhibitorsService {
 		return ret;
 	}
 
+	/**
+	 * 不带业务判断
+	 * @param username
+	 * @return
+	 */
+	public String getExhibitorByUserNamePure(String username)
+	{
+		Exhibitors exhibitor = exhibitorsDao.getExhibitorsByUserName(username);
+		if(exhibitor == null)
+		{
+			logger.warn(ERROR_STR);
+			return ERROR_STR;	
+		}
+		
+		JSONObject obj = new JSONObject(exhibitor);
+		String ret = obj.toString();
+		logger.debug(ret);
+		return ret;
+	}
+	
 	public String getTotalExhibitInfoByIdWithServlet(String id)
 	{
 		JSONObject obj = processTotalExhibitInfoById(id);
@@ -444,6 +470,20 @@ public class ExhibitorsService {
 			logger.info(ret);
 			return ret;
 		}
+		String orgCode = exhibitor.getOrgCode();
+		ex = exhibitorsDao.getExhibitorByOrgcodeWithRegistered(orgCode);
+		if(ex != null)
+		{
+			obj.put("result", false);
+			obj.put("message", "该公司已注册过，如有疑问请致电！");
+			obj.put("username", ex.getUsername());
+			obj.put("ogrName", orgName);
+			obj.put("orgCode", orgCode);
+			obj.put("id", ex.getId());
+			String ret = obj.toString();
+			logger.info(ret);
+			return ret;
+		}
 		exhibitor.setApplyTime(new Date());
 		//根据9月9日穆东成意见，用户名为组织机构代码证，不需要随机生成
 		exhibitor.setUsername(exhibitor.getOrgCode());
@@ -489,7 +529,7 @@ public class ExhibitorsService {
 			v.setEid(id);
 			v.setOrg(exhibitor.getOrgName());
 			v.setType(1);
-			v.setRecommender(ex.getRecommender());
+			v.setRecommender(exhibitor.getRecommender());
 			//visitorDao.saveVisitor(v);
 			visitorService.saveVisitor(v,"");
 		}
@@ -610,6 +650,20 @@ public class ExhibitorsService {
 				obj.put("message", "已有相同公司名称的公司在申请中或者已通过批准，无法重新申请，如有疑问请致电！");
 				obj.put("username", ex.getUsername());
 				obj.put("orgname", orgName);
+				obj.put("id", ex.getId());
+				String ret = obj.toString();
+				logger.info(ret);
+				return ret;
+			}
+			String orgCode = exhibitor.getOrgCode();
+			ex = exhibitorsDao.getExhibitorByOrgcodeWithRegistered(orgCode);
+			if(ex != null)
+			{
+				obj.put("result", false);
+				obj.put("message", "已有相同公司组织机构代码的公司在申请中或者已通过批准，无法重新申请，如有疑问请致电！");
+				obj.put("username", ex.getUsername());
+				obj.put("orgname", orgName);
+				obj.put("orgCode", orgCode);
 				obj.put("id", ex.getId());
 				String ret = obj.toString();
 				logger.info(ret);

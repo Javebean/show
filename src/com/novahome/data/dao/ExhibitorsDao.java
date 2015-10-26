@@ -270,6 +270,14 @@ public class ExhibitorsDao {
 		return (Exhibitors) query.uniqueResult();
 	}
 	
+	public Exhibitors getExhibitorByOrgcodeWithRegistered(String orgCode)
+	{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Exhibitors a where a.orgCode=:orgCode and (a.state = 1 or a.state = 0) and (a.firstState = 0 or a.firstState = 1)");
+				query.setParameter("orgCode", orgCode);
+		return (Exhibitors) query.uniqueResult();
+	}
+	
 	public Exhibitors getExhibitorById(String id)
 	{
 		Query query = sessionFactory.getCurrentSession().createQuery(

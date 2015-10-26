@@ -23,6 +23,18 @@ $(document).ready(function(){
 	if(getCookie("type")==1)
 	{
 		$("#wssb_exhbit_login").hide();
+		var userName = getCookie("user");
+		var func = function(data){
+			data=JSON.parse(data);
+			$("input[name='org']").val(data.orgName);
+			recval = data.recommender;
+
+			$("#recommender_dropbox").find("option[value=" + recval + "]").attr("selected",true);
+
+			document.getElementById("recselect").innerHTML = recval;
+		};
+
+		Exhibitor.getExhibitorByUserNamePure(userName,func);
 	}
 	//如果观众已经登录，预设部分表单信息
 	if(getCookie("type")==2){

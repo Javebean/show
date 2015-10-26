@@ -32,6 +32,11 @@ function checklogin()
 			setCookie("exid",exid);
 			document.getElementById('logintextfield001').value = "";
 			document.getElementById('logintextfield002').value = "";
+			$(".zwsq").addClass("hide");
+			$(".zs_login").addClass("hide");
+			$(".login").addClass("hide");
+			$(".zwsqnr").addClass("hide");
+			$(".resultMsg").show();
 		}
 		else
 		{
@@ -62,7 +67,7 @@ function setCookie(name,value)
     </div>
     <div class="zs_login">
      <div class="zwsqbt">展商登录</div>
-     <span class="zwsqnr">如果您的公司从已申请参展，使用系统生成的“连博会”用户名和密码进行登录</span>
+     <span class="zwsqnr">如果您的公司已经申请参展，使用系统生成的“连博会”用户名和密码进行登录</span>
     </div>
     <div class="login">
      <div class="login_nr"><span class="yhm left">用户名：</span><input id='logintextfield001' style=" display:block; float:left; width:251px; height:31px; border:1px solid #BFBFBF; padding:0 0 0 5px" name="" type="text" /></div>
@@ -75,6 +80,8 @@ function setCookie(name,value)
 
     </div>
 		<span class="zwsqnr">登陆后，可以查看各参展商的具体联系方式</span>
-
+		<div class="resultMsg" style="display:none;color:#f40000">
+				 <h3>您好，您已经登录成功，您可以点击左侧菜单继续您的浏览</h3>
+		</div>
 
 </html>

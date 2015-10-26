@@ -164,10 +164,11 @@ public class VisitorService {
 		if(vi != null )
 		{
 			//	审批已经通过的无法重新申请
-			if(vi.getState() == 1)
+			//根据穆10月23日意见，改成一级审批通过就没法修改
+			if(vi.getFirstState() == 1)
 			{
 				obj.put("result", false);
-				obj.put("message", "该身份证件号码已注册审批通过，无法重新申请");
+				obj.put("message", "该身份证件号码已注册 并且通过一级审批，无法重新申请");
 				obj.put("name", vi.getName());
 				obj.put("idNo", vi.getIdNo());
 				obj.put("id", vi.getId());

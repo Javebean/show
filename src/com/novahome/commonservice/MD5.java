@@ -35,7 +35,7 @@ public class MD5 {
 	
 	public static void main(String[] args){
 		//System.out.println(compute("lyg2015expo"));
-		System.out.println(compute("123"));
+		System.out.println(compute("999999"));
 	}
 	
 }

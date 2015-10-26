@@ -13,6 +13,7 @@
 <script type="text/javascript" src="js/constants.js"></script>
 	<script type='text/javascript' src='dwr/interface/Visitor.js'></script>
 	<script type='text/javascript' src='dwr/interface/Audience.js'></script>
+		<script type='text/javascript' src='dwr/interface/Exhibitor.js'></script>
     <script type="text/javascript" src="js/addVisitor.js"></script>
 
 <style>
@@ -85,6 +86,19 @@ function checklogin()
 			document.getElementById('logintextfield001').value = "";
 			document.getElementById('logintextfield002').value = "";
 			$("#wssb_exhbit_login").addClass("hide");
+			var func = function(data){
+				data=JSON.parse(data);
+				$("input[name='org']").val(data.orgName);
+				
+				recval = data.recommender;
+
+				$("#recommender_dropbox").find("option[value=" + recval + "]").attr("selected",true);
+
+				document.getElementById("recselect").innerHTML = recval;
+
+			};
+
+			Exhibitor.getExhibitorByUserNamePure(usrname,func);
 		}
 		else
 		{
@@ -203,7 +217,7 @@ function setCookie(name,value)
 			<div class="table3"><span class="table3_left left required_label">招展引荐单位</span>
 				<span class="table3_right left">
 				<div class="sel_wrap left" style=" width:574px">
-					<label></label>
+					<label id="recselect"></label>
 					<select class="select required" name="recommender" id="recommender_dropbox">
 
 					</select>
