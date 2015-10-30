@@ -5,6 +5,7 @@ var search_state = -1;
 var search_name = "";
 var search_type = -1;
 var search_recommender = "";
+var search_org = "";
 $(document).ready(function(){
 	var ROWS_PER_PAGE = 10;
 	var rowCount = 0;
@@ -78,6 +79,7 @@ $(document).ready(function(){
 		search_name = $(".name_search").val();
 		search_type = $(".type_search").val();
 		search_recommender =  $(".recommender_search").val();
+		search_org = $(".org_search").val();
 		showTopicList(1);
 	}
 
@@ -147,11 +149,11 @@ $(document).ready(function(){
 //	Visitor.getVisitorForPageByStateMutipleCon((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE,search_state,search_name, search_type,func);
 		if(step == 1){
 			//alert("name:" + official);
-			var params = new Array(search_name, official);
+			var params = new Array(search_name, official, search_org);
 			Visitor.getVisitorForPageByMutipleConFirstAudit((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_type,params,func);
 		} else if(step == 2) {
 		//	Exhibitor.getExhibitorsForPageByState((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_name, func);
-			var params = new Array(search_name, search_recommender);
+			var params = new Array(search_name, search_recommender,search_org);
 			Visitor.getVisitorForPageByMutipleConFinal((page-1)*ROWS_PER_PAGE,ROWS_PER_PAGE, search_state, search_type,params,func);
 
 		}

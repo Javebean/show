@@ -57,7 +57,7 @@
 					<div class="collapse navbar-collapse">
 						<div class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<span>审核状态:</span>
+								<span>审核:</span>
 							</div>
 							<div class="form-group">
 								<select class="form-control search_ele state_search">
@@ -68,7 +68,7 @@
 								</select>
 							</div>
 
-							<div class="form-group" style="margin-left: 5px;">
+							<div class="form-group" >
 								<span>证件类型:</span>
 							</div>
 							<div class="form-group">
@@ -82,7 +82,7 @@
 								</select>
 							</div>
 
-							<div class="form-group recommender_search_label" style="margin-left: 5px;">
+							<div class="form-group recommender_search_label">
 								<span>引荐单位:</span>
 							</div>
 							<div class="form-group recommender_search_label">
@@ -91,14 +91,21 @@
 								</select>
 							</div>
 
-							<div class="form-group" style="margin-left: 5px;">
-								<span>人员姓名:</span>
+							<div class="form-group" >
+								<span>人员:</span>
 							</div>
 							<div class="form-group">
-								<input class="name_search" type="text" style="height: 34px;width: 100px;"/>
+								<input class="name_search" type="text" style="height: 34px;width: 75px;"/>
 							</div>
 
-							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 5px;">查询</button>
+							<div class="form-group">
+								<span>公司:</span>
+							</div>
+							<div class="form-group">
+								<input class="org_search" type="text" style="height: 34px;width: 120px;"/>
+							</div>
+
+							<button type="button" class="btn btn-sm btn-primary do_search" style="margin-left: 1px;">查询</button>
 						</div>
 					</div>
 

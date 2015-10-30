@@ -355,6 +355,17 @@ public class VisitorService {
 		return procssListRet(ls,size);
 	}
 	
+	/**
+	 * 根据证件状态分页查询现场证件申请信息,初审证件
+	 * 增加根据证件类型等添加查询
+	 * 2015年9月9日穆东成提出需求
+	 * @param start
+	 * @param number
+	 * @param firstState
+	 * @param type
+	 * @param con
+	 * @return
+	 */
 	public String getVisitorForPageByMutipleConFirstAudit(int start, int number,int firstState, int type, String... con)
 	{
 		if(firstState == -1)
@@ -366,6 +377,17 @@ public class VisitorService {
 		return procssListRet(ls,size);
 	}
 	
+	/**
+	 * 	根据证件状态分页查询现场证件申请信息，终审证件
+	 * 增加根据证件类型等添加查询
+	 * 2015年9月9日穆东成提出需求
+	 * @param start
+	 * @param number
+	 * @param state
+	 * @param type
+	 * @param con
+	 * @return
+	 */
 	public String getVisitorForPageByMutipleConFinal(int start, int number,int state, int type, String... con)
 	{
 		if(state == -1)
